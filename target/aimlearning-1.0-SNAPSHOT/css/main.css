@@ -1,0 +1,43 @@
+a{
+    padding-left: 20px;
+    padding-top: 20px;
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+}
+
+.input_param{
+    padding-top: 15px;
+    margin-top: 10px;
+}
+
+.department_href{
+    text-decoration: none;
+}
+
+
+.header_refs{
+    text-transform: uppercase;
+    padding-top: 20px;
+}
+
+.delete_button{
+    color: red;
+    text-transform: uppercase;
+}
+
+.departments_main{
+    display: flex;
+    align-items: baseline;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.departments_all{
+    position: absolute;
+    padding-top: 15px;
+}
+
+.input_param_id{
+    visibility: hidden;
+}
