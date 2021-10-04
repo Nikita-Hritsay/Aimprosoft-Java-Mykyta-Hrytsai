@@ -1,0 +1,13 @@
+/home/nikita/IdeaProjects/aimlearning-Java-Mykyta-Hrytsai/src/main/java/com/aimprosoft/aimlearning/model/Employee.java
+/home/nikita/IdeaProjects/aimlearning-Java-Mykyta-Hrytsai/src/main/java/com/aimprosoft/aimlearning/DAO/EmployeeDAO.java
+/home/nikita/IdeaProjects/aimlearning-Java-Mykyta-Hrytsai/src/main/java/com/aimprosoft/aimlearning/servlets/deleteDepartmentServlet.java
+/home/nikita/IdeaProjects/aimlearning-Java-Mykyta-Hrytsai/src/main/java/com/aimprosoft/aimlearning/servlets/addDepartmentServlet.java
+/home/nikita/IdeaProjects/aimlearning-Java-Mykyta-Hrytsai/src/main/java/com/aimprosoft/aimlearning/DAO/ConnectionFactory.java
+/home/nikita/IdeaProjects/aimlearning-Java-Mykyta-Hrytsai/src/main/java/com/aimprosoft/aimlearning/DAO/EmployeeDAOImpl.java
+/home/nikita/IdeaProjects/aimlearning-Java-Mykyta-Hrytsai/src/main/java/com/aimprosoft/aimlearning/DAO/DepartmentDAOImpl.java
+/home/nikita/IdeaProjects/aimlearning-Java-Mykyta-Hrytsai/src/main/java/com/aimprosoft/aimlearning/servlets/DeleteEmployeeServlet.java
+/home/nikita/IdeaProjects/aimlearning-Java-Mykyta-Hrytsai/src/main/java/com/aimprosoft/aimlearning/servlets/updateDepartmentServlet.java
+/home/nikita/IdeaProjects/aimlearning-Java-Mykyta-Hrytsai/src/main/java/com/aimprosoft/aimlearning/model/Department.java
+/home/nikita/IdeaProjects/aimlearning-Java-Mykyta-Hrytsai/src/main/java/com/aimprosoft/aimlearning/servlets/updateEmployeeServlet.java
+/home/nikita/IdeaProjects/aimlearning-Java-Mykyta-Hrytsai/src/main/java/com/aimprosoft/aimlearning/DAO/DepartmentDAO.java
+/home/nikita/IdeaProjects/aimlearning-Java-Mykyta-Hrytsai/src/main/java/com/aimprosoft/aimlearning/servlets/addEmployeeServlet.java
