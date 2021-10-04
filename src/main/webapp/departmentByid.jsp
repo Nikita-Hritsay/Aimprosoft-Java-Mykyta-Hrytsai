@@ -44,6 +44,7 @@
             printWriter.println("<p> Id: " + employees.get(i).getId() +
                     " First Name: " + employees.get(i).getFirstName() +
                     " Last Name: " + employees.get(i).getLastName() +
+                    " Email: " + employees.get(i).getEmail() +
                     " Salary: " + employees.get(i).getSalary() +
                     " Hire date: " + employees.get(i).getHireDate() +
                     "<a class=\"delete_button\" href=\"/aimlearning_war_exploded/DeleteEmployeeServlet?id=" + employees.get(i).getId()+
@@ -52,8 +53,10 @@
                     "&idDepartment=" + department.getIdDepartment() +
                     "&firstName=" + employees.get(i).getFirstName() +
                     "&lastName=" + employees.get(i).getLastName() +
+                    "&email=" + employees.get(i).getEmail() +
                     "&salary=" + employees.get(i).getSalary() +
-                    "&hireDate=" + employees.get(i).getHireDate() + "\">    Update this employee</a> </p> " );
+                    "&hireDate=" + employees.get(i).getHireDate() +
+                    "&iddepartment=" + employees.get(i).getIdDepartment() + "\">    Update this employee</a> </p> " );
         }
     %>
 </div>

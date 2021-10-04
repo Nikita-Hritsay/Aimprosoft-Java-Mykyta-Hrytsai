@@ -37,6 +37,7 @@
                 "            <th>Id</th>\n" +
                 "            <th>First Name</th>\n" +
                 "            <th>Last Name</th>\n" +
+                "            <th>Email</th>\n" +
                 "            <th>Salary</th>\n" +
                 "            <th>Hire Date</th>\n" +
                 "            <th>Department id</th>\n" +
@@ -45,6 +46,7 @@
             printWriter.println("<tr>" + "<td>" + employees.get(i).getId() + "</td>" +
                     "<td>" + employees.get(i).getFirstName() + "</td>" +
                     "<td>" + employees.get(i).getLastName() + "</td>" +
+                    "<td>" + employees.get(i).getEmail() + "</td>" +
                     "<td>" + employees.get(i).getSalary() + "</td>" +
                     "<td>" + employees.get(i).getHireDate() + "</td>" +
                     "<td>" + employees.get(i).getIdDepartment() + "</td>" + "</tr>");

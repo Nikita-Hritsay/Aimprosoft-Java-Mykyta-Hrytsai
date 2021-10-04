@@ -22,11 +22,13 @@ public class addEmployeeServlet extends HttpServlet {
                 && Integer.parseInt(request.getParameter("iddepartment")) > 0){
                     Employee employee = new Employee(request.getParameter("firstName"),
                             request.getParameter("lastName"),
+                            request.getParameter("email"),
                             Integer.parseInt(request.getParameter("salary")),
                             request.getParameter("hireDate"),
                             Integer.parseInt(request.getParameter("iddepartment")));
                     new EmployeeDAOImpl().add(employee);
-                    response.sendRedirect("/aimlearning_war_exploded/");
+                    //response.sendRedirect("/aimlearning_war_exploded/");
+                request.getRequestDispatcher("/").forward(request, response);
                 }
             else {
                 response.sendRedirect("/aimlearning_war_exploded/addEmployee.jsp?wrong=Wrong");

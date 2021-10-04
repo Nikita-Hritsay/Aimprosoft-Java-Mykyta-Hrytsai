@@ -20,9 +20,10 @@ public class updateEmployeeServlet extends HttpServlet {
         new EmployeeDAOImpl().updateEmployee(new Employee( Integer.parseInt(request.getParameter("id")),
                 request.getParameter("firstName"),
                 request.getParameter("lastName") ,
+                request.getParameter("email"),
                 Integer.parseInt(request.getParameter("salary")),
                 request.getParameter("hireDate"),
-                Integer.parseInt(request.getParameter("idDepartment"))));
+                Integer.parseInt(request.getParameter("iddepartment"))));
         response.sendRedirect("/aimlearning_war_exploded/");
     }
 }

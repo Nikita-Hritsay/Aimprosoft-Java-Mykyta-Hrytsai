@@ -36,9 +36,10 @@
         <input type="hidden" name="id" class="input_param" size="20px" value="<%= request.getParameter("id") %>">
         Please enter your first name:  <input type="text" name="firstName" class="input_param" size="15px" value="<%= request.getParameter("firstName") %>"> <br>
         Please enter your last name:  <input type="text" name="lastName" class="input_param" size="15px" value="<%= request.getParameter("lastName") %>"> <br>
+        Please enter your email:  <input type="text" name="email" class="input_param" size="15px" value="<%= request.getParameter("email") %>"> <br>
         Please enter your salary:  <input type="number" name="salary" class="input_param" size="15px" value="<%= request.getParameter("salary") %>"> <br><br>
         Please enter your hire date:  <input type="date" name="hireDate" class="input_param" size="15px" value="<%= request.getParameter("hireDate") %>"> <br><br>
-        Please enter your department id:  <input list="idDepartments" name="iddepartment" class="input_param" size="15px"> <br><br>
+        Please enter your department id:  <input list="idDepartments" name="iddepartment" class="input_param" size="15px" value="<%= request.getParameter("iddepartment") %>"> <br><br>
         <%
             PrintWriter printWriter = response.getWriter();
             printWriter.println("<datalist id=\"idDepartments\">");

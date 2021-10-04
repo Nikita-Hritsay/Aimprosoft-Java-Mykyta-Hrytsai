@@ -4,17 +4,10 @@ public class Employee {
     private int id;
     private String firstName;
     private String lastName;
+    private String email;
     private int salary;
     private String hireDate;
     private int idDepartment;
-
-    public Employee(String firstName, String lastName, int salary, String hireDate, int idDepartment) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.salary = salary;
-        this.hireDate = hireDate;
-        this.idDepartment = idDepartment;
-    }
 
     @Override
     public String toString() {
@@ -22,10 +15,46 @@ public class Employee {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
                 ", salary=" + salary +
                 ", hireDate='" + hireDate + '\'' +
                 ", idDepartment=" + idDepartment +
                 '}';
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Employee(String firstName, String lastName, String email, int salary, String hireDate, int idDepartment) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.salary = salary;
+        this.hireDate = hireDate;
+        this.idDepartment = idDepartment;
+    }
+
+    public Employee(int id, String firstName, String lastName, String email, int salary, String hireDate, int idDepartment) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.salary = salary;
+        this.hireDate = hireDate;
+        this.idDepartment = idDepartment;
+    }
+
+    public Employee(String firstName, String lastName, int salary, String hireDate, int idDepartment) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.salary = salary;
+        this.hireDate = hireDate;
+        this.idDepartment = idDepartment;
     }
 
     public int getId() {

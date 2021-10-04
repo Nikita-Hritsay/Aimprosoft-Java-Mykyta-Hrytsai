@@ -13,7 +13,7 @@ public class DepartmentDAOImpl implements DepartmentDAO{
 
     private final String FIND_ALL = "select iddepartment, name, address from emplyees.department";
     private final String FIND_DEPARTMENT_BY_ID = "select iddepartment, name, address from emplyees.department where iddepartment = ?";
-    private final String FIND_BY_ID = "select idemployee, firstName, lastName, salary, hireDate, department_iddepartment from emplyees.employee where department_iddepartment = ?";
+    private final String FIND_BY_ID = "select idemployee, firstName, lastName, email, salary, hireDate, department_iddepartment from emplyees.employee where department_iddepartment = ?";
     private final String ADD_DEPARTMENT = "insert into department(name, address) values(?, ?)";
     private final String UPDATE_DEPARTMENT = "update department set name = ?, address = ? where iddepartment = ?";
     private final String DELETE_DEPARTMENT = "delete from department where iddepartment = ?";
@@ -62,9 +62,10 @@ public class DepartmentDAOImpl implements DepartmentDAO{
                 result.add(new Employee(resultSet.getInt(1),
                         resultSet.getString(2),
                         resultSet.getString(3),
-                        resultSet.getInt(4),
-                        resultSet.getString(5),
-                        resultSet.getInt(6)));
+                        resultSet.getString(4),
+                        resultSet.getInt(5),
+                        resultSet.getString(6),
+                        resultSet.getInt(7)));
             }
             return result;
         }catch (SQLException sqlException){

@@ -9,11 +9,11 @@ import java.util.List;
 public class EmployeeDAOImpl implements EmployeeDAO{
     private ConnectionFactory connectionFactory;
 
-    private final String FIND_ALL = "select idemployee, firstName, lastName, salary, hireDate, department_iddepartment from emplyees.employee";
-    private final String FIND_BY_ID = "select idemployee, firstName, lastName, salary, hireDate, department_iddepartment from emplyees.employee where idemployee = ?";
-    private final String ADD_EMPLOYEE = "insert into employee(firstName, lastName, salary, hireDate, department_iddepartment) values(?, ?, ?, ?, ?)";
+    private final String FIND_ALL = "select idemployee, firstName, lastName, email, salary, hireDate, department_iddepartment from emplyees.employee";
+    private final String FIND_BY_ID = "select idemployee, firstName, lastName, email, salary, hireDate, department_iddepartment from emplyees.employee where idemployee = ?";
+    private final String ADD_EMPLOYEE = "insert into employee(firstName, lastName, email, salary, hireDate, department_iddepartment) values(?, ?, ?, ?, ?, ?)";
     private final String DELETE_EMPLOYEE = "delete from employee where idemployee = ?";
-    private final String UPDATE_EMPLOYEE = "update employee set firstName = ?, lastName = ?, salary = ?, hireDate = ?, department_iddepartment = ? where idemployee = ?";
+    private final String UPDATE_EMPLOYEE = "update employee set firstName = ?, lastName = ?, email = ?, salary = ?, hireDate = ?, department_iddepartment = ? where idemployee = ?";
 
     public EmployeeDAOImpl(){
         this.connectionFactory = new ConnectionFactory();
@@ -33,9 +33,10 @@ public class EmployeeDAOImpl implements EmployeeDAO{
                 result.add(new Employee(resultSet.getInt(1),
                         resultSet.getString(2),
                         resultSet.getString(3),
-                        resultSet.getInt(4),
-                        resultSet.getString(5),
-                        resultSet.getInt(6)));
+                        resultSet.getString(4),
+                        resultSet.getInt(5),
+                        resultSet.getString(6),
+                        resultSet.getInt(7)));
             }
             return result;
         }catch (SQLException sqlException){
@@ -56,10 +57,11 @@ public class EmployeeDAOImpl implements EmployeeDAO{
             statement = conn.prepareStatement(UPDATE_EMPLOYEE);
             statement.setString(1, employee.getFirstName());
             statement.setString(2, employee.getLastName());
-            statement.setInt(3, employee.getSalary());
-            statement.setString(4, employee.getHireDate());
-            statement.setInt(5, employee.getIdDepartment());
-            statement.setInt(6, employee.getId());
+            statement.setString(3, employee.getEmail());
+            statement.setInt(4, employee.getSalary());
+            statement.setString(5, employee.getHireDate());
+            statement.setInt(6, employee.getIdDepartment());
+            statement.setInt(7, employee.getId());
             statement.executeUpdate();
         }catch(SQLException e){
             System.out.println("Something went wrong" + e.getSQLState());
@@ -99,9 +101,10 @@ public class EmployeeDAOImpl implements EmployeeDAO{
             result = new Employee(resultSet.getInt(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
-                    resultSet.getInt(4),
-                    resultSet.getString(5),
-                    resultSet.getInt(6));
+                    resultSet.getString(4),
+                    resultSet.getInt(5),
+                    resultSet.getString(6),
+                    resultSet.getInt(7));
             return result;
         }catch (SQLException sqlException){
             System.out.println("Something went wrong" + sqlException.getSQLState());
@@ -121,9 +124,10 @@ public class EmployeeDAOImpl implements EmployeeDAO{
             preparedStatement = conn.prepareStatement(ADD_EMPLOYEE);
             preparedStatement.setString(1, employee.getFirstName());
             preparedStatement.setString(2, employee.getLastName());
-            preparedStatement.setInt(3, employee.getSalary());
-            preparedStatement.setString(4, employee.getHireDate());
-            preparedStatement.setInt(5, employee.getIdDepartment());
+            preparedStatement.setString(3, employee.getEmail());
+            preparedStatement.setInt(4, employee.getSalary());
+            preparedStatement.setString(5, employee.getHireDate());
+            preparedStatement.setInt(6, employee.getIdDepartment());
             preparedStatement.executeUpdate();
             conn.commit();
         } catch (SQLException throwables) {
