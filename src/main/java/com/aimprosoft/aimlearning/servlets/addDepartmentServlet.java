@@ -23,7 +23,6 @@ public class addDepartmentServlet extends HttpServlet {
             Department department = new Department(request.getParameter("name"), request.getParameter("address"));
             new DepartmentDAOImpl().addDepartment(department);
             response.sendRedirect("/aimlearning_war_exploded/");
-
         }
         else {
             response.sendRedirect("/aimlearning_war_exploded/addDepartment.jsp?wrong=Wrong");

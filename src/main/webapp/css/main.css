@@ -15,6 +15,9 @@ a{
     text-decoration: none;
 }
 
+.update_button{
+    color: blue;
+}
 
 .header_refs{
     text-transform: uppercase;
@@ -23,7 +26,6 @@ a{
 
 .delete_button{
     color: red;
-    text-transform: uppercase;
 }
 
 .departments_main{

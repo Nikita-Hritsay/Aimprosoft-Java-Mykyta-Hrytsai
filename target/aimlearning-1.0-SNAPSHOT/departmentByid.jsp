@@ -36,10 +36,16 @@
         List<Employee> employees = new DepartmentDAOImpl().getById(Integer.parseInt(request.getParameter("id")));
         PrintWriter printWriter = response.getWriter();
         Department department = new DepartmentDAOImpl().findDepartmentById(Integer.parseInt(request.getParameter("id")));
-        printWriter.println(department.toString());
+        printWriter.println("<p>Department id: " + department.getIdDepartment() +
+                " name: " + department.getName() +
+                " address: " + department.getAddress() + "</p>");
         printWriter.println();
         for(int i = 0 ; i < employees.size(); i++){
-            printWriter.println("<p>" + employees.get(i).toString() +
+            printWriter.println("<p> Id: " + employees.get(i).getId() +
+                    " First Name: " + employees.get(i).getFirstName() +
+                    " Last Name: " + employees.get(i).getLastName() +
+                    " Salary: " + employees.get(i).getSalary() +
+                    " Hire date: " + employees.get(i).getHireDate() +
                     "<a class=\"delete_button\" href=\"/aimlearning_war_exploded/DeleteEmployeeServlet?id=" + employees.get(i).getId()+
                     "&idDepartment=" + department.getIdDepartment() + "\">    Delete this employee  </a>" +
                     "<a class=\"update_button\" href=\"/aimlearning_war_exploded/updateEmployeeServlet?id=" + employees.get(i).getId() +

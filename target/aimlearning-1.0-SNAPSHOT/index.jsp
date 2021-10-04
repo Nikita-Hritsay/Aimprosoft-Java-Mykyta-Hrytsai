@@ -27,7 +27,7 @@
             List<Department> departments = new DepartmentDAOImpl().getAllDepartments();
             PrintWriter printWriter = response.getWriter();
             for(int i = 0 ; i < departments.size(); i++){
-                printWriter.println("<a class=\"department_href\"  href=\"http://localhost:8080/aimlearning_war_exploded/departmentByid.jsp?id="+ departments.get(i).getIdDepartment() +"\">"
+                printWriter.println("<a class=\"department_href\"  href=\"http://localhost:8080/aimlearning_war_exploded/departmentByid.jsp?id="+ departments.get(i).getIdDepartment() +"\"> Department: "
                         + "Id: " + departments.get(i).getIdDepartment() +
                         " name: " + departments.get(i).getName() +
                         " address: " + departments.get(i).getAddress() +
