@@ -44,6 +44,7 @@
                 printWriter.println("<datalist id=\"idDepartments\">");
                 for(Department department: new DepartmentDAOImpl().getAllDepartments()){
                     printWriter.println("<option value=\"" + department.getIdDepartment() + "\"></option>");
+                    System.out.println(department.getIdDepartment());
                 }
                 printWriter.println("</datalist>");
             %>

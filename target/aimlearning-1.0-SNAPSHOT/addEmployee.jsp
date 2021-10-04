@@ -43,8 +43,8 @@
                 PrintWriter printWriter = response.getWriter();
                 printWriter.println("<datalist id=\"idDepartments\">");
                 for(Department department: new DepartmentDAOImpl().getAllDepartments()){
-                    System.out.println(department.getIdDepartment());
                     printWriter.println("<option value=\"" + department.getIdDepartment() + "\"></option>");
+                    System.out.println(department.getIdDepartment());
                 }
                 printWriter.println("</datalist>");
             %>
