@@ -28,7 +28,7 @@ CREATE TABLE `department` (
   `address` varchar(45) NOT NULL,
   PRIMARY KEY (`iddepartment`),
   UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,13 +52,15 @@ CREATE TABLE `employee` (
   `idemployee` int NOT NULL AUTO_INCREMENT,
   `firstName` varchar(45) NOT NULL,
   `lastName` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
   `salary` int NOT NULL,
   `hireDate` varchar(45) NOT NULL,
   `department_iddepartment` int NOT NULL,
-  PRIMARY KEY (`idemployee`),
+  PRIMARY KEY (`idemployee`,`department_iddepartment`),
+  UNIQUE KEY `email` (`email`),
   KEY `fk_employee_department_idx` (`department_iddepartment`),
-  CONSTRAINT `fk_employee_department` FOREIGN KEY (`department_iddepartment`) REFERENCES `department` (`iddepartment`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `fk_employee_department` FOREIGN KEY (`department_iddepartment`) REFERENCES `department` (`iddepartment`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +69,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (8,'Nikita','Hritsay',300,'2021-09-29',1),(9,'Michael','Dmitrenko',400,'2007',1),(10,'Artem','Simonov',600,'2021-09-23',1),(11,'Artem','second',700,'2021-09-11',1),(21,'Nikita','Hritsay',1000,'2021-10-19',14),(22,'Boghdan','Artemov',600,'2021-08-18',14),(23,'Alexandr','Komov',100,'2021-08-10',14),(24,'Kiril','Simonov',200,'2021-09-15',14),(25,'Michael','Musienko',300,'2021-09-16',1),(26,'Marina','Hritsay',1000,'2021-07-08',14),(27,'Artem','First',2000,'2021-09-09',1),(28,'Artem','second',400,'2021-09-10',1);
+INSERT INTO `employee` VALUES (8,'Nikita','Hritsay','hritsaynikita8',300,'2021-09-29',1),(9,'Michael','Dmitrenko','hritsaynikita9',400,'2007',1),(10,'Artem','Simonov','hritsaynikita10',600,'2021-09-23',1),(11,'Artem','second','hritsaynikita11',700,'2021-09-11',1),(21,'Nikita','Hritsay','hritsaynikita21',1000,'2021-10-19',14),(22,'Boghdan','Artemov','hritsaynikita22',600,'2021-08-18',14),(23,'Alexandr','Komov','hritsaynikita23',100,'2021-08-10',14),(24,'Kiril','Simonov','hritsaynikita24',200,'2021-09-15',14),(25,'Michael','Musienko','hritsaynikita25',300,'2021-09-16',1),(26,'Marina','Hritsay','hritsaynikita26',1000,'2021-07-08',14),(27,'Artem','First','hritsaynikita27',2000,'2021-09-09',1),(28,'Artem','second','hritsaynikita28',400,'2021-09-10',1),(32,'Artem','First','hritsaynikita32',2,'2021-10-08',1),(33,'Artem','test','hritsaynikita200',2,'2021-10-20',14),(34,'Artem','First','hritsaynikita100@gmail.com',13,'2021-10-14',1);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -80,4 +82,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-04 10:49:19
+-- Dump completed on 2021-10-04 15:44:17
