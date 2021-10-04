@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class ConnectionFactory {
 
-    public static final String URL = "jdbc:mysql://localhost:3306/emplyees?useUnicode=true&serverTimezone=UTC";
+    public static final String URL = "jdbc:mysql://localhost:3306/employees?useUnicode=true&serverTimezone=UTC";
     public static final String USER = "root";
     public static final String PASSWORD = "nikitahr";
 
