@@ -38,15 +38,14 @@
         Please enter your salary:  <input type="number" name="salary" class="input_param" size="15px"> <br><br>
         Please enter your hire date:  <input type="date" name="hireDate" class="input_param" size="15px"> <br><br>
 
-        Please enter your department id:  <input list="idDepartments" name="iddepartment" class="input_param" size="15px">
+        Please enter your department id:  <input list="idDepartments" name="iddepartment" class="input_param" size="15px"> <br><br>
             <%
                 PrintWriter printWriter = response.getWriter();
                 printWriter.println("<datalist id=\"idDepartments\">");
                 for(Department department: new DepartmentDAOImpl().getAllDepartments()){
                     printWriter.println("<option value=\"" + department.getIdDepartment() + "\"></option>");
-                    System.out.println(department.getIdDepartment());
                 }
-                printWriter.println("</datalist>");
+                printWriter.println("</datalist><br>");
             %>
 
 

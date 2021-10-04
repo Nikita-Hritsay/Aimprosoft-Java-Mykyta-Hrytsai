@@ -1,4 +1,6 @@
-<%@ page import="java.io.PrintWriter" %><%--
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="com.aimprosoft.aimlearning.model.Department" %>
+<%@ page import="com.aimprosoft.aimlearning.DAO.DepartmentDAOImpl" %><%--
   Created by IntelliJ IDEA.
   User: nikita
   Date: 01.10.21
@@ -30,13 +32,22 @@
     %>
 
     <form action="updateEmployeeServlet" method="post">
-        <p>User id: <%= request.getParameter("id") %></p>
+        <%--@declare id="iddepartments"--%><p>User id: <%= request.getParameter("id") %></p>
         <input type="hidden" name="id" class="input_param" size="20px" value="<%= request.getParameter("id") %>">
         Please enter your first name:  <input type="text" name="firstName" class="input_param" size="15px" value="<%= request.getParameter("firstName") %>"> <br>
         Please enter your last name:  <input type="text" name="lastName" class="input_param" size="15px" value="<%= request.getParameter("lastName") %>"> <br>
         Please enter your salary:  <input type="number" name="salary" class="input_param" size="15px" value="<%= request.getParameter("salary") %>"> <br><br>
         Please enter your hire date:  <input type="date" name="hireDate" class="input_param" size="15px" value="<%= request.getParameter("hireDate") %>"> <br><br>
-        Please enter your department id:  <input type="number" name="idDepartment" class="input_param" size="15px" value="<%= request.getParameter("idDepartment") %>"> <br><br>
+        Please enter your department id:  <input list="idDepartments" name="iddepartment" class="input_param" size="15px"> <br><br>
+        <%
+            PrintWriter printWriter = response.getWriter();
+            printWriter.println("<datalist id=\"idDepartments\">");
+            for(Department department: new DepartmentDAOImpl().getAllDepartments()){
+                printWriter.println("<option value=\"" + department.getIdDepartment() + "\"></option>");
+            }
+            printWriter.println("</datalist>");
+        %>
+            <br>
         <input type="submit" value="submit">
     </form>
 </div>

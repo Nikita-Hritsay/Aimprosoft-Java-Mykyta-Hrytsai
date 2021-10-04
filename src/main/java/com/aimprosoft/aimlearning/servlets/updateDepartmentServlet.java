@@ -12,9 +12,7 @@ import java.io.IOException;
 public class updateDepartmentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/aimlearning_war_exploded/updateDepartment.jsp?name=" + request.getParameter("name") +
-                "&address=" + request.getParameter("address") +
-                "&id=" + request.getParameter("id"));
+        request.getRequestDispatcher("updateDepartment.jsp").forward(request, response);
     }
 
     @Override

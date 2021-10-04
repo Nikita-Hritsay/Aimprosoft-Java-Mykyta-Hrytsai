@@ -12,12 +12,7 @@ import java.io.IOException;
 public class updateEmployeeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/aimlearning_war_exploded/updateEmployee.jsp?firstName=" + request.getParameter("firstName") +
-                "&lastName=" + request.getParameter("lastName") +
-                "&salary=" + request.getParameter("salary") +
-                "&hireDate=" + request.getParameter("hireDate") +
-                "&idDepartment=" + request.getParameter("idDepartment") +
-                "&id=" + request.getParameter("id"));
+        request.getRequestDispatcher("updateEmployee.jsp").forward(request, response);
     }
 
     @Override
