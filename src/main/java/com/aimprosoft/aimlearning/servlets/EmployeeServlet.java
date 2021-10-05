@@ -30,7 +30,15 @@ public class EmployeeServlet extends HttpServlet {
                 sent = true;
                 break;
             case "update":
-                request.getRequestDispatcher("updateEmployee.jsp?iddepartment=" + request.getParameter("iddepartment")).forward(request, response);
+                Employee employee = new EmployeeDAOImpl().getById(Integer.parseInt(request.getParameter("id")));
+                request.getRequestDispatcher("updateEmployee.jsp?iddepartment=" + employee.getIdDepartment()
+                    + "&id=" + employee.getId()
+                    + "&firstName=" + employee.getFirstName()
+                    + "&lastName=" + employee.getLastName()
+                    + "&email=" + employee.getEmail()
+                    + "&salary=" + employee.getSalary()
+                    + "&hireDate=" + employee.getHireDate()
+                ).forward(request, response);
                 sent = true;
                 break;
         }
