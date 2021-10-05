@@ -18,18 +18,11 @@
 <div class="header_refs">
     <a href="/aimlearning_war_exploded/">Home page</a>
     <a href="/aimlearning_war_exploded/EmployeeServlet">All Employees</a>
-    <a href="/aimlearning_war_exploded/addEmployee.jsp">Add Employee</a>
+    <a href="/aimlearning_war_exploded/addEmployeeServlet">Add Employee</a>
     <a href="/aimlearning_war_exploded/addDepartment.jsp">Add Department</a>
 </div>
 
 <div align="center" style="margin-top: 50px;">
-
-    <%
-        if(request.getParameter("wrong") != null){
-            PrintWriter printWriter = response.getWriter();
-            printWriter.println(request.getParameter("wrong"));
-        }
-    %>
 
     <form action="EmployeeServlet" method="post">
         <%--@declare id="iddepartments"--%><p>User id: <%= request.getParameter("id") %></p>
@@ -39,16 +32,7 @@
         Please enter your email:  <input type="text" name="email" class="input_param" size="15px" value="<%= request.getParameter("email") %>"> <br>
         Please enter your salary:  <input type="number" name="salary" class="input_param" size="15px" value="<%= request.getParameter("salary") %>"> <br><br>
         Please enter your hire date:  <input type="date" name="hireDate" class="input_param" size="15px" value="<%= request.getParameter("hireDate") %>"> <br><br>
-        Please enter your department id:  <input list="idDepartments" name="iddepartment" class="input_param" size="15px" value="<%= request.getParameter("iddepartment") %>"> <br><br>
-        <%
-            PrintWriter printWriter = response.getWriter();
-            printWriter.println("<datalist id=\"idDepartments\">");
-            for(Department department: new DepartmentDAOImpl().getAllDepartments()){
-                printWriter.println("<option value=\"" + department.getIdDepartment() + "\"></option>");
-            }
-            printWriter.println("</datalist>");
-        %>
-            <br>
+        Please enter your department id:  <input list="idDepartments" name="iddepartment" class="input_param" size="15px" value="<%= request.getParameter("iddepartment") %>"> <br><br><br>
         <input type="submit" value="submit">
     </form>
 </div>

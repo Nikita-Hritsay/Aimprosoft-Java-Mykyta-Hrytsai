@@ -17,14 +17,9 @@
 <div class="header_refs">
     <a href="/aimlearning_war_exploded/">Home page</a>
     <a href="/aimlearning_war_exploded/EmployeeServlet">All Employees</a>
-    <a href="/aimlearning_war_exploded/addEmployee.jsp">Add Employee</a>
+    <a href="/aimlearning_war_exploded/addEmployeeServlet">Add Employee</a>
     <a href="/aimlearning_war_exploded/addDepartment.jsp">Add Department</a>
 </div>
-
-<%@ page import="java.util.List" %>
-<%@ page import="com.aimprosoft.aimlearning.model.Employee" %>
-<%@ page import="com.aimprosoft.aimlearning.DAO.EmployeeDAOImpl" %>
-<%@ page import="java.io.PrintWriter" %>
 
 
 <div align="center" style="margin-top: 50px;">

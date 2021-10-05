@@ -24,10 +24,12 @@ public class DepartmentServlet extends HttpServlet {
             case "update":
                 request.getRequestDispatcher("updateDepartment.jsp").forward(request, response);
                 break;
+            default:
+                List<Employee> employees = new DepartmentDAOImpl().getById(Integer.parseInt(request.getParameter("id")));
+                request.setAttribute("employees", employees);
+                request.setAttribute("department", new DepartmentDAOImpl().findDepartmentById(Integer.parseInt(request.getParameter("id"))));
+                request.getRequestDispatcher("/departmentByid.jsp").forward(request, response);
         }
-        List<Employee> employees = new DepartmentDAOImpl().getById(Integer.parseInt(request.getParameter("id")));
-        request.setAttribute("employees", employees);
-        request.getRequestDispatcher("/departmentByid.jsp").forward(request, response);
     }
 
     @Override

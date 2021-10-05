@@ -25,7 +25,7 @@
 <div class="header_refs">
     <a href="/aimlearning_war_exploded/">Home page</a>
     <a href="/aimlearning_war_exploded/EmployeeServlet">All Employees</a>
-    <a href="/aimlearning_war_exploded/addEmployee.jsp">Add Employee</a>
+    <a href="/aimlearning_war_exploded/addEmployeeServlet">Add Employee</a>
     <a href="/aimlearning_war_exploded/addDepartment.jsp">Add Department</a>
 </div>
 
@@ -64,13 +64,10 @@
 </div>
 
 
-<%
-    PrintWriter printWriter = new PrintWriter(response.getWriter());
-    int id = Integer.parseInt(request.getParameter("id"));
-    printWriter.println("<a href=\"http://localhost:8080/aimlearning_war_exploded/addEmployee.jsp?id=" + id +"&idDepartment=" + Integer.parseInt(request.getParameter("id")) + "\">add to this department</a>");
-    printWriter.println("<a class=\"delete_button\" href=\"http://localhost:8080/aimlearning_war_exploded/DepartmentServlet?action=delete&id=" + request.getParameter("id")+ "\">    Delete this department  </a>");
 
-%>
+<a href="http://localhost:8080/aimlearning_war_exploded/addEmployee.jsp?id=${requestScope.department.idDepartment}&idDepartment=${requestScope.department.idDepartment}">add to this department</a>
+<a class="delete_button" href="http://localhost:8080/aimlearning_war_exploded/DepartmentServlet?action=delete&id=${requestScope.department.idDepartment}">Delete this department </a>
+
 
 
 </body>
