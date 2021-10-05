@@ -75,7 +75,6 @@ public class EmployeeDAOImpl implements EmployeeDAO{
         Connection conn = null;
         PreparedStatement preparedStatement = null;
         try{
-            System.out.println("id here");
             conn = connectionFactory.getConnection();
             preparedStatement = conn.prepareStatement(DELETE_EMPLOYEE);
             preparedStatement.setInt(1, id);
@@ -119,7 +118,6 @@ public class EmployeeDAOImpl implements EmployeeDAO{
     public void add(Employee employee) {
         Connection conn = null;
         PreparedStatement preparedStatement = null;
-        System.out.println(employee.getHireDate());
         try{
             conn = connectionFactory.getConnection();
             conn.setAutoCommit(false);

@@ -53,7 +53,6 @@ public class DepartmentDAOImpl implements DepartmentDAO{
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try{
-            System.out.println(id);
             connection = connectionFactory.getConnection();
 
             statement = connection.prepareStatement(FIND_BY_ID);
@@ -69,7 +68,6 @@ public class DepartmentDAOImpl implements DepartmentDAO{
                         resultSet.getDate(6),
                         resultSet.getInt(7)));
             }
-            System.out.println(result);
             return result;
         }catch (SQLException sqlException){
             System.out.println("something went wrong" + sqlException.getMessage());
@@ -153,7 +151,6 @@ public class DepartmentDAOImpl implements DepartmentDAO{
             result = new Department(resultSet.getInt(1),
                     resultSet.getString(2),
                     resultSet.getString(3));
-            System.out.println(id);
             return result;
         }catch (SQLException sqlException){
             System.out.println("something went wrong" + sqlException.getSQLState());

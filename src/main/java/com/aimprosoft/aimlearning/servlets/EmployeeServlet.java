@@ -9,13 +9,16 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 @WebServlet(name = "EmployeeServlet", value = "/EmployeeServlet")
 public class EmployeeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
+        String action = request.getParameter("action") == null ? "" : request.getParameter("action");
         switch (action){
             case "delete":
                 new EmployeeDAOImpl().deleteEmployee(Integer.parseInt(request.getParameter("id")));
@@ -23,9 +26,12 @@ public class EmployeeServlet extends HttpServlet {
                 break;
             case "update":
                 request.getRequestDispatcher("updateEmployee.jsp?iddepartment=" + request.getParameter("iddepartment")).forward(request, response);
-            default:
-                response.sendRedirect("error.jsp");
+                break;
         }
+        List<Employee> employees = new EmployeeDAOImpl().getAllEmployees();
+        request.setAttribute("employees", employees);
+        System.out.println(request.getAttribute("employees"));
+        request.getRequestDispatcher("/allEmployees.jsp").forward(request, response);
     }
 
     @Override
