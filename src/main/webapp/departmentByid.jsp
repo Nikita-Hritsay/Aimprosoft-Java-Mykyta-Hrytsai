@@ -63,7 +63,7 @@
 
 <%
     printWriter.println("<a href=\"http://localhost:8080/aimlearning_war_exploded/addEmployee.jsp?id=" + id +"&idDepartment=" + Integer.parseInt(request.getParameter("id")) + "\">add to this department</a>");
-    printWriter.println("<a class=\"delete_button\" href=\"http://localhost:8080/aimlearning_war_exploded/deleteDepartmentServlet?id=" + request.getParameter("id")+ "\">    Delete this department  </a>");
+    printWriter.println("<a class=\"delete_button\" href=\"http://localhost:8080/aimlearning_war_exploded/DepartmentServlet?action=delete&id=" + request.getParameter("id")+ "\">    Delete this department  </a>");
 %>
 
 

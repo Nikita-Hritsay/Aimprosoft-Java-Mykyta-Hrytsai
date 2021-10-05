@@ -30,7 +30,7 @@
     %>
 
 
-    <form action="updateDepartmentServlet" method="post">
+    <form action="DepartmentServlet" method="post">
         <p>Department id: <%= request.getParameter("id") %></p>
         <input name="id" class="input_param_id" value="<%= request.getParameter("id") %>" type="hidden">
         Please enter department name:  <input type="text" name="name" class="input_param" size="15px" value="<%= request.getParameter("name") %>"> <br>

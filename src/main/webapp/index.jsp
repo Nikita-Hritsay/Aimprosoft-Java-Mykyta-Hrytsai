@@ -32,7 +32,7 @@
                         " name: " + departments.get(i).getName() +
                         " address: " + departments.get(i).getAddress() +
                         "</a>      " +
-                        "<a class=\"update_button\" href=\"/aimlearning_war_exploded/updateDepartmentServlet?id=" + departments.get(i).getIdDepartment() +
+                        "<a class=\"update_button\" href=\"/aimlearning_war_exploded/DepartmentServlet?action=update&id=" + departments.get(i).getIdDepartment() +
                         "&name=" + departments.get(i).getName() +
                         "&address=" + departments.get(i).getAddress() + "\">    Update this department</a> </p> <br>" );
             }
