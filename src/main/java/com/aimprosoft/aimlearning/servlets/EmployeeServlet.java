@@ -3,6 +3,7 @@ package com.aimprosoft.aimlearning.servlets;
 import com.aimprosoft.aimlearning.DAO.EmployeeDAOImpl;
 import com.aimprosoft.aimlearning.model.Employee;
 
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -18,19 +19,26 @@ import java.util.List;
 public class EmployeeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Boolean sent = false;
         String action = request.getParameter("action") == null ? "" : request.getParameter("action");
         switch (action){
             case "delete":
                 new EmployeeDAOImpl().deleteEmployee(Integer.parseInt(request.getParameter("id")));
-                response.sendRedirect("http://localhost:8080/aimlearning_war_exploded/departmentByid.jsp?id=" + Integer.parseInt(request.getParameter("idDepartment")));
+                List<Employee> employees = new EmployeeDAOImpl().getAllEmployees();
+                request.setAttribute("employees", employees);
+                response.sendRedirect("http://localhost:8080/aimlearning_war_exploded/DepartmentServlet?id=" + request.getParameter("idDepartment"));
+                sent = true;
                 break;
             case "update":
                 request.getRequestDispatcher("updateEmployee.jsp?iddepartment=" + request.getParameter("iddepartment")).forward(request, response);
+                sent = true;
                 break;
         }
-        List<Employee> employees = new EmployeeDAOImpl().getAllEmployees();
-        request.setAttribute("employees", employees);
-        request.getRequestDispatcher("/allEmployees.jsp").forward(request, response);
+        if(!sent) {
+            List<Employee> employees = new EmployeeDAOImpl().getAllEmployees();
+            request.setAttribute("employees", employees);
+            request.getRequestDispatcher("/allEmployees.jsp").forward(request, response);
+        }
     }
 
     @Override

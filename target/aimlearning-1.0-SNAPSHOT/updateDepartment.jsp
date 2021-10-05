@@ -15,7 +15,7 @@
 
 <div class="header_refs">
     <a href="/aimlearning_war_exploded/">Home page</a>
-    <a href="/aimlearning_war_exploded/allEmployees.jsp">All Employees</a>
+    <a href="/aimlearning_war_exploded/EmployeeServlet">All Employees</a>
     <a href="/aimlearning_war_exploded/addEmployee.jsp">Add Employee</a>
     <a href="/aimlearning_war_exploded/addDepartment.jsp">Add Department</a>
 </div>
