@@ -30,7 +30,6 @@ public class EmployeeServlet extends HttpServlet {
         }
         List<Employee> employees = new EmployeeDAOImpl().getAllEmployees();
         request.setAttribute("employees", employees);
-        System.out.println(request.getAttribute("employees"));
         request.getRequestDispatcher("/allEmployees.jsp").forward(request, response);
     }
 
