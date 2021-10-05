@@ -47,9 +47,9 @@
                     " Email: " + employees.get(i).getEmail() +
                     " Salary: " + employees.get(i).getSalary() +
                     " Hire date: " + employees.get(i).getHireDate() +
-                    "<a class=\"delete_button\" href=\"/aimlearning_war_exploded/DeleteEmployeeServlet?id=" + employees.get(i).getId()+
+                    "<a class=\"delete_button\" href=\"/aimlearning_war_exploded/EmployeeServlet?action=delete&id=" + employees.get(i).getId()+
                     "&idDepartment=" + department.getIdDepartment() + "\">    Delete this employee  </a>" +
-                    "<a class=\"update_button\" href=\"/aimlearning_war_exploded/updateEmployeeServlet?id=" + employees.get(i).getId() +
+                    "<a class=\"update_button\" href=\"/aimlearning_war_exploded/EmployeeServlet?action=update&id=" + employees.get(i).getId() +
                     "&idDepartment=" + department.getIdDepartment() +
                     "&firstName=" + employees.get(i).getFirstName() +
                     "&lastName=" + employees.get(i).getLastName() +

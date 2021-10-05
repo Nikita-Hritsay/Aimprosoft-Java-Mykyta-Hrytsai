@@ -9,8 +9,8 @@ import java.util.List;
 public class EmployeeDAOImpl implements EmployeeDAO{
     private ConnectionFactory connectionFactory;
 
-    private final String FIND_ALL = "select idemployee, firstName, lastName, email, salary, hireDate, department_iddepartment from emplyees.employee";
-    private final String FIND_BY_ID = "select idemployee, firstName, lastName, email, salary, hireDate, department_iddepartment from emplyees.employee where idemployee = ?";
+    private final String FIND_ALL = "select idemployee, firstName, lastName, email, salary, hireDate, department_iddepartment from employee";
+    private final String FIND_BY_ID = "select idemployee, firstName, lastName, email, salary, hireDate, department_iddepartment from employee where idemployee = ?";
     private final String ADD_EMPLOYEE = "insert into employee(firstName, lastName, email, salary, hireDate, department_iddepartment) values(?, ?, ?, ?, ?, ?)";
     private final String DELETE_EMPLOYEE = "delete from employee where idemployee = ?";
     private final String UPDATE_EMPLOYEE = "update employee set firstName = ?, lastName = ?, email = ?, salary = ?, hireDate = ?, department_iddepartment = ? where idemployee = ?";
@@ -75,6 +75,7 @@ public class EmployeeDAOImpl implements EmployeeDAO{
         Connection conn = null;
         PreparedStatement preparedStatement = null;
         try{
+            System.out.println("id here");
             conn = connectionFactory.getConnection();
             preparedStatement = conn.prepareStatement(DELETE_EMPLOYEE);
             preparedStatement.setInt(1, id);

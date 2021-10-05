@@ -11,9 +11,9 @@ public class DepartmentDAOImpl implements DepartmentDAO{
 
     private ConnectionFactory connectionFactory;
 
-    private final String FIND_ALL = "select iddepartment, name, address from emplyees.department";
-    private final String FIND_DEPARTMENT_BY_ID = "select iddepartment, name, address from emplyees.department where iddepartment = ?";
-    private final String FIND_BY_ID = "select idemployee, firstName, lastName, email, salary, hireDate, department_iddepartment from emplyees.employee where department_iddepartment = ?";
+    private final String FIND_ALL = "select iddepartment, name, address from department";
+    private final String FIND_DEPARTMENT_BY_ID = "select iddepartment, name, address from department where iddepartment = ?";
+    private final String FIND_BY_ID = "select idemployee, firstName, lastName, email, salary, hireDate, department_iddepartment from employee where department_iddepartment = ?";
     private final String ADD_DEPARTMENT = "insert into department(name, address) values(?, ?)";
     private final String UPDATE_DEPARTMENT = "update department set name = ?, address = ? where iddepartment = ?";
     private final String DELETE_DEPARTMENT = "delete from department where iddepartment = ?";
@@ -37,6 +37,7 @@ public class DepartmentDAOImpl implements DepartmentDAO{
                         resultSet.getString(2),
                         resultSet.getString(3)));
             }
+            System.out.println(result);
             return result;
         }catch (SQLException sqlException){
             System.out.println("something went wrong" + sqlException.getSQLState());

@@ -8,11 +8,21 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "updateEmployeeServlet", value = "/updateEmployeeServlet")
-public class updateEmployeeServlet extends HttpServlet {
+@WebServlet(name = "EmployeeServlet", value = "/EmployeeServlet")
+public class EmployeeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("updateEmployee.jsp").forward(request, response);
+        String action = request.getParameter("action");
+        switch (action){
+            case "delete":
+                new EmployeeDAOImpl().deleteEmployee(Integer.parseInt(request.getParameter("id")));
+                response.sendRedirect("http://localhost:8080/aimlearning_war_exploded/departmentByid.jsp?id=" + Integer.parseInt(request.getParameter("idDepartment")));
+                break;
+            case "update":
+                request.getRequestDispatcher("updateEmployee.jsp?iddepartment=" + request.getParameter("iddepartment")).forward(request, response);
+            default:
+                response.sendRedirect("error.jsp");
+        }
     }
 
     @Override

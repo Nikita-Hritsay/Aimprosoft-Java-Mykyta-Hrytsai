@@ -31,7 +31,7 @@
         }
     %>
 
-    <form action="updateEmployeeServlet" method="post">
+    <form action="EmployeeServlet" method="post">
         <%--@declare id="iddepartments"--%><p>User id: <%= request.getParameter("id") %></p>
         <input type="hidden" name="id" class="input_param" size="20px" value="<%= request.getParameter("id") %>">
         Please enter your first name:  <input type="text" name="firstName" class="input_param" size="15px" value="<%= request.getParameter("firstName") %>"> <br>

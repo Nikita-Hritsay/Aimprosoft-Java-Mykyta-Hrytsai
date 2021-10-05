@@ -38,8 +38,7 @@
         Please enter your email:  <input type="text" name="email" class="input_param" size="15px"> <br>
         Please enter your salary:  <input type="number" name="salary" class="input_param" size="15px" min="0"> <br><br>
         Please enter your hire date:  <input type="date" name="hireDate" class="input_param" size="15px"> <br><br>
-
-        Please enter your department id:  <input list="idDepartments" name="iddepartment" class="input_param" size="15px"> <br><br>
+        Please enter your department id:  <input list="idDepartments" name="iddepartment" class="input_param" size="15px" value="<%=request.getParameter("idDepartment")%>"> <br><br>
             <%
                 PrintWriter printWriter = response.getWriter();
                 printWriter.println("<datalist id=\"idDepartments\">");
