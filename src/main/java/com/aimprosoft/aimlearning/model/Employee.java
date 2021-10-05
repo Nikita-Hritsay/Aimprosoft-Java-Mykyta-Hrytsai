@@ -1,12 +1,14 @@
 package com.aimprosoft.aimlearning.model;
 
+import java.util.Date;
+
 public class Employee {
     private int id;
     private String firstName;
     private String lastName;
     private String email;
     private int salary;
-    private String hireDate;
+    private Date hireDate;
     private int idDepartment;
 
     @Override
@@ -30,7 +32,7 @@ public class Employee {
         this.email = email;
     }
 
-    public Employee(String firstName, String lastName, String email, int salary, String hireDate, int idDepartment) {
+    public Employee(String firstName, String lastName, String email, int salary, Date hireDate, int idDepartment) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -39,7 +41,7 @@ public class Employee {
         this.idDepartment = idDepartment;
     }
 
-    public Employee(int id, String firstName, String lastName, String email, int salary, String hireDate, int idDepartment) {
+    public Employee(int id, String firstName, String lastName, String email, int salary, Date hireDate, int idDepartment) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -49,7 +51,7 @@ public class Employee {
         this.idDepartment = idDepartment;
     }
 
-    public Employee(String firstName, String lastName, int salary, String hireDate, int idDepartment) {
+    public Employee(String firstName, String lastName, int salary, Date hireDate, int idDepartment) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = salary;
@@ -89,11 +91,11 @@ public class Employee {
         this.salary = salary;
     }
 
-    public String getHireDate() {
+    public Date getHireDate() {
         return hireDate;
     }
 
-    public void setHireDate(String hireDate) {
+    public void setHireDate(Date hireDate) {
         this.hireDate = hireDate;
     }
 
@@ -108,7 +110,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(int id, String firstName, String lastName, int salary, String hireDate, int idDepartment) {
+    public Employee(int id, String firstName, String lastName, int salary, Date hireDate, int idDepartment) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

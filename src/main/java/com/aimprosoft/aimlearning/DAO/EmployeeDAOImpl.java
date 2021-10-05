@@ -35,7 +35,7 @@ public class EmployeeDAOImpl implements EmployeeDAO{
                         resultSet.getString(3),
                         resultSet.getString(4),
                         resultSet.getInt(5),
-                        resultSet.getString(6),
+                        resultSet.getDate(6),
                         resultSet.getInt(7)));
             }
             return result;
@@ -59,7 +59,7 @@ public class EmployeeDAOImpl implements EmployeeDAO{
             statement.setString(2, employee.getLastName());
             statement.setString(3, employee.getEmail());
             statement.setInt(4, employee.getSalary());
-            statement.setString(5, employee.getHireDate());
+            statement.setDate(5, new Date(employee.getHireDate().getTime()));
             statement.setInt(6, employee.getIdDepartment());
             statement.setInt(7, employee.getId());
             statement.executeUpdate();
@@ -104,7 +104,7 @@ public class EmployeeDAOImpl implements EmployeeDAO{
                     resultSet.getString(3),
                     resultSet.getString(4),
                     resultSet.getInt(5),
-                    resultSet.getString(6),
+                    resultSet.getDate(6),
                     resultSet.getInt(7));
             return result;
         }catch (SQLException sqlException){
@@ -119,6 +119,7 @@ public class EmployeeDAOImpl implements EmployeeDAO{
     public void add(Employee employee) {
         Connection conn = null;
         PreparedStatement preparedStatement = null;
+        System.out.println(employee.getHireDate());
         try{
             conn = connectionFactory.getConnection();
             conn.setAutoCommit(false);
@@ -127,7 +128,7 @@ public class EmployeeDAOImpl implements EmployeeDAO{
             preparedStatement.setString(2, employee.getLastName());
             preparedStatement.setString(3, employee.getEmail());
             preparedStatement.setInt(4, employee.getSalary());
-            preparedStatement.setString(5, employee.getHireDate());
+            preparedStatement.setDate(5, new Date(employee.getHireDate().getTime()));
             preparedStatement.setInt(6, employee.getIdDepartment());
             preparedStatement.executeUpdate();
             conn.commit();

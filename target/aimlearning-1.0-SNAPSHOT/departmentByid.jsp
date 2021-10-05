@@ -34,8 +34,10 @@
     <%
         int id = Integer.parseInt(request.getParameter("id"));
         List<Employee> employees = new DepartmentDAOImpl().getById(Integer.parseInt(request.getParameter("id")));
+        System.out.println(employees);
         PrintWriter printWriter = response.getWriter();
         Department department = new DepartmentDAOImpl().findDepartmentById(Integer.parseInt(request.getParameter("id")));
+        System.out.println(department);
         printWriter.println("<p>Department id: " + department.getIdDepartment() +
                 " name: " + department.getName() +
                 " address: " + department.getAddress() + "</p>");

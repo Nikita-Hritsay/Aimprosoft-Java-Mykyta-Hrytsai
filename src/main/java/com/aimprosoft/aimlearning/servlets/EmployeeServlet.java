@@ -7,6 +7,9 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @WebServlet(name = "EmployeeServlet", value = "/EmployeeServlet")
 public class EmployeeServlet extends HttpServlet {
@@ -27,13 +30,20 @@ public class EmployeeServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        new EmployeeDAOImpl().updateEmployee(new Employee( Integer.parseInt(request.getParameter("id")),
-                request.getParameter("firstName"),
-                request.getParameter("lastName") ,
-                request.getParameter("email"),
-                Integer.parseInt(request.getParameter("salary")),
-                request.getParameter("hireDate"),
-                Integer.parseInt(request.getParameter("iddepartment"))));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = simpleDateFormat.parse(request.getParameter("hireDate"));
+            new EmployeeDAOImpl().updateEmployee(new Employee( Integer.parseInt(request.getParameter("id")),
+                    request.getParameter("firstName"),
+                    request.getParameter("lastName") ,
+                    request.getParameter("email"),
+                    Integer.parseInt(request.getParameter("salary")),
+                    date,
+                    Integer.parseInt(request.getParameter("iddepartment"))));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         response.sendRedirect("/aimlearning_war_exploded/");
     }
 }
