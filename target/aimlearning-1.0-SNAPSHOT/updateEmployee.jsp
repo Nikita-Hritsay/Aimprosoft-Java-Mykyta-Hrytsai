@@ -32,8 +32,7 @@
         Please enter your email:  <input type="text" name="email" class="input_param" size="15px" value="<%= request.getParameter("email") %>"> <br>
         Please enter your salary:  <input type="number" name="salary" class="input_param" size="15px" value="<%= request.getParameter("salary") %>"> <br><br>
         Please enter your hire date:  <input type="date" name="hireDate" class="input_param" size="15px" value="<%= request.getParameter("hireDate") %>"> <br><br>
-        Please enter your department id:  <input list="idDepartments" name="iddepartment" class="input_param" size="15px" value="<%= request.getParameter("iddepartment") %>"> <br><br>
-            <br>
+        Please enter your department id:  <input list="idDepartments" name="iddepartment" class="input_param" size="15px" value="<%= request.getParameter("iddepartment") %>"> <br><br><br>
         <input type="submit" value="submit">
     </form>
 </div>
