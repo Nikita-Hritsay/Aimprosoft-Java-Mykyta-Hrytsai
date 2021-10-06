@@ -7,23 +7,23 @@ import java.util.Date;
 
 public class Employee {
     private int id;
-    @NotEmpty
-    @NotNull
-    @Length(max = 30)
+    @NotEmpty(message = "Firstname can not be empty")
+    @NotNull(message = "Firstname can not be null")
+    @Length(max = 30, message = "Firstname can not be greater than 30")
     private String firstName;
-    @NotEmpty
-    @NotNull
-    @Length(max = 30)
+    @NotEmpty(message = "Lastname can not be empty")
+    @NotNull(message = "Lastname can not be null")
+    @Length(max = 30, message = "Lastname can not be greater than 30")
     private String lastName;
     private String email;
-    @NotEmpty
-    @NotNull
-    @Min(value = 0)
+    @NotEmpty(message = "Salary can not be empty")
+    @NotNull(message = "Salary can not be null")
+    @Min(value = 1, message = "salary can not be smaller than 1")
     private int salary;
     private Date hireDate;
-    @NotNull
-    @NotEmpty
-    @Min(value = 0)
+    @NotEmpty(message = "Id department can not be empty")
+    @NotNull(message = "Id department can not be null")
+    @Min(value = 1, message = "Id department can not be smaller than 1")
     private int idDepartment;
 
     @Override
