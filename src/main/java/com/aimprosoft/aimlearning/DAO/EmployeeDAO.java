@@ -10,4 +10,5 @@ public interface EmployeeDAO {
     void add(Employee employee);
     void deleteEmployee(int id);
     void updateEmployee(Employee employee);
+    boolean existsByEmail(Employee employee);
 }

@@ -4,6 +4,7 @@ import com.aimprosoft.aimlearning.DAO.DepartmentDAOImpl;
 import com.aimprosoft.aimlearning.DAO.EmployeeDAOImpl;
 import com.aimprosoft.aimlearning.model.Department;
 import com.aimprosoft.aimlearning.model.Employee;
+import com.aimprosoft.aimlearning.validation.employee.isUniqueEmail;
 import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;
 import net.sf.oval.context.OValContext;
@@ -82,6 +83,8 @@ public class addEmployeeServlet extends HttpServlet {
                 request.getRequestDispatcher("/addEmployee.jsp").forward(request, response);
             }*/
         try {
+            isUniqueEmail isUniqueEmail = new isUniqueEmail();
+
             Employee employee = new Employee();
 
             employee.setFirstName(request.getParameter("firstName"));
@@ -93,7 +96,7 @@ public class addEmployeeServlet extends HttpServlet {
 
             Validator validator = new Validator();
             List<ConstraintViolation> violations = validator.validate(employee);
-
+            new EmployeeDAOImpl().existsByEmail(employee);
             Map<String, String> errors = new HashMap<>();
 
             for(ConstraintViolation obj: violations){

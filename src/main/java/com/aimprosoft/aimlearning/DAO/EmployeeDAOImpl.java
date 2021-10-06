@@ -14,6 +14,7 @@ public class EmployeeDAOImpl implements EmployeeDAO{
     private final String ADD_EMPLOYEE = "insert into employee(firstName, lastName, email, salary, hireDate, department_iddepartment) values(?, ?, ?, ?, ?, ?)";
     private final String DELETE_EMPLOYEE = "delete from employee where idemployee = ?";
     private final String UPDATE_EMPLOYEE = "update employee set firstName = ?, lastName = ?, email = ?, salary = ?, hireDate = ?, department_iddepartment = ? where idemployee = ?";
+    private final String GET_ALL_EMAILS = "select idemployee from employee where email = ?";
 
     public EmployeeDAOImpl(){
         this.connectionFactory = new ConnectionFactory();
@@ -112,6 +113,30 @@ public class EmployeeDAOImpl implements EmployeeDAO{
             ConnectionFactory.release(connection, statement, resultSet);
         }
         return null;
+    }
+
+    @Override
+    public boolean existsByEmail(Employee employee) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try{
+            connection = connectionFactory.getConnection();
+            statement = connection.prepareStatement(FIND_BY_ID);
+            statement.setString(1, employee.getEmail());
+            resultSet = statement.executeQuery();
+            resultSet.next();
+            int id = resultSet.getInt("idemployee");
+            if(id != 0){
+                return true;
+            }
+        }catch (SQLException sqlException){
+            System.out.println("Something went wrong" + sqlException.getSQLState());
+            return false;
+        }finally {
+            ConnectionFactory.release(connection, statement, resultSet);
+        }
+        return false;
     }
 
     @Override

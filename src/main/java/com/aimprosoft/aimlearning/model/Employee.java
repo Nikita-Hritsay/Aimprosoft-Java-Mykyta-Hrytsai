@@ -1,6 +1,7 @@
 package com.aimprosoft.aimlearning.model;
 
 
+import com.aimprosoft.aimlearning.validation.employee.isUniqueEmail;
 import net.sf.oval.constraint.*;
 
 import java.util.Date;
@@ -15,6 +16,7 @@ public class Employee {
     @NotNull(message = "Lastname can not be null")
     @Length(max = 30, message = "Lastname can not be greater than 30")
     private String lastName;
+    @CheckWith(value = isUniqueEmail.class, message = "employee with such email exists")
     private String email;
     @NotEmpty(message = "Salary can not be empty")
     @NotNull(message = "Salary can not be null")
