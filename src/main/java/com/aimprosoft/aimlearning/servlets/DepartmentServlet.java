@@ -9,6 +9,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "DepartmentServlet", value = "/DepartmentServlet")
@@ -22,6 +23,9 @@ public class DepartmentServlet extends HttpServlet {
                 response.sendRedirect("/aimlearning_war_exploded/");
                 break;
             case "update":
+                List<Department> departments = new ArrayList<>();
+                departments.add(new DepartmentDAOImpl().findDepartmentById(Integer.parseInt(request.getParameter("id"))));
+                request.setAttribute("departments", departments);
                 request.getRequestDispatcher("updateDepartment.jsp").forward(request, response);
                 break;
             default:

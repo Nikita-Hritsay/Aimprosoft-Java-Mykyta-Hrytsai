@@ -37,7 +37,7 @@
         Please enter your email:  <input type="text" name="email" class="input_param" size="15px" value="${email}"> <br>
         Please enter your salary:  <input type="number" name="salary" class="input_param" size="15px" min="0" value="${salary}"> <br><br>
         Please enter your hire date:  <input type="date" name="hireDate" class="input_param" size="15px" value="${hireDate}"> <br><br>
-        Please enter your department id:  <input list="idDepartments" name="iddepartment" class="input_param" size="15px" value="${requestScope.department.idDepartment}"> <br><br>
+        Please enter your department id:  <input list="idDepartments" name="iddepartment" class="input_param" size="15px" value="${requestScope.idDepartment}"> <br><br>
         <datalist id="idDepartments">
             <c:forEach var="department" items="${requestScope.departments}">
                 <option value="${department.idDepartment}" >

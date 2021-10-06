@@ -21,6 +21,11 @@ public class addEmployeeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Department> departments = new DepartmentDAOImpl().getAllDepartments();
         request.setAttribute("departments", departments);
+        if(request.getParameter("idDepartment") != null){
+            request.setAttribute("idDepartment", request.getParameter("idDepartment"));
+        }
+        System.out.println(request.getAttribute("departments"));
+        System.out.println(request.getAttribute("idDepartment"));
         request.getRequestDispatcher("/addEmployee.jsp").forward(request, response);
     }
 

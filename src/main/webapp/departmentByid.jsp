@@ -65,7 +65,7 @@
 
 
 
-<a href="http://localhost:8080/aimlearning_war_exploded/addEmployee.jsp?id=${requestScope.department.idDepartment}&idDepartment=${requestScope.department.idDepartment}">add to this department</a>
+<a href="http://localhost:8080/aimlearning_war_exploded/addEmployeeServlet?idDepartment=${requestScope.department.idDepartment}">add to this department</a>
 <a class="delete_button" href="http://localhost:8080/aimlearning_war_exploded/DepartmentServlet?action=delete&id=${requestScope.department.idDepartment}">Delete this department </a>
 
 

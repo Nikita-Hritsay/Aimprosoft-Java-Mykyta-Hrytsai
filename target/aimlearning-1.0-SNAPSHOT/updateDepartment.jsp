@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.io.PrintWriter" %><%--
   Created by IntelliJ IDEA.
   User: nikita
@@ -22,13 +23,15 @@
 
 <div align="center" style="margin-top: 50px;">
 
-    <form action="DepartmentServlet" method="post">
-        <p>Department id: <%= request.getParameter("id") %></p>
-        <input name="id" class="input_param_id" value="<%= request.getParameter("id") %>" type="hidden">
-        Please enter department name:  <input type="text" name="name" class="input_param" size="15px" value="<%= request.getParameter("name") %>"> <br>
-        Please enter your last name:  <input type="text" name="address" class="input_param" size="15px" value="<%= request.getParameter("address") %>"> <br>
-        <input type="submit" value="submit">
-    </form>
+    <c:forEach var="department" items="${requestScope.departments}">
+        <form action="DepartmentServlet" method="post">
+            <p>Department id: ${department.idDepartment}</p>
+            <input name="id" class="input_param_id" value="${department.idDepartment}" type="hidden">
+            Please enter department name:  <input type="text" name="name" class="input_param" size="15px" value="${department.name}"> <br>
+            Please enter department address:  <input type="text" name="address" class="input_param" size="15px" value="${department.address}"> <br>
+            <input type="submit" value="submit">
+        </form>
+    </c:forEach>
 </div>
 
 
