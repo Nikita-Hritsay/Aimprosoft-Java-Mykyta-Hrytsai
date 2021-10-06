@@ -31,14 +31,10 @@ public class EmployeeServlet extends HttpServlet {
                 break;
             case "update":
                 Employee employee = new EmployeeDAOImpl().getById(Integer.parseInt(request.getParameter("id")));
-                request.getRequestDispatcher("updateEmployee.jsp?iddepartment=" + employee.getIdDepartment()
-                    + "&id=" + employee.getId()
-                    + "&firstName=" + employee.getFirstName()
-                    + "&lastName=" + employee.getLastName()
-                    + "&email=" + employee.getEmail()
-                    + "&salary=" + employee.getSalary()
-                    + "&hireDate=" + employee.getHireDate()
-                ).forward(request, response);
+                List<Employee> employeesUpdate = new ArrayList<>();
+                employeesUpdate.add(employee);
+                request.setAttribute("employees", employeesUpdate);
+                request.getRequestDispatcher("updateEmployee.jsp").forward(request, response);
                 sent = true;
                 break;
         }

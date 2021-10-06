@@ -22,7 +22,6 @@ public class addEmployeeServlet extends HttpServlet {
         List<Department> departments = new DepartmentDAOImpl().getAllDepartments();
         request.setAttribute("departments", departments);
         request.getRequestDispatcher("/addEmployee.jsp").forward(request, response);
-        //response.sendRedirect("/aimlearning_war_exploded/addEmployee.jsp");
     }
 
     @Override
