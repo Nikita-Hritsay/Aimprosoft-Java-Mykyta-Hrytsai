@@ -1,14 +1,29 @@
 package com.aimprosoft.aimlearning.model;
 
+
+import net.sf.oval.constraint.*;
+
 import java.util.Date;
 
 public class Employee {
     private int id;
+    @NotEmpty
+    @NotNull
+    @Length(max = 30)
     private String firstName;
+    @NotEmpty
+    @NotNull
+    @Length(max = 30)
     private String lastName;
     private String email;
+    @NotEmpty
+    @NotNull
+    @Min(value = 0)
     private int salary;
     private Date hireDate;
+    @NotNull
+    @NotEmpty
+    @Min(value = 0)
     private int idDepartment;
 
     @Override

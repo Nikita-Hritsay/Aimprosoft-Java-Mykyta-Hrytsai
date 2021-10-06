@@ -4,7 +4,8 @@ import com.aimprosoft.aimlearning.DAO.DepartmentDAOImpl;
 import com.aimprosoft.aimlearning.DAO.EmployeeDAOImpl;
 import com.aimprosoft.aimlearning.model.Department;
 import com.aimprosoft.aimlearning.model.Employee;
-import org.apache.xml.resolver.helpers.Debug;
+import net.sf.oval.ConstraintViolation;
+import net.sf.oval.Validator;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -37,7 +38,22 @@ public class addEmployeeServlet extends HttpServlet {
                     !request.getParameter("hireDate").equals("")){
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                     Date date = null;
-                    try {
+
+                try {
+                    Employee employee = new Employee("", "", "", 1, simpleDateFormat.parse("0000-00-00"), 1);
+                    Validator validator = new Validator();
+                    List<ConstraintViolation> violations = validator.validate(employee);
+                    if(violations.size() > 0){
+                        System.out.println(violations);
+                    }
+
+                }
+                catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+
+                try {
                         date = simpleDateFormat.parse(request.getParameter("hireDate"));
                         Employee employee = new Employee(request.getParameter("firstName"),
                                 request.getParameter("lastName"),
