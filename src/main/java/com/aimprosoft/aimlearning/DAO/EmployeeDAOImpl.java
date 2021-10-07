@@ -122,7 +122,7 @@ public class EmployeeDAOImpl implements EmployeeDAO{
         ResultSet resultSet = null;
         try{
             connection = connectionFactory.getConnection();
-            statement = connection.prepareStatement(FIND_BY_ID);
+            statement = connection.prepareStatement(GET_ALL_EMAILS);
             statement.setString(1, employee.getEmail());
             resultSet = statement.executeQuery();
             resultSet.next();
