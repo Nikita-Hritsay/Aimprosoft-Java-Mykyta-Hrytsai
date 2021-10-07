@@ -3,8 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Aimprosoft Java</title>
-    <link href="css/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
