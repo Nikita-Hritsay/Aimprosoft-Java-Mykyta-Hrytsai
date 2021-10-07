@@ -17,13 +17,15 @@
     <a href="/aimlearning_war_exploded/">Home page</a>
     <a href="/aimlearning_war_exploded/EmployeeServlet">All Employees</a>
     <a href="/aimlearning_war_exploded/addEmployeeServlet">Add Employee</a>
-    <a href="/aimlearning_war_exploded/addDepartment.jsp">Add Department</a>
+    <a href="/aimlearning_war_exploded/addDepartmentServlet">Add Department</a>
 </div>
 
 <div align="center" style="margin-top: 50px;">
     <form action="addDepartmentServlet" method="post">
         Please enter your name of department:  <input type="text" name="name" class="input_param" size="15px"> <br>
+        <p class="error_massage">${errors.get("name")}</p>
         Please enter your address of department:  <input type="text" name="address" class="input_param" size="15px"> <br>
+        <p class="error_massage">${errors.get("address")}</p>
         <input type="submit" value="submit">
     </form>
 </div>

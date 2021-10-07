@@ -83,8 +83,6 @@ public class addEmployeeServlet extends HttpServlet {
                 request.getRequestDispatcher("/addEmployee.jsp").forward(request, response);
             }*/
         try {
-            isUniqueEmail isUniqueEmail = new isUniqueEmail();
-
             Employee employee = new Employee();
 
             employee.setFirstName(request.getParameter("firstName"));
@@ -96,7 +94,6 @@ public class addEmployeeServlet extends HttpServlet {
 
             Validator validator = new Validator();
             List<ConstraintViolation> violations = validator.validate(employee);
-            new EmployeeDAOImpl().existsByEmail(employee);
             Map<String, String> errors = new HashMap<>();
 
             for(ConstraintViolation obj: violations){
@@ -119,12 +116,10 @@ public class addEmployeeServlet extends HttpServlet {
             }else{
                 new EmployeeDAOImpl().add(employee);
                 response.sendRedirect("http://localhost:8080/aimlearning_war_exploded/");
-
             }
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
     }
 }
 

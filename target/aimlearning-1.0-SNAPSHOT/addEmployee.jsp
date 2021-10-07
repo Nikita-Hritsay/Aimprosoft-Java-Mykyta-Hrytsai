@@ -20,7 +20,7 @@
     <a href="/aimlearning_war_exploded/">Home page</a>
     <a href="/aimlearning_war_exploded/EmployeeServlet">All Employees</a>
     <a href="/aimlearning_war_exploded/addEmployeeServlet">Add Employee</a>
-    <a href="/aimlearning_war_exploded/addDepartment.jsp">Add Department</a>
+    <a href="/aimlearning_war_exploded/addDepartmentServlet">Add Department</a>
 </div>
 
 <div align="center" style="margin-top: 50px;">

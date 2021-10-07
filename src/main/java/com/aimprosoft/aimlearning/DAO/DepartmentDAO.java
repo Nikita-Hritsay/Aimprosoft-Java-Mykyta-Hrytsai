@@ -12,4 +12,5 @@ public interface DepartmentDAO {
     Department findDepartmentById(int id);
     void updateDepartment(Department department);
     void deleteDepartment(int id);
+    boolean existsByName(Department department);
 }

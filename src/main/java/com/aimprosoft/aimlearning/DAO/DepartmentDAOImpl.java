@@ -17,6 +17,7 @@ public class DepartmentDAOImpl implements DepartmentDAO{
     private final String ADD_DEPARTMENT = "insert into department(name, address) values(?, ?)";
     private final String UPDATE_DEPARTMENT = "update department set name = ?, address = ? where iddepartment = ?";
     private final String DELETE_DEPARTMENT = "delete from department where iddepartment = ?";
+    private final String EXISTS_BY_NAME = "select iddepartment from department where name = ?";
 
     public DepartmentDAOImpl(){
         this.connectionFactory = new ConnectionFactory();
@@ -158,5 +159,28 @@ public class DepartmentDAOImpl implements DepartmentDAO{
             ConnectionFactory.release(connection, statement, resultSet);
         }
         return null;
+    }
+
+    @Override
+    public boolean existsByName(Department department) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try{
+            connection = connectionFactory.getConnection();
+            statement = connection.prepareStatement(EXISTS_BY_NAME);
+            statement.setString(1, department.getName());
+            resultSet = statement.executeQuery();
+            resultSet.next();
+            int id = resultSet.getInt("iddepartment");
+            if(id != 0){
+                return true;
+            }
+        }catch (SQLException sqlException){
+            return false;
+        }finally {
+            ConnectionFactory.release(connection, statement, resultSet);
+        }
+        return false;
     }
 }

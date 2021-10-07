@@ -1,8 +1,21 @@
 package com.aimprosoft.aimlearning.model;
 
+import com.aimprosoft.aimlearning.validation.department.isUniqueName;
+import net.sf.oval.constraint.CheckWith;
+import net.sf.oval.constraint.Length;
+import net.sf.oval.constraint.NotEmpty;
+import net.sf.oval.constraint.NotNull;
+
 public class Department {
     private int idDepartment;
+    @NotEmpty(message = "Name can not be empty")
+    @NotNull(message = "Name can not be null")
+    @Length(max = 100, message = "Name can not be greater than 100")
+    @CheckWith(value = isUniqueName.class, message = "department with such name exists")
     private String name;
+    @NotEmpty(message = "Address can not be empty")
+    @NotNull(message = "Address can not be null")
+    @Length(max = 200, message = "Address can not be greater than 200")
     private String address;
 
     @Override
