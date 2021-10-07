@@ -17,7 +17,7 @@
 <%@ page import="java.sql.PreparedStatement" %>
 <html>
 <head>
-    <title>Aimprosoft Java</title>
+    <title>Department</title>
     <link href="css/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>

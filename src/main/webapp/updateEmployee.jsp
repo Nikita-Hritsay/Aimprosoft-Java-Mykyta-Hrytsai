@@ -11,7 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Aimprosoft Java</title>
+    <title>Update employee</title>
     <link href="css/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
