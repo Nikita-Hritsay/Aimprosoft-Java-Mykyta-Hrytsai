@@ -1,21 +1,14 @@
 package com.aimprosoft.aimlearning.servlets;
 
 import com.aimprosoft.aimlearning.DAO.DepartmentDAOImpl;
-import com.aimprosoft.aimlearning.DAO.EmployeeDAOImpl;
 import com.aimprosoft.aimlearning.model.Department;
-import com.aimprosoft.aimlearning.model.Employee;
-import com.aimprosoft.aimlearning.validation.employee.isUniqueEmail;
 import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;
 import net.sf.oval.context.OValContext;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +40,7 @@ public class addDepartmentServlet extends HttpServlet {
 
         if(!errors.isEmpty()){
             request.setAttribute("errors", errors);
+            request.setAttribute("department", department);
             request.getRequestDispatcher("/addDepartment.jsp").forward(request, response);;
         }else{
             new DepartmentDAOImpl().addDepartment(department);

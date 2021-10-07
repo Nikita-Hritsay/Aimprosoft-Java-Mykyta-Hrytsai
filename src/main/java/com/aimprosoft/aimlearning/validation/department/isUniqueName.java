@@ -1,9 +1,7 @@
 package com.aimprosoft.aimlearning.validation.department;
 
 import com.aimprosoft.aimlearning.DAO.DepartmentDAOImpl;
-import com.aimprosoft.aimlearning.DAO.EmployeeDAOImpl;
 import com.aimprosoft.aimlearning.model.Department;
-import com.aimprosoft.aimlearning.model.Employee;
 import net.sf.oval.Validator;
 import net.sf.oval.constraint.CheckWithCheck;
 import net.sf.oval.context.OValContext;

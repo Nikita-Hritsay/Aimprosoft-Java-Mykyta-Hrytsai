@@ -4,7 +4,6 @@ import com.aimprosoft.aimlearning.DAO.DepartmentDAOImpl;
 import com.aimprosoft.aimlearning.DAO.EmployeeDAOImpl;
 import com.aimprosoft.aimlearning.model.Department;
 import com.aimprosoft.aimlearning.model.Employee;
-import com.aimprosoft.aimlearning.validation.employee.isUniqueEmail;
 import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;
 import net.sf.oval.context.OValContext;

@@ -1,7 +1,6 @@
 package com.aimprosoft.aimlearning.servlets;
 
 import com.aimprosoft.aimlearning.DAO.DepartmentDAOImpl;
-import com.aimprosoft.aimlearning.DAO.EmployeeDAOImpl;
 import com.aimprosoft.aimlearning.model.Department;
 import com.aimprosoft.aimlearning.model.Employee;
 import net.sf.oval.ConstraintViolation;
@@ -43,11 +42,6 @@ public class DepartmentServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        /*new DepartmentDAOImpl().updateDepartment(new Department(Integer.parseInt(request.getParameter("id")),
-                request.getParameter("name"),
-                request.getParameter("address")));
-        response.sendRedirect("/aimlearning_war_exploded/");*/
-
 
         Department department = new Department();
         department.setIdDepartment(Integer.parseInt(request.getParameter("id")));

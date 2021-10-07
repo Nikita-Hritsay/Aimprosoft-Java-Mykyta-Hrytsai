@@ -32,13 +32,15 @@
                 <th>Name</th>
                 <th>Address</th>
                 <th>Action</th>
+                <th>List</th>
             </tr>
             <c:forEach var="department" items="${departments}">
                 <tr>
                     <td><a href="http://localhost:8080/aimlearning_war_exploded/DepartmentServlet?id=${department.idDepartment}"> ${department.idDepartment} </a></td>
                     <td><a href="http://localhost:8080/aimlearning_war_exploded/DepartmentServlet?id=${department.idDepartment}"> ${department.name} </a></td>
-                    <td><a href="http://localhost:8080/aimlearning_war_exploded/DepartmentServlet?id=${department.idDepartment}"> ${department.address} </a></td>
+                    <td><a href="http://localhost:8080/aimlearning_war_exploded/DepartmentServlet?id=${department.idDepartment}"> ${department.address}   </a></td>
                     <td><a href="/aimlearning_war_exploded/DepartmentServlet?action=update&id=${department.idDepartment}" class="update_button">Update</a></td>
+                    <td><a href="http://localhost:8080/aimlearning_war_exploded/DepartmentServlet?id=${department.idDepartment}"> List </a></td>
                 </tr>
             </c:forEach>
         </table>
