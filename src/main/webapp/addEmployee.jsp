@@ -25,15 +25,15 @@
 
 <div align="center" style="margin-top: 50px;">
     <form action="addEmployeeServlet" method="post">
-        Please enter your first name:  <%--@declare id="iddepartments"--%><input type="text" name="firstName" class="input_param" size="15px" value="${firstName}"> <br>
+        Please enter your first name:  <%--@declare id="iddepartments"--%><input type="text" name="firstName" class="input_param" size="15px" value="${requestScope.employee.firstName}"> <br>
         <p class="error_massage">${errors.get("firstName")}</p>
-        Please enter your last name:  <input type="text" name="lastName" class="input_param" size="15px" value="${lastName}"> <br>
+        Please enter your last name:  <input type="text" name="lastName" class="input_param" size="15px" value="${requestScope.employee.lastName}"> <br>
         <p class="error_massage">${errors.get("lastName")}</p>
-        Please enter your email:  <input type="text" name="email" class="input_param" size="15px" value="${email}"> <br>
+        Please enter your email:  <input type="text" name="email" class="input_param" size="15px" value="${requestScope.employee.email}"> <br>
         <p class="error_massage">${errors.get("email")}</p>
-        Please enter your salary:  <input type="number" name="salary" class="input_param" size="15px" min="0" value="${salary}"> <br><br>
+        Please enter your salary:  <input type="number" name="salary" class="input_param" size="15px" min="0" value="${requestScope.employee.salary}"> <br><br>
         <p class="error_massage">${errors.get("salary")}</p>
-        Please enter your hire date:  <input type="date" name="hireDate" class="input_param" size="15px" value="${hireDate}"> <br><br>
+        Please enter your hire date:  <input type="date" name="hireDate" class="input_param" size="15px" value="${requestScope.employee.hireDate}"> <br><br>
         <p class="error_massage">${errors.get("hireDate")}</p>
         Please enter your department id:  <input list="idDepartments" name="iddepartment" class="input_param" size="15px" value="${requestScope.idDepartment}"> <br><br>
         <datalist id="idDepartments">

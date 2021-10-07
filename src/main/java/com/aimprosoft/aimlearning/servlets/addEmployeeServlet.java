@@ -58,13 +58,13 @@ public class addEmployeeServlet extends HttpServlet {
                 errors.put(fieldName, obj.getMessage());
             }
 
-
             if(!violations.isEmpty()){
                 List<Department> departments = new DepartmentDAOImpl().getAllDepartments();
                 request.setAttribute("departments", departments);
                 if(request.getParameter("idDepartment") != null){
                     request.setAttribute("departments", request.getParameter("idDepartment"));
                 }
+                request.setAttribute("employee", employee);
 
                 request.setAttribute("errors", errors);
                 request.getRequestDispatcher("/addEmployee.jsp").forward(request, response);;

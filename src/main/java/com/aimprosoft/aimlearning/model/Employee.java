@@ -20,6 +20,7 @@ public class Employee {
     @NotNull(message = "email can not be null")
     @Length(max = 30, message = "Firstname can not be greater than 30")
     @CheckWith(value = isUniqueEmail.class, message = "employee with such email exists")
+    @Email(message = "wrong email format")
     private String email;
     @NotEmpty(message = "Salary can not be empty")
     @NotNull(message = "Salary can not be null")

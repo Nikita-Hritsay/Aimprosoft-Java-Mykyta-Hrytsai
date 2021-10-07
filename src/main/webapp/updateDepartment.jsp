@@ -28,7 +28,9 @@
             <p>Department id: ${department.idDepartment}</p>
             <input name="id" class="input_param_id" value="${department.idDepartment}" type="hidden">
             Please enter department name:  <input type="text" name="name" class="input_param" size="15px" value="${department.name}"> <br>
+            <p class="error_massage">${errors.get("name")}</p>
             Please enter department address:  <input type="text" name="address" class="input_param" size="15px" value="${department.address}"> <br>
+            <p class="error_massage">${errors.get("address")}</p>
             <input type="submit" value="submit">
         </form>
     </c:forEach>

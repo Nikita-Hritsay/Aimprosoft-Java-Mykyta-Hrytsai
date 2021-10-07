@@ -173,7 +173,7 @@ public class DepartmentDAOImpl implements DepartmentDAO{
             resultSet = statement.executeQuery();
             resultSet.next();
             int id = resultSet.getInt("iddepartment");
-            if(id != 0){
+            if(id != 0 && id != department.getIdDepartment()){
                 return true;
             }
         }catch (SQLException sqlException){

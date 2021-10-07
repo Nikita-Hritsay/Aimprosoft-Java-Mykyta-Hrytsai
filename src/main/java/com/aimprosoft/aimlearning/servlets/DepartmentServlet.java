@@ -4,13 +4,18 @@ import com.aimprosoft.aimlearning.DAO.DepartmentDAOImpl;
 import com.aimprosoft.aimlearning.DAO.EmployeeDAOImpl;
 import com.aimprosoft.aimlearning.model.Department;
 import com.aimprosoft.aimlearning.model.Employee;
+import net.sf.oval.ConstraintViolation;
+import net.sf.oval.Validator;
+import net.sf.oval.context.OValContext;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "DepartmentServlet", value = "/DepartmentServlet")
 public class DepartmentServlet extends HttpServlet {
@@ -38,9 +43,40 @@ public class DepartmentServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        new DepartmentDAOImpl().updateDepartment(new Department(Integer.parseInt(request.getParameter("id")),
+        /*new DepartmentDAOImpl().updateDepartment(new Department(Integer.parseInt(request.getParameter("id")),
                 request.getParameter("name"),
                 request.getParameter("address")));
-        response.sendRedirect("/aimlearning_war_exploded/");
+        response.sendRedirect("/aimlearning_war_exploded/");*/
+
+
+        Department department = new Department();
+        department.setIdDepartment(Integer.parseInt(request.getParameter("id")));
+        department.setName(request.getParameter("name"));
+        department.setAddress(request.getParameter("address"));
+
+        Validator validator = new Validator();
+        List<ConstraintViolation> violations = validator.validate(department);
+        Map<String, String> errors = new HashMap<>();
+
+        for(ConstraintViolation obj: violations){
+            String fieldName = null;
+            for (OValContext node : obj.getContextPath()) {
+                fieldName = node.toStringUnqualified();
+            }
+            errors.put(fieldName, obj.getMessage());
+        }
+
+        if(!errors.isEmpty()){
+            request.setAttribute("errors", errors);
+
+            List<Department> departments = new ArrayList<>();
+            departments.add(department);
+            request.setAttribute("departments", departments);
+            request.getRequestDispatcher("updateDepartment.jsp").forward(request, response);
+        }else{
+            new DepartmentDAOImpl().updateDepartment(department);
+            response.sendRedirect("http://localhost:8080/aimlearning_war_exploded/");
+        }
+
     }
 }
