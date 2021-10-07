@@ -16,6 +16,9 @@ public class Employee {
     @NotNull(message = "Lastname can not be null")
     @Length(max = 30, message = "Lastname can not be greater than 30")
     private String lastName;
+    @NotEmpty(message = "email can not be empty")
+    @NotNull(message = "email can not be null")
+    @Length(max = 30, message = "Firstname can not be greater than 30")
     @CheckWith(value = isUniqueEmail.class, message = "employee with such email exists")
     private String email;
     @NotEmpty(message = "Salary can not be empty")

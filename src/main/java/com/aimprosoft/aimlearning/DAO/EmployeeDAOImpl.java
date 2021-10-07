@@ -127,7 +127,7 @@ public class EmployeeDAOImpl implements EmployeeDAO{
             resultSet = statement.executeQuery();
             resultSet.next();
             int id = resultSet.getInt("idemployee");
-            if(id != 0){
+            if(id != 0 && id != employee.getId()){
                 return true;
             }
         }catch (SQLException sqlException){
