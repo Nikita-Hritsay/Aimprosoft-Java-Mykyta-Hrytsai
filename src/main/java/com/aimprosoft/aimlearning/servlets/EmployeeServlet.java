@@ -73,10 +73,10 @@ public class EmployeeServlet extends HttpServlet {
 
             if(!violations.isEmpty()){
                 List<Department> departments = new DepartmentDAOImpl().getAllDepartments();
+                request.setAttribute("iddepartment", request.getParameter("idDepartment"));
                 request.setAttribute("departments", departments);
-                if(request.getParameter("idDepartment") != null){
-                    request.setAttribute("departments", request.getParameter("idDepartment"));
-                }
+
+
                 List<Employee> employeesUpdate = new ArrayList<>();
                 employeesUpdate.add(employee);
                 request.setAttribute("employees", employeesUpdate);

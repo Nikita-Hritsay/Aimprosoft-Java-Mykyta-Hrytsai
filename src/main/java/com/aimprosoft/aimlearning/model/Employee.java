@@ -18,7 +18,7 @@ public class Employee {
     private String lastName;
     @NotEmpty(message = "email can not be empty")
     @NotNull(message = "email can not be null")
-    @Length(max = 30, message = "Firstname can not be greater than 30")
+    @Length(max = 75, message = "Firstname can not be greater than 30")
     @CheckWith(value = isUniqueEmail.class, message = "employee with such email exists")
     @Email(message = "wrong email format")
     private String email;
