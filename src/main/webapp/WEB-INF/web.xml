@@ -4,4 +4,14 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+    <servlet>
+        <servlet-name>HomePage</servlet-name>
+        <servlet-class>com.aimprosoft.aimlearning.servlets.HomePageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomePage</servlet-name>
+        <url-pattern>/HomePageServlet</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

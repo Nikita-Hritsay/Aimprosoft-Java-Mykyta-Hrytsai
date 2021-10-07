@@ -23,10 +23,15 @@
 <body>
 
 <div class="header_refs">
-    <a href="/aimlearning_war_exploded/">Home page</a>
+    <a href="/aimlearning_war_exploded/HomePageServlet">Home page</a>
     <a href="/aimlearning_war_exploded/EmployeeServlet">All Employees</a>
     <a href="/aimlearning_war_exploded/addEmployeeServlet">Add Employee</a>
     <a href="/aimlearning_war_exploded/addDepartmentServlet">Add Department</a>
+</div>
+
+<div class="department_by_id_manage">
+    <a href="http://localhost:8080/aimlearning_war_exploded/addEmployeeServlet?idDepartment=${requestScope.department.idDepartment}">add to this department</a>
+    <a class="delete_button" href="http://localhost:8080/aimlearning_war_exploded/DepartmentServlet?action=delete&id=${requestScope.department.idDepartment}">Delete this department </a>
 </div>
 
 <div align="center" style="margin-top: 50px;">
@@ -65,8 +70,6 @@
 
 
 
-<a href="http://localhost:8080/aimlearning_war_exploded/addEmployeeServlet?idDepartment=${requestScope.department.idDepartment}">add to this department</a>
-<a class="delete_button" href="http://localhost:8080/aimlearning_war_exploded/DepartmentServlet?action=delete&id=${requestScope.department.idDepartment}">Delete this department </a>
 
 
 

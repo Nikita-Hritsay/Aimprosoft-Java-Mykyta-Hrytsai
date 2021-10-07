@@ -1,9 +1,12 @@
 a{
     padding-left: 20px;
-    padding-top: 20px;
     text-decoration: none;
     color: black;
     text-transform: uppercase;
+}
+
+.department_by_id_manage{
+    padding-top: 20px;
 }
 
 .input_param{
@@ -13,6 +16,7 @@ a{
 
 .department_href{
     text-decoration: none;
+    align-content: center;
 }
 
 .update_button{
@@ -41,7 +45,8 @@ a{
 
 .departments_all{
     position: absolute;
-    padding-top: 15px;
+    align-content: center;
+    padding-left: 50%;
 }
 
 .input_param_id{
