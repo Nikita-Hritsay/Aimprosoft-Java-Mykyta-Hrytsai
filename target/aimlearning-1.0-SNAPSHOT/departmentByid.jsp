@@ -7,14 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="java.util.List" %>
-<%@ page import="com.aimprosoft.aimlearning.model.Employee" %>
-<%@ page import="com.aimprosoft.aimlearning.DAO.EmployeeDAOImpl" %>
-<%@ page import="java.io.PrintWriter" %>
-<%@ page import="com.aimprosoft.aimlearning.model.Department" %>
-<%@ page import="com.aimprosoft.aimlearning.DAO.DepartmentDAOImpl" %>
-<%@ page import="com.aimprosoft.aimlearning.DAO.DepartmentDAO" %>
-<%@ page import="java.sql.PreparedStatement" %>
+
 <html>
 <head>
     <title>Department</title>
@@ -23,15 +16,15 @@
 <body>
 
 <div class="header_refs">
-    <a href="/aimlearning_war_exploded/HomePageServlet">Home page</a>
-    <a href="/aimlearning_war_exploded/EmployeeServlet">All Employees</a>
-    <a href="/aimlearning_war_exploded/addEmployeeServlet">Add Employee</a>
-    <a href="/aimlearning_war_exploded/addDepartmentServlet">Add Department</a>
+    <a href="displayAllDepartments">Home page</a>
+    <a href="/EmployeeServlet">All Employees</a>
+    <a href="/addEmployeeServlet">Add Employee</a>
+    <a href="createOrUpdateDepartmentForm">Add Department</a>
 </div>
 
 <div class="department_by_id_manage">
-    <a href="http://localhost:8080/aimlearning_war_exploded/addEmployeeServlet?idDepartment=${requestScope.department.idDepartment}">add to this department</a>
-    <a class="delete_button" href="http://localhost:8080/aimlearning_war_exploded/DepartmentServlet?action=delete&id=${requestScope.department.idDepartment}">Delete this department </a>
+    <a href="createOrUpdateDepartmentForm?idDepartment=${idDepartment}">add to this department</a>
+    <a href="deleteDepartment?idDepartment=${idDepartment}">Delete this department </a>
 </div>
 
 <div align="center" style="margin-top: 50px;">
@@ -59,9 +52,9 @@
                     <td>${employee.salary}</td>
                     <td>${employee.hireDate}</td>
                     <td>${employee.idDepartment}</td>
-                    <td><a href="/aimlearning_war_exploded/EmployeeServlet?action=delete&id=${employee.id}&idDepartment=${employee.idDepartment}" class="delete_button">Delete </a>
+                    <td><a href="/EmployeeServlet?action=delete&id=${employee.id}&idDepartment=${employee.idDepartment}" class="delete_button">Delete </a>
                         |
-                        <a href="/aimlearning_war_exploded/EmployeeServlet?action=update&id=${employee.id}" class="update_button">Update</a></td>
+                        <a href="createOrUpdateEmployee?id=${employee.id}" class="update_button">Update</a></td>
                 </tr>
             </c:forEach>
         </table>

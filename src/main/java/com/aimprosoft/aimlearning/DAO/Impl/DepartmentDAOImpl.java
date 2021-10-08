@@ -1,5 +1,7 @@
-package com.aimprosoft.aimlearning.DAO;
+package com.aimprosoft.aimlearning.DAO.Impl;
 
+import com.aimprosoft.aimlearning.DAO.ConnectionFactory;
+import com.aimprosoft.aimlearning.DAO.DepartmentDAO;
 import com.aimprosoft.aimlearning.model.Department;
 import com.aimprosoft.aimlearning.model.Employee;
 
@@ -7,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DepartmentDAOImpl implements DepartmentDAO{
+public class DepartmentDAOImpl implements DepartmentDAO {
 
     private ConnectionFactory connectionFactory;
 
@@ -166,21 +168,39 @@ public class DepartmentDAOImpl implements DepartmentDAO{
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        try{
-            connection = connectionFactory.getConnection();
-            statement = connection.prepareStatement(EXISTS_BY_NAME);
-            statement.setString(1, department.getName());
-            resultSet = statement.executeQuery();
-            resultSet.next();
-            int id = resultSet.getInt("iddepartment");
-            if(id != 0 && id != department.getIdDepartment()){
-                return true;
+        if(department.getIdDepartment() != 0) {
+            try {
+                connection = connectionFactory.getConnection();
+                statement = connection.prepareStatement(EXISTS_BY_NAME);
+                statement.setString(1, department.getName());
+                resultSet = statement.executeQuery();
+                resultSet.next();
+                int id = resultSet.getInt("iddepartment");
+                if (id != 0 && id != department.getIdDepartment()) {
+                    System.out.println("true");
+                    return true;
+                }
+            } catch (SQLException sqlException) {
+                System.out.println("department with such name exists");
+                System.out.println("false");
+                return false;
+            } finally {
+                ConnectionFactory.release(connection, statement, resultSet);
             }
-        }catch (SQLException sqlException){
-            return false;
-        }finally {
-            ConnectionFactory.release(connection, statement, resultSet);
+
         }
+        System.out.println("false");
         return false;
+    }
+
+    @Override
+    public void createOrUpdate(Department department) {
+        if(department.getIdDepartment() > 0) {
+            System.out.println("ex");
+            updateDepartment(department);
+        }else {
+            System.out.println(department.getIdDepartment());
+            addDepartment(department);
+        }
     }
 }

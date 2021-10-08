@@ -15,16 +15,16 @@
 <body>
 
 <div class="header_refs">
-    <a href="/aimlearning_war_exploded/HomePageServlet">Home page</a>
-    <a href="/aimlearning_war_exploded/EmployeeServlet">All Employees</a>
-    <a href="/aimlearning_war_exploded/addEmployeeServlet">Add Employee</a>
-    <a href="/aimlearning_war_exploded/addDepartmentServlet">Add Department</a>
+    <a href="displayAllDepartments">Home page</a>
+    <a href="/EmployeeServlet">All Employees</a>
+    <a href="/addEmployeeServlet">Add Employee</a>
+    <a href="createOrUpdateDepartmentForm">Add Department</a>
 </div>
 
 <div align="center" style="margin-top: 50px;">
 
     <c:forEach var="department" items="${requestScope.departments}">
-        <form action="DepartmentServlet" method="post">
+        <form action="createOrUpdateDepartment" method="post">
             <p>Department id: ${department.idDepartment}</p>
             <input name="id" class="input_param_id" value="${department.idDepartment}" type="hidden">
             Please enter department name:  <input type="text" name="name" class="input_param" size="15px" value="${department.name}"> <br>

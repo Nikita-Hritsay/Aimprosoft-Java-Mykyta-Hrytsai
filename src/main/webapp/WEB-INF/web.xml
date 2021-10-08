@@ -5,13 +5,21 @@
          version="4.0">
 
     <servlet>
-        <servlet-name>HomePage</servlet-name>
-        <servlet-class>com.aimprosoft.aimlearning.servlets.HomePageServlet</servlet-class>
+        <servlet-name>FrontController</servlet-name>
+        <servlet-class>com.aimprosoft.aimlearning.controllers.MainController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>HomePage</servlet-name>
-        <url-pattern>/HomePageServlet</url-pattern>
+        <servlet-name>FrontController</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <welcome-file-list>
+        <welcome-file>displayEmployees</welcome-file>
+    </welcome-file-list>
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.css</url-pattern>
+    </servlet-mapping>
 
 </web-app>

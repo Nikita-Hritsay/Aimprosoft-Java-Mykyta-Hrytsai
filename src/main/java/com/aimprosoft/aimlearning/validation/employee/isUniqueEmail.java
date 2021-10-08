@@ -1,6 +1,6 @@
 package com.aimprosoft.aimlearning.validation.employee;
 
-import com.aimprosoft.aimlearning.DAO.EmployeeDAOImpl;
+import com.aimprosoft.aimlearning.DAO.Impl.EmployeeDAOImpl;
 import com.aimprosoft.aimlearning.model.Employee;
 import net.sf.oval.Validator;
 import net.sf.oval.constraint.CheckWithCheck;

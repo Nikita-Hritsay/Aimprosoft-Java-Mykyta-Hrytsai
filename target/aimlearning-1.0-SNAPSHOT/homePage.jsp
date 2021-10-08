@@ -1,6 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.aimprosoft.aimlearning.model.Department" %>
-<%@ page import="com.aimprosoft.aimlearning.DAO.DepartmentDAOImpl" %>
+<%@ page import="com.aimprosoft.aimlearning.DAO.Impl.DepartmentDAOImpl" %>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -13,10 +13,10 @@
 <body>
 
 <div class="header_refs">
-    <a href="/aimlearning_war_exploded/HomePageServlet">Home page</a>
-    <a href="/aimlearning_war_exploded/EmployeeServlet">All Employees</a>
-    <a href="/aimlearning_war_exploded/addEmployeeServlet">Add Employee</a>
-    <a href="/aimlearning_war_exploded/addDepartmentServlet">Add Department</a>
+    <a href="displayAllDepartments">Home page</a>
+    <a href="/EmployeeServlet">All Employees</a>
+    <a href="/addEmployeeServlet">Add Employee</a>
+    <a href="createOrUpdateDepartmentForm">Add Department</a>
 </div>
 
 <div align="center" style="margin-top: 50px;">
@@ -36,11 +36,11 @@
             </tr>
             <c:forEach var="department" items="${departments}">
                 <tr>
-                    <td><a href="http://localhost:8080/aimlearning_war_exploded/DepartmentServlet?id=${department.idDepartment}"> ${department.idDepartment} </a></td>
-                    <td><a href="http://localhost:8080/aimlearning_war_exploded/DepartmentServlet?id=${department.idDepartment}"> ${department.name} </a></td>
-                    <td><a href="http://localhost:8080/aimlearning_war_exploded/DepartmentServlet?id=${department.idDepartment}"> ${department.address}   </a></td>
-                    <td><a href="/aimlearning_war_exploded/DepartmentServlet?action=update&id=${department.idDepartment}" class="update_button">Update</a></td>
-                    <td><a href="http://localhost:8080/aimlearning_war_exploded/DepartmentServlet?id=${department.idDepartment}"> List </a></td>
+                    <td><a href="employeesByDepartment?id=${department.idDepartment}"> ${department.idDepartment} </a></td>
+                    <td><a href="employeesByDepartment?id=${department.idDepartment}"> ${department.name} </a></td>
+                    <td><a href="employeesByDepartment?id=${department.idDepartment}"> ${department.address}   </a></td>
+                    <td><a href="createOrUpdateDepartmentForm?id=${department.idDepartment}" class="update_button">Update</a></td>
+                    <td><a href="employeesByDepartment?id=${department.idDepartment}"> List </a></td>
                 </tr>
             </c:forEach>
         </table>

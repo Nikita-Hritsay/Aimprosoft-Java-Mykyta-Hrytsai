@@ -1,6 +1,6 @@
 package com.aimprosoft.aimlearning.servlets;
 
-import com.aimprosoft.aimlearning.DAO.DepartmentDAOImpl;
+import com.aimprosoft.aimlearning.DAO.Impl.DepartmentDAOImpl;
 import com.aimprosoft.aimlearning.model.Department;
 
 import javax.servlet.*;

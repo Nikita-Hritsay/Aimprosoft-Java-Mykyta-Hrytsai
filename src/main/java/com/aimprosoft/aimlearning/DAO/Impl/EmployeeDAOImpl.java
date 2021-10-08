@@ -1,12 +1,14 @@
-package com.aimprosoft.aimlearning.DAO;
+package com.aimprosoft.aimlearning.DAO.Impl;
 
+import com.aimprosoft.aimlearning.DAO.ConnectionFactory;
+import com.aimprosoft.aimlearning.DAO.EmployeeDAO;
 import com.aimprosoft.aimlearning.model.Employee;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeDAOImpl implements EmployeeDAO{
+public class EmployeeDAOImpl implements EmployeeDAO {
     private ConnectionFactory connectionFactory;
 
     private final String FIND_ALL = "select idemployee, firstName, lastName, email, salary, hireDate, department_iddepartment from employee";

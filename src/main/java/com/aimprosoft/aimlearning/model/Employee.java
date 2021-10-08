@@ -4,9 +4,15 @@ package com.aimprosoft.aimlearning.model;
 import com.aimprosoft.aimlearning.validation.employee.isUniqueEmail;
 import net.sf.oval.constraint.*;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "employee")
 public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "idemployee")
     private int id;
     @NotEmpty(message = "Firstname can not be empty")
     @NotNull(message = "Firstname can not be null")
@@ -30,6 +36,7 @@ public class Employee {
     @NotEmpty(message = "Id department can not be empty")
     @NotNull(message = "Id department can not be null")
     @Min(value = 1, message = "Id department can not be smaller than 1")
+    @Column(name = "department_idDepartment")
     private int idDepartment;
 
     @Override

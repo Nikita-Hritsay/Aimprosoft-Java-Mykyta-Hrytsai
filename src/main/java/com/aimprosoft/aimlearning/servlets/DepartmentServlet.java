@@ -1,6 +1,6 @@
 package com.aimprosoft.aimlearning.servlets;
 
-import com.aimprosoft.aimlearning.DAO.DepartmentDAOImpl;
+import com.aimprosoft.aimlearning.DAO.Impl.DepartmentDAOImpl;
 import com.aimprosoft.aimlearning.model.Department;
 import com.aimprosoft.aimlearning.model.Employee;
 import net.sf.oval.ConstraintViolation;
@@ -33,10 +33,7 @@ public class DepartmentServlet extends HttpServlet {
                 request.getRequestDispatcher("updateDepartment.jsp").forward(request, response);
                 break;
             default:
-                List<Employee> employees = new DepartmentDAOImpl().getById(Integer.parseInt(request.getParameter("id")));
-                request.setAttribute("employees", employees);
-                request.setAttribute("department", new DepartmentDAOImpl().findDepartmentById(Integer.parseInt(request.getParameter("id"))));
-                request.getRequestDispatcher("/departmentByid.jsp").forward(request, response);
+
         }
     }
 

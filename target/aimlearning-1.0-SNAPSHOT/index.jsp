@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<jsp:forward page="HomePageServlet" />
+<jsp:forward page="displayAllDepartments" />
 
 </body>
 </html>

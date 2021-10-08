@@ -1,7 +1,7 @@
 package com.aimprosoft.aimlearning.servlets;
 
-import com.aimprosoft.aimlearning.DAO.DepartmentDAOImpl;
-import com.aimprosoft.aimlearning.DAO.EmployeeDAOImpl;
+import com.aimprosoft.aimlearning.DAO.Impl.DepartmentDAOImpl;
+import com.aimprosoft.aimlearning.DAO.Impl.EmployeeDAOImpl;
 import com.aimprosoft.aimlearning.model.Department;
 import com.aimprosoft.aimlearning.model.Employee;
 import net.sf.oval.ConstraintViolation;
