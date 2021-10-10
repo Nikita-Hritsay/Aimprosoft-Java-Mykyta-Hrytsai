@@ -17,14 +17,14 @@
 
 <div class="header_refs">
     <a href="displayAllDepartments">Home page</a>
-    <a href="/EmployeeServlet">All Employees</a>
-    <a href="/addEmployeeServlet">Add Employee</a>
+    <a href="displayEmployees">All Employees</a>
+    <a href="createOrUpdateEmployeeForm">Add Employee</a>
     <a href="createOrUpdateDepartmentForm">Add Department</a>
 </div>
 
 <div align="center" style="margin-top: 50px;">
     <div align="center" style="margin-top: 50px;">
-        <form action="EmployeeServlet" method="post">
+        <form action="createOrUpdateEmployee" method="post">
             <input type="hidden" name="id" class="input_param" size="20px" value="${employee.id}">
             Please enter your first name:  <%--@declare id="iddepartments"--%><input type="text" name="firstName" class="input_param" size="15px" value="${employee.firstName}"> <br>
             <p class="error_massage">${errors.get("firstName")}</p>
@@ -36,7 +36,7 @@
             <p class="error_massage">${errors.get("salary")}</p>
             Please enter your hire date:  <input type="date" name="hireDate" class="input_param" size="15px" value="${employee.hireDate}"> <br><br>
             <p class="error_massage">${errors.get("hireDate")}</p>
-            Please enter your department id:  <input list="idDepartments" name="iddepartment" class="input_param" size="15px" value="${employee.idDepartment}"> <br><br>
+            Please enter your department id:  <input list="idDepartments" name="iddepartment" class="input_param" size="15px" value="${idDepartment}"> <br><br>
             <datalist id="idDepartments">
                 <c:forEach var="department" items="${requestScope.departments}">
                 <option value="${department.idDepartment}" >

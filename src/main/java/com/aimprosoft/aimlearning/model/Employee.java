@@ -32,6 +32,8 @@ public class Employee {
     @NotNull(message = "Salary can not be null")
     @Min(value = 1, message = "salary can not be smaller than 1")
     private int salary;
+    @NotEmpty(message = "Hire date can not be empty")
+    @NotNull(message = "Hire date can not be null")
     private Date hireDate;
     @NotEmpty(message = "Id department can not be empty")
     @NotNull(message = "Id department can not be null")

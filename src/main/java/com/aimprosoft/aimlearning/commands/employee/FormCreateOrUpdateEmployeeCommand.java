@@ -1,21 +1,26 @@
 package com.aimprosoft.aimlearning.commands.employee;
 
+import com.aimprosoft.aimlearning.DAO.Impl.DepartmentDAOImpl;
 import com.aimprosoft.aimlearning.DAO.Impl.EmployeeDAOImpl;
 import com.aimprosoft.aimlearning.commands.ICommand;
+import com.aimprosoft.aimlearning.model.Department;
 import com.aimprosoft.aimlearning.model.Employee;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-public class FormCreateUpdateEmployeeCommand implements ICommand {
+public class FormCreateOrUpdateEmployeeCommand implements ICommand {
+
 
     @Override
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("employee", getEmployee(req));
+        req.setAttribute("idDepartment", req.getParameter("idDepartment"));
         req.getRequestDispatcher("createOrUpdateEmployee.jsp").forward(req, resp);
     }
 
@@ -25,6 +30,5 @@ public class FormCreateUpdateEmployeeCommand implements ICommand {
         }
         return new Employee();
     }
-
 
 }

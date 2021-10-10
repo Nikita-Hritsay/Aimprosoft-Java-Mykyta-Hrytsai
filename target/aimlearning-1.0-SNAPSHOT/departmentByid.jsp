@@ -17,13 +17,13 @@
 
 <div class="header_refs">
     <a href="displayAllDepartments">Home page</a>
-    <a href="/EmployeeServlet">All Employees</a>
-    <a href="/addEmployeeServlet">Add Employee</a>
+    <a href="displayEmployees">All Employees</a>
+    <a href="createOrUpdateEmployeeForm">Add Employee</a>
     <a href="createOrUpdateDepartmentForm">Add Department</a>
 </div>
 
 <div class="department_by_id_manage">
-    <a href="createOrUpdateDepartmentForm?idDepartment=${idDepartment}">add to this department</a>
+    <a href="createOrUpdateEmployeeForm?idDepartment=${idDepartment}">add to this department</a>
     <a href="deleteDepartment?idDepartment=${idDepartment}">Delete this department </a>
 </div>
 
@@ -52,9 +52,9 @@
                     <td>${employee.salary}</td>
                     <td>${employee.hireDate}</td>
                     <td>${employee.idDepartment}</td>
-                    <td><a href="/EmployeeServlet?action=delete&id=${employee.id}&idDepartment=${employee.idDepartment}" class="delete_button">Delete </a>
+                    <td><a href="deleteEmployee?&id=${employee.id}" class="delete_button">Delete </a>
                         |
-                        <a href="createOrUpdateEmployee?id=${employee.id}" class="update_button">Update</a></td>
+                        <a href="createOrUpdateEmployeeForm?id=${employee.id}" class="update_button">Update</a></td>
                 </tr>
             </c:forEach>
         </table>

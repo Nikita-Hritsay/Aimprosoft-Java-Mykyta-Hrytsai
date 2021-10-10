@@ -16,8 +16,8 @@
 
 <div class="header_refs">
     <a href="displayAllDepartments">Home page</a>
-    <a href="/EmployeeServlet">All Employees</a>
-    <a href="/addEmployeeServlet">Add Employee</a>
+    <a href="displayEmployees">All Employees</a>
+    <a href="createOrUpdateEmployeeForm">Add Employee</a>
     <a href="createOrUpdateDepartmentForm">Add Department</a>
 </div>
 

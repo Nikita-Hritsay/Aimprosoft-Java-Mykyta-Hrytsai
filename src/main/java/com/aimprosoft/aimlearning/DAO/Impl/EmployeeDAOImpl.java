@@ -168,4 +168,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             ConnectionFactory.release(conn, preparedStatement);
         }
     }
+
+    @Override
+    public void createOrUpdate(Employee employee){
+        if(employee.getId() > 0) {
+            updateEmployee(employee);
+        }else {
+            add(employee);
+        }
+    }
 }

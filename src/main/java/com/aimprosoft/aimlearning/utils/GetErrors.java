@@ -2,6 +2,7 @@ package com.aimprosoft.aimlearning.utils;
 
 import net.sf.oval.ConstraintViolation;
 import net.sf.oval.context.OValContext;
+import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +20,7 @@ public class GetErrors {
             }
             errors.put(fieldName, obj.getMessage());
         }
-
+        System.out.println(errors);
         return errors;
     }
 

@@ -4,9 +4,7 @@ import com.aimprosoft.aimlearning.commands.department.CreateOrUpdateDepartmentCo
 import com.aimprosoft.aimlearning.commands.department.DeleteDepartmentCommand;
 import com.aimprosoft.aimlearning.commands.department.DisplayAllDepartmentCommand;
 import com.aimprosoft.aimlearning.commands.department.FormCreateUpdateDepartmentCommand;
-import com.aimprosoft.aimlearning.commands.employee.DisplayEmployeeCommand;
-import com.aimprosoft.aimlearning.commands.employee.EmployeesByDepartmentCommand;
-import com.aimprosoft.aimlearning.commands.employee.FormCreateUpdateEmployeeCommand;
+import com.aimprosoft.aimlearning.commands.employee.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,10 +17,12 @@ public class CommandFactory {
         commands.put("/displayEmployees", new DisplayEmployeeCommand());
         commands.put("/displayAllDepartments", new DisplayAllDepartmentCommand());
         commands.put("/employeesByDepartment", new EmployeesByDepartmentCommand());
-        commands.put("/createOrUpdateEmployee", new FormCreateUpdateEmployeeCommand());
+        commands.put("/createOrUpdateEmployee", new CreateUpdateEmployeeCommand());
+        commands.put("/createOrUpdateEmployeeForm", new FormCreateOrUpdateEmployeeCommand());
         commands.put("/createOrUpdateDepartmentForm", new FormCreateUpdateDepartmentCommand());
         commands.put("/createOrUpdateDepartment", new CreateOrUpdateDepartmentCommand());
         commands.put("/deleteDepartment", new DeleteDepartmentCommand());
+        commands.put("/deleteEmployee", new DeleteEmployeeCommand());
     }
 
     public ICommand getCommand(String operation) {
