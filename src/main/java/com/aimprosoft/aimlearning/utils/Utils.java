@@ -2,15 +2,25 @@ package com.aimprosoft.aimlearning.utils;
 
 import net.sf.oval.ConstraintViolation;
 import net.sf.oval.context.OValContext;
-import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class GetErrors {
+public class Utils {
 
-    public Map<String, String> getErrors(List<ConstraintViolation> violations){
+    public static Integer GetInt(String num){
+        if (num != null) {
+            try {
+                return Integer.valueOf(num);
+            } catch (Exception e) {
+                return null;
+            }
+        }
+        return null;
+    }
+
+    public static Map<String, String> getErrors(List<ConstraintViolation> violations){
 
         Map<String, String> errors = new HashMap<>();
         for(ConstraintViolation obj: violations){
@@ -22,5 +32,4 @@ public class GetErrors {
         }
         return errors;
     }
-
 }

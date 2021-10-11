@@ -4,7 +4,7 @@ import com.aimprosoft.aimlearning.DAO.Impl.DepartmentDAOImpl;
 import com.aimprosoft.aimlearning.DAO.Impl.EmployeeDAOImpl;
 import com.aimprosoft.aimlearning.commands.ICommand;
 import com.aimprosoft.aimlearning.model.Employee;
-import com.aimprosoft.aimlearning.utils.GetErrors;
+import com.aimprosoft.aimlearning.utils.Utils;
 import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;
 
@@ -25,8 +25,8 @@ public class CreateUpdateEmployeeCommand implements ICommand {
         Validator validator = new Validator();
         List<ConstraintViolation> violations = validator.validate(employee);
 
-        if(!new GetErrors().getErrors(violations).isEmpty()){
-            req.setAttribute("errors", new GetErrors().getErrors(violations));
+        if(!Utils.getErrors(violations).isEmpty()){
+            req.setAttribute("errors", Utils.getErrors(violations));
             req.setAttribute("employee", employee);
             req.setAttribute("departments", new DepartmentDAOImpl().getAllDepartments());
             req.getRequestDispatcher("createOrUpdateEmployee.jsp").forward(req, resp);
@@ -42,10 +42,9 @@ public class CreateUpdateEmployeeCommand implements ICommand {
             employee.setFirstName(req.getParameter("firstName"));
             employee.setLastName(req.getParameter("lastName"));
             employee.setEmail(req.getParameter("email"));
-            employee.setSalary(req.getParameter("salary") == "" ? 0 : Integer.parseInt(req.getParameter("salary")));
+            employee.setSalary(req.getParameter("salary") == "" ? 0 : Utils.GetInt(req.getParameter("salary")));
             employee.setHireDate(req.getParameter("hireDate") == "" ? null : new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("hireDate")));
-            employee.setIdDepartment(req.getParameter("iddepartment") == "" ? 0 : Integer.parseInt(req.getParameter("iddepartment")));
-            System.out.println("hire date: " + employee.getHireDate());
+            employee.setIdDepartment(req.getParameter("iddepartment") == "" ? 0 : Utils.GetInt(req.getParameter("iddepartment")));
             return employee;
         } catch (ParseException e) {
             e.printStackTrace();
