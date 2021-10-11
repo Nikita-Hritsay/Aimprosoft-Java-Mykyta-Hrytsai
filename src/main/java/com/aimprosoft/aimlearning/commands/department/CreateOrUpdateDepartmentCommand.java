@@ -27,7 +27,6 @@ public class CreateOrUpdateDepartmentCommand implements ICommand {
         department.setAddress(req.getParameter("address"));
         Validator validator = new Validator();
         List<ConstraintViolation> violations = validator.validate(department);
-        System.out.println(violations);
         if(!new GetErrors().getErrors(violations).isEmpty()){
             req.setAttribute("errors", new GetErrors().getErrors(violations));
             req.setAttribute("department", department);

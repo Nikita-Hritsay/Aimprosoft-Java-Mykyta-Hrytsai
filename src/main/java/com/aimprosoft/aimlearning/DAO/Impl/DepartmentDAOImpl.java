@@ -196,10 +196,8 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     @Override
     public void createOrUpdate(Department department) {
         if(department.getIdDepartment() > 0) {
-            System.out.println("ex");
             updateDepartment(department);
         }else {
-            System.out.println(department.getIdDepartment());
             addDepartment(department);
         }
     }

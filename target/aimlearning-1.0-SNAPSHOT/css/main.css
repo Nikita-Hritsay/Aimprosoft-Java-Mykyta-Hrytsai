@@ -5,8 +5,12 @@ a{
     text-transform: uppercase;
 }
 
+.header_refs{
+    padding: 40px 20px 0 20px;
+}
+
 .department_by_id_manage{
-    padding-top: 20px;
+    padding-top: 15px;
 }
 
 .input_param{
@@ -14,41 +18,35 @@ a{
     margin-top: 10px;
 }
 
-.department_href{
-    text-decoration: none;
-    align-content: center;
-}
-
 .update_button{
     color: blue;
 }
 
-.error_massage{
+.error_massage, .delete_button{
     color: red;
 }
 
-.header_refs{
-    text-transform: uppercase;
-    padding-top: 20px;
-}
 
-.delete_button{
-    color: red;
-}
 
-.departments_main{
-    display: flex;
-    align-items: baseline;
-    padding-top: 20px;
-    margin-top: 20px;
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 14px;
+    border-collapse: collapse;
+    text-align: center;
 }
-
-.departments_all{
-    position: absolute;
-    align-content: center;
-    padding-left: 50%;
+th, td:first-child {
+    background: #AFCDE7;
+    color: white;
+    padding: 10px 20px;
 }
-
-.input_param_id{
-    visibility: hidden;
+th, td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: white;
+}
+td {
+    background: #D8E6F3;
+}
+th:first-child, td:first-child {
+    text-align: left;
 }
