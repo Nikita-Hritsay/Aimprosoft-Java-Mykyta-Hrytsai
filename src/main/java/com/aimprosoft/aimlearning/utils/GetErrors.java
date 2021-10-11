@@ -20,7 +20,6 @@ public class GetErrors {
             }
             errors.put(fieldName, obj.getMessage());
         }
-        System.out.println(errors);
         return errors;
     }
 
