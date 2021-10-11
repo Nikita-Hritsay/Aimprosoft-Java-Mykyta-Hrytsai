@@ -13,6 +13,16 @@ a{
     padding: 40px 20px 0 20px;
 }
 
+.header_ref:hover{
+    background: #a5ffff;
+    transition: 0.8s;
+}
+
+.header_ref_del:hover{
+    background: #ff5b5b;
+    transition: 0.8s;
+}
+
 .department_by_id_manage{
     padding: 40px 20px 0 20px;
 }

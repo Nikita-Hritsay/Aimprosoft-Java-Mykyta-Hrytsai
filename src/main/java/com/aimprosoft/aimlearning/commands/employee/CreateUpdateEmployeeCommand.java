@@ -28,6 +28,7 @@ public class CreateUpdateEmployeeCommand implements ICommand {
         if(!Utils.getErrors(violations).isEmpty()){
             req.setAttribute("errors", Utils.getErrors(violations));
             req.setAttribute("employee", employee);
+            req.setAttribute("idDepartment", req.getParameter("iddepartment"));
             req.setAttribute("departments", new DepartmentDAOImpl().getAllDepartments());
             req.getRequestDispatcher("createOrUpdateEmployee.jsp").forward(req, resp);
         }else{

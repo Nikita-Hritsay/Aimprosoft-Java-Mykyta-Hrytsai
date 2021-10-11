@@ -16,10 +16,10 @@
 <body>
 
 <div class="header_refs">
-    <a href="displayAllDepartments">Home page</a>
-    <a href="displayEmployees">All Employees</a>
-    <a href="createOrUpdateEmployeeForm">Add Employee</a>
-    <a href="createOrUpdateDepartmentForm">Add Department</a>
+    <a class="header_ref" href="displayAllDepartments">Home page</a>
+    <a class="header_ref" href="displayEmployees">All Employees</a>
+    <a class="header_ref" href="createOrUpdateEmployeeForm">Add Employee</a>
+    <a class="header_ref" href="createOrUpdateDepartmentForm">Add Department</a>
 </div>
 
 <div align="center" style="margin-top: 50px;">
@@ -32,7 +32,7 @@
             <p class="error_massage">${errors.get("lastName")}</p>
             Please enter your email:  <input type="text" name="email" class="input_param" size="15px" value="${employee.email}"> <br>
             <p class="error_massage">${errors.get("email")}</p>
-            Please enter your salary:  <input type="number" name="salary" class="input_param" size="15px" min="0" value="${employee.salary}"> <br><br>
+            Please enter your salary:  <input type="number" name="salary" class="input_param" size="15px" value="${employee.salary}"> <br><br>
             <p class="error_massage">${errors.get("salary")}</p>
             Please enter your hire date:  <input type="date" name="hireDate" class="input_param" size="15px" value="${employee.hireDate}"> <br><br>
             <p class="error_massage">${errors.get("hireDate")}</p>
