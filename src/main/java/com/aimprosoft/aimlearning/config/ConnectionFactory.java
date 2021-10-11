@@ -1,4 +1,4 @@
-package com.aimprosoft.aimlearning.DAO;
+package com.aimprosoft.aimlearning.config;
 
 import java.sql.*;
 

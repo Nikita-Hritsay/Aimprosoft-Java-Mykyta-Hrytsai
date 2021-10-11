@@ -1,6 +1,6 @@
 package com.aimprosoft.aimlearning.DAO.Impl;
 
-import com.aimprosoft.aimlearning.DAO.ConnectionFactory;
+import com.aimprosoft.aimlearning.config.ConnectionFactory;
 import com.aimprosoft.aimlearning.DAO.EmployeeDAO;
 import com.aimprosoft.aimlearning.model.Employee;
 
