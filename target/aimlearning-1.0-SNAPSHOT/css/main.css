@@ -1,16 +1,20 @@
 a{
-    padding-left: 20px;
+    display: inline-block;
+    padding: 10px 10px 10px;
+    margin-left: 20px;
+    border-radius: 7px;
     text-decoration: none;
     color: black;
-    text-transform: uppercase;
+    margin-right: 10px;
 }
 
 .header_refs{
+    align: center;
     padding: 40px 20px 0 20px;
 }
 
 .department_by_id_manage{
-    padding-top: 15px;
+    padding: 40px 20px 0 20px;
 }
 
 .input_param{
@@ -25,8 +29,6 @@ a{
 .error_massage, .delete_button{
     color: red;
 }
-
-
 
 table {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
@@ -49,4 +51,11 @@ td {
 }
 th:first-child, td:first-child {
     text-align: left;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

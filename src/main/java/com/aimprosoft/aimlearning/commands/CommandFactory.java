@@ -26,7 +26,7 @@ public class CommandFactory {
     }
 
     public ICommand getCommand(String operation) {
-        return commands.getOrDefault(operation, new DisplayEmployeeCommand());
+        return commands.getOrDefault(operation, new DisplayAllDepartmentCommand());
     }
 
 }
