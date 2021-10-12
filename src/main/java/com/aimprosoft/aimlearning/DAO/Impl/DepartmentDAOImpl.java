@@ -2,8 +2,11 @@ package com.aimprosoft.aimlearning.DAO.Impl;
 
 import com.aimprosoft.aimlearning.config.ConnectionFactory;
 import com.aimprosoft.aimlearning.DAO.DepartmentDAO;
+import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Department;
 import com.aimprosoft.aimlearning.models.Employee;
+import net.sf.oval.ConstraintViolation;
+import net.sf.oval.Validator;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -176,6 +179,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
                 resultSet = statement.executeQuery();
                 resultSet.next();
                 int id = resultSet.getInt("iddepartment");
+                System.out.println("checking");
                 if (id != 0 && id != department.getIdDepartment()) {
                     System.out.println("true");
                     return true;
@@ -194,7 +198,12 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public void createOrUpdate(Department department) {
+    public void createOrUpdate(Department department) throws ValidationException{
+        Validator validator = new Validator();
+        List<ConstraintViolation> violations = validator.validate(department);
+        if(!violations.isEmpty()){
+            throw new ValidationException("ERRORS");
+        }
         if(department.getIdDepartment() > 0) {
             updateDepartment(department);
         }else {

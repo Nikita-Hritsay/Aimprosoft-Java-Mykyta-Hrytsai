@@ -2,6 +2,7 @@ package com.aimprosoft.aimlearning.commands.department;
 
 import com.aimprosoft.aimlearning.DAO.Impl.DepartmentDAOImpl;
 import com.aimprosoft.aimlearning.commands.ICommand;
+import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Department;
 import com.aimprosoft.aimlearning.utils.Utils;
 import net.sf.oval.ConstraintViolation;
@@ -19,6 +20,17 @@ public class CreateOrUpdateDepartmentCommand implements ICommand {
     @Override
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Department department = getDepartment(req);
+        try{
+            new DepartmentDAOImpl().createOrUpdate(department);
+            req.getRequestDispatcher("displayAllDepartments").forward(req, resp);
+        } catch (ValidationException exception){
+            req.setAttribute("errors", Utils.getErrors(new Validator().validate(department)));
+            req.setAttribute("department", department);
+            req.getRequestDispatcher("createOrUpdateDepartment.jsp").forward(req, resp);
+        }
+
+        /*
+        Department department = getDepartment(req);
         Validator validator = new Validator();
         List<ConstraintViolation> violations = validator.validate(department);
         if(!Utils.getErrors(violations).isEmpty()){
@@ -28,7 +40,7 @@ public class CreateOrUpdateDepartmentCommand implements ICommand {
         }else{
             new DepartmentDAOImpl().createOrUpdate(department);
             req.getRequestDispatcher("displayAllDepartments").forward(req, resp);
-        }
+        }*/
     }
 
     private Department getDepartment(HttpServletRequest request){

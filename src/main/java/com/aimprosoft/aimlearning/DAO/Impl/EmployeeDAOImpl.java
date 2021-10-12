@@ -2,7 +2,10 @@ package com.aimprosoft.aimlearning.DAO.Impl;
 
 import com.aimprosoft.aimlearning.config.ConnectionFactory;
 import com.aimprosoft.aimlearning.DAO.EmployeeDAO;
+import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Employee;
+import net.sf.oval.ConstraintViolation;
+import net.sf.oval.Validator;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -132,13 +135,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             if(id != 0 && id != employee.getId()){
                 return true;
             }
+            return false;
         }catch (SQLException sqlException){
             System.out.println("Something went wrong" + sqlException.getSQLState());
             return false;
         }finally {
             ConnectionFactory.release(connection, statement, resultSet);
         }
-        return false;
     }
 
     @Override
@@ -170,8 +173,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public void createOrUpdate(Employee employee){
-        if(employee.getId() > 0) {
+    public void createOrUpdate(Employee employee) throws ValidationException {
+        Validator validator = new Validator();
+        List<ConstraintViolation> violations = validator.validate(employee);
+        if(!violations.isEmpty()){
+            throw new ValidationException("ERRORS");
+        }
+        if(employee.getId() != 0) {
             updateEmployee(employee);
         }else {
             add(employee);
