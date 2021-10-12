@@ -28,19 +28,6 @@ public class CreateOrUpdateDepartmentCommand implements ICommand {
             req.setAttribute("department", department);
             req.getRequestDispatcher("createOrUpdateDepartment.jsp").forward(req, resp);
         }
-
-        /*
-        Department department = getDepartment(req);
-        Validator validator = new Validator();
-        List<ConstraintViolation> violations = validator.validate(department);
-        if(!Utils.getErrors(violations).isEmpty()){
-            req.setAttribute("errors", Utils.getErrors(violations));
-            req.setAttribute("department", department);
-            req.getRequestDispatcher("createOrUpdateDepartment.jsp").forward(req, resp);
-        }else{
-            new DepartmentDAOImpl().createOrUpdate(department);
-            req.getRequestDispatcher("displayAllDepartments").forward(req, resp);
-        }*/
     }
 
     private Department getDepartment(HttpServletRequest request){
