@@ -2,7 +2,7 @@ package com.aimprosoft.aimlearning.commands.department;
 
 import com.aimprosoft.aimlearning.DAO.Impl.DepartmentDAOImpl;
 import com.aimprosoft.aimlearning.commands.ICommand;
-import com.aimprosoft.aimlearning.model.Department;
+import com.aimprosoft.aimlearning.models.Department;
 import com.aimprosoft.aimlearning.utils.Utils;
 import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;

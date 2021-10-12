@@ -1,5 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="com.aimprosoft.aimlearning.model.Department" %>
+<%@ page import="com.aimprosoft.aimlearning.models.Department" %>
 <%@ page import="com.aimprosoft.aimlearning.DAO.Impl.DepartmentDAOImpl" %>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>

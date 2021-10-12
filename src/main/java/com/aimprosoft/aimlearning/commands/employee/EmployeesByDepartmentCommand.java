@@ -1,9 +1,8 @@
 package com.aimprosoft.aimlearning.commands.employee;
 
 import com.aimprosoft.aimlearning.DAO.Impl.DepartmentDAOImpl;
-import com.aimprosoft.aimlearning.DAO.Impl.EmployeeDAOImpl;
 import com.aimprosoft.aimlearning.commands.ICommand;
-import com.aimprosoft.aimlearning.model.Employee;
+import com.aimprosoft.aimlearning.models.Employee;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

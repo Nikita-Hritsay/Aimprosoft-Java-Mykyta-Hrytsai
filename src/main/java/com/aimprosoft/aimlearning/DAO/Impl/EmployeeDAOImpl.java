@@ -2,7 +2,7 @@ package com.aimprosoft.aimlearning.DAO.Impl;
 
 import com.aimprosoft.aimlearning.config.ConnectionFactory;
 import com.aimprosoft.aimlearning.DAO.EmployeeDAO;
-import com.aimprosoft.aimlearning.model.Employee;
+import com.aimprosoft.aimlearning.models.Employee;
 
 import java.sql.*;
 import java.util.ArrayList;

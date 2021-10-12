@@ -3,7 +3,7 @@ package com.aimprosoft.aimlearning.commands.employee;
 import com.aimprosoft.aimlearning.DAO.Impl.DepartmentDAOImpl;
 import com.aimprosoft.aimlearning.DAO.Impl.EmployeeDAOImpl;
 import com.aimprosoft.aimlearning.commands.ICommand;
-import com.aimprosoft.aimlearning.model.Employee;
+import com.aimprosoft.aimlearning.models.Employee;
 import com.aimprosoft.aimlearning.utils.Utils;
 import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;
@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.List;
 
 public class CreateUpdateEmployeeCommand implements ICommand {

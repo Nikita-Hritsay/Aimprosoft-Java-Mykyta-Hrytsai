@@ -1,7 +1,7 @@
 package com.aimprosoft.aimlearning.DAO;
 
-import com.aimprosoft.aimlearning.model.Department;
-import com.aimprosoft.aimlearning.model.Employee;
+import com.aimprosoft.aimlearning.models.Department;
+import com.aimprosoft.aimlearning.models.Employee;
 
 import java.util.List;
 

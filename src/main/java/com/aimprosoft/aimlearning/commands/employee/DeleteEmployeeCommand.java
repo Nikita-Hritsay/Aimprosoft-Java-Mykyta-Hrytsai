@@ -2,7 +2,6 @@ package com.aimprosoft.aimlearning.commands.employee;
 
 import com.aimprosoft.aimlearning.DAO.Impl.EmployeeDAOImpl;
 import com.aimprosoft.aimlearning.commands.ICommand;
-import com.aimprosoft.aimlearning.model.Employee;
 
 import com.aimprosoft.aimlearning.utils.Utils;
 

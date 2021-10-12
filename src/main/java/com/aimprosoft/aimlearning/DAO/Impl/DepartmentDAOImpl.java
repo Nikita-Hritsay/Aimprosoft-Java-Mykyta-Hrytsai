@@ -2,8 +2,8 @@ package com.aimprosoft.aimlearning.DAO.Impl;
 
 import com.aimprosoft.aimlearning.config.ConnectionFactory;
 import com.aimprosoft.aimlearning.DAO.DepartmentDAO;
-import com.aimprosoft.aimlearning.model.Department;
-import com.aimprosoft.aimlearning.model.Employee;
+import com.aimprosoft.aimlearning.models.Department;
+import com.aimprosoft.aimlearning.models.Employee;
 
 import java.sql.*;
 import java.util.ArrayList;
