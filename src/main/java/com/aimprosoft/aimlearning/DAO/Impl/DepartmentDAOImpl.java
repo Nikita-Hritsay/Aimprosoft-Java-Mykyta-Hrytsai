@@ -171,30 +171,24 @@ public class DepartmentDAOImpl implements DepartmentDAO {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        if(department.getIdDepartment() != 0) {
-            try {
-                connection = connectionFactory.getConnection();
-                statement = connection.prepareStatement(EXISTS_BY_NAME);
-                statement.setString(1, department.getName());
-                resultSet = statement.executeQuery();
-                resultSet.next();
-                int id = resultSet.getInt("iddepartment");
-                System.out.println("checking");
-                if (id != 0 && id != department.getIdDepartment()) {
-                    System.out.println("true");
-                    return true;
-                }
-            } catch (SQLException sqlException) {
-                System.out.println("department with such name exists");
-                System.out.println("false");
-                return false;
-            } finally {
-                ConnectionFactory.release(connection, statement, resultSet);
-            }
 
+        try {
+            connection = connectionFactory.getConnection();
+            statement = connection.prepareStatement(EXISTS_BY_NAME);
+            statement.setString(1, department.getName());
+            resultSet = statement.executeQuery();
+            resultSet.next();
+            int id = resultSet.getInt("iddepartment");
+            if (id != 0 && id != department.getIdDepartment()) {
+                return true;
+            }
+            return false;
+        } catch (SQLException sqlException) {
+            System.out.println("department with such name exists");
+            return false;
+        } finally {
+            ConnectionFactory.release(connection, statement, resultSet);
         }
-        System.out.println("false");
-        return false;
     }
 
     @Override

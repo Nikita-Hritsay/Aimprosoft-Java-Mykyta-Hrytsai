@@ -10,8 +10,8 @@ public class Department {
     private int idDepartment;
     @NotEmpty(message = "Name can not be empty")
     @NotNull(message = "Name can not be null")
-    @Length(max = 100, message = "Name can not be greater than 100")
     @CheckWith(value = isUniqueName.class, message = "department with such name exists")
+    @Length(max = 100, message = "Name can not be greater than 100")
     private String name;
     @NotEmpty(message = "Address can not be empty")
     @NotNull(message = "Address can not be null")

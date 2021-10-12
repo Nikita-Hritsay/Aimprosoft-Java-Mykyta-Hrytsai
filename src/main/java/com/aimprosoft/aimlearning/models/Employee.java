@@ -7,8 +7,6 @@ import net.sf.oval.constraint.*;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "employee")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
