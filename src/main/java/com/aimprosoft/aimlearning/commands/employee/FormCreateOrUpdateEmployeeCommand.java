@@ -17,7 +17,7 @@ public class FormCreateOrUpdateEmployeeCommand implements ICommand {
     @Override
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("employee", getEmployee(req));
-        req.setAttribute("idDepartment", req.getParameter("idDepartment"));
+        req.setAttribute("idDepartment", getEmployee(req).getIdDepartment());
         req.setAttribute("departments", new DepartmentDAOImpl().getAllDepartments());
         System.out.println(getEmployee(req).toString());
         req.getRequestDispatcher("createOrUpdateEmployee.jsp").forward(req, resp);
