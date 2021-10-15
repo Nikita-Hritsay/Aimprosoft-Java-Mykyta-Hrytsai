@@ -1,7 +1,7 @@
 package com.aimprosoft.aimlearning.models;
 
 
-import com.aimprosoft.aimlearning.validations.employee.isUniqueEmail;
+import com.aimprosoft.aimlearning.validations.employee.IsUniqueEmail;
 import net.sf.oval.constraint.*;
 
 import javax.persistence.*;
@@ -23,7 +23,7 @@ public class Employee {
     @NotEmpty(message = "email can not be empty")
     @NotNull(message = "email can not be null")
     @Length(max = 75, message = "Firstname can not be greater than 30")
-    @CheckWith(value = isUniqueEmail.class, message = "employee with such email exists")
+    @CheckWith(value = IsUniqueEmail.class, message = "employee with such email exists")
     @Email(message = "wrong email format")
     private String email;
     @NotEmpty(message = "Salary can not be empty")
