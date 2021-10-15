@@ -19,7 +19,7 @@ public class FormCreateUpdateDepartmentCommand implements ICommand {
     }
 
     private Department getDepartment(HttpServletRequest request) {
-        if(request.getParameter("id") != null){
+        if (request.getParameter("id") != null) {
             return new DepartmentDAOImpl().findDepartmentById(Utils.GetInt(request.getParameter("id")));
         }
         return new Department(request.getParameter("name"), request.getParameter("address"));

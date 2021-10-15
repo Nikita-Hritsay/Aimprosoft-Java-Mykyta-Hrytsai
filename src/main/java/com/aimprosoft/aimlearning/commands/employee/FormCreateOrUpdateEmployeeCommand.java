@@ -19,12 +19,11 @@ public class FormCreateOrUpdateEmployeeCommand implements ICommand {
         req.setAttribute("employee", getEmployee(req));
         req.setAttribute("idDepartment", getEmployee(req).getIdDepartment());
         req.setAttribute("departments", new DepartmentDAOImpl().getAllDepartments());
-        System.out.println(getEmployee(req).toString());
         req.getRequestDispatcher("createOrUpdateEmployee.jsp").forward(req, resp);
     }
 
     private Employee getEmployee(HttpServletRequest request) {
-        if(request.getParameter("id") != null){
+        if (request.getParameter("id") != null) {
             return new EmployeeDAOImpl().getById(Utils.GetInt(request.getParameter("id")));
         }
         return new Employee();

@@ -21,10 +21,10 @@ public class CreateUpdateEmployeeCommand implements ICommand {
     @Override
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Employee employee = getEmployee(req);
-        try{
+        try {
             new EmployeeDAOImpl().createOrUpdate(employee);
             req.getRequestDispatcher("displayAllDepartments").forward(req, resp);
-        } catch (ValidationException exception){
+        } catch (ValidationException exception) {
             req.setAttribute("errors", Utils.getErrors(new Validator().validate(employee)));
             req.setAttribute("employee", employee);
             req.setAttribute("idDepartment", req.getParameter("iddepartment"));
@@ -33,7 +33,7 @@ public class CreateUpdateEmployeeCommand implements ICommand {
         }
     }
 
-    private Employee getEmployee(HttpServletRequest req){
+    private Employee getEmployee(HttpServletRequest req) {
         try {
             Employee employee = new Employee();
             employee.setId(Utils.GetInt(req.getParameter("id")));

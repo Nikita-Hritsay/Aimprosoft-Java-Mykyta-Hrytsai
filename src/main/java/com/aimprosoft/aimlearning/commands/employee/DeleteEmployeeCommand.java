@@ -14,7 +14,7 @@ public class DeleteEmployeeCommand implements ICommand {
 
     @Override
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        new EmployeeDAOImpl().deleteEmployee( Utils.GetInt(req.getParameter("id")));
+        new EmployeeDAOImpl().deleteEmployee(Utils.GetInt(req.getParameter("id")));
         resp.sendRedirect("/displayAllDepartments");
     }
 }
