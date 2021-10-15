@@ -6,7 +6,7 @@ import net.sf.oval.Validator;
 import net.sf.oval.constraint.CheckWithCheck;
 import net.sf.oval.context.OValContext;
 
-public class isUniqueName implements CheckWithCheck.SimpleCheck {
+public class IsUniqueName implements CheckWithCheck.SimpleCheck {
     private DepartmentDAOImpl departmentDAO = new DepartmentDAOImpl();
 
     @Override

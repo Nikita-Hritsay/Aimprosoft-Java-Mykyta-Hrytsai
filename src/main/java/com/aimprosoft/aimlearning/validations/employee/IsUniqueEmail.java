@@ -7,7 +7,7 @@ import net.sf.oval.constraint.CheckWithCheck;
 import net.sf.oval.context.OValContext;
 
 
-public class isUniqueEmail implements CheckWithCheck.SimpleCheck {
+public class IsUniqueEmail implements CheckWithCheck.SimpleCheck {
     private EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
 
     @Override

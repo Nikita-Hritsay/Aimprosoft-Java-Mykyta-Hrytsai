@@ -1,3 +1,5 @@
 target
 aimlearning.iml
 pom.xml
+.idea
+/src/main/resources/*
