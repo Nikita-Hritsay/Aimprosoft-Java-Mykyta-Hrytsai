@@ -12,9 +12,11 @@ import java.util.List;
 
 public class DisplayAllDepartmentCommand implements ICommand {
 
+    private final DepartmentDAOImpl departmentDAO = new DepartmentDAOImpl();
+
     @Override
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Department> departments = new DepartmentDAOImpl().getAllDepartments();
+        List<Department> departments = departmentDAO.getAllDepartments();
         req.setAttribute("departments", departments);
         req.getRequestDispatcher("homePage.jsp").forward(req, resp);
     }

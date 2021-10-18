@@ -12,9 +12,11 @@ import java.io.IOException;
 
 public class DeleteEmployeeCommand implements ICommand {
 
+    private final EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
+
     @Override
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        new EmployeeDAOImpl().deleteEmployee(GetInt.getInt(req.getParameter("id")));
+        employeeDAO.deleteEmployee(GetInt.getInt(req.getParameter("id")));
         resp.sendRedirect("/displayAllDepartments");
     }
 }

@@ -12,9 +12,11 @@ import java.io.IOException;
 
 public class DeleteDepartmentCommand implements ICommand {
 
+    private final DepartmentDAOImpl departmentDAO = new DepartmentDAOImpl();
+
     @Override
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        new DepartmentDAOImpl().deleteDepartment(GetInt.getInt(((req.getParameter("idDepartment")))));
+        departmentDAO.deleteDepartment(GetInt.getInt(((req.getParameter("idDepartment")))));
         resp.sendRedirect("/displayAllDepartments");
     }
 }

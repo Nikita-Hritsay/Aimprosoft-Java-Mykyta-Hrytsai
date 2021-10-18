@@ -12,6 +12,8 @@ import java.io.IOException;
 
 public class FormCreateUpdateDepartmentCommand implements ICommand {
 
+    private final DepartmentDAOImpl departmentDAO = new DepartmentDAOImpl();
+
     @Override
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("department", getDepartment(req));
@@ -20,7 +22,7 @@ public class FormCreateUpdateDepartmentCommand implements ICommand {
 
     private Department getDepartment(HttpServletRequest request) {
         if (request.getParameter("id") != null) {
-            return new DepartmentDAOImpl().getDepartmentById(GetInt.getInt(request.getParameter("id")));
+            return departmentDAO.getDepartmentById(GetInt.getInt(request.getParameter("id")));
         }
         return new Department(request.getParameter("name"), request.getParameter("address"));
     }

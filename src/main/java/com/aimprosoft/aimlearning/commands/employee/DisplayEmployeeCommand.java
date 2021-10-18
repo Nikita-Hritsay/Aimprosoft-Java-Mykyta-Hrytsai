@@ -12,9 +12,11 @@ import java.util.List;
 
 public class DisplayEmployeeCommand implements ICommand {
 
+    private final EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
+
     @Override
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Employee> employees = new EmployeeDAOImpl().getAllEmployees();
+        List<Employee> employees = employeeDAO.getAllEmployees();
         req.setAttribute("employees", employees);
         req.getRequestDispatcher("allEmployees.jsp").forward(req, resp);
     }

@@ -13,9 +13,11 @@ import java.util.List;
 
 public class EmployeesByDepartmentCommand implements ICommand {
 
+    private final EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
+
     @Override
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Employee> employees = new EmployeeDAOImpl().getByIdDepartment(Integer.parseInt(req.getParameter("id")));
+        List<Employee> employees = employeeDAO.getByIdDepartment(Integer.parseInt(req.getParameter("id")));
         req.setAttribute("idDepartment", req.getParameter("id"));
         req.setAttribute("employees", employees);
         req.getRequestDispatcher("departmentByid.jsp").forward(req, resp);
