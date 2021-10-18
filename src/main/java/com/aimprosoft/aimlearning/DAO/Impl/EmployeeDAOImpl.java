@@ -56,7 +56,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             statement.setString(1, employee.getFirstName());
             statement.setString(2, employee.getLastName());
             statement.setString(3, employee.getEmail());
-            statement.setInt(4, employee.getSalary());
+            statement.setDouble(4, employee.getSalary());
             statement.setDate(5, new Date(employee.getHireDate().getTime()));
             statement.setInt(6, employee.getIdDepartment());
             statement.setInt(7, employee.getId());
@@ -159,7 +159,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             preparedStatement.setString(1, employee.getFirstName());
             preparedStatement.setString(2, employee.getLastName());
             preparedStatement.setString(3, employee.getEmail());
-            preparedStatement.setInt(4, employee.getSalary());
+            preparedStatement.setDouble(4, employee.getSalary());
             preparedStatement.setDate(5, new Date(employee.getHireDate().getTime()));
             preparedStatement.setInt(6, employee.getIdDepartment());
             preparedStatement.executeUpdate();
