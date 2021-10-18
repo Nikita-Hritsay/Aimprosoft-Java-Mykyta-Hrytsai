@@ -7,18 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Utils {
-
-    public static Integer GetInt(String num){
-        if (num != null) {
-            try {
-                return Integer.valueOf(num);
-            } catch (Exception e) {
-                return null;
-            }
-        }
-        return null;
-    }
+public class GetError {
 
     public static Map<String, String> getErrors(List<ConstraintViolation> violations){
 
@@ -32,4 +21,5 @@ public class Utils {
         }
         return errors;
     }
+
 }
