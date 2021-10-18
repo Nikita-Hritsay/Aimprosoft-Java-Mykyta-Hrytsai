@@ -42,7 +42,7 @@ public class CreateUpdateEmployeeCommand implements ICommand {
                     .withFirstName(req.getParameter("firstName"))
                     .withLastName(req.getParameter("lastName"))
                     .withEmail(req.getParameter("email"))
-                    .withSalary(req.getParameter("salary") == "" ? 0 : GetInt.getInt(req.getParameter("salary")))
+                    .withSalary(req.getParameter("salary") == "" ? 0 : GetInt.getDouble(req.getParameter("salary")))
                     .withHireDate(req.getParameter("hireDate") == "" ? null : new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("hireDate")))
                     .withIdDepartment(req.getParameter("iddepartment") == "" ? 0 : GetInt.getInt(req.getParameter("iddepartment")));
             return employee;

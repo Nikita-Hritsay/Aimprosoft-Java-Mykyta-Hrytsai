@@ -1,6 +1,8 @@
 package com.aimprosoft.aimlearning.models;
 
 import com.aimprosoft.aimlearning.validations.department.IsUniqueName;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.With;
 import net.sf.oval.constraint.CheckWith;
 import net.sf.oval.constraint.Length;
@@ -9,14 +11,17 @@ import net.sf.oval.constraint.NotNull;
 
 import java.io.Serializable;
 
+
 @With
 public class Department implements Serializable {
-    private int idDepartment;
+    private Integer idDepartment;
+
     @NotEmpty(message = "Name can not be empty")
     @NotNull(message = "Name can not be null")
     @CheckWith(value = IsUniqueName.class, message = "department with such name exists")
     @Length(max = 100, message = "Name can not be greater than 100")
     private String name;
+
     @NotEmpty(message = "Address can not be empty")
     @NotNull(message = "Address can not be null")
     @Length(max = 200, message = "Address can not be greater than 200")
@@ -40,13 +45,13 @@ public class Department implements Serializable {
         this.address = address;
     }
 
-    public Department(int idDepartment, String name, String address) {
+    public Department(Integer idDepartment, String name, String address) {
         this.idDepartment = idDepartment;
         this.name = name;
         this.address = address;
     }
 
-    public int getIdDepartment() {
+    public Integer getIdDepartment() {
         return idDepartment;
     }
 
@@ -57,7 +62,7 @@ public class Department implements Serializable {
     public Department() {
     }
 
-    public Department(int idDepartment, String name) {
+    public Department(Integer idDepartment, String name) {
         this.idDepartment = idDepartment;
         this.name = name;
     }

@@ -17,23 +17,23 @@ public class CreateOrUpdateDepartmentCommand implements ICommand {
     private final DepartmentDAOImpl departmentDAO = new DepartmentDAOImpl();
 
     @Override
-    public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Department department = getDepartment(req);
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Department department = getDepartment(request);
         try {
             departmentDAO.createOrUpdate(department);
-            req.getRequestDispatcher("displayAllDepartments").forward(req, resp);
+            request.getRequestDispatcher("displayAllDepartments").forward(request, response);
         } catch (ValidationException exception) {
-            req.setAttribute("errors", exception.getErrors());
-            req.setAttribute("department", department);
-            req.getRequestDispatcher("createOrUpdateDepartment.jsp").forward(req, resp);
+            request.setAttribute("errors", exception.getErrors());
+            request.setAttribute("idDepartment",request.getParameter("id"));
+            request.setAttribute("department", department);
+            request.getRequestDispatcher("createOrUpdateDepartment.jsp").forward(request, response);
         }
     }
 
     private Department getDepartment(HttpServletRequest request) {
-        Department department = new Department()
+        return new Department()
                 .withIdDepartment(GetInt.getInt(request.getParameter("id")))
                 .withName(request.getParameter("name"))
                 .withAddress(request.getParameter("address"));
-        return department;
     }
 }

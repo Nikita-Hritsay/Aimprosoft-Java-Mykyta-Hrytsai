@@ -11,7 +11,7 @@ import java.util.Date;
 @With
 public class Employee {
 
-    private int id;
+    private Integer id;
 
     @NotEmpty(message = "Firstname can not be empty")
     @NotNull(message = "Firstname can not be null")
@@ -43,7 +43,7 @@ public class Employee {
     @NotNull(message = "Id department can not be null")
     @Min(value = 1, message = "Id department can not be smaller than 1")
     @Column(name = "department_idDepartment")
-    private int idDepartment;
+    private Integer idDepartment;
 
     @Override
     public String toString() {
@@ -62,7 +62,7 @@ public class Employee {
         return email;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -82,14 +82,14 @@ public class Employee {
         return hireDate;
     }
 
-    public int getIdDepartment() {
+    public Integer getIdDepartment() {
         return idDepartment;
     }
 
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String email, double salary, Date hireDate, int idDepartment) {
+    public Employee(String firstName, String lastName, String email, double salary, Date hireDate, Integer idDepartment) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -98,7 +98,7 @@ public class Employee {
         this.idDepartment = idDepartment;
     }
 
-    public Employee(int id, String firstName, String lastName, String email, double salary, Date hireDate, int idDepartment) {
+    public Employee(Integer id, String firstName, String lastName, String email, double salary, Date hireDate, Integer idDepartment) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

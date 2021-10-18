@@ -21,6 +21,8 @@ public class MainController extends HttpServlet {
             frontController.service(req, resp);
         }catch (Exception e){
             System.out.println(e.getMessage());
+            req.setAttribute("error", e.toString());
+            req.getRequestDispatcher("errorPage.jsp").forward(req, resp);
         }
     }
 

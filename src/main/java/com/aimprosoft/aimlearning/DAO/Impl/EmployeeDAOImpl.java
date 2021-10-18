@@ -172,7 +172,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     public void createOrUpdate(Employee employee) throws ValidationException {
         ModelValidator<Employee> validator = new ModelValidator<>();
         validator.validator(employee);
-        if (employee.getId() != 0) {
+        if (employee.getId() != null) {
             updateEmployee(employee);
         } else {
             add(employee);

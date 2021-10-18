@@ -13,4 +13,15 @@ public class GetInt {
         return null;
     }
 
+    public static Double getDouble(String num){
+        if (num != null) {
+            try {
+                return Double.valueOf(num);
+            } catch (Exception e) {
+                return null;
+            }
+        }
+        return null;
+    }
+
 }
