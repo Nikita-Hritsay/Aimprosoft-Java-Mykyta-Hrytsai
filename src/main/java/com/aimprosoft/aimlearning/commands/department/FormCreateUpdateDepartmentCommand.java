@@ -3,7 +3,7 @@ package com.aimprosoft.aimlearning.commands.department;
 import com.aimprosoft.aimlearning.DAO.Impl.DepartmentDAOImpl;
 import com.aimprosoft.aimlearning.commands.ICommand;
 import com.aimprosoft.aimlearning.models.Department;
-import com.aimprosoft.aimlearning.utils.Utils;
+import com.aimprosoft.aimlearning.utils.GetInt;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +20,7 @@ public class FormCreateUpdateDepartmentCommand implements ICommand {
 
     private Department getDepartment(HttpServletRequest request) {
         if (request.getParameter("id") != null) {
-            return new DepartmentDAOImpl().findDepartmentById(Utils.GetInt(request.getParameter("id")));
+            return new DepartmentDAOImpl().findDepartmentById(GetInt.getInt(request.getParameter("id")));
         }
         return new Department(request.getParameter("name"), request.getParameter("address"));
     }
