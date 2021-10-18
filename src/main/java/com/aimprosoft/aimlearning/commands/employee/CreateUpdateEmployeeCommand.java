@@ -5,7 +5,7 @@ import com.aimprosoft.aimlearning.DAO.Impl.EmployeeDAOImpl;
 import com.aimprosoft.aimlearning.commands.ICommand;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Employee;
-import com.aimprosoft.aimlearning.utils.GetInt;
+import com.aimprosoft.aimlearning.utils.GetNum;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -38,13 +38,13 @@ public class CreateUpdateEmployeeCommand implements ICommand {
     private Employee getEmployee(HttpServletRequest req) {
         try {
             Employee employee = new Employee()
-                    .withId(GetInt.getInt(req.getParameter("id")))
+                    .withId(GetNum.getInt(req.getParameter("id")))
                     .withFirstName(req.getParameter("firstName"))
                     .withLastName(req.getParameter("lastName"))
                     .withEmail(req.getParameter("email"))
-                    .withSalary(req.getParameter("salary") == "" ? 0 : GetInt.getDouble(req.getParameter("salary")))
+                    .withSalary(req.getParameter("salary") == "" ? 0 : GetNum.getDouble(req.getParameter("salary")))
                     .withHireDate(req.getParameter("hireDate") == "" ? null : new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("hireDate")))
-                    .withIdDepartment(req.getParameter("iddepartment") == "" ? 0 : GetInt.getInt(req.getParameter("iddepartment")));
+                    .withIdDepartment(req.getParameter("iddepartment") == "" ? 0 : GetNum.getInt(req.getParameter("iddepartment")));
             return employee;
         } catch (ParseException e) {
             e.printStackTrace();

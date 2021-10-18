@@ -4,7 +4,7 @@ import com.aimprosoft.aimlearning.DAO.Impl.DepartmentDAOImpl;
 import com.aimprosoft.aimlearning.commands.ICommand;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Department;
-import com.aimprosoft.aimlearning.utils.GetInt;
+import com.aimprosoft.aimlearning.utils.GetNum;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +32,7 @@ public class CreateOrUpdateDepartmentCommand implements ICommand {
 
     private Department getDepartment(HttpServletRequest request) {
         return new Department()
-                .withIdDepartment(GetInt.getInt(request.getParameter("id")))
+                .withIdDepartment(GetNum.getInt(request.getParameter("id")))
                 .withName(request.getParameter("name"))
                 .withAddress(request.getParameter("address"));
     }

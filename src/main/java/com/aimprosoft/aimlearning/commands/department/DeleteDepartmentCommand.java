@@ -3,7 +3,7 @@ package com.aimprosoft.aimlearning.commands.department;
 import com.aimprosoft.aimlearning.DAO.Impl.DepartmentDAOImpl;
 import com.aimprosoft.aimlearning.commands.ICommand;
 
-import com.aimprosoft.aimlearning.utils.GetInt;
+import com.aimprosoft.aimlearning.utils.GetNum;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +16,7 @@ public class DeleteDepartmentCommand implements ICommand {
 
     @Override
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        departmentDAO.deleteDepartment(GetInt.getInt(((req.getParameter("idDepartment")))));
+        departmentDAO.deleteDepartment(GetNum.getInt(((req.getParameter("idDepartment")))));
         resp.sendRedirect("/displayAllDepartments");
     }
 }
