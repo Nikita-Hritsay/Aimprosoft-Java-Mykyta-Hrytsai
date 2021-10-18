@@ -107,7 +107,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public Department findDepartmentById(int id) {
+    public Department getDepartmentById(int id) {
         try ( Connection connection = connectionFactory.getConnection();
               PreparedStatement statement = connection.prepareStatement(FIND_DEPARTMENT_BY_ID)) {
             ResultSet resultSet = null;

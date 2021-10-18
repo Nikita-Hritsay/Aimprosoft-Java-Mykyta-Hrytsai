@@ -10,7 +10,7 @@ public interface DepartmentDAO {
     List<Department> getAllDepartments();
     List<Employee>  getById(int id);
     void addDepartment(Department department);
-    Department findDepartmentById(int id);
+    Department getDepartmentById(int id);
     void updateDepartment(Department department);
     void deleteDepartment(int id);
     boolean existsByName(Department department);
