@@ -20,6 +20,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     private final String DELETE_EMPLOYEE = "delete from employee where idemployee = ?";
     private final String UPDATE_EMPLOYEE = "update employee set firstName = ?, lastName = ?, email = ?, salary = ?, hireDate = ?, department_iddepartment = ? where idemployee = ?";
     private final String GET_ALL_EMAILS = "select idemployee from employee where email = ?";
+    private final String FIND_BY_IDDEPARTMENT = "select idemployee, firstName, lastName, email, salary, hireDate, department_iddepartment from employee where department_iddepartment = ?";
 
     public EmployeeDAOImpl() {
         this.connectionFactory = new ConnectionFactory();
@@ -62,6 +63,30 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         } catch (SQLException e) {
             System.out.println("Something went wrong" + e.getSQLState());
         }
+    }
+
+    @Override
+    public List<Employee> getByIdDepartment(int id) {
+        try (Connection connection = connectionFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_BY_IDDEPARTMENT)) {
+            ResultSet resultSet;
+            statement.setInt(1, id);
+            resultSet = statement.executeQuery();
+            List<Employee> result = new ArrayList<>();
+            while (resultSet.next()) {
+                result.add(new Employee(resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getInt(5),
+                        resultSet.getDate(6),
+                        resultSet.getInt(7)));
+            }
+            return result;
+        } catch (SQLException sqlException) {
+            System.out.println("something went wrong" + sqlException.getMessage());
+        }
+        return null;
     }
 
     @Override

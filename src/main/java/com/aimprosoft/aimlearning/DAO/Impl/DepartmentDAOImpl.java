@@ -18,7 +18,6 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
     private final String FIND_ALL = "select iddepartment, name, address from department";
     private final String FIND_DEPARTMENT_BY_ID = "select iddepartment, name, address from department where iddepartment = ?";
-    private final String FIND_BY_ID = "select idemployee, firstName, lastName, email, salary, hireDate, department_iddepartment from employee where department_iddepartment = ?";
     private final String ADD_DEPARTMENT = "insert into department(name, address) values(?, ?)";
     private final String UPDATE_DEPARTMENT = "update department set name = ?, address = ? where iddepartment = ?";
     private final String DELETE_DEPARTMENT = "delete from department where iddepartment = ?";
@@ -42,30 +41,6 @@ public class DepartmentDAOImpl implements DepartmentDAO {
             return result;
         } catch (SQLException sqlException) {
             System.out.println("something went wrong" + sqlException.getSQLState());
-        }
-        return null;
-    }
-
-    @Override
-    public List<Employee> getById(int id) {
-        try (Connection connection = connectionFactory.getConnection();
-             PreparedStatement statement = connection.prepareStatement(FIND_BY_ID)) {
-            ResultSet resultSet;
-            statement.setInt(1, id);
-            resultSet = statement.executeQuery();
-            List<Employee> result = new ArrayList<>();
-            while (resultSet.next()) {
-                result.add(new Employee(resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4),
-                        resultSet.getInt(5),
-                        resultSet.getDate(6),
-                        resultSet.getInt(7)));
-            }
-            return result;
-        } catch (SQLException sqlException) {
-            System.out.println("something went wrong" + sqlException.getMessage());
         }
         return null;
     }

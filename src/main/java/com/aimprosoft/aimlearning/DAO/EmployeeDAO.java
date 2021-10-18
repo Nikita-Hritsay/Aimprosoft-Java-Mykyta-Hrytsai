@@ -8,6 +8,7 @@ import java.util.List;
 public interface EmployeeDAO {
     List<Employee> getAllEmployees();
     Employee getById(int id);
+    List<Employee>  getByIdDepartment(int id);
     void add(Employee employee);
     void deleteEmployee(int id);
     void updateEmployee(Employee employee);

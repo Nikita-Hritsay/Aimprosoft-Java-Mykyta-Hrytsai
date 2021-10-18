@@ -1,6 +1,7 @@
 package com.aimprosoft.aimlearning.commands.employee;
 
 import com.aimprosoft.aimlearning.DAO.Impl.DepartmentDAOImpl;
+import com.aimprosoft.aimlearning.DAO.Impl.EmployeeDAOImpl;
 import com.aimprosoft.aimlearning.commands.ICommand;
 import com.aimprosoft.aimlearning.models.Employee;
 
@@ -14,7 +15,7 @@ public class EmployeesByDepartmentCommand implements ICommand {
 
     @Override
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Employee> employees = new DepartmentDAOImpl().getById(Integer.parseInt(req.getParameter("id")));
+        List<Employee> employees = new EmployeeDAOImpl().getByIdDepartment(Integer.parseInt(req.getParameter("id")));
         req.setAttribute("idDepartment", req.getParameter("id"));
         req.setAttribute("employees", employees);
         req.getRequestDispatcher("departmentByid.jsp").forward(req, resp);

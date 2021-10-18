@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface DepartmentDAO {
     List<Department> getAllDepartments();
-    List<Employee>  getById(int id);
     void addDepartment(Department department);
     Department getDepartmentById(int id);
     void updateDepartment(Department department);
