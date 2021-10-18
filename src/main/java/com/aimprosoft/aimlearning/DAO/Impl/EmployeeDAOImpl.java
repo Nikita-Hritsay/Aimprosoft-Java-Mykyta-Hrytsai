@@ -4,6 +4,7 @@ import com.aimprosoft.aimlearning.config.ConnectionFactory;
 import com.aimprosoft.aimlearning.DAO.EmployeeDAO;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Employee;
+import com.aimprosoft.aimlearning.validations.ModelValidator;
 import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;
 
@@ -169,11 +170,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public void createOrUpdate(Employee employee) throws ValidationException {
-        Validator validator = new Validator();
-        List<ConstraintViolation> violations = validator.validate(employee);
-        if (!violations.isEmpty()) {
-            throw new ValidationException("ERRORS");
-        }
+        ModelValidator<Employee> validator = new ModelValidator<>();
+        validator.validator(employee);
         if (employee.getId() != 0) {
             updateEmployee(employee);
         } else {

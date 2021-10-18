@@ -5,6 +5,7 @@ import com.aimprosoft.aimlearning.DAO.DepartmentDAO;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Department;
 import com.aimprosoft.aimlearning.models.Employee;
+import com.aimprosoft.aimlearning.validations.ModelValidator;
 import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;
 
@@ -121,11 +122,8 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public void createOrUpdate(Department department) throws ValidationException {
-        Validator validator = new Validator();
-        List<ConstraintViolation> violations = validator.validate(department);
-        if (!violations.isEmpty()) {
-            throw new ValidationException("ERRORS");
-        }
+        ModelValidator<Department> validator = new ModelValidator<>();
+        validator.validator(department);
         if (department.getIdDepartment() > 0) {
             updateDepartment(department);
         } else {
