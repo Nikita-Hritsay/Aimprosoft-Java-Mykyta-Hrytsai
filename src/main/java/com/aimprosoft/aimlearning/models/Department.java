@@ -1,12 +1,16 @@
 package com.aimprosoft.aimlearning.models;
 
 import com.aimprosoft.aimlearning.validations.department.IsUniqueName;
+import lombok.With;
 import net.sf.oval.constraint.CheckWith;
 import net.sf.oval.constraint.Length;
 import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
 
-public class Department {
+import java.io.Serializable;
+
+@With
+public class Department implements Serializable {
     private int idDepartment;
     @NotEmpty(message = "Name can not be empty")
     @NotNull(message = "Name can not be null")
@@ -31,10 +35,6 @@ public class Department {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public Department(String name, String address) {
         this.name = name;
         this.address = address;
@@ -50,16 +50,8 @@ public class Department {
         return idDepartment;
     }
 
-    public void setIdDepartment(int idDepartment) {
-        this.idDepartment = idDepartment;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Department() {

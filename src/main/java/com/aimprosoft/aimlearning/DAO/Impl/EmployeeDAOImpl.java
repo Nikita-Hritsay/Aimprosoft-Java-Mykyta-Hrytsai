@@ -74,13 +74,22 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             resultSet = statement.executeQuery();
             List<Employee> result = new ArrayList<>();
             while (resultSet.next()) {
-                result.add(new Employee(resultSet.getInt(1),
+                result.add(new Employee()
+                        .withId(resultSet.getInt(1))
+                        .withFirstName(resultSet.getString(2))
+                        .withLastName(resultSet.getString(3))
+                        .withEmail(resultSet.getString(4))
+                        .withSalary(resultSet.getInt(5))
+                        .withHireDate(resultSet.getDate(6))
+                        .withIdDepartment(resultSet.getInt(7)));
+
+                        /*resultSet.getInt(1),
                         resultSet.getString(2),
                         resultSet.getString(3),
                         resultSet.getString(4),
                         resultSet.getInt(5),
                         resultSet.getDate(6),
-                        resultSet.getInt(7)));
+                        resultSet.getInt(7)));*/
             }
             return result;
         } catch (SQLException sqlException) {

@@ -30,10 +30,10 @@ public class CreateOrUpdateDepartmentCommand implements ICommand {
     }
 
     private Department getDepartment(HttpServletRequest request) {
-        Department department = new Department();
-        department.setIdDepartment(GetInt.getInt(request.getParameter("id")));
-        department.setName(request.getParameter("name"));
-        department.setAddress(request.getParameter("address"));
+        Department department = new Department()
+                .withIdDepartment(GetInt.getInt(request.getParameter("id")))
+                .withName(request.getParameter("name"))
+                .withAddress(request.getParameter("address"));
         return department;
     }
 }

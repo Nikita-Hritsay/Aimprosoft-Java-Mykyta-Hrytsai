@@ -34,9 +34,9 @@ public class DepartmentDAOImpl implements DepartmentDAO {
              ResultSet resultSet = statement.executeQuery(FIND_ALL)) {
             List<Department> result = new ArrayList<>();
             while (resultSet.next()) {
-                result.add(new Department(resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3)));
+                result.add(new Department().withIdDepartment(resultSet.getInt(1))
+                        .withName(resultSet.getString(2))
+                        .withAddress(resultSet.getString(3)));
             }
             return result;
         } catch (SQLException sqlException) {
