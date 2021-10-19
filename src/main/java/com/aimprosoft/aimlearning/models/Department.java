@@ -13,7 +13,7 @@ import java.io.Serializable;
 
 
 @With
-public class Department implements Serializable {
+public class Department {
     private Integer idDepartment;
 
     @NotEmpty(message = "Name can not be empty")
