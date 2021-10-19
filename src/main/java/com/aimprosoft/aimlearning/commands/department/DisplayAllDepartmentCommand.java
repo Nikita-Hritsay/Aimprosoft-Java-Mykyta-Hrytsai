@@ -18,7 +18,7 @@ public class DisplayAllDepartmentCommand implements ICommand {
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Department> departments = departmentDAO.getAllDepartments();
         request.setAttribute("departments", departments);
-        request.getRequestDispatcher("homePage.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/homePage.jsp").forward(request, response);
     }
 
 }

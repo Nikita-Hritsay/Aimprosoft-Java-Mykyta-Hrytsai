@@ -4,7 +4,7 @@ import com.aimprosoft.aimlearning.DAO.Impl.DepartmentDAOImpl;
 import com.aimprosoft.aimlearning.DAO.Impl.EmployeeDAOImpl;
 import com.aimprosoft.aimlearning.commands.ICommand;
 import com.aimprosoft.aimlearning.models.Employee;
-import com.aimprosoft.aimlearning.utils.GetNum;
+import com.aimprosoft.aimlearning.utils.NumberUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -21,12 +21,12 @@ public class FormCreateOrUpdateEmployeeCommand implements ICommand {
         request.setAttribute("employee", getEmployee(request));
         request.setAttribute("idDepartment", getEmployee(request).getIdDepartment());
         request.setAttribute("departments", departmentDAO.getAllDepartments());
-        request.getRequestDispatcher("createOrUpdateEmployee.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/createOrUpdateEmployee.jsp").forward(request, response);
     }
 
     private Employee getEmployee(HttpServletRequest request) {
         if (request.getParameter("id") != null) {
-            return employeeDAO.getById(GetNum.getInt(request.getParameter("id")));
+            return employeeDAO.getById(NumberUtils.getInt(request.getParameter("id")));
         }
         return new Employee();
     }

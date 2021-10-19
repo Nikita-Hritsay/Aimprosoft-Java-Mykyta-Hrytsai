@@ -7,8 +7,7 @@ public class ValidationException extends Exception {
 
     private Map<String, String> errors;
 
-    public ValidationException(String message, Map<String, String> errors) {
-        super(message);
+    public ValidationException(Map<String, String> errors) {
         this.errors = errors;
     }
 

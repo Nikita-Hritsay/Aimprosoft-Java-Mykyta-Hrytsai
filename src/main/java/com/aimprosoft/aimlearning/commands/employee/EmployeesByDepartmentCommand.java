@@ -19,7 +19,7 @@ public class EmployeesByDepartmentCommand implements ICommand {
         List<Employee> employees = employeeDAO.getByIdDepartment(Integer.parseInt(request.getParameter("id")));
         request.setAttribute("idDepartment", request.getParameter("id"));
         request.setAttribute("employees", employees);
-        request.getRequestDispatcher("departmentByid.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/departmentByid.jsp").forward(request, response);
     }
 
 }

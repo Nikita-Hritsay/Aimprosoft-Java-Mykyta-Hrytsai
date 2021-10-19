@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
-    private ConnectionFactory connectionFactory;
+    private ConnectionFactory connectionFactory = new ConnectionFactory();
+    private ModelValidator<Employee> validator = new ModelValidator<>();
 
     private final String FIND_ALL = "select idemployee, firstName, lastName, email, salary, hireDate, department_iddepartment from employee";
     private final String FIND_BY_ID = "select idemployee, firstName, lastName, email, salary, hireDate, department_iddepartment from employee where idemployee = ?";
@@ -20,9 +21,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     private final String GET_ALL_EMAILS = "select idemployee from employee where email = ?";
     private final String FIND_BY_IDDEPARTMENT = "select idemployee, firstName, lastName, email, salary, hireDate, department_iddepartment from employee where department_iddepartment = ?";
 
-    public EmployeeDAOImpl() {
-        this.connectionFactory = new ConnectionFactory();
-    }
 
     @Override
     public List<Employee> getAllEmployees() {
@@ -34,7 +32,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         } catch (SQLException sqlException) {
             System.out.println("Something went wrong" + sqlException.getSQLState());
         }
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
@@ -48,7 +46,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         } catch (SQLException sqlException) {
             System.out.println("something went wrong" + sqlException.getMessage());
         }
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
@@ -110,8 +108,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             statement.setString(1, employee.getEmail());
             resultSet = statement.executeQuery();
             resultSet.next();
-            int id = resultSet.getInt("idemployee");
-            if (id != 0 && id != employee.getId()) {
+            Integer id = resultSet.getInt("idemployee");
+            if (id != null && id != employee.getId()) {
                 return true;
             }
             return false;
@@ -139,7 +137,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public void createOrUpdate(Employee employee) throws ValidationException {
-        ModelValidator<Employee> validator = new ModelValidator<>();
         validator.validator(employee);
         if (employee.getId() != null) {
             updateEmployee(employee);
@@ -165,6 +162,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return new ArrayList<>();
     }
 }

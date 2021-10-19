@@ -18,6 +18,6 @@ public class DisplayEmployeeCommand implements ICommand {
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Employee> employees = employeeDAO.getAllEmployees();
         request.setAttribute("employees", employees);
-        request.getRequestDispatcher("allEmployees.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/allEmployees.jsp").forward(request, response);
     }
 }

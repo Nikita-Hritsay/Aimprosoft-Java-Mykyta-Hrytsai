@@ -23,7 +23,7 @@ public class ModelValidator<T> {
                 }
                 errors.put(fieldName, violation.getMessage());
             }
-            throw new ValidationException("wrong data", errors);
+            throw new ValidationException(errors);
         }
     }
 

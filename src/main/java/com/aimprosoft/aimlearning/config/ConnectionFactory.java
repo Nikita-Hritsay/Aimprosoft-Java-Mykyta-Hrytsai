@@ -18,17 +18,13 @@ public class ConnectionFactory {
             properties.load(
                     new FileInputStream(Objects.requireNonNull(
                             ConnectionFactory.class.getClassLoader().getResource("application.properties")).getPath()));
-        } catch (IOException e) {
+            Class.forName(properties.getProperty("db.driver.mySql"));
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
     public static Connection getConnection() throws SQLException {
-        try {
-            Class.forName(properties.getProperty("db.driver.mySql"));
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
         return DriverManager.getConnection(properties.getProperty("db.url"), properties);
     }
 }

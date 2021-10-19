@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>Department</title>
-    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <link href="../../css/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -52,7 +52,10 @@
                     <td>${employee.salary}</td>
                     <td>${employee.hireDate}</td>
                     <td>${employee.idDepartment}</td>
-                    <td><a href="deleteEmployee?&id=${employee.id}" class="delete_button">Delete </a>
+                    <td><form action="deleteEmployee">
+                            <input type="hidden" value="${employee.id}" name="id">
+                            <input class="delete_button" type="submit" value="Delete">
+                        </form>
                         |
                         <a href="createOrUpdateEmployeeForm?id=${employee.id}" class="update_button">Update</a></td>
                 </tr>

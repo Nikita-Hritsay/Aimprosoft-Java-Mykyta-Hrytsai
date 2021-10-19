@@ -39,7 +39,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
         } catch (SQLException sqlException) {
             System.out.println("something went wrong" + sqlException.getSQLState());
         }
-        return null;
+        return new ArrayList<>();
     }
 
     @Override

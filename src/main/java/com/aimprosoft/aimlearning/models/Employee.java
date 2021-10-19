@@ -2,6 +2,7 @@ package com.aimprosoft.aimlearning.models;
 
 
 import com.aimprosoft.aimlearning.validations.employee.IsUniqueEmail;
+import lombok.AllArgsConstructor;
 import lombok.With;
 import net.sf.oval.constraint.*;
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @With
+@AllArgsConstructor
 public class Employee {
 
     private Integer id;
@@ -86,26 +88,5 @@ public class Employee {
         return idDepartment;
     }
 
-    public Employee() {
-    }
-
-    public Employee(String firstName, String lastName, String email, double salary, Date hireDate, Integer idDepartment) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.salary = salary;
-        this.hireDate = hireDate;
-        this.idDepartment = idDepartment;
-    }
-
-    public Employee(Integer id, String firstName, String lastName, String email, double salary, Date hireDate, Integer idDepartment) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.salary = salary;
-        this.hireDate = hireDate;
-        this.idDepartment = idDepartment;
-    }
-
+    public Employee(){}
 }
