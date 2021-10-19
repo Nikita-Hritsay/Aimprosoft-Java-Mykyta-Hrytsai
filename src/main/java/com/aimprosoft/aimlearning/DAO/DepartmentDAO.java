@@ -2,7 +2,6 @@ package com.aimprosoft.aimlearning.DAO;
 
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Department;
-import com.aimprosoft.aimlearning.models.Employee;
 
 import java.util.List;
 

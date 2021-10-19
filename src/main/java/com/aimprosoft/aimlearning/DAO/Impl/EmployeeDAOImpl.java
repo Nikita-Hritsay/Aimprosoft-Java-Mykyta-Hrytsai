@@ -5,9 +5,6 @@ import com.aimprosoft.aimlearning.DAO.EmployeeDAO;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Employee;
 import com.aimprosoft.aimlearning.validations.ModelValidator;
-import net.sf.oval.ConstraintViolation;
-import net.sf.oval.Validator;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

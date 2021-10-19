@@ -2,10 +2,8 @@ package com.aimprosoft.aimlearning.config;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.*;
 import java.util.Objects;
 import java.util.Properties;
-
 
 import java.sql.Connection;
 import java.sql.DriverManager;
