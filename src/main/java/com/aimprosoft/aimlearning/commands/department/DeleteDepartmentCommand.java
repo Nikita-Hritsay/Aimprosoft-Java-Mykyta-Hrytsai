@@ -15,8 +15,8 @@ public class DeleteDepartmentCommand implements ICommand {
     private final DepartmentDAOImpl departmentDAO = new DepartmentDAOImpl();
 
     @Override
-    public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        departmentDAO.deleteDepartment(GetNum.getInt(((req.getParameter("idDepartment")))));
-        resp.sendRedirect("/displayAllDepartments");
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        departmentDAO.deleteDepartment(GetNum.getInt(((request.getParameter("idDepartment")))));
+        response.sendRedirect("/displayAllDepartments");
     }
 }

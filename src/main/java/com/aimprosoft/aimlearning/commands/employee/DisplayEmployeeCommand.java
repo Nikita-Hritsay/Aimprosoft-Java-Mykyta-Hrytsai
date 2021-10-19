@@ -15,9 +15,9 @@ public class DisplayEmployeeCommand implements ICommand {
     private final EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
 
     @Override
-    public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Employee> employees = employeeDAO.getAllEmployees();
-        req.setAttribute("employees", employees);
-        req.getRequestDispatcher("allEmployees.jsp").forward(req, resp);
+        request.setAttribute("employees", employees);
+        request.getRequestDispatcher("allEmployees.jsp").forward(request, response);
     }
 }

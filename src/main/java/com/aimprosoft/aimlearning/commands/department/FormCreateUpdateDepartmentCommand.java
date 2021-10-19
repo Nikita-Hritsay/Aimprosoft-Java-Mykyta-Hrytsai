@@ -15,10 +15,10 @@ public class FormCreateUpdateDepartmentCommand implements ICommand {
     private final DepartmentDAOImpl departmentDAO = new DepartmentDAOImpl();
 
     @Override
-    public void service(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("department", getDepartment(request));
         request.setAttribute("idDepartment",request.getParameter("id"));
-        request.getRequestDispatcher("createOrUpdateDepartment.jsp").forward(request, resp);
+        request.getRequestDispatcher("createOrUpdateDepartment.jsp").forward(request, response);
     }
 
     private Department getDepartment(HttpServletRequest request) {

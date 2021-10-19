@@ -9,8 +9,6 @@ import net.sf.oval.constraint.Length;
 import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
 
-import java.io.Serializable;
-
 
 @With
 public class Department {
