@@ -9,11 +9,9 @@ import net.sf.oval.constraint.Length;
 import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
 
-import java.io.Serializable;
-
 
 @With
-public class Department implements Serializable {
+public class Department {
     private Integer idDepartment;
 
     @NotEmpty(message = "Name can not be empty")
