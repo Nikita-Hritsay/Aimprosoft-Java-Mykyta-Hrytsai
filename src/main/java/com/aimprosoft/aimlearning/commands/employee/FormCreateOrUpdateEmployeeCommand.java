@@ -17,11 +17,11 @@ public class FormCreateOrUpdateEmployeeCommand implements ICommand {
     private final DepartmentDAOImpl departmentDAO = new DepartmentDAOImpl();
 
     @Override
-    public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("employee", getEmployee(req));
-        req.setAttribute("idDepartment", getEmployee(req).getIdDepartment());
-        req.setAttribute("departments", departmentDAO.getAllDepartments());
-        req.getRequestDispatcher("createOrUpdateEmployee.jsp").forward(req, resp);
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("employee", getEmployee(request));
+        request.setAttribute("idDepartment", getEmployee(request).getIdDepartment());
+        request.setAttribute("departments", departmentDAO.getAllDepartments());
+        request.getRequestDispatcher("createOrUpdateEmployee.jsp").forward(request, response);
     }
 
     private Employee getEmployee(HttpServletRequest request) {

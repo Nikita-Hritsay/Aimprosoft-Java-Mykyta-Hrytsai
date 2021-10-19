@@ -21,30 +21,30 @@ public class CreateUpdateEmployeeCommand implements ICommand {
     private final DepartmentDAOImpl departmentDAO = new DepartmentDAOImpl();
 
     @Override
-    public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Employee employee = getEmployee(req);
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Employee employee = getEmployee(request);
         try {
             employeeDAO.createOrUpdate(employee);
-            req.getRequestDispatcher("displayAllDepartments").forward(req, resp);
+            request.getRequestDispatcher("displayAllDepartments").forward(request, response);
         } catch (ValidationException exception) {
-            req.setAttribute("errors", exception.getErrors());
-            req.setAttribute("employee", employee);
-            req.setAttribute("idDepartment", req.getParameter("iddepartment"));
-            req.setAttribute("departments", departmentDAO.getAllDepartments());
-            req.getRequestDispatcher("createOrUpdateEmployee.jsp").forward(req, resp);
+            request.setAttribute("errors", exception.getErrors());
+            request.setAttribute("employee", employee);
+            request.setAttribute("idDepartment", request.getParameter("iddepartment"));
+            request.setAttribute("departments", departmentDAO.getAllDepartments());
+            request.getRequestDispatcher("createOrUpdateEmployee.jsp").forward(request, response);
         }
     }
 
-    private Employee getEmployee(HttpServletRequest req) {
+    private Employee getEmployee(HttpServletRequest request) {
         try {
             Employee employee = new Employee()
-                    .withId(GetNum.getInt(req.getParameter("id")))
-                    .withFirstName(req.getParameter("firstName"))
-                    .withLastName(req.getParameter("lastName"))
-                    .withEmail(req.getParameter("email"))
-                    .withSalary(req.getParameter("salary") == "" ? 0 : GetNum.getDouble(req.getParameter("salary")))
-                    .withHireDate(req.getParameter("hireDate") == "" ? null : new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("hireDate")))
-                    .withIdDepartment(req.getParameter("iddepartment") == "" ? 0 : GetNum.getInt(req.getParameter("iddepartment")));
+                    .withId(GetNum.getInt(request.getParameter("id")))
+                    .withFirstName(request.getParameter("firstName"))
+                    .withLastName(request.getParameter("lastName"))
+                    .withEmail(request.getParameter("email"))
+                    .withSalary(request.getParameter("salary") == "" ? 0 : GetNum.getDouble(request.getParameter("salary")))
+                    .withHireDate(request.getParameter("hireDate") == "" ? null : new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("hireDate")))
+                    .withIdDepartment(request.getParameter("iddepartment") == "" ? 0 : GetNum.getInt(request.getParameter("iddepartment")));
             return employee;
         } catch (ParseException e) {
             e.printStackTrace();

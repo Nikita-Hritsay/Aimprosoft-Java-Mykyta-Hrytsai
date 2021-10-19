@@ -15,10 +15,10 @@ public class DisplayAllDepartmentCommand implements ICommand {
     private final DepartmentDAOImpl departmentDAO = new DepartmentDAOImpl();
 
     @Override
-    public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Department> departments = departmentDAO.getAllDepartments();
-        req.setAttribute("departments", departments);
-        req.getRequestDispatcher("homePage.jsp").forward(req, resp);
+        request.setAttribute("departments", departments);
+        request.getRequestDispatcher("homePage.jsp").forward(request, response);
     }
 
 }
