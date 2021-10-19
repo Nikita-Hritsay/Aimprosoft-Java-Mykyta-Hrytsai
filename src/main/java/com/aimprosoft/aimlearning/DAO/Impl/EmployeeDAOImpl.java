@@ -32,19 +32,24 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         try (Connection connection = connectionFactory.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(FIND_ALL)) {
-            List<Employee> result = new ArrayList<>();
-            while (resultSet.next()) {
-                result.add(new Employee(resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4),
-                        resultSet.getInt(5),
-                        resultSet.getDate(6),
-                        resultSet.getInt(7)));
-            }
-            return result;
+
+            return getEmployees(resultSet);
         } catch (SQLException sqlException) {
             System.out.println("Something went wrong" + sqlException.getSQLState());
+        }
+        return null;
+    }
+
+    @Override
+    public List<Employee> getByIdDepartment(int id) {
+        try (Connection connection = connectionFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_BY_IDDEPARTMENT)) {
+            ResultSet resultSet;
+            statement.setInt(1, id);
+            resultSet = statement.executeQuery();
+            return getEmployees(resultSet);
+        } catch (SQLException sqlException) {
+            System.out.println("something went wrong" + sqlException.getMessage());
         }
         return null;
     }
@@ -64,39 +69,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         } catch (SQLException e) {
             System.out.println("Something went wrong" + e.getSQLState());
         }
-    }
-
-    @Override
-    public List<Employee> getByIdDepartment(int id) {
-        try (Connection connection = connectionFactory.getConnection();
-             PreparedStatement statement = connection.prepareStatement(FIND_BY_IDDEPARTMENT)) {
-            ResultSet resultSet;
-            statement.setInt(1, id);
-            resultSet = statement.executeQuery();
-            List<Employee> result = new ArrayList<>();
-            while (resultSet.next()) {
-                result.add(new Employee()
-                        .withId(resultSet.getInt(1))
-                        .withFirstName(resultSet.getString(2))
-                        .withLastName(resultSet.getString(3))
-                        .withEmail(resultSet.getString(4))
-                        .withSalary(resultSet.getInt(5))
-                        .withHireDate(resultSet.getDate(6))
-                        .withIdDepartment(resultSet.getInt(7)));
-
-                        /*resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4),
-                        resultSet.getInt(5),
-                        resultSet.getDate(6),
-                        resultSet.getInt(7)));*/
-            }
-            return result;
-        } catch (SQLException sqlException) {
-            System.out.println("something went wrong" + sqlException.getMessage());
-        }
-        return null;
     }
 
     @Override
@@ -177,5 +149,25 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         } else {
             add(employee);
         }
+    }
+
+    private List<Employee> getEmployees(ResultSet resultSet) {
+        try {
+            List<Employee> result = new ArrayList<>();
+            while (true) {
+                if (!resultSet.next()) break;
+                result.add(new Employee(resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getInt(5),
+                        resultSet.getDate(6),
+                        resultSet.getInt(7)));
+            }
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
