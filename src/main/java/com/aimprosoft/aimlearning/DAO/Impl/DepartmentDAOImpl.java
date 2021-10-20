@@ -2,6 +2,7 @@ package com.aimprosoft.aimlearning.DAO.Impl;
 
 import com.aimprosoft.aimlearning.config.ConnectionFactory;
 import com.aimprosoft.aimlearning.DAO.DepartmentDAO;
+import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Department;
 import com.aimprosoft.aimlearning.validations.ModelValidator;
@@ -21,7 +22,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     private final String EXISTS_BY_NAME = "select iddepartment from department where name = ?";
 
     @Override
-    public List<Department> getAllDepartments() {
+    public List<Department> getAllDepartments() throws DBException {
         try (Connection connection = connectionFactory.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(FIND_ALL)) {
@@ -39,7 +40,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public void addDepartment(Department department) {
+    public void addDepartment(Department department) throws DBException  {
         try (Connection connection = connectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(ADD_DEPARTMENT)) {
             preparedStatement.setString(1, department.getName());
@@ -51,7 +52,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public void deleteDepartment(int id) {
+    public void deleteDepartment(int id) throws DBException  {
         try ( Connection conn = connectionFactory.getConnection();
             PreparedStatement preparedStatement = conn.prepareStatement(DELETE_DEPARTMENT)){
             preparedStatement.setInt(1, id);
@@ -62,7 +63,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public void updateDepartment(Department department) {
+    public void updateDepartment(Department department) throws DBException  {
         try  ( Connection conn = connectionFactory.getConnection();
                PreparedStatement statement = conn.prepareStatement(UPDATE_DEPARTMENT)){
             statement.setString(1, department.getName());
@@ -75,7 +76,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public Department getDepartmentById(int id) {
+    public Department getDepartmentById(int id) throws DBException  {
         try ( Connection connection = connectionFactory.getConnection();
               PreparedStatement statement = connection.prepareStatement(FIND_DEPARTMENT_BY_ID)) {
             ResultSet resultSet = null;
@@ -94,7 +95,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public boolean existsByName(Department department) {
+    public boolean existsByName(Department department) throws DBException  {
         try ( Connection connection = connectionFactory.getConnection();
               PreparedStatement statement = connection.prepareStatement(EXISTS_BY_NAME)) {
             ResultSet resultSet = null;
@@ -113,7 +114,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public void createOrUpdate(Department department) {
+    public void createOrUpdate(Department department) throws DBException  {
         if (department.getIdDepartment() != null) {
             updateDepartment(department);
         } else {

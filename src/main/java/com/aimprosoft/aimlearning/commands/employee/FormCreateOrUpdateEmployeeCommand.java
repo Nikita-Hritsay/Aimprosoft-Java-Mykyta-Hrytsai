@@ -1,6 +1,7 @@
 package com.aimprosoft.aimlearning.commands.employee;
 
 import com.aimprosoft.aimlearning.commands.ICommand;
+import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.models.Employee;
 import com.aimprosoft.aimlearning.services.Impl.DepartmentServiceImpl;
 import com.aimprosoft.aimlearning.services.Impl.EmployeeServiceImpl;
@@ -17,7 +18,7 @@ public class FormCreateOrUpdateEmployeeCommand implements ICommand {
     private final DepartmentServiceImpl departmentService = new DepartmentServiceImpl();
 
     @Override
-    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DBException {
         request.setAttribute("employee", getEmployee(request));
         request.setAttribute("idDepartment", getEmployee(request).getIdDepartment());
         request.setAttribute("departments", departmentService.getAllDepartments());

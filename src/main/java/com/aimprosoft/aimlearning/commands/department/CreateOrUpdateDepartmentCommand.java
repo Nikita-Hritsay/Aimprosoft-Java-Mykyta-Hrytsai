@@ -2,6 +2,7 @@ package com.aimprosoft.aimlearning.commands.department;
 
 import com.aimprosoft.aimlearning.DAO.Impl.DepartmentDAOImpl;
 import com.aimprosoft.aimlearning.commands.ICommand;
+import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Department;
 import com.aimprosoft.aimlearning.services.Impl.DepartmentServiceImpl;
@@ -18,7 +19,7 @@ public class CreateOrUpdateDepartmentCommand implements ICommand {
     private final DepartmentServiceImpl departmentService = new DepartmentServiceImpl();
 
     @Override
-    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DBException {
         Department department = getDepartment(request);
         try {
             departmentService.createOrUpdate(department);
