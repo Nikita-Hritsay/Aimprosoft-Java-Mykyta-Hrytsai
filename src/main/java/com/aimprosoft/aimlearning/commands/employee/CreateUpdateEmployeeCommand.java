@@ -5,6 +5,8 @@ import com.aimprosoft.aimlearning.DAO.Impl.EmployeeDAOImpl;
 import com.aimprosoft.aimlearning.commands.ICommand;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Employee;
+import com.aimprosoft.aimlearning.services.Impl.DepartmentServiceImpl;
+import com.aimprosoft.aimlearning.services.Impl.EmployeeServiceImpl;
 import com.aimprosoft.aimlearning.utils.NumberUtils;
 
 import javax.servlet.ServletException;
@@ -17,20 +19,20 @@ import java.text.SimpleDateFormat;
 
 public class CreateUpdateEmployeeCommand implements ICommand {
 
-    private final EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
-    private final DepartmentDAOImpl departmentDAO = new DepartmentDAOImpl();
+    private final EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
+    private final DepartmentServiceImpl departmentService = new DepartmentServiceImpl();
 
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Employee employee = getEmployee(request);
         try {
-            employeeDAO.createOrUpdate(employee);
+            employeeService.createOrUpdate(employee);
             request.getRequestDispatcher("/WEB-INF/pages/displayAllDepartments").forward(request, response);
         } catch (ValidationException exception) {
             request.setAttribute("errors", exception.getErrors());
             request.setAttribute("employee", employee);
             request.setAttribute("idDepartment", request.getParameter("iddepartment"));
-            request.setAttribute("departments", departmentDAO.getAllDepartments());
+            request.setAttribute("departments", departmentService.getAllDepartments());
             request.getRequestDispatcher("/WEB-INF/pages/createOrUpdateEmployee.jsp").forward(request, response);
         }
     }

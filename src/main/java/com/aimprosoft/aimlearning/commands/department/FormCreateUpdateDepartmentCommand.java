@@ -3,6 +3,7 @@ package com.aimprosoft.aimlearning.commands.department;
 import com.aimprosoft.aimlearning.DAO.Impl.DepartmentDAOImpl;
 import com.aimprosoft.aimlearning.commands.ICommand;
 import com.aimprosoft.aimlearning.models.Department;
+import com.aimprosoft.aimlearning.services.Impl.DepartmentServiceImpl;
 import com.aimprosoft.aimlearning.utils.NumberUtils;
 
 import javax.servlet.ServletException;
@@ -12,7 +13,7 @@ import java.io.IOException;
 
 public class FormCreateUpdateDepartmentCommand implements ICommand {
 
-    private final DepartmentDAOImpl departmentDAO = new DepartmentDAOImpl();
+    private final DepartmentServiceImpl departmentService = new DepartmentServiceImpl();
 
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,7 +24,7 @@ public class FormCreateUpdateDepartmentCommand implements ICommand {
 
     private Department getDepartment(HttpServletRequest request) {
         if (request.getParameter("id") != null) {
-            return departmentDAO.getDepartmentById(NumberUtils.getInt(request.getParameter("id")));
+            return departmentService.getDepartmentById(NumberUtils.getInt(request.getParameter("id")));
         }
         return new Department()
                 .withName(request.getParameter("name"))
