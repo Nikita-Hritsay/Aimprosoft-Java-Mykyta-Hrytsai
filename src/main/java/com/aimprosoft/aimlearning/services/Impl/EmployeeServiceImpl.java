@@ -38,16 +38,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void updateEmployee(Employee employee) {
-        employeeDAO.updateEmployee(employee);
-    }
-
-    @Override
-    public boolean existsByEmail(Employee employee) {
-        return employeeDAO.existsByEmail(employee);
-    }
-
-    @Override
     public void createOrUpdate(Employee employee) throws ValidationException {
         modelValidator.validator(employee);
         employeeDAO.createOrUpdate(employee);

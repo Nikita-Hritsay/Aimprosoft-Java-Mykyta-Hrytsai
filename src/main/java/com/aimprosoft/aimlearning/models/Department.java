@@ -2,13 +2,14 @@ package com.aimprosoft.aimlearning.models;
 
 import com.aimprosoft.aimlearning.validations.department.IsUniqueName;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.With;
 import net.sf.oval.constraint.CheckWith;
 import net.sf.oval.constraint.Length;
 import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
 
-
+@Data
 @With
 @AllArgsConstructor
 public class Department {
@@ -34,18 +35,7 @@ public class Department {
                 '}';
     }
 
-    public String getAddress() {
-        return address;
+    public Department() {
     }
-
-    public Integer getIdDepartment() {
-        return idDepartment;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Department(){}
 
 }

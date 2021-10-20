@@ -16,9 +16,5 @@ public interface EmployeeService {
 
     void deleteEmployee(int id);
 
-    void updateEmployee(Employee employee);
-
-    boolean existsByEmail(Employee employee);
-
     void createOrUpdate(Employee employee) throws ValidationException;
 }

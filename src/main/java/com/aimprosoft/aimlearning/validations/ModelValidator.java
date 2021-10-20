@@ -12,11 +12,11 @@ import java.util.Map;
 public class ModelValidator<T> {
     private final Validator validator = new Validator();
 
-    public void validator(T obj) throws ValidationException{
+    public void validator(T obj) throws ValidationException {
         List<ConstraintViolation> violations = validator.validate(obj);
-        if(!violations.isEmpty()){
+        if (!violations.isEmpty()) {
             Map<String, String> errors = new HashMap<>();
-            for(ConstraintViolation violation: violations){
+            for (ConstraintViolation violation : violations) {
                 String fieldName = null;
                 for (OValContext node : violation.getContextPath()) {
                     fieldName = node.toStringUnqualified();

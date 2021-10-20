@@ -9,9 +9,9 @@ import java.util.List;
 public interface DepartmentService {
     List<Department> getAllDepartments() throws DBException;
 
-    Department getDepartmentById(int id) throws DBException ;
+    Department getDepartmentById(int id) throws DBException;
 
-    void deleteDepartment(int id) throws DBException ;
+    void deleteDepartment(int id) throws DBException;
 
     void createOrUpdate(Department department) throws ValidationException, DBException;
 }

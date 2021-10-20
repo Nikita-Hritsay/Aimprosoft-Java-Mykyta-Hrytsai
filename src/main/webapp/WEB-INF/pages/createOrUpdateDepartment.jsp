@@ -25,9 +25,11 @@
     <div align="center" style="margin-top: 50px;">
         <form action="createOrUpdateDepartment" method="post">
             <input name="id" class="input_param_id" value="${idDepartment}" type="hidden">
-            Please enter your name of department:  <input type="text" name="name" class="input_param" size="15px" value="${department.name}"> <br>
+            Please enter your name of department: <input type="text" name="name" class="input_param" size="15px"
+                                                         value="${department.name}"> <br>
             <p class="error_massage">${errors.get("name")}</p>
-            Please enter your address of department:  <input type="text" name="address" class="input_param" size="15px" value="${department.address}"> <br>
+            Please enter your address of department: <input type="text" name="address" class="input_param" size="15px"
+                                                            value="${department.address}"> <br>
             <p class="error_massage">${errors.get("address")}</p>
             <input type="submit" value="submit">
         </form>

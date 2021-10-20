@@ -3,12 +3,14 @@ package com.aimprosoft.aimlearning.models;
 
 import com.aimprosoft.aimlearning.validations.employee.IsUniqueEmail;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.With;
 import net.sf.oval.constraint.*;
 
 import javax.persistence.*;
 import java.util.Date;
 
+@Data
 @With
 @AllArgsConstructor
 public class Employee {
@@ -60,33 +62,6 @@ public class Employee {
                 '}';
     }
 
-    public String getEmail() {
-        return email;
+    public Employee() {
     }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public Date getHireDate() {
-        return hireDate;
-    }
-
-    public Integer getIdDepartment() {
-        return idDepartment;
-    }
-
-    public Employee(){}
 }

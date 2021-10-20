@@ -2,7 +2,7 @@ package com.aimprosoft.aimlearning.utils;
 
 public class NumberUtils {
 
-    public static Integer getInt(String num){
+    public static Integer getInt(String num) {
         if (num != null) {
             try {
                 return Integer.valueOf(num);
@@ -13,7 +13,7 @@ public class NumberUtils {
         return null;
     }
 
-    public static Double getDouble(String num){
+    public static Double getDouble(String num) {
         if (num != null) {
             try {
                 return Double.valueOf(num);

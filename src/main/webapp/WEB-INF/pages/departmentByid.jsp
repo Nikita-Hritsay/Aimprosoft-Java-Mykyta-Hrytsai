@@ -52,7 +52,8 @@
                     <td><c:out value="${employee.salary}"/></td>
                     <td><c:out value="${employee.hireDate}"/></td>
                     <td><c:out value="${employee.idDepartment}"/></td>
-                    <td><form action="deleteEmployee">
+                    <td>
+                        <form action="deleteEmployee">
                             <input type="hidden" value="${employee.id}" name="id">
                             <input class="delete_button" type="submit" value="Delete">
                         </form>
@@ -63,10 +64,6 @@
         </table>
     </c:if>
 </div>
-
-
-
-
 
 
 </body>

@@ -19,12 +19,12 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Department getDepartmentById(int id) throws DBException  {
+    public Department getDepartmentById(int id) throws DBException {
         return departmentDAO.getDepartmentById(id);
     }
 
     @Override
-    public void deleteDepartment(int id) throws DBException  {
+    public void deleteDepartment(int id) throws DBException {
         departmentDAO.deleteDepartment(id);
     }
 

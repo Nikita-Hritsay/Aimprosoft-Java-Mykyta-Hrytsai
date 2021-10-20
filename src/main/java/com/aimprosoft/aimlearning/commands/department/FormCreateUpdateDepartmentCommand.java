@@ -1,6 +1,5 @@
 package com.aimprosoft.aimlearning.commands.department;
 
-import com.aimprosoft.aimlearning.DAO.Impl.DepartmentDAOImpl;
 import com.aimprosoft.aimlearning.commands.ICommand;
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.models.Department;
@@ -19,11 +18,11 @@ public class FormCreateUpdateDepartmentCommand implements ICommand {
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DBException {
         request.setAttribute("department", getDepartment(request));
-        request.setAttribute("idDepartment",request.getParameter("id"));
+        request.setAttribute("idDepartment", request.getParameter("id"));
         request.getRequestDispatcher("/WEB-INF/pages/createOrUpdateDepartment.jsp").forward(request, response);
     }
 
-    private Department getDepartment(HttpServletRequest request) throws DBException  {
+    private Department getDepartment(HttpServletRequest request) throws DBException {
         if (request.getParameter("id") != null) {
             return departmentService.getDepartmentById(NumberUtils.getInt(request.getParameter("id")));
         }

@@ -1,4 +1,4 @@
-a{
+a {
     display: inline-block;
     padding: 10px 10px 10px;
     margin-left: 20px;
@@ -8,33 +8,33 @@ a{
     margin-right: 10px;
 }
 
-.header_refs{
+.header_refs {
     align: center;
     padding: 40px 20px 0 20px;
 }
 
-.header_ref{
+.header_ref {
     background: #b8ffff;
 }
 
-.header_ref_del{
+.header_ref_del {
     background: #fd9d9d;
 }
 
-.department_by_id_manage{
+.department_by_id_manage {
     padding: 40px 20px 0 20px;
 }
 
-.input_param{
+.input_param {
     padding-top: 15px;
     margin-top: 10px;
 }
 
-.update_button{
+.update_button {
     color: blue;
 }
 
-.error_massage, .delete_button{
+.error_massage, .delete_button {
     color: red;
 }
 
@@ -44,19 +44,23 @@ table {
     border-collapse: collapse;
     text-align: center;
 }
+
 th, td:first-child {
     background: #AFCDE7;
     color: white;
     padding: 10px 20px;
 }
+
 th, td {
     border-style: solid;
     border-width: 0 1px 1px 0;
     border-color: white;
 }
+
 td {
     background: #D8E6F3;
 }
+
 th:first-child, td:first-child {
     text-align: left;
 }

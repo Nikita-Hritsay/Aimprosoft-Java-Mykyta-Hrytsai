@@ -1,8 +1,6 @@
 package com.aimprosoft.aimlearning.commands.department;
 
-import com.aimprosoft.aimlearning.DAO.Impl.DepartmentDAOImpl;
 import com.aimprosoft.aimlearning.commands.ICommand;
-
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.services.Impl.DepartmentServiceImpl;
 import com.aimprosoft.aimlearning.utils.NumberUtils;

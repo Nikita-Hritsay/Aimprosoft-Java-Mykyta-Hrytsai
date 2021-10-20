@@ -3,9 +3,8 @@ package com.aimprosoft.aimlearning.DAO.Impl;
 import com.aimprosoft.aimlearning.config.ConnectionFactory;
 import com.aimprosoft.aimlearning.DAO.DepartmentDAO;
 import com.aimprosoft.aimlearning.exceptions.DBException;
-import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Department;
-import com.aimprosoft.aimlearning.validations.ModelValidator;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +39,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public void addDepartment(Department department) throws DBException  {
+    public void addDepartment(Department department) throws DBException {
         try (Connection connection = connectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(ADD_DEPARTMENT)) {
             preparedStatement.setString(1, department.getName());
@@ -52,9 +51,9 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public void deleteDepartment(int id) throws DBException  {
-        try ( Connection conn = connectionFactory.getConnection();
-            PreparedStatement preparedStatement = conn.prepareStatement(DELETE_DEPARTMENT)){
+    public void deleteDepartment(int id) throws DBException {
+        try (Connection conn = connectionFactory.getConnection();
+             PreparedStatement preparedStatement = conn.prepareStatement(DELETE_DEPARTMENT)) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
@@ -63,9 +62,9 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public void updateDepartment(Department department) throws DBException  {
-        try  ( Connection conn = connectionFactory.getConnection();
-               PreparedStatement statement = conn.prepareStatement(UPDATE_DEPARTMENT)){
+    public void updateDepartment(Department department) throws DBException {
+        try (Connection conn = connectionFactory.getConnection();
+             PreparedStatement statement = conn.prepareStatement(UPDATE_DEPARTMENT)) {
             statement.setString(1, department.getName());
             statement.setString(2, department.getAddress());
             statement.setInt(3, department.getIdDepartment());
@@ -76,9 +75,9 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public Department getDepartmentById(int id) throws DBException  {
-        try ( Connection connection = connectionFactory.getConnection();
-              PreparedStatement statement = connection.prepareStatement(FIND_DEPARTMENT_BY_ID)) {
+    public Department getDepartmentById(int id) throws DBException {
+        try (Connection connection = connectionFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_DEPARTMENT_BY_ID)) {
             ResultSet resultSet = null;
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
@@ -95,9 +94,9 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public boolean existsByName(Department department) throws DBException  {
-        try ( Connection connection = connectionFactory.getConnection();
-              PreparedStatement statement = connection.prepareStatement(EXISTS_BY_NAME)) {
+    public boolean existsByName(Department department) throws DBException {
+        try (Connection connection = connectionFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(EXISTS_BY_NAME)) {
             ResultSet resultSet = null;
             statement.setString(1, department.getName());
             resultSet = statement.executeQuery();
@@ -114,7 +113,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public void createOrUpdate(Department department) throws DBException  {
+    public void createOrUpdate(Department department) throws DBException {
         if (department.getIdDepartment() != null) {
             updateDepartment(department);
         } else {

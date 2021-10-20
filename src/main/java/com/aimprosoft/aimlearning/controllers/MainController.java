@@ -1,6 +1,5 @@
 package com.aimprosoft.aimlearning.controllers;
 
-
 import com.aimprosoft.aimlearning.commands.CommandFactory;
 import com.aimprosoft.aimlearning.commands.ICommand;
 
@@ -17,9 +16,9 @@ public class MainController extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final ICommand frontController = commandFactory.getCommand(req.getRequestURI());
-        try{
+        try {
             frontController.service(req, resp);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             req.setAttribute("error", e.toString());
             req.getRequestDispatcher("errorPage.jsp").forward(req, resp);

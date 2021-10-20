@@ -25,7 +25,6 @@
 <div align="center" style="margin-top: 50px;">
 
 
-
     <c:if test="${empty employees}">
         <p>Empty</p>
     </c:if>

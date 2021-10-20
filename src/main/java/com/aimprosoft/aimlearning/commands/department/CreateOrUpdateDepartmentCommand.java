@@ -1,6 +1,5 @@
 package com.aimprosoft.aimlearning.commands.department;
 
-import com.aimprosoft.aimlearning.DAO.Impl.DepartmentDAOImpl;
 import com.aimprosoft.aimlearning.commands.ICommand;
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
@@ -26,7 +25,7 @@ public class CreateOrUpdateDepartmentCommand implements ICommand {
             request.getRequestDispatcher("displayAllDepartments").forward(request, response);
         } catch (ValidationException exception) {
             request.setAttribute("errors", exception.getErrors());
-            request.setAttribute("idDepartment",request.getParameter("id"));
+            request.setAttribute("idDepartment", request.getParameter("id"));
             request.setAttribute("department", department);
             request.getRequestDispatcher("/WEB-INF/pages/createOrUpdateDepartment.jsp").forward(request, response);
         }
