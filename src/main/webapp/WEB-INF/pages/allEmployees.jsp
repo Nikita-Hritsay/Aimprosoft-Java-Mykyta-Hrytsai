@@ -43,13 +43,13 @@
             </tr>
             <c:forEach var="employee" items="${requestScope.employees}">
                 <tr>
-                    <td>${employee.id}</td>
-                    <td>${employee.firstName}</td>
-                    <td>${employee.lastName}</td>
-                    <td>${employee.email}</td>
-                    <td>${employee.salary}</td>
-                    <td>${employee.hireDate}</td>
-                    <td>${employee.idDepartment}</td>
+                    <td><c:out value=" ${employee.id}"/></td>
+                    <td><c:out value="${employee.firstName}"/></td>
+                    <td><c:out value="${employee.lastName}"/></td>
+                    <td><c:out value="${employee.email}"/></td>
+                    <td><c:out value="${employee.salary}"/></td>
+                    <td><c:out value="${employee.hireDate}"/></td>
+                    <td><c:out value="${employee.idDepartment}"/></td>
                 </tr>
             </c:forEach>
         </table>
