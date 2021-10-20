@@ -2,7 +2,6 @@ package com.aimprosoft.aimlearning.models;
 
 import com.aimprosoft.aimlearning.validations.department.IsUniqueName;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.With;
 import net.sf.oval.constraint.CheckWith;
 import net.sf.oval.constraint.Length;
@@ -11,6 +10,7 @@ import net.sf.oval.constraint.NotNull;
 
 
 @With
+@AllArgsConstructor
 public class Department {
     private Integer idDepartment;
 
@@ -38,17 +38,6 @@ public class Department {
         return address;
     }
 
-    public Department(String name, String address) {
-        this.name = name;
-        this.address = address;
-    }
-
-    public Department(Integer idDepartment, String name, String address) {
-        this.idDepartment = idDepartment;
-        this.name = name;
-        this.address = address;
-    }
-
     public Integer getIdDepartment() {
         return idDepartment;
     }
@@ -57,11 +46,6 @@ public class Department {
         return name;
     }
 
-    public Department() {
-    }
+    public Department(){}
 
-    public Department(Integer idDepartment, String name) {
-        this.idDepartment = idDepartment;
-        this.name = name;
-    }
 }

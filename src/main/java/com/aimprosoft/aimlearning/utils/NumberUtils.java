@@ -1,6 +1,6 @@
 package com.aimprosoft.aimlearning.utils;
 
-public class GetNum {
+public class NumberUtils {
 
     public static Integer getInt(String num){
         if (num != null) {

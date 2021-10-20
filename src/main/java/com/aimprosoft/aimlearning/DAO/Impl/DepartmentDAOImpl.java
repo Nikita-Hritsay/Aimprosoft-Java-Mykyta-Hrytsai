@@ -4,11 +4,7 @@ import com.aimprosoft.aimlearning.config.ConnectionFactory;
 import com.aimprosoft.aimlearning.DAO.DepartmentDAO;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Department;
-import com.aimprosoft.aimlearning.models.Employee;
 import com.aimprosoft.aimlearning.validations.ModelValidator;
-import net.sf.oval.ConstraintViolation;
-import net.sf.oval.Validator;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +39,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
         } catch (SQLException sqlException) {
             System.out.println("something went wrong" + sqlException.getSQLState());
         }
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
@@ -121,9 +117,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public void createOrUpdate(Department department) throws ValidationException {
-        ModelValidator<Department> validator = new ModelValidator<>();
-        validator.validator(department);
+    public void createOrUpdate(Department department) {
         if (department.getIdDepartment() != null) {
             updateDepartment(department);
         } else {
