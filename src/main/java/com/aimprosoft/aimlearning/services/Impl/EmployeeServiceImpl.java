@@ -4,11 +4,13 @@ import com.aimprosoft.aimlearning.DAO.Impl.EmployeeDAOImpl;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Employee;
 import com.aimprosoft.aimlearning.services.EmployeeService;
+import com.aimprosoft.aimlearning.validations.ModelValidator;
 
 import java.util.List;
 
 public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
+    private final ModelValidator modelValidator = new ModelValidator();
 
     @Override
     public List<Employee> getAllEmployees() {
@@ -47,6 +49,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void createOrUpdate(Employee employee) throws ValidationException {
+        modelValidator.validator(employee);
         employeeDAO.createOrUpdate(employee);
     }
 }

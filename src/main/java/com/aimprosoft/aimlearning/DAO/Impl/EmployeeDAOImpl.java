@@ -10,8 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
-    private ConnectionFactory connectionFactory = new ConnectionFactory();
-    private ModelValidator<Employee> validator = new ModelValidator<>();
+    private final ConnectionFactory connectionFactory = new ConnectionFactory();
 
     private final String FIND_ALL = "select idemployee, firstName, lastName, email, salary, hireDate, department_iddepartment from employee";
     private final String FIND_BY_ID = "select idemployee, firstName, lastName, email, salary, hireDate, department_iddepartment from employee where idemployee = ?";
@@ -20,7 +19,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     private final String UPDATE_EMPLOYEE = "update employee set firstName = ?, lastName = ?, email = ?, salary = ?, hireDate = ?, department_iddepartment = ? where idemployee = ?";
     private final String GET_ALL_EMAILS = "select idemployee from employee where email = ?";
     private final String FIND_BY_IDDEPARTMENT = "select idemployee, firstName, lastName, email, salary, hireDate, department_iddepartment from employee where department_iddepartment = ?";
-
 
     @Override
     public List<Employee> getAllEmployees() {
@@ -137,7 +135,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public void createOrUpdate(Employee employee) throws ValidationException {
-        validator.validator(employee);
         if (employee.getId() != null) {
             updateEmployee(employee);
         } else {

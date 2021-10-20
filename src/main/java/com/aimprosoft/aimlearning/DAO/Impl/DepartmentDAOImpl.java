@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DepartmentDAOImpl implements DepartmentDAO {
 
-    private ConnectionFactory connectionFactory;
+    private ConnectionFactory connectionFactory = new ConnectionFactory();
 
     private final String FIND_ALL = "select iddepartment, name, address from department";
     private final String FIND_DEPARTMENT_BY_ID = "select iddepartment, name, address from department where iddepartment = ?";
@@ -19,10 +19,6 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     private final String UPDATE_DEPARTMENT = "update department set name = ?, address = ? where iddepartment = ?";
     private final String DELETE_DEPARTMENT = "delete from department where iddepartment = ?";
     private final String EXISTS_BY_NAME = "select iddepartment from department where name = ?";
-
-    public DepartmentDAOImpl() {
-        this.connectionFactory = new ConnectionFactory();
-    }
 
     @Override
     public List<Department> getAllDepartments() {
