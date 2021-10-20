@@ -117,9 +117,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public void createOrUpdate(Department department) throws ValidationException {
-        ModelValidator<Department> validator = new ModelValidator<>();
-        validator.validator(department);
+    public void createOrUpdate(Department department) {
         if (department.getIdDepartment() != null) {
             updateDepartment(department);
         } else {
