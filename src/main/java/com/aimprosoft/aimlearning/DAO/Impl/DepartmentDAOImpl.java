@@ -115,11 +115,11 @@ public class DepartmentDAOImpl implements DepartmentDAO {
         }
     }
 
-    private PreparedStatement setStatement(Department department, Connection connection, String query) throws SQLException{
+    private PreparedStatement setStatement(Department department, Connection connection, String query) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, department.getName());
         preparedStatement.setString(2, department.getAddress());
-        if (department.getIdDepartment() != null){
+        if (department.getIdDepartment() != null) {
             preparedStatement.setInt(3, department.getIdDepartment());
         }
         return preparedStatement;

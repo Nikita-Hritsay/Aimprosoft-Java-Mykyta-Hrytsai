@@ -143,7 +143,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         }
     }
 
-    private PreparedStatement setStatement(Employee employee, Connection connection, String query) throws SQLException{
+    private PreparedStatement setStatement(Employee employee, Connection connection, String query) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, employee.getFirstName());
         statement.setString(2, employee.getLastName());
@@ -151,7 +151,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         statement.setDouble(4, employee.getSalary());
         statement.setDate(5, new Date(employee.getHireDate().getTime()));
         statement.setInt(6, employee.getIdDepartment());
-        if(employee.getId() != null) {
+        if (employee.getId() != null) {
             statement.setInt(7, employee.getId());
         }
         return statement;
