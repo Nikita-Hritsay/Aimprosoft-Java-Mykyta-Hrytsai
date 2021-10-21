@@ -4,6 +4,7 @@ import com.aimprosoft.aimlearning.config.ConnectionFactory;
 import com.aimprosoft.aimlearning.DAO.DepartmentDAO;
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.models.Department;
+import com.aimprosoft.aimlearning.utils.NumberUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -33,9 +34,8 @@ public class DepartmentDAOImpl implements DepartmentDAO {
             }
             return result;
         } catch (SQLException sqlException) {
-            System.out.println("something went wrong" + sqlException.getSQLState());
+            throw new DBException("Error in get All Departments: " + sqlException.getMessage());
         }
-        return new ArrayList<>();
     }
 
     @Override
@@ -46,7 +46,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
             preparedStatement.setString(2, department.getAddress());
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
-            System.out.println("something went wrong" + throwables.getSQLState());
+            throw new DBException("Error in get add Department: " + throwables.getMessage());
         }
     }
 
@@ -57,7 +57,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
-            System.out.println("Something went wrong" + throwables.getSQLState());
+            throw new DBException("Error in get delete Department: " + throwables.getMessage());
         }
     }
 
@@ -70,7 +70,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
             statement.setInt(3, department.getIdDepartment());
             statement.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("something went wrong" + e.getSQLState());
+            throw new DBException("Error in get update Department: " + e.getMessage());
         }
     }
 
@@ -88,9 +88,8 @@ public class DepartmentDAOImpl implements DepartmentDAO {
                     resultSet.getString(3));
             return result;
         } catch (SQLException sqlException) {
-            System.out.println("something went wrong" + sqlException.getSQLState());
+            throw new DBException("Error in get Department by id: " + sqlException.getMessage());
         }
-        return null;
     }
 
     @Override
@@ -100,15 +99,16 @@ public class DepartmentDAOImpl implements DepartmentDAO {
             ResultSet resultSet = null;
             statement.setString(1, department.getName());
             resultSet = statement.executeQuery();
-            resultSet.next();
-            int id = resultSet.getInt("iddepartment");
-            if (id != 0 && id != department.getIdDepartment()) {
-                return true;
+            while (resultSet.next()) {
+                Integer id = NumberUtils.getInt(resultSet.getString("iddepartment"));
+                if (id != null && id != department.getIdDepartment()) {
+                    return true;
+                }
             }
             return false;
         } catch (SQLException sqlException) {
-            System.out.println("department with such name exists");
-            return false;
+            System.out.println(sqlException.getMessage());
+            throw new DBException("Error in exists by name Department: " + sqlException.getMessage());
         }
     }
 

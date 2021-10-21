@@ -2,6 +2,7 @@ package com.aimprosoft.aimlearning.DAO.Impl;
 
 import com.aimprosoft.aimlearning.config.ConnectionFactory;
 import com.aimprosoft.aimlearning.DAO.EmployeeDAO;
+import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Employee;
 
@@ -21,20 +22,19 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     private final String FIND_BY_IDDEPARTMENT = "select idemployee, firstName, lastName, email, salary, hireDate, department_iddepartment from employee where department_iddepartment = ?";
 
     @Override
-    public List<Employee> getAllEmployees() {
+    public List<Employee> getAllEmployees() throws DBException {
         try (Connection connection = connectionFactory.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(FIND_ALL)) {
 
             return getEmployees(resultSet);
         } catch (SQLException sqlException) {
-            System.out.println("Something went wrong" + sqlException.getSQLState());
+            throw new DBException("Error in get All Employees: " + sqlException.getMessage());
         }
-        return new ArrayList<>();
     }
 
     @Override
-    public List<Employee> getByIdDepartment(int id) {
+    public List<Employee> getByIdDepartment(int id) throws DBException {
         try (Connection connection = connectionFactory.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_BY_IDDEPARTMENT)) {
             ResultSet resultSet;
@@ -42,13 +42,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             resultSet = statement.executeQuery();
             return getEmployees(resultSet);
         } catch (SQLException sqlException) {
-            System.out.println("something went wrong" + sqlException.getMessage());
+            throw new DBException("Error in get Employees by department id: " + sqlException.getMessage());
         }
-        return new ArrayList<>();
     }
 
     @Override
-    public void updateEmployee(Employee employee) {
+    public void updateEmployee(Employee employee) throws DBException {
         try (Connection connection = connectionFactory.getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_EMPLOYEE)) {
             statement.setString(1, employee.getFirstName());
@@ -60,23 +59,23 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             statement.setInt(7, employee.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Something went wrong" + e.getSQLState());
+            throw new DBException("Error in update Employees: " + e.getMessage());
         }
     }
 
     @Override
-    public void deleteEmployee(int id) {
+    public void deleteEmployee(int id) throws DBException {
         try (Connection connection = connectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_EMPLOYEE);) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
-            System.out.println("Something went wrong" + throwables.getSQLState());
+            throw new DBException("Error in get All Employees: " + throwables.getMessage());
         }
     }
 
     @Override
-    public Employee getById(int id) {
+    public Employee getById(int id) throws DBException {
         try (Connection connection = connectionFactory.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_BY_ID)) {
             ResultSet resultSet;
@@ -93,32 +92,31 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                     resultSet.getInt(7));
             return result;
         } catch (SQLException sqlException) {
-            System.out.println("Something went wrong" + sqlException.getSQLState());
+            throw new DBException("Error in get Employee by id: " + sqlException.getMessage());
         }
-        return null;
     }
 
     @Override
-    public boolean existsByEmail(Employee employee) {
+    public boolean existsByEmail(Employee employee) throws DBException {
         try (Connection connection = connectionFactory.getConnection();
              PreparedStatement statement = connection.prepareStatement(GET_ALL_EMAILS);) {
             ResultSet resultSet;
             statement.setString(1, employee.getEmail());
             resultSet = statement.executeQuery();
-            resultSet.next();
-            Integer id = resultSet.getInt("idemployee");
-            if (id != null && id != employee.getId()) {
-                return true;
+            while (resultSet.next()) {
+                Integer id = resultSet.getInt("idemployee");
+                if (id != null && id != employee.getId()) {
+                    return true;
+                }
             }
             return false;
         } catch (SQLException sqlException) {
-            System.out.println("Something went wrong" + sqlException.getSQLState());
-            return false;
+            throw new DBException("Error in get All Employees: " + sqlException.getMessage());
         }
     }
 
     @Override
-    public void add(Employee employee) {
+    public void add(Employee employee) throws DBException {
         try (Connection connection = connectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(ADD_EMPLOYEE);) {
             preparedStatement.setString(1, employee.getFirstName());
@@ -129,12 +127,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             preparedStatement.setInt(6, employee.getIdDepartment());
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
-            System.out.println("Something went wrong" + throwables.getSQLState());
+            throw new DBException("Error in get All Employees: " + throwables.getMessage());
         }
     }
 
     @Override
-    public void createOrUpdate(Employee employee) throws ValidationException {
+    public void createOrUpdate(Employee employee) throws ValidationException, DBException {
         if (employee.getId() != null) {
             updateEmployee(employee);
         } else {
@@ -142,7 +140,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         }
     }
 
-    private List<Employee> getEmployees(ResultSet resultSet) {
+    private List<Employee> getEmployees(ResultSet resultSet) throws DBException {
         try {
             List<Employee> result = new ArrayList<>();
             while (true) {
@@ -157,8 +155,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             }
             return result;
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DBException("Error in get All Employees: " + e.getMessage());
         }
-        return new ArrayList<>();
     }
 }
