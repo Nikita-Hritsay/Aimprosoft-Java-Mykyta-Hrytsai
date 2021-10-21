@@ -1,7 +1,6 @@
 target
 pom.xml
 .idea
-/src/main/resources/*
 *.jar
 *.war
 *.iml
