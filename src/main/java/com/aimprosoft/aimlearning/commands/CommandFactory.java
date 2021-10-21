@@ -12,6 +12,7 @@ import java.util.Map;
 public class CommandFactory {
 
     private final Map<String, ICommand> commands;
+
     {
         commands = new HashMap<>();
         commands.put("/displayEmployees", new DisplayEmployeeCommand());

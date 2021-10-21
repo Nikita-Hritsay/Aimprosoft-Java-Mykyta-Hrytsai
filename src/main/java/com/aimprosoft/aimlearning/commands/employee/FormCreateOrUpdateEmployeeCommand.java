@@ -25,7 +25,7 @@ public class FormCreateOrUpdateEmployeeCommand implements ICommand {
         request.getRequestDispatcher("/WEB-INF/pages/createOrUpdateEmployee.jsp").forward(request, response);
     }
 
-    private Employee getEmployee(HttpServletRequest request) throws DBException{
+    private Employee getEmployee(HttpServletRequest request) throws DBException {
         if (request.getParameter("id") != null) {
             return employeeService.getById(NumberUtils.getInt(request.getParameter("id")));
         }
