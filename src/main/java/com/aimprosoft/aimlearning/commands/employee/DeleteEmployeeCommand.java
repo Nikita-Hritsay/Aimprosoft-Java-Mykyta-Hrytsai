@@ -4,7 +4,6 @@ import com.aimprosoft.aimlearning.commands.ICommand;
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.services.Impl.EmployeeServiceImpl;
 import com.aimprosoft.aimlearning.utils.NumberUtils;
-import org.hibernate.dialect.DB2Dialect;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

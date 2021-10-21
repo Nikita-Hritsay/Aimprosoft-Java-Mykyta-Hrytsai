@@ -49,19 +49,6 @@ public class Employee {
     @Column(name = "department_idDepartment")
     private Integer idDepartment;
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", salary=" + salary +
-                ", hireDate='" + hireDate + '\'' +
-                ", idDepartment=" + idDepartment +
-                '}';
-    }
-
     public Employee() {
     }
 }

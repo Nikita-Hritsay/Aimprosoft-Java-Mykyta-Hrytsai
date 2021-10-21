@@ -26,15 +26,6 @@ public class Department {
     @Length(max = 200, message = "Address can not be greater than 200")
     private String address;
 
-    @Override
-    public String toString() {
-        return "Department{" +
-                "idDepartment=" + idDepartment +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                '}';
-    }
-
     public Department() {
     }
 
