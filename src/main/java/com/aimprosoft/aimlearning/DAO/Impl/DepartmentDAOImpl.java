@@ -41,9 +41,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     @Override
     public void addDepartment(Department department) throws DBException {
         try (Connection connection = connectionFactory.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ADD_DEPARTMENT)) {
-            preparedStatement.setString(1, department.getName());
-            preparedStatement.setString(2, department.getAddress());
+             PreparedStatement preparedStatement = setStatement(department, connection, ADD_DEPARTMENT)) {
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throw new DBException("Error in get add Department: " + throwables.getMessage());
@@ -64,10 +62,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     @Override
     public void updateDepartment(Department department) throws DBException {
         try (Connection conn = connectionFactory.getConnection();
-             PreparedStatement statement = conn.prepareStatement(UPDATE_DEPARTMENT)) {
-            statement.setString(1, department.getName());
-            statement.setString(2, department.getAddress());
-            statement.setInt(3, department.getIdDepartment());
+             PreparedStatement statement = setStatement(department, conn, UPDATE_DEPARTMENT)) {
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new DBException("Error in get update Department: " + e.getMessage());
@@ -81,12 +76,10 @@ public class DepartmentDAOImpl implements DepartmentDAO {
             ResultSet resultSet = null;
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
-            Department result;
             resultSet.next();
-            result = new Department(resultSet.getInt(1),
+            return new Department(resultSet.getInt(1),
                     resultSet.getString(2),
                     resultSet.getString(3));
-            return result;
         } catch (SQLException sqlException) {
             throw new DBException("Error in get Department by id: " + sqlException.getMessage());
         }
@@ -121,4 +114,16 @@ public class DepartmentDAOImpl implements DepartmentDAO {
             addDepartment(department);
         }
     }
+
+    private PreparedStatement setStatement(Department department, Connection connection, String query) throws SQLException{
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, department.getName());
+        preparedStatement.setString(2, department.getAddress());
+        if (department.getIdDepartment() != null){
+            preparedStatement.setInt(3, department.getIdDepartment());
+        }
+        return preparedStatement;
+    }
+
+
 }
