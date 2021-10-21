@@ -12,6 +12,7 @@ import java.util.List;
 public class DepartmentServiceImpl implements DepartmentService {
 
     private final DepartmentDAOImpl departmentDAO = new DepartmentDAOImpl();
+    private final ModelValidator modelValidator = new ModelValidator();
 
     @Override
     public List<Department> getAllDepartments() throws DBException {
@@ -30,8 +31,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public void createOrUpdate(Department department) throws ValidationException, DBException {
-        ModelValidator<Department> validator = new ModelValidator<>();
-        validator.validator(department);
+        modelValidator.validator(department);
         departmentDAO.createOrUpdate(department);
     }
 }

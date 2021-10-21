@@ -26,7 +26,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         try (Connection connection = connectionFactory.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(FIND_ALL)) {
-
             return getEmployees(resultSet);
         } catch (SQLException sqlException) {
             throw new DBException("Error in get All Employees: " + sqlException.getMessage());
