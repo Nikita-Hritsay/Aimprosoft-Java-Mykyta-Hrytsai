@@ -99,6 +99,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
             ResultSet resultSet = null;
             statement.setString(1, department.getName());
             resultSet = statement.executeQuery();
+            System.out.println("");
             while (resultSet.next()) {
                 Integer id = NumberUtils.getInt(resultSet.getString("iddepartment"));
                 if (id != null && id != department.getIdDepartment()) {
