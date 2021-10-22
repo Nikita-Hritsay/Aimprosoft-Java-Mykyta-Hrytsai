@@ -24,7 +24,6 @@
     <c:if test="${!empty departments}">
         <table border="1">
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>Address</th>
                 <th>List</th>
@@ -33,7 +32,6 @@
             </tr>
             <c:forEach var="department" items="${departments}">
                 <tr>
-                    <td><a href="employeesByDepartment?id=${department.idDepartment}"> ${department.idDepartment} </a>
                     </td>
 
                     <td><a href="employeesByDepartment?id=${department.idDepartment}"> <c:out

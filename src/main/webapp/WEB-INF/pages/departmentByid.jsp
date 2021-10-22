@@ -34,7 +34,6 @@
     <c:if test="${!empty requestScope.employees}">
         <table border="1">
             <tr>
-                <th>Id</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
@@ -45,7 +44,6 @@
             </tr>
             <c:forEach var="employee" items="${requestScope.employees}">
                 <tr>
-                    <td><c:out value="${employee.id}"/></td>
                     <td><c:out value="${employee.firstName}"/></td>
                     <td><c:out value="${employee.lastName}"/></td>
                     <td><c:out value="${employee.email}"/></td>
