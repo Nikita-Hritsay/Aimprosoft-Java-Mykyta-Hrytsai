@@ -55,7 +55,7 @@
                     <td>
                         <form action="deleteEmployee">
                             <input type="hidden" value="${employee.id}" name="id">
-                            <input class="delete_button" type="submit" value="Delete">
+                            <input class="delete_button submit_delete" type="submit" value="Delete">
                         </form>
                         |
                         <a href="createOrUpdateEmployeeForm?id=${employee.id}" class="update_button">Update</a></td>

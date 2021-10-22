@@ -41,7 +41,7 @@
                     <td>
                         <form action="deleteDepartment">
                             <input type="hidden" value="${department.idDepartment}" name="idDepartment">
-                            <input class="delete_button" type="submit" value="Delete">
+                            <input class="delete_button submit_delete" type="submit" value="Delete">
                         </form>
 
                         <a href="createOrUpdateDepartmentForm?id=${department.idDepartment}" class="update_button">Update</a>

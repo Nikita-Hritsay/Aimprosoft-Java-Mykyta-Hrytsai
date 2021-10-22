@@ -1,7 +1,7 @@
 a {
     display: inline-block;
     padding: 10px 10px 10px;
-    margin-left: 20px;
+    margin-left: 15px;
     border-radius: 7px;
     text-decoration: none;
     color: black;
@@ -70,4 +70,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.submit_delete{
+    margin-top: 10px;
 }
