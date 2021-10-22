@@ -1,7 +1,7 @@
-package com.aimprosoft.aimlearning.DAO.Impl;
+package com.aimprosoft.aimlearning.dao.Impl;
 
 import com.aimprosoft.aimlearning.config.ConnectionFactory;
-import com.aimprosoft.aimlearning.DAO.EmployeeDAO;
+import com.aimprosoft.aimlearning.dao.EmployeeDAO;
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Employee;

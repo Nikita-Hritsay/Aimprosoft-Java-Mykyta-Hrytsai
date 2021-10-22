@@ -39,7 +39,7 @@
             Please enter your department id:  <input list="idDepartments" name="iddepartment" class="input_param" size="15px" value="${idDepartment}"> <br><br>
             <datalist id="idDepartments">
                 <c:forEach var="department" items="${requestScope.departments}">
-                <option value="${department.idDepartment}" >
+                <option value="${department.name}" name="${department}" >
                     </c:forEach>
             </datalist>
             <p class="error_massage">${errors.get("idDepartment")}</p>

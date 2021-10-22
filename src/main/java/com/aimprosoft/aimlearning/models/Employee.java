@@ -4,6 +4,7 @@ package com.aimprosoft.aimlearning.models;
 import com.aimprosoft.aimlearning.validations.employee.IsUniqueEmail;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.With;
 import net.sf.oval.constraint.*;
 
@@ -13,6 +14,7 @@ import java.util.Date;
 @Data
 @With
 @AllArgsConstructor
+@NoArgsConstructor
 public class Employee {
 
     private Integer id;
@@ -49,6 +51,4 @@ public class Employee {
     @Column(name = "department_idDepartment")
     private Integer idDepartment;
 
-    public Employee() {
-    }
 }

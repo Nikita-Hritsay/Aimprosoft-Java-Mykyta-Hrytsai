@@ -1,7 +1,7 @@
-package com.aimprosoft.aimlearning.DAO.Impl;
+package com.aimprosoft.aimlearning.dao.Impl;
 
 import com.aimprosoft.aimlearning.config.ConnectionFactory;
-import com.aimprosoft.aimlearning.DAO.DepartmentDAO;
+import com.aimprosoft.aimlearning.dao.DepartmentDAO;
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.models.Department;
 import com.aimprosoft.aimlearning.utils.NumberUtils;
@@ -73,13 +73,11 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     public Department getDepartmentById(int id) throws DBException {
         try (Connection connection = connectionFactory.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_DEPARTMENT_BY_ID)) {
-            ResultSet resultSet = null;
+            ResultSet resultSet;
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
             resultSet.next();
-            return new Department(resultSet.getInt(1),
-                    resultSet.getString(2),
-                    resultSet.getString(3));
+            return new Department().withIdDepartment(resultSet.getInt(1)).withName(resultSet.getString(2)).withAddress(resultSet.getString(3));
         } catch (SQLException sqlException) {
             throw new DBException("Error in get Department by id: " + sqlException.getMessage());
         }
@@ -89,10 +87,9 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     public boolean existsByName(Department department) throws DBException {
         try (Connection connection = connectionFactory.getConnection();
              PreparedStatement statement = connection.prepareStatement(EXISTS_BY_NAME)) {
-            ResultSet resultSet = null;
+            ResultSet resultSet;
             statement.setString(1, department.getName());
             resultSet = statement.executeQuery();
-            System.out.println("");
             while (resultSet.next()) {
                 Integer id = NumberUtils.getInt(resultSet.getString("iddepartment"));
                 if (id != null && id != department.getIdDepartment()) {

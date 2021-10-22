@@ -27,26 +27,32 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Address</th>
-                <th>Action</th>
                 <th>List</th>
+                <th>Update</th>
+                <th>Delete</th>
             </tr>
             <c:forEach var="department" items="${departments}">
                 <tr>
                     <td><a href="employeesByDepartment?id=${department.idDepartment}"> ${department.idDepartment} </a>
                     </td>
+
                     <td><a href="employeesByDepartment?id=${department.idDepartment}"> <c:out
                             value="${department.name}"/> </a></td>
+
                     <td><a href="employeesByDepartment?id=${department.idDepartment}"> <c:out
                             value="${department.address}"/> </a></td>
+
+                    <td><a href="employeesByDepartment?id=${department.idDepartment}"> List </a></td>
+
+                    <td><a href="createOrUpdateDepartmentForm?id=${department.idDepartment}" class="update_button"> update </a></td>
+
                     <td>
                         <form action="deleteDepartment">
                             <input type="hidden" value="${department.idDepartment}" name="idDepartment">
                             <input class="delete_button submit_delete" type="submit" value="Delete">
                         </form>
-
-                        <a href="createOrUpdateDepartmentForm?id=${department.idDepartment}" class="update_button">Update</a>
                     </td>
-                    <td><a href="employeesByDepartment?id=${department.idDepartment}"> List </a></td>
+
                 </tr>
             </c:forEach>
         </table>

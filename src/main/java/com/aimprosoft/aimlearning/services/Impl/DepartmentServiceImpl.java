@@ -1,6 +1,6 @@
 package com.aimprosoft.aimlearning.services.Impl;
 
-import com.aimprosoft.aimlearning.DAO.Impl.DepartmentDAOImpl;
+import com.aimprosoft.aimlearning.dao.Impl.DepartmentDAOImpl;
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Department;
@@ -12,7 +12,7 @@ import java.util.List;
 public class DepartmentServiceImpl implements DepartmentService {
 
     private final DepartmentDAOImpl departmentDAO = new DepartmentDAOImpl();
-    private final ModelValidator modelValidator = new ModelValidator();
+    private final ModelValidator<Department> modelValidator = new ModelValidator<>();
 
     @Override
     public List<Department> getAllDepartments() throws DBException {
@@ -31,7 +31,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public void createOrUpdate(Department department) throws ValidationException, DBException {
-        modelValidator.validator(department);
+        modelValidator.validate(department);
         departmentDAO.createOrUpdate(department);
     }
 }

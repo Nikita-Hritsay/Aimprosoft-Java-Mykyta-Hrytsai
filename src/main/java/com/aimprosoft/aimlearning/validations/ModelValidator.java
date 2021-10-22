@@ -12,7 +12,7 @@ import java.util.Map;
 public class ModelValidator<T> {
     private final Validator validator = new Validator();
 
-    public void validator(T obj) throws ValidationException {
+    public void validate(T obj) throws ValidationException {
         List<ConstraintViolation> violations = validator.validate(obj);
         if (!violations.isEmpty()) {
             Map<String, String> errors = new HashMap<>();

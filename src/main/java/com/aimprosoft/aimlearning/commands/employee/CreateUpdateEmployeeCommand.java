@@ -26,7 +26,7 @@ public class CreateUpdateEmployeeCommand implements ICommand {
         Employee employee = getEmployee(request);
         try {
             employeeService.createOrUpdate(employee);
-            request.getRequestDispatcher("/WEB-INF/pages/displayAllDepartments").forward(request, response);
+            response.sendRedirect("/WEB-INF/pages/displayAllDepartments");
         } catch (ValidationException exception) {
             request.setAttribute("errors", exception.getErrors());
             request.setAttribute("employee", employee);

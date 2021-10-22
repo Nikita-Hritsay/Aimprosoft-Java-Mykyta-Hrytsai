@@ -1,4 +1,4 @@
-package com.aimprosoft.aimlearning.DAO;
+package com.aimprosoft.aimlearning.dao;
 
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;

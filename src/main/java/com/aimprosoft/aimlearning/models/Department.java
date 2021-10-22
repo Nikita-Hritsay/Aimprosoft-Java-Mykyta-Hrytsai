@@ -3,6 +3,7 @@ package com.aimprosoft.aimlearning.models;
 import com.aimprosoft.aimlearning.validations.department.IsUniqueName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.With;
 import net.sf.oval.constraint.CheckWith;
 import net.sf.oval.constraint.Length;
@@ -12,6 +13,7 @@ import net.sf.oval.constraint.NotNull;
 @Data
 @With
 @AllArgsConstructor
+@NoArgsConstructor
 public class Department {
     private Integer idDepartment;
 
@@ -25,8 +27,5 @@ public class Department {
     @NotNull(message = "Address can not be null")
     @Length(max = 200, message = "Address can not be greater than 200")
     private String address;
-
-    public Department() {
-    }
 
 }

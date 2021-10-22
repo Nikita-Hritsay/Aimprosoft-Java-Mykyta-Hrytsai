@@ -22,7 +22,7 @@ public class CreateOrUpdateDepartmentCommand implements ICommand {
         Department department = getDepartment(request);
         try {
             departmentService.createOrUpdate(department);
-            request.getRequestDispatcher("displayAllDepartments").forward(request, response);
+            response.sendRedirect("displayAllDepartments");
         } catch (ValidationException exception) {
             request.setAttribute("errors", exception.getErrors());
             request.setAttribute("idDepartment", request.getParameter("id"));
