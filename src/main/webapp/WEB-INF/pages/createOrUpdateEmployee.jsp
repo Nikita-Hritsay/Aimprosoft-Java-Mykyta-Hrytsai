@@ -35,7 +35,7 @@
         <p class="error_massage">${errors.get("salary")}</p>
         Please enter your hire date:  <input type="date" name="hireDate" class="input_param" size="15px" value="${employee.hireDate}"> <br><br>
         <p class="error_massage">${errors.get("hireDate")}</p>
-        Please enter your department id:  <input list="idDepartments" name="departmentName" class="input_param" size="15px"> <br><br>
+        Please enter your department name:  <input list="idDepartments" name="departmentName" class="input_param" size="15px"> <br><br>
         <datalist id="idDepartments">
             <c:forEach var="department" items="${requestScope.departments}">
                 <option value="${department.name}" name="${department}" >

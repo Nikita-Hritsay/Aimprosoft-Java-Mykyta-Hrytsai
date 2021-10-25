@@ -48,7 +48,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public void updateEmployee(Employee employee) throws DBException {
         try (Connection connection = connectionFactory.getConnection();
-             PreparedStatement statement = setStatement(employee, connection, UPDATE_EMPLOYEE)) {
+             PreparedStatement statement = setupPreparedStatement(employee, connection, UPDATE_EMPLOYEE)) {
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new DBException("Error in update Employees: " + e.getMessage());
@@ -74,13 +74,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
             resultSet.next();
-            return new Employee(resultSet.getInt(1),
-                    resultSet.getString(2),
-                    resultSet.getString(3),
-                    resultSet.getString(4),
-                    resultSet.getBigDecimal(5),
-                    resultSet.getDate(6),
-                    resultSet.getInt(7));
+            return new Employee().withId(resultSet.getInt(1))
+                    .withFirstName(resultSet.getString(2))
+                    .withLastName(resultSet.getString(3))
+                    .withEmail(resultSet.getString(4))
+                    .withSalary(resultSet.getBigDecimal(5))
+                    .withHireDate(resultSet.getDate(6))
+                    .withIdDepartment(resultSet.getInt(7));
         } catch (SQLException sqlException) {
             throw new DBException("Error in get Employee by id: " + sqlException.getMessage());
         }
@@ -108,7 +108,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public void add(Employee employee) throws DBException {
         try (Connection connection = connectionFactory.getConnection();
-             PreparedStatement preparedStatement = setStatement(employee, connection, ADD_EMPLOYEE);) {
+             PreparedStatement preparedStatement = setupPreparedStatement(employee, connection, ADD_EMPLOYEE);) {
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throw new DBException("Error in get All Employees: " + throwables.getMessage());
@@ -129,13 +129,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             List<Employee> result = new ArrayList<>();
             while (true) {
                 if (!resultSet.next()) break;
-                result.add(new Employee(resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4),
-                        resultSet.getBigDecimal(5),
-                        resultSet.getDate(6),
-                        resultSet.getInt(7)));
+                result.add(new Employee().withId(resultSet.getInt(1))
+                        .withFirstName(resultSet.getString(2))
+                        .withLastName(resultSet.getString(3))
+                        .withEmail(resultSet.getString(4))
+                        .withSalary(resultSet.getBigDecimal(5))
+                        .withHireDate(resultSet.getDate(6))
+                        .withIdDepartment(resultSet.getInt(7)));
             }
             return result;
         } catch (SQLException e) {
@@ -143,7 +143,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         }
     }
 
-    private PreparedStatement setStatement(Employee employee, Connection connection, String query) throws SQLException {
+    private PreparedStatement setupPreparedStatement(Employee employee, Connection connection, String query) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, employee.getFirstName());
         statement.setString(2, employee.getLastName());
