@@ -9,6 +9,7 @@ import lombok.With;
 import net.sf.oval.constraint.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
@@ -39,7 +40,7 @@ public class Employee {
     @NotEmpty(message = "Salary can not be empty")
     @NotNull(message = "Salary can not be null")
     @Min(value = 1, message = "salary can not be smaller than 1")
-    private double salary;
+    private BigDecimal salary;
 
     @NotEmpty(message = "Hire date can not be empty")
     @NotNull(message = "Hire date can not be null")

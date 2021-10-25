@@ -78,7 +78,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                     resultSet.getString(2),
                     resultSet.getString(3),
                     resultSet.getString(4),
-                    resultSet.getInt(5),
+                    resultSet.getBigDecimal(5),
                     resultSet.getDate(6),
                     resultSet.getInt(7));
         } catch (SQLException sqlException) {
@@ -133,7 +133,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                         resultSet.getString(2),
                         resultSet.getString(3),
                         resultSet.getString(4),
-                        resultSet.getInt(5),
+                        resultSet.getBigDecimal(5),
                         resultSet.getDate(6),
                         resultSet.getInt(7)));
             }
@@ -148,7 +148,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         statement.setString(1, employee.getFirstName());
         statement.setString(2, employee.getLastName());
         statement.setString(3, employee.getEmail());
-        statement.setDouble(4, employee.getSalary());
+        statement.setBigDecimal(4, employee.getSalary());
         statement.setDate(5, new Date(employee.getHireDate().getTime()));
         statement.setInt(6, employee.getIdDepartment());
         if (employee.getId() != null) {

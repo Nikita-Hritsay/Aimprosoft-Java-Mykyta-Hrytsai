@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -55,7 +56,7 @@ public class CreateUpdateEmployeeCommand implements ICommand {
                     .withFirstName(request.getParameter("firstName"))
                     .withLastName(request.getParameter("lastName"))
                     .withEmail(request.getParameter("email"))
-                    .withSalary(request.getParameter("salary") == "" ? 0 : NumberUtils.getDouble(request.getParameter("salary")))
+                    .withSalary(request.getParameter("salary") == "" ? new BigDecimal("0") : NumberUtils.getBigDecimal(request.getParameter("salary")))
                     .withHireDate(request.getParameter("hireDate") == "" ? null : new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("hireDate")))
                     .withIdDepartment(department.getIdDepartment() == null ? 0 : department.getIdDepartment() );
             return employee;

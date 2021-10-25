@@ -1,5 +1,7 @@
 package com.aimprosoft.aimlearning.utils;
 
+import java.math.BigDecimal;
+
 public class NumberUtils {
 
     public static Integer getInt(String num) {
@@ -13,10 +15,10 @@ public class NumberUtils {
         return null;
     }
 
-    public static Double getDouble(String num) {
+    public static BigDecimal getBigDecimal(String num) {
         if (num != null) {
             try {
-                return Double.valueOf(num);
+                return BigDecimal.valueOf(Double.parseDouble(num));
             } catch (Exception e) {
                 return null;
             }
