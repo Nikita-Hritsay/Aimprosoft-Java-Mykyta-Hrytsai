@@ -18,7 +18,7 @@ public class NumberUtils {
     public static BigDecimal getBigDecimal(String num) {
         if (num != null) {
             try {
-                return BigDecimal.valueOf(Double.parseDouble(num));
+                return new BigDecimal(num);
             } catch (Exception e) {
                 return null;
             }
