@@ -28,6 +28,7 @@ a {
 .input_param {
     padding-top: 15px;
     margin-top: 10px;
+    width: 100%;
 }
 
 .update_button {
@@ -36,6 +37,13 @@ a {
 
 .error_massage, .delete_button {
     color: red;
+    border: none;
+    background: #D8E6F3;
+}
+
+.error_massage{
+    padding-bottom: 10px;
+    background: none;
 }
 
 table {
@@ -45,7 +53,7 @@ table {
     text-align: center;
 }
 
-th{
+th {
     background: #AFCDE7;
     color: white;
     padding: 10px 20px;
@@ -73,6 +81,34 @@ body {
     align-items: center;
 }
 
-.submit_delete{
+p {
+    margin: 0;
+}
+
+.submit_delete {
     margin-top: 10px;
+}
+
+.createOrUpdateForm {
+    text-align: left;
+    width: 370px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.submit_createOrUpdate {
+    display: inline-block;
+    padding: 15px 23px 15px;
+    border-radius: 7px;
+    text-decoration: none;
+    color: black;
+    margin-right: 10px;
+    background: aquamarine;
+    border: 0;
 }
