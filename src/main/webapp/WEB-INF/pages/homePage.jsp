@@ -32,8 +32,6 @@
             </tr>
             <c:forEach var="department" items="${departments}">
                 <tr>
-                    </td>
-
                     <td><a href="employeesByDepartment?id=${department.idDepartment}"> <c:out
                             value="${department.name}"/> </a></td>
 
