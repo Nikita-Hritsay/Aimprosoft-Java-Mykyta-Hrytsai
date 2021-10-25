@@ -47,7 +47,7 @@ public class Employee {
 
     @NotEmpty(message = "Id department can not be empty")
     @NotNull(message = "Id department can not be null")
-    @Min(value = 1, message = "Id department can not be smaller than 1")
+    @Min(value = 1, message = "Id department can not be null")
     @Column(name = "department_idDepartment")
     private Integer idDepartment;
 

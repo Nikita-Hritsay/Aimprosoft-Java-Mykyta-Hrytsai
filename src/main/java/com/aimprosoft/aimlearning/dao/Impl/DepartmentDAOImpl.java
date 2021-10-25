@@ -20,6 +20,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     private final String UPDATE_DEPARTMENT = "update department set name = ?, address = ? where iddepartment = ?";
     private final String DELETE_DEPARTMENT = "delete from department where iddepartment = ?";
     private final String EXISTS_BY_NAME = "select iddepartment from department where name = ?";
+    private final String FIND_DEPARTMENT_BY_NAME = "select iddepartment, name, address from department where name = ?";
 
     @Override
     public List<Department> getAllDepartments() throws DBException {
@@ -112,6 +113,22 @@ public class DepartmentDAOImpl implements DepartmentDAO {
         }
     }
 
+    @Override
+    public Department getDepartmentByName(String name) throws DBException {
+        if (name.equals("")) {
+            return new Department();
+        }
+        try (Connection connection = connectionFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_DEPARTMENT_BY_NAME)) {
+            statement.setString(1, name);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            return new Department().withIdDepartment(resultSet.getInt(1)).withName(resultSet.getString(2)).withAddress(resultSet.getString(3));
+        } catch (SQLException sqlException) {
+            throw new DBException("Error in get Department by name: " + sqlException.getMessage());
+        }
+    }
+
     private PreparedStatement setStatement(Department department, Connection connection, String query) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, department.getName());
@@ -121,6 +138,4 @@ public class DepartmentDAOImpl implements DepartmentDAO {
         }
         return preparedStatement;
     }
-
-
 }

@@ -34,4 +34,9 @@ public class DepartmentServiceImpl implements DepartmentService {
         modelValidator.validate(department);
         departmentDAO.createOrUpdate(department);
     }
+
+    @Override
+    public Department getDepartmentByName(String name) throws DBException {
+        return departmentDAO.getDepartmentByName(name);
+    }
 }

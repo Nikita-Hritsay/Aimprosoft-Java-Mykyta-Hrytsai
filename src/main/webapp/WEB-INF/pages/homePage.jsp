@@ -45,7 +45,7 @@
                     <td><a href="createOrUpdateDepartmentForm?id=${department.idDepartment}" class="update_button"> update </a></td>
 
                     <td>
-                        <form action="deleteDepartment">
+                        <form action="deleteDepartment" method="post">
                             <input type="hidden" value="${department.idDepartment}" name="idDepartment">
                             <input class="delete_button submit_delete" type="submit" value="Delete">
                         </form>

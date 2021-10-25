@@ -3,6 +3,7 @@ package com.aimprosoft.aimlearning.commands.employee;
 import com.aimprosoft.aimlearning.commands.ICommand;
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
+import com.aimprosoft.aimlearning.models.Department;
 import com.aimprosoft.aimlearning.models.Employee;
 import com.aimprosoft.aimlearning.services.Impl.DepartmentServiceImpl;
 import com.aimprosoft.aimlearning.services.Impl.EmployeeServiceImpl;
@@ -23,10 +24,12 @@ public class CreateUpdateEmployeeCommand implements ICommand {
 
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DBException {
-        Employee employee = getEmployee(request);
+        Employee employee = null;
         try {
+            Department department = getDepartment(request);
+            employee = getEmployee(request, department);
             employeeService.createOrUpdate(employee);
-            response.sendRedirect("/WEB-INF/pages/displayAllDepartments");
+            response.sendRedirect("/displayAllDepartments");
         } catch (ValidationException exception) {
             request.setAttribute("errors", exception.getErrors());
             request.setAttribute("employee", employee);
@@ -36,7 +39,16 @@ public class CreateUpdateEmployeeCommand implements ICommand {
         }
     }
 
-    private Employee getEmployee(HttpServletRequest request) {
+    private Department getDepartment(HttpServletRequest request) throws DBException {
+        try {
+            Department department = departmentService.getDepartmentByName(request.getParameter("departmentName"));
+            return department;
+        } catch (DBException e) {
+            throw new DBException(e.getMessage());
+        }
+    }
+
+    private Employee getEmployee(HttpServletRequest request, Department department) {
         try {
             Employee employee = new Employee()
                     .withId(NumberUtils.getInt(request.getParameter("id")))
@@ -45,7 +57,7 @@ public class CreateUpdateEmployeeCommand implements ICommand {
                     .withEmail(request.getParameter("email"))
                     .withSalary(request.getParameter("salary") == "" ? 0 : NumberUtils.getDouble(request.getParameter("salary")))
                     .withHireDate(request.getParameter("hireDate") == "" ? null : new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("hireDate")))
-                    .withIdDepartment(request.getParameter("iddepartment") == "" ? 0 : NumberUtils.getInt(request.getParameter("iddepartment")));
+                    .withIdDepartment(department.getIdDepartment() == null ? 0 : department.getIdDepartment() );
             return employee;
         } catch (ParseException e) {
             e.printStackTrace();

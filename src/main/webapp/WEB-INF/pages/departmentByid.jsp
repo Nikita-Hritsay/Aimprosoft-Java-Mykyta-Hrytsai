@@ -40,7 +40,8 @@
                 <th>Salary</th>
                 <th>Hire Date</th>
                 <th>Department id</th>
-                <th>Action</th>
+                <th>Update</th>
+                <th>Delete</th>
             </tr>
             <c:forEach var="employee" items="${requestScope.employees}">
                 <tr>
@@ -50,13 +51,16 @@
                     <td><c:out value="${employee.salary}"/></td>
                     <td><c:out value="${employee.hireDate}"/></td>
                     <td><c:out value="${employee.idDepartment}"/></td>
+                    <td><a href="createOrUpdateEmployeeForm?id=${employee.id}" class="update_button"> Update </a></td>
+
                     <td>
-                        <form action="deleteEmployee">
+                        <form action="deleteEmployee" method="post">
                             <input type="hidden" value="${employee.id}" name="id">
                             <input class="delete_button submit_delete" type="submit" value="Delete">
                         </form>
-                        |
-                        <a href="createOrUpdateEmployeeForm?id=${employee.id}" class="update_button">Update</a></td>
+                    </td>
+
+
                 </tr>
             </c:forEach>
         </table>
