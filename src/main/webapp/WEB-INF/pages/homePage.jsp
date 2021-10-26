@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Home</title>
-    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
     <link href="../../css/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -23,7 +23,7 @@
     </c:if>
 
     <c:if test="${!empty departments}">
-        <table >
+        <table>
             <tr>
                 <th>Name</th>
                 <th>Address</th>
@@ -41,7 +41,8 @@
 
                     <td><a href="employeesByDepartment?id=${department.idDepartment}"> List </a></td>
 
-                    <td><a href="createOrUpdateDepartmentForm?id=${department.idDepartment}" class="update_button"> update </a></td>
+                    <td><a href="createOrUpdateDepartmentForm?id=${department.idDepartment}" class="update_button">
+                        update </a></td>
 
                     <td>
                         <form action="deleteDepartment" method="post">

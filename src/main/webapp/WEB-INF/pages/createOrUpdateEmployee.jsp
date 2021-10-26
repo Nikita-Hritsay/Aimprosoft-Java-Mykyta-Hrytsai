@@ -24,10 +24,10 @@
     <a class="header_ref" href="createOrUpdateDepartmentForm">Add Department</a>
 </div>
 
-<div style="margin-top: 50px;" class="createOrUpdateForm" >
+<div style="margin-top: 50px;" class="createOrUpdateForm">
     <form action="createOrUpdateEmployee" method="post">
         <input type="hidden" name="id" class="input_param" size="20px" value="${employee.id}">
-        Please enter your first name:  <%--@declare id="iddepartments"--%><label>
+        Please enter your first name: <%--@declare id="iddepartments"--%><label>
         <input type="text" name="firstName" class="input_param" size="15px" value="${employee.firstName}">
     </label> <br>
         <p class="error_massage">${errors.firstName}</p>
@@ -52,8 +52,8 @@
     </label> <br><br>
         <datalist id="idDepartments">
             <c:forEach var="department" items="${requestScope.departments}">
-                <option value="${department.name}" name="${department}" >
-                    </c:forEach>
+            <option value="${department.name}" name="${department}">
+                </c:forEach>
         </datalist>
         <p class="error_massage">${errors.idDepartment}</p>
         <input type="submit" class="submit_createOrUpdate" value="submit">

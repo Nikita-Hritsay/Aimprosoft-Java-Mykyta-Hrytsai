@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>All Employees</title>
-    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
     <link href="../../css/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -25,11 +25,9 @@
 
 <div style="margin-top: 50px;">
 
-
     <c:if test="${empty departmentEmployeeMap}">
         <p>Empty</p>
     </c:if>
-
 
     <c:if test="${!empty requestScope.departmentEmployeeMap}">
         <table>
@@ -57,11 +55,6 @@
             </c:forEach>
         </table>
     </c:if>
-
-
-
-
-
 </div>
 
 </body>

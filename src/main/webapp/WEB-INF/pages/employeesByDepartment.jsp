@@ -32,7 +32,7 @@
         <p>Empty</p>
     </c:if>
     <c:if test="${!empty requestScope.employees}">
-        <table >
+        <table>
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
