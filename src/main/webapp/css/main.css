@@ -9,7 +9,6 @@ a {
 }
 
 .header_refs {
-    align: center;
     padding: 40px 20px 0 20px;
 }
 
@@ -47,7 +46,7 @@ a {
 }
 
 table {
-    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif, serif;
     font-size: 14px;
     border-collapse: collapse;
     text-align: center;

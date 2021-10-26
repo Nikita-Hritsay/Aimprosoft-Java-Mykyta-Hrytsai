@@ -42,8 +42,7 @@ public class CreateUpdateEmployeeCommand implements ICommand {
 
     private Department getDepartment(HttpServletRequest request) throws DBException {
         try {
-            Department department = departmentService.getDepartmentByName(request.getParameter("departmentName"));
-            return department;
+            return departmentService.getDepartmentByName(request.getParameter("departmentName"));
         } catch (DBException e) {
             throw new DBException(e.getMessage());
         }
@@ -51,15 +50,14 @@ public class CreateUpdateEmployeeCommand implements ICommand {
 
     private Employee getEmployee(HttpServletRequest request, Department department) {
         try {
-            Employee employee = new Employee()
+            return new Employee()
                     .withId(NumberUtils.getInt(request.getParameter("id")))
                     .withFirstName(request.getParameter("firstName"))
                     .withLastName(request.getParameter("lastName"))
                     .withEmail(request.getParameter("email"))
-                    .withSalary(request.getParameter("salary") == "" ? new BigDecimal("0") : NumberUtils.getBigDecimal(request.getParameter("salary")))
-                    .withHireDate(request.getParameter("hireDate") == "" ? null : new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("hireDate")))
+                    .withSalary(request.getParameter("salary").equals("") ? new BigDecimal("0") : NumberUtils.getBigDecimal(request.getParameter("salary")))
+                    .withHireDate(request.getParameter("hireDate").equals("") ? null : new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("hireDate")))
                     .withIdDepartment(department.getIdDepartment() == null ? 0 : department.getIdDepartment() );
-            return employee;
         } catch (ParseException e) {
             e.printStackTrace();
         }
