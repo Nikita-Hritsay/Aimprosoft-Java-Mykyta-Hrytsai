@@ -38,7 +38,7 @@
                 <th>Email</th>
                 <th>Salary</th>
                 <th>Hire Date</th>
-                <th>Department id</th>
+                <th>Department name</th>
             </tr>
             <c:forEach var="employee" items="${requestScope.employees}">
                 <tr>
@@ -47,7 +47,7 @@
                     <td><c:out value="${employee.email}"/></td>
                     <td><c:out value="${employee.salary}"/></td>
                     <td><c:out value="${employee.hireDate}"/></td>
-                    <td><c:out value="${employee.idDepartment}"/></td>
+                    <td><c:out value="${departmentService.getDepartmentById(employee.idDepartment).getName()}"/></td>
                 </tr>
             </c:forEach>
         </table>
