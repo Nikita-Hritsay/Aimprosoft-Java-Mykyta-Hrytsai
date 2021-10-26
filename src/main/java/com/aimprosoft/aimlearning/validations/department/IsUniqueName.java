@@ -7,7 +7,7 @@ import net.sf.oval.constraint.CheckWithCheck;
 import net.sf.oval.context.OValContext;
 
 public class IsUniqueName implements CheckWithCheck.SimpleCheck {
-    private DepartmentDAOImpl departmentDAO = new DepartmentDAOImpl();
+    private final DepartmentDAOImpl departmentDAO = new DepartmentDAOImpl();
 
     @Override
     public boolean isSatisfied(Object validatedObject, Object value, OValContext context, Validator validator) {

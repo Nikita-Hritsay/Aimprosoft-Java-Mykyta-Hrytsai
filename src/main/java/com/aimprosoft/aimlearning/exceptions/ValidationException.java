@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class ValidationException extends Exception {
 
-    private Map<String, String> errors;
+    private final Map<String, String> errors;
 
     public ValidationException(Map<String, String> errors) {
         this.errors = errors;

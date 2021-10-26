@@ -8,7 +8,7 @@ import net.sf.oval.context.OValContext;
 
 
 public class IsUniqueEmail implements CheckWithCheck.SimpleCheck {
-    private EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
+    private final EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
 
     @Override
     public boolean isSatisfied(Object validatedObject, Object value, OValContext context, Validator validator) {
