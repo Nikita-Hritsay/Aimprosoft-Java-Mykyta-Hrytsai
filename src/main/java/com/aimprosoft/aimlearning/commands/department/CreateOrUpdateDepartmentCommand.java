@@ -22,7 +22,6 @@ public class CreateOrUpdateDepartmentCommand implements ICommand {
         request.setCharacterEncoding("UTF-8");
         Department department = getDepartment(request);
         try {
-            System.out.println(getDepartment(request));
             departmentService.createOrUpdate(department);
             response.sendRedirect("/displayAllDepartments");
         } catch (ValidationException exception) {
