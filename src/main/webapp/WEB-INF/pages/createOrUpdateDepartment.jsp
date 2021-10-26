@@ -1,4 +1,4 @@
-<%--@elvariable id="department" type="com"--%>
+<%--@elvariable id="department" type="com.aimprosoft.aimlearning.models.Department"--%>
 <%--@elvariable id="errors" type="com"--%>
 <%--
   Created by IntelliJ IDEA.
