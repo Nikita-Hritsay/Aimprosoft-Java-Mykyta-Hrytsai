@@ -30,10 +30,10 @@
         <p>Empty</p>
     </c:if>
 
+
     <c:if test="${!empty requestScope.employees}">
         <table>
             <tr>
-
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
@@ -41,18 +41,25 @@
                 <th>Hire Date</th>
                 <th>Department name</th>
             </tr>
-            <c:forEach var="employee" items="${requestScope.employees}">
-                <tr>
-                    <td><c:out value="${employee.firstName}"/></td>
-                    <td><c:out value="${employee.lastName}"/></td>
-                    <td><c:out value="${employee.email}"/></td>
-                    <td><c:out value="${employee.salary}"/></td>
-                    <td><c:out value="${employee.hireDate}"/></td>
-                    <td><c:out value="${departmentService.getDepartmentById(employee.idDepartment).getName()}"/></td>
-                </tr>
+            <c:forEach var="department" items="${requestScope.departmentEmployeeMap.keySet()}">
+                <c:if test="${!empty departmentEmployeeMap.get(department)}">
+                    <c:forEach var="employee" items="${requestScope.departmentEmployeeMap.get(department)}">
+                        <tr>
+                            <td><c:out value="${employee.firstName}"/></td>
+                            <td><c:out value="${employee.lastName}"/></td>
+                            <td><c:out value="${employee.email}"/></td>
+                            <td><c:out value="${employee.salary}"/></td>
+                            <td><c:out value="${employee.hireDate}"/></td>
+                            <td><c:out value="${department.getName()}"/></td>
+                        </tr>
+                    </c:forEach>
+                </c:if>
             </c:forEach>
         </table>
     </c:if>
+
+
+
 
 
 </div>

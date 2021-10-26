@@ -97,7 +97,6 @@ public class DepartmentDAOImpl implements DepartmentDAO {
             }
             return false;
         } catch (SQLException sqlException) {
-            System.out.println(sqlException.getMessage());
             throw new DBException("Error in exists by name Department: " + sqlException.getMessage());
         }
     }
@@ -113,7 +112,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public Department getDepartmentByName(String name) throws DBException {
-        if (name.equals("")) {
+        if (name.isEmpty()) {
             return new Department();
         }
         try (Connection connection = ConnectionFactory.getConnection();

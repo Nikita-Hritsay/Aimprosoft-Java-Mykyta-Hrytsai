@@ -1,4 +1,4 @@
-<%--@elvariable id="errors" type="com"--%>
+<%--@elvariable id="errors" type="java.util.Map"--%>
 <%--@elvariable id="employee" type="com.aimprosoft.aimlearning.models.Employee"--%>
 <%--
   Created by IntelliJ IDEA.
@@ -30,23 +30,23 @@
         Please enter your first name:  <%--@declare id="iddepartments"--%><label>
         <input type="text" name="firstName" class="input_param" size="15px" value="${employee.firstName}">
     </label> <br>
-        <p class="error_massage">${errors.get("firstName")}</p>
+        <p class="error_massage">${errors.firstName}</p>
         Please enter your last name: <label>
         <input type="text" name="lastName" class="input_param" size="15px" value="${employee.lastName}">
     </label> <br>
-        <p class="error_massage">${errors.get("lastName")}</p>
+        <p class="error_massage">${errors.lastName}</p>
         Please enter your email: <label>
         <input type="text" name="email" class="input_param" size="15px" value="${employee.email}">
     </label> <br>
-        <p class="error_massage">${errors.get("email")}</p>
+        <p class="error_massage">${errors.email}</p>
         Please enter your salary: <label>
         <input type="number" name="salary" class="input_param" size="15px" step="0.01" value="${employee.salary}">
     </label> <br><br>
-        <p class="error_massage">${errors.get("salary")}</p>
+        <p class="error_massage">${errors.salary}</p>
         Please enter your hire date: <label>
         <input type="date" name="hireDate" class="input_param" size="15px" value="${employee.hireDate}">
     </label> <br><br>
-        <p class="error_massage">${errors.get("hireDate")}</p>
+        <p class="error_massage">${errors.hireDate}</p>
         Please enter your department name: <label>
         <input list="idDepartments" name="departmentName" class="input_param" size="15px">
     </label> <br><br>
@@ -55,7 +55,7 @@
                 <option value="${department.name}" name="${department}" >
                     </c:forEach>
         </datalist>
-        <p class="error_massage">${errors.get("idDepartment")}</p>
+        <p class="error_massage">${errors.idDepartment}</p>
         <input type="submit" class="submit_createOrUpdate" value="submit">
     </form>
 </div>

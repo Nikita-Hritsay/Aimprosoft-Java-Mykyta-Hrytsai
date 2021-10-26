@@ -1,4 +1,4 @@
-<%--@elvariable id="department" type="com.aimprosoft.aimlearning.models.Department"--%>
+<%--@elvariable id="department" type="java.util.Map"--%>
 <%--@elvariable id="errors" type="com"--%>
 <%--
   Created by IntelliJ IDEA.
@@ -32,13 +32,13 @@
                                                      value="${department.name}">
             </label>
         <br>
-        <p class="error_massage">${errors.get("name")}</p>
+        <p class="error_massage">${errors.name}</p>
         Please enter address of department: <label>
         <input type="text" name="address" class="input_param" size="15px"
                                                         value="${department.address}">
         </label>
         <br>
-        <p class="error_massage">${errors.get("address")}</p>
+        <p class="error_massage">${errors.address}</p>
         <input type="submit" class="submit_createOrUpdate" value="submit">
     </form>
 </div>
