@@ -14,13 +14,14 @@ public class MainController extends HttpServlet {
     private final CommandFactory commandFactory = new CommandFactory();
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        final ICommand frontController = commandFactory.getCommand(req.getRequestURI());
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        final ICommand frontController = commandFactory.getCommand(request.getRequestURI());
+        request.setCharacterEncoding("UTF-8");
         try {
-            frontController.service(req, resp);
+            frontController.service(request, response);
         } catch (Exception e) {
-            req.setAttribute("error", e.toString());
-            req.getRequestDispatcher("WEB-INF/pages/errorPage.jsp").forward(req, resp);
+            request.setAttribute("error", e.toString());
+            request.getRequestDispatcher("WEB-INF/pages/errorPage.jsp").forward(request, response);
         }
     }
 

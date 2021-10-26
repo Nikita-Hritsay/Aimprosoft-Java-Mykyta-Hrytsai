@@ -23,7 +23,6 @@ public class DisplayEmployeeCommand implements ICommand {
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DBException {
         request.setAttribute("employees", employeeService.getAllEmployees());
-        request.setAttribute("departmentService", departmentService);
         request.setAttribute("departmentEmployeeMap", createEmployeeDepartmentMap());
         request.getRequestDispatcher("/WEB-INF/pages/allEmployees.jsp").forward(request, response);
     }
@@ -33,11 +32,6 @@ public class DisplayEmployeeCommand implements ICommand {
         for(Department department: departmentService.getAllDepartments()){
             result.put(department, employeeService.getByIdDepartment(department.getIdDepartment()));
         }
-
-        for (int i = 0; i < result.size(); i++){
-            System.out.println(result.keySet());
-        }
-
         return result;
     }
 

@@ -25,7 +25,6 @@ public class CreateUpdateEmployeeCommand implements ICommand {
 
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DBException {
-        request.setCharacterEncoding("UTF-8");
         Employee employee = null;
         try {
             Department department = getDepartment(request);

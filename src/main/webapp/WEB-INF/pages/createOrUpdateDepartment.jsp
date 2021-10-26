@@ -1,5 +1,5 @@
-<%--@elvariable id="department" type="java.util.Map"--%>
-<%--@elvariable id="errors" type="com"--%>
+<%--@elvariable id="department" type="com.aimprosoft.aimlearning.models.Department"--%>
+<%--@elvariable id="errors" type="java.util.Map"--%>
 <%--
   Created by IntelliJ IDEA.
   User: nikita
@@ -29,14 +29,14 @@
         <input name="id" class="input_param_id" value="${department.idDepartment}" type="hidden">
         Please enter name of department: <label>
         <input type="text" name="name" class="input_param" size="15px"
-                                                     value="${department.name}">
-            </label>
+               value="${department.name}">
+    </label>
         <br>
         <p class="error_massage">${errors.name}</p>
         Please enter address of department: <label>
         <input type="text" name="address" class="input_param" size="15px"
-                                                        value="${department.address}">
-        </label>
+               value="${department.address}">
+    </label>
         <br>
         <p class="error_massage">${errors.address}</p>
         <input type="submit" class="submit_createOrUpdate" value="submit">

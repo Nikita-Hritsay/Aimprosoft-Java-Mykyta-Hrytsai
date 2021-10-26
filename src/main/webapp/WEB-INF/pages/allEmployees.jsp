@@ -26,12 +26,12 @@
 <div style="margin-top: 50px;">
 
 
-    <c:if test="${empty employees}">
+    <c:if test="${empty departmentEmployeeMap}">
         <p>Empty</p>
     </c:if>
 
 
-    <c:if test="${!empty requestScope.employees}">
+    <c:if test="${!empty requestScope.departmentEmployeeMap}">
         <table>
             <tr>
                 <th>First Name</th>
