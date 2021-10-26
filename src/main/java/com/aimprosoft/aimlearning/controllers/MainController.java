@@ -20,7 +20,7 @@ public class MainController extends HttpServlet {
             frontController.service(req, resp);
         } catch (Exception e) {
             req.setAttribute("error", e.toString());
-            req.getRequestDispatcher("errorPage.jsp").forward(req, resp);
+            req.getRequestDispatcher("WEB-INF/pages/errorPage.jsp").forward(req, resp);
         }
     }
 
