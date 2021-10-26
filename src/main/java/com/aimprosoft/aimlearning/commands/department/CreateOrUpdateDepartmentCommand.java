@@ -25,7 +25,6 @@ public class CreateOrUpdateDepartmentCommand implements ICommand {
             response.sendRedirect("/displayAllDepartments");
         } catch (ValidationException exception) {
             request.setAttribute("errors", exception.getErrors());
-            request.setAttribute("idDepartment", request.getParameter("id"));
             request.setAttribute("department", department);
             request.getRequestDispatcher("/WEB-INF/pages/createOrUpdateDepartment.jsp").forward(request, response);
         }

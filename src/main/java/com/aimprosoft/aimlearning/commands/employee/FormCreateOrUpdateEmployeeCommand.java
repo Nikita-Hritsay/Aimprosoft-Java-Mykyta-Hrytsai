@@ -20,7 +20,6 @@ public class FormCreateOrUpdateEmployeeCommand implements ICommand {
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DBException {
         request.setAttribute("employee", getEmployee(request));
-        request.setAttribute("idDepartment", getEmployee(request).getIdDepartment());
         request.setAttribute("departments", departmentService.getAllDepartments());
         request.getRequestDispatcher("/WEB-INF/pages/createOrUpdateEmployee.jsp").forward(request, response);
     }

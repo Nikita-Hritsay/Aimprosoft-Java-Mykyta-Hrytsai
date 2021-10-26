@@ -18,7 +18,6 @@ public class FormCreateUpdateDepartmentCommand implements ICommand {
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DBException {
         request.setAttribute("department", getDepartment(request));
-        request.setAttribute("idDepartment", request.getParameter("id"));
         request.getRequestDispatcher("/WEB-INF/pages/createOrUpdateDepartment.jsp").forward(request, response);
     }
 
