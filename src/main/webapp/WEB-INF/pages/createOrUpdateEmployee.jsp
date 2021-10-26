@@ -1,3 +1,5 @@
+<%--@elvariable id="errors" type="com"--%>
+<%--@elvariable id="employee" type="com.sun.org.apache.xml.internal.security.signature.SignatureProperty"--%>
 <%--
   Created by IntelliJ IDEA.
   User: nikita

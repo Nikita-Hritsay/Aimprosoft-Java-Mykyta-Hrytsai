@@ -1,3 +1,5 @@
+<%--@elvariable id="department" type="com"--%>
+<%--@elvariable id="errors" type="com"--%>
 <%--
   Created by IntelliJ IDEA.
   User: nikita
