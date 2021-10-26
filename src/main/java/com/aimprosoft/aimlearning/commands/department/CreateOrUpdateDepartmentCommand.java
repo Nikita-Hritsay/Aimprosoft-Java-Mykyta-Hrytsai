@@ -19,8 +19,10 @@ public class CreateOrUpdateDepartmentCommand implements ICommand {
 
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DBException {
+        request.setCharacterEncoding("UTF-8");
         Department department = getDepartment(request);
         try {
+            System.out.println(getDepartment(request));
             departmentService.createOrUpdate(department);
             response.sendRedirect("/displayAllDepartments");
         } catch (ValidationException exception) {
