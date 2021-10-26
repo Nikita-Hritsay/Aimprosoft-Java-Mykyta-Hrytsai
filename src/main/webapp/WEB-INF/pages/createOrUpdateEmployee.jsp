@@ -25,17 +25,29 @@
 <div style="margin-top: 50px;" class="createOrUpdateForm" >
     <form action="createOrUpdateEmployee" method="post">
         <input type="hidden" name="id" class="input_param" size="20px" value="${employee.id}">
-        Please enter your first name:  <%--@declare id="iddepartments"--%><input type="text" name="firstName" class="input_param" size="15px" value="${employee.firstName}"> <br>
+        Please enter your first name:  <%--@declare id="iddepartments"--%><label>
+        <input type="text" name="firstName" class="input_param" size="15px" value="${employee.firstName}">
+    </label> <br>
         <p class="error_massage">${errors.get("firstName")}</p>
-        Please enter your last name:  <input type="text" name="lastName" class="input_param" size="15px" value="${employee.lastName}"> <br>
+        Please enter your last name: <label>
+        <input type="text" name="lastName" class="input_param" size="15px" value="${employee.lastName}">
+    </label> <br>
         <p class="error_massage">${errors.get("lastName")}</p>
-        Please enter your email:  <input type="text" name="email" class="input_param" size="15px" value="${employee.email}"> <br>
+        Please enter your email: <label>
+        <input type="text" name="email" class="input_param" size="15px" value="${employee.email}">
+    </label> <br>
         <p class="error_massage">${errors.get("email")}</p>
-        Please enter your salary:  <input type="number" name="salary" class="input_param" size="15px" step="0.01" value="${employee.salary}"> <br><br>
+        Please enter your salary: <label>
+        <input type="number" name="salary" class="input_param" size="15px" step="0.01" value="${employee.salary}">
+    </label> <br><br>
         <p class="error_massage">${errors.get("salary")}</p>
-        Please enter your hire date:  <input type="date" name="hireDate" class="input_param" size="15px" value="${employee.hireDate}"> <br><br>
+        Please enter your hire date: <label>
+        <input type="date" name="hireDate" class="input_param" size="15px" value="${employee.hireDate}">
+    </label> <br><br>
         <p class="error_massage">${errors.get("hireDate")}</p>
-        Please enter your department name:  <input list="idDepartments" name="departmentName" class="input_param" size="15px"> <br><br>
+        Please enter your department name: <label>
+        <input list="idDepartments" name="departmentName" class="input_param" size="15px">
+    </label> <br><br>
         <datalist id="idDepartments">
             <c:forEach var="department" items="${requestScope.departments}">
                 <option value="${department.name}" name="${department}" >

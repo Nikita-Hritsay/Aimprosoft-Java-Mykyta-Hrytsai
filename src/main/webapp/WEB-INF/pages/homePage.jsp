@@ -16,14 +16,14 @@
     <a class="header_ref" href="createOrUpdateDepartmentForm">Add Department</a>
 </div>
 
-<div align="center" style="margin-top: 50px;">
+<div style="margin-top: 50px;">
 
     <c:if test="${empty departments}">
         <p>Empty</p>
     </c:if>
 
     <c:if test="${!empty departments}">
-        <table border="1">
+        <table >
             <tr>
                 <th>Name</th>
                 <th>Address</th>

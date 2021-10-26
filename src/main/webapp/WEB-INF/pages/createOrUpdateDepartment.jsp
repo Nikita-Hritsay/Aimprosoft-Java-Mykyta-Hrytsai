@@ -25,11 +25,17 @@
 <div style="margin-top: 50px;" class="createOrUpdateForm">
     <form action="createOrUpdateDepartment" method="post" >
         <input name="id" class="input_param_id" value="${idDepartment}" type="hidden">
-        Please enter name of department: <input type="text" name="name" class="input_param" size="15px"
-                                                     value="${department.name}"> <br>
+        Please enter name of department: <label>
+        <input type="text" name="name" class="input_param" size="15px"
+                                                     value="${department.name}">
+            </label>
+        <br>
         <p class="error_massage">${errors.get("name")}</p>
-        Please enter address of department: <input type="text" name="address" class="input_param" size="15px"
-                                                        value="${department.address}"> <br>
+        Please enter address of department: <label>
+        <input type="text" name="address" class="input_param" size="15px"
+                                                        value="${department.address}">
+        </label>
+        <br>
         <p class="error_massage">${errors.get("address")}</p>
         <input type="submit" class="submit_createOrUpdate" value="submit">
     </form>

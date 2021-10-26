@@ -52,6 +52,10 @@ table {
     text-align: center;
 }
 
+label{
+    width: 100%;
+}
+
 th {
     background: #AFCDE7;
     color: white;

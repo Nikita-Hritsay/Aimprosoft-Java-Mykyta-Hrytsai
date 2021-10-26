@@ -5,7 +5,7 @@
   Time: 14:14
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
@@ -27,12 +27,12 @@
     <a class="header_ref_del" href="deleteDepartment?idDepartment=${idDepartment}">Delete this department </a>
 </div>
 
-<div align="center" style="margin-top: 50px;">
+<div style="margin-top: 50px;">
     <c:if test="${empty employees}">
         <p>Empty</p>
     </c:if>
     <c:if test="${!empty requestScope.employees}">
-        <table border="1">
+        <table >
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
