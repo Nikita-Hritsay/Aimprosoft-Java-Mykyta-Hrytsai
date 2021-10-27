@@ -13,11 +13,11 @@ public interface EmployeeDAO {
 
     List<Employee> getByIdDepartment(int id) throws DBException;
 
-    void add(Employee employee) throws DBException;
+    void saveOrUpdate(Employee employee) throws DBException;
 
     void deleteEmployee(int id) throws DBException;
 
-    void updateEmployee(Employee employee) throws DBException;
+    //void updateEmployee(Employee employee) throws DBException;
 
     boolean existsByEmail(Employee employee) throws DBException;
 

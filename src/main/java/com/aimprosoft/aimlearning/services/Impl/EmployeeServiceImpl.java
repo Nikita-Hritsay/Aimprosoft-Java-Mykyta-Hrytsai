@@ -1,6 +1,6 @@
 package com.aimprosoft.aimlearning.services.Impl;
 
-import com.aimprosoft.aimlearning.dao.Impl.EmployeeDAOImpl;
+import com.aimprosoft.aimlearning.dao.Impl.HibernateEmployeeDAOImpl;
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Employee;
@@ -10,7 +10,8 @@ import com.aimprosoft.aimlearning.validations.ModelValidator;
 import java.util.List;
 
 public class EmployeeServiceImpl implements EmployeeService {
-    private final EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
+    //private final EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
+    private final HibernateEmployeeDAOImpl employeeDAO = new HibernateEmployeeDAOImpl();
     private final ModelValidator<Employee> modelValidator = new ModelValidator<>();
 
     @Override
@@ -30,7 +31,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void add(Employee employee) throws DBException {
-        employeeDAO.add(employee);
+        employeeDAO.saveOrUpdate(employee);
     }
 
     @Override

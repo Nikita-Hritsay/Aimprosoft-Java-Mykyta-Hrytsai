@@ -10,11 +10,19 @@ import net.sf.oval.constraint.Length;
 import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
 
+import javax.persistence.*;
+import java.io.Serializable;
+
 @Data
 @With
 @AllArgsConstructor
 @NoArgsConstructor
-public class Department {
+@Entity
+@Table(name = "department")
+public class Department implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "iddepartment")
     private Integer idDepartment;
 
     @NotEmpty(message = "Name can not be empty")

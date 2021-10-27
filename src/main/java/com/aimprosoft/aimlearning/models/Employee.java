@@ -16,8 +16,13 @@ import java.util.Date;
 @With
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "employee")
 public class Employee {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "idemployee")
     private Integer id;
 
     @NotEmpty(message = "Firstname can not be empty")
@@ -49,7 +54,7 @@ public class Employee {
     @NotEmpty(message = "Id department can not be empty")
     @NotNull(message = "Id department can not be null")
     @Min(value = 1, message = "Id department can not be null")
-    @Column(name = "department_idDepartment")
+    @Column(name = "department_iddepartment")
     private Integer idDepartment;
 
 }

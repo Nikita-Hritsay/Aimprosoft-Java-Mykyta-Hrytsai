@@ -12,17 +12,19 @@ import java.util.List;
 
 public class DepartmentDAOImpl implements DepartmentDAO {
 
-    private static final String FIND_ALL = "select iddepartment, name, address from department";
-    private static final String FIND_DEPARTMENT_BY_ID = "select iddepartment, name, address from department where iddepartment = ?";
-    private static final String ADD_DEPARTMENT = "insert into department(name, address) values(?, ?)";
-    private static final String UPDATE_DEPARTMENT = "update department set name = ?, address = ? where iddepartment = ?";
-    private static final String DELETE_DEPARTMENT = "delete from department where iddepartment = ?";
-    private static final String EXISTS_BY_NAME = "select iddepartment from department where name = ?";
-    private static final String FIND_DEPARTMENT_BY_NAME = "select iddepartment, name, address from department where name = ?";
+    private ConnectionFactory connectionFactory = new ConnectionFactory();
+
+    private final String FIND_ALL = "select iddepartment, name, address from department";
+    private final String FIND_DEPARTMENT_BY_ID = "select iddepartment, name, address from department where iddepartment = ?";
+    private final String ADD_DEPARTMENT = "insert into department(name, address) values(?, ?)";
+    private final String UPDATE_DEPARTMENT = "update department set name = ?, address = ? where iddepartment = ?";
+    private final String DELETE_DEPARTMENT = "delete from department where iddepartment = ?";
+    private final String EXISTS_BY_NAME = "select iddepartment from department where name = ?";
+    private final String FIND_DEPARTMENT_BY_NAME = "select iddepartment, name, address from department where name = ?";
 
     @Override
     public List<Department> getAllDepartments() throws DBException {
-        try (Connection connection = ConnectionFactory.getConnection();
+        try (Connection connection = connectionFactory.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(FIND_ALL)) {
             List<Department> result = new ArrayList<>();
@@ -39,7 +41,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public void addDepartment(Department department) throws DBException {
-        try (Connection connection = ConnectionFactory.getConnection();
+        try (Connection connection = connectionFactory.getConnection();
              PreparedStatement preparedStatement = setupPreparedStatement(department, connection, ADD_DEPARTMENT)) {
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
@@ -49,7 +51,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public void deleteDepartment(int id) throws DBException {
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = connectionFactory.getConnection();
              PreparedStatement preparedStatement = conn.prepareStatement(DELETE_DEPARTMENT)) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
@@ -58,9 +60,9 @@ public class DepartmentDAOImpl implements DepartmentDAO {
         }
     }
 
-    @Override
+    //@Override
     public void updateDepartment(Department department) throws DBException {
-        try (Connection conn = ConnectionFactory.getConnection();
+        try (Connection conn = connectionFactory.getConnection();
              PreparedStatement statement = setupPreparedStatement(department, conn, UPDATE_DEPARTMENT)) {
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -69,8 +71,8 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public Department getDepartmentById(int id) throws DBException {
-        try (Connection connection = ConnectionFactory.getConnection();
+    public Department getDepartmentById(Integer id) throws DBException {
+        try (Connection connection = connectionFactory.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_DEPARTMENT_BY_ID)) {
             ResultSet resultSet;
             statement.setInt(1, id);
@@ -84,19 +86,20 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public boolean existsByName(Department department) throws DBException {
-        try (Connection connection = ConnectionFactory.getConnection();
+        try (Connection connection = connectionFactory.getConnection();
              PreparedStatement statement = connection.prepareStatement(EXISTS_BY_NAME)) {
             ResultSet resultSet;
             statement.setString(1, department.getName());
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Integer id = NumberUtils.getInt(resultSet.getString("iddepartment"));
-                if (id != null && !id.equals(department.getIdDepartment())) {
+                if (id != null && id != department.getIdDepartment()) {
                     return true;
                 }
             }
             return false;
         } catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
             throw new DBException("Error in exists by name Department: " + sqlException.getMessage());
         }
     }
@@ -112,10 +115,10 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public Department getDepartmentByName(String name) throws DBException {
-        if (name.isEmpty()) {
+        if (name.equals("")) {
             return new Department();
         }
-        try (Connection connection = ConnectionFactory.getConnection();
+        try (Connection connection = connectionFactory.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_DEPARTMENT_BY_NAME)) {
             statement.setString(1, name);
             ResultSet resultSet = statement.executeQuery();
