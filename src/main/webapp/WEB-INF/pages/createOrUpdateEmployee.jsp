@@ -55,7 +55,7 @@
             <option value="${department.name}" name="${department}">
                 </c:forEach>
         </datalist>
-        <p class="error_massage">${errors.idDepartment}</p>
+        <p class="error_massage">${errors.department}</p>
         <input type="submit" class="submit_createOrUpdate" value="submit">
     </form>
 </div>

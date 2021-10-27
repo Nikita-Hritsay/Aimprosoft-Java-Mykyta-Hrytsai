@@ -36,7 +36,7 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
     @Override
     public List<Employee> getByIdDepartment(int id) throws DBException {
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
-            return session.createQuery("FROM Employee where idDepartment =" + id).list();
+            return session.createQuery("FROM Employee where department.idDepartment =" + id).list();
         } catch (Exception e) {
             throw new DBException(e.getMessage());
         }

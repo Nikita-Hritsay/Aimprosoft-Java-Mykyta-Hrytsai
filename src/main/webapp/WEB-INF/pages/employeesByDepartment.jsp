@@ -50,7 +50,7 @@
                     <td><c:out value="${employee.email}"/></td>
                     <td><c:out value="${employee.salary}"/></td>
                     <td><c:out value="${employee.hireDate}"/></td>
-                    <td><c:out value="${employee.idDepartment}"/></td>
+                    <td><c:out value="${employee.department.idDepartment}"/></td>
                     <td><a href="createOrUpdateEmployeeForm?id=${employee.id}" class="update_button"> Update </a></td>
 
                     <td>

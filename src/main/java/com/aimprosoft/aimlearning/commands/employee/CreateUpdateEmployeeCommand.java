@@ -57,7 +57,7 @@ public class CreateUpdateEmployeeCommand implements ICommand {
                     .withEmail(request.getParameter("email"))
                     .withSalary(request.getParameter("salary").isEmpty() ? new BigDecimal("0") : NumberUtils.getBigDecimal(request.getParameter("salary")))
                     .withHireDate(request.getParameter("hireDate").isEmpty() ? null : new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("hireDate")))
-                    .withIdDepartment(department == null ? 0 : department.getIdDepartment() );
+                    .withDepartment(department);
         } catch (ParseException e) {
             e.printStackTrace();
         }

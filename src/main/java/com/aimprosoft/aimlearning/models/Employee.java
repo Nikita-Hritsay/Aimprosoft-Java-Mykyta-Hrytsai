@@ -53,10 +53,10 @@ public class Employee {
     @NotNull(message = "Hire date can not be null")
     private Date hireDate;
 
-    @NotEmpty(message = "Id department can not be empty")
-    @NotNull(message = "Id department can not be null")
-    @Min(value = 1, message = "Id department can not be null")
-    @Column(name = "department_iddepartment")
-    private Integer idDepartment;
+    @NotEmpty(message = "Hire date can not be empty")
+    @NotNull(message = "Hire date can not be null")
+    @JoinColumn(name = "department_iddepartment")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Department department;
 
 }

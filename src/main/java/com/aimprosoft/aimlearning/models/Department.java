@@ -1,20 +1,20 @@
 package com.aimprosoft.aimlearning.models;
 
 import com.aimprosoft.aimlearning.validations.department.IsUniqueName;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.With;
+import lombok.*;
 import net.sf.oval.constraint.CheckWith;
 import net.sf.oval.constraint.Length;
 import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @With
@@ -39,5 +39,10 @@ public class Department implements Serializable {
     @NotNull(message = "Address can not be null")
     @Length(max = 200, message = "Address can not be greater than 200")
     private String address;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "department")
+    @Fetch(FetchMode.JOIN)
+    @ToString.Exclude
+    private List<Employee> employees;
 
 }
