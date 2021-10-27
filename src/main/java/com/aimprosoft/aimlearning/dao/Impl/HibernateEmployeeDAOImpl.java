@@ -6,15 +6,12 @@ import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Employee;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import java.util.List;
 import java.util.Objects;
 
 public class HibernateEmployeeDAOImpl implements EmployeeDAO {
-
-    //SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
 
     @Override
     public List<Employee> getAllEmployees() throws DBException {

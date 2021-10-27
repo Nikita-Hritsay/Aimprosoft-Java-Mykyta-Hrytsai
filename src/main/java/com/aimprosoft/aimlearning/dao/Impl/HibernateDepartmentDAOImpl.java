@@ -12,8 +12,6 @@ import java.util.Objects;
 
 public class HibernateDepartmentDAOImpl implements DepartmentDAO {
 
-    //SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
-
     @Override
     public List<Department> getAllDepartments() throws DBException {
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
