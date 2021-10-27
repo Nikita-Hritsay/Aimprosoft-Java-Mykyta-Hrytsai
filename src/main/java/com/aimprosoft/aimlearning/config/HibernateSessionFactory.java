@@ -12,9 +12,6 @@ public class HibernateSessionFactory implements Serializable {
 
     private static SessionFactory sessionFactory;
 
-    public HibernateSessionFactory() {
-    }
-
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
