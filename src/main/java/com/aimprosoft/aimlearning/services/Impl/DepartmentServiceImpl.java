@@ -36,6 +36,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
+    public List<String> getDepartmentNameByEmployeeId(List<Integer> id) throws DBException {
+        return departmentDAO.getDepartmentNameByEmployeeId(id);
+    }
+
+    @Override
     public Department getDepartmentByName(String name) throws DBException {
         return departmentDAO.getDepartmentByName(name);
     }

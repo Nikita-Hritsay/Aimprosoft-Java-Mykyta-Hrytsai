@@ -2,8 +2,6 @@ package com.aimprosoft.aimlearning.commands.employee;
 
 import com.aimprosoft.aimlearning.commands.ICommand;
 import com.aimprosoft.aimlearning.exceptions.DBException;
-import com.aimprosoft.aimlearning.models.Department;
-import com.aimprosoft.aimlearning.models.Employee;
 import com.aimprosoft.aimlearning.services.Impl.DepartmentServiceImpl;
 import com.aimprosoft.aimlearning.services.Impl.EmployeeServiceImpl;
 
@@ -24,13 +22,16 @@ public class DisplayEmployeeCommand implements ICommand {
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DBException {
         request.setAttribute("employees", employeeService.getAllEmployees());
         request.setAttribute("departmentEmployeeMap", createEmployeeDepartmentMap());
+        createEmployeeDepartmentMap();
         request.getRequestDispatcher("/WEB-INF/pages/allEmployees.jsp").forward(request, response);
     }
 
-    private Map<Department, List<Employee>> createEmployeeDepartmentMap() throws DBException {
-        Map<Department, List<Employee>> result = new HashMap<>();
-        for(Department department: departmentService.getAllDepartments()){
-            result.put(department, employeeService.getByIdDepartment(department.getIdDepartment()));
+    private Map<Integer, String> createEmployeeDepartmentMap() throws DBException {
+        Map<Integer, String> result = new HashMap<>();
+        List<Integer> ids = employeeService.getAllEmployeesIds();
+        List<String> names = departmentService.getDepartmentNameByEmployeeId(ids);
+        for(int i = 0 ; i < ids.size(); i ++) {
+            result.put(ids.get(i), names.get(i));
         }
         return result;
     }

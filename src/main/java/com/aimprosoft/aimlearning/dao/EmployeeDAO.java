@@ -22,4 +22,6 @@ public interface EmployeeDAO {
     boolean existsByEmail(Employee employee) throws DBException;
 
     void createOrUpdate(Employee employee) throws ValidationException, DBException;
+
+    List<Integer> getEmployeesIds() throws DBException;
 }

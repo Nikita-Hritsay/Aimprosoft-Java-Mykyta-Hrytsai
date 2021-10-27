@@ -18,4 +18,6 @@ public interface EmployeeService {
     void deleteEmployee(int id) throws DBException;
 
     void createOrUpdate(Employee employee) throws ValidationException, DBException;
+
+    List<Integer> getAllEmployeesIds() throws DBException;
 }

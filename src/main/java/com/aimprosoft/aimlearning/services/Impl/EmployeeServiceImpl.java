@@ -43,4 +43,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         modelValidator.validate(employee);
         employeeDAO.createOrUpdate(employee);
     }
+
+    @Override
+    public List getAllEmployeesIds() throws DBException {
+        return employeeDAO.getEmployeesIds();
+    }
 }

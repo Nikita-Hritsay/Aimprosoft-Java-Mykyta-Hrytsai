@@ -19,6 +19,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     private static final String UPDATE_EMPLOYEE = "update employee set firstName = ?, lastName = ?, email = ?, salary = ?, hireDate = ?, department_iddepartment = ? where idemployee = ?";
     private static final String GET_ALL_EMAILS = "select idemployee from employee where email = ?";
     private static final String FIND_BY_IDDEPARTMENT = "select idemployee, firstName, lastName, email, salary, hireDate, department_iddepartment from employee where department_iddepartment = ?";
+    private static final String FIND_ALL_EMPLOYEES_IDS = "select idemployee from employee";
 
     @Override
     public List<Employee> getAllEmployees() throws DBException {
@@ -120,6 +121,21 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             updateEmployee(employee);
         } else {
             add(employee);
+        }
+    }
+
+    @Override
+    public List<Integer> getEmployeesIds() throws DBException {
+        try (Connection connection = ConnectionFactory.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(FIND_ALL_EMPLOYEES_IDS)) {
+            List<Integer> ids = new ArrayList<>();
+            while (resultSet.next()){
+                ids.add(resultSet.getInt(1));
+            }
+            return ids;
+        } catch (SQLException sqlException) {
+            throw new DBException("Error in get All Employees: " + sqlException.getMessage());
         }
     }
 

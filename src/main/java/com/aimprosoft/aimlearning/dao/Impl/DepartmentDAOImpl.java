@@ -19,6 +19,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     private static final String DELETE_DEPARTMENT = "delete from department where iddepartment = ?";
     private static final String EXISTS_BY_NAME = "select iddepartment from department where name = ?";
     private static final String FIND_DEPARTMENT_BY_NAME = "select iddepartment, name, address from department where name = ?";
+    private static final String FIND_DEPARTMENT_NAME_BY_EMPLOYEE_ID = "select name from department where iddepartment = (select department_iddepartment from employee where idemployee = ? )";
 
     @Override
     public List<Department> getAllDepartments() throws DBException {
@@ -77,6 +78,24 @@ public class DepartmentDAOImpl implements DepartmentDAO {
             resultSet = statement.executeQuery();
             resultSet.next();
             return new Department().withIdDepartment(resultSet.getInt(1)).withName(resultSet.getString(2)).withAddress(resultSet.getString(3));
+        } catch (SQLException sqlException) {
+            throw new DBException("Error in get Department by id: " + sqlException.getMessage());
+        }
+    }
+
+    @Override
+    public List<String> getDepartmentNameByEmployeeId(List<Integer> id) throws DBException {
+        try (Connection connection = ConnectionFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_DEPARTMENT_NAME_BY_EMPLOYEE_ID)) {
+            ResultSet resultSet;
+            List<String> result = new ArrayList<>();
+            for (Integer idEmployee: id){
+                statement.setInt(1, idEmployee);
+                resultSet = statement.executeQuery();
+                resultSet.next();
+                result.add(resultSet.getString(1));
+            }
+            return result;
         } catch (SQLException sqlException) {
             throw new DBException("Error in get Department by id: " + sqlException.getMessage());
         }
