@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import java.util.List;
+import java.util.Objects;
 
 public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
@@ -18,9 +19,8 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public List<Employee> getAllEmployees() throws DBException {
-        try (Session session = sessionFactory.openSession();) {
-            List<Employee> employees = session.createQuery("FROM Employee", Employee.class).list();
-            return employees;
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery("FROM Employee", Employee.class).list();
         } catch (Exception e) {
             throw new DBException(e.getMessage());
         }
@@ -28,9 +28,8 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public Employee getById(int id) throws DBException {
-        try (Session session = sessionFactory.openSession();) {
-            Employee employee = (Employee) session.createQuery("FROM Employee where id=" + id).uniqueResult();
-            return employee;
+        try (Session session = sessionFactory.openSession()) {
+            return (Employee) session.createQuery("FROM Employee where id=" + id).uniqueResult();
         } catch (Exception e) {
             throw new DBException(e.getMessage());
         }
@@ -38,9 +37,8 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public List<Employee> getByIdDepartment(int id) throws DBException {
-        try (Session session = sessionFactory.openSession();) {
-            List<Employee> employees = session.createQuery("FROM Employee where idDepartment =" + id).list();
-            return employees;
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery("FROM Employee where idDepartment =" + id).list();
         } catch (Exception e) {
             throw new DBException(e.getMessage());
         }
@@ -49,11 +47,12 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
     @Override
     public void saveOrUpdate(Employee employee) throws DBException {
         Transaction transaction = null;
-        try (Session session = sessionFactory.openSession();) {
+        try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
             session.saveOrUpdate(employee);
             transaction.commit();
         } catch (Exception e) {
+            assert transaction != null;
             transaction.rollback();
             throw new DBException(e.getMessage());
         }
@@ -62,11 +61,12 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
     @Override
     public void deleteEmployee(int id) throws DBException {
         Transaction transaction = null;
-        try (Session session = sessionFactory.openSession();) {
+        try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
             session.delete(getById(id));
             transaction.commit();
         } catch (Exception e) {
+            assert transaction != null;
             transaction.rollback();
             throw new DBException(e.getMessage());
         }
@@ -76,10 +76,7 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
     public boolean existsByEmail(Employee employee) throws DBException {
         try (Session session = sessionFactory.openSession()) {
             Employee check = (Employee) session.createQuery("FROM Employee where email='" + employee.getEmail() + "'").uniqueResult();
-            if (check != null && check.getEmail() != employee.getEmail()) {
-                return true;
-            }
-            return false;
+            return check != null && !Objects.equals(check.getId(), employee.getId());
         } catch (Exception e) {
             throw new DBException(e.getMessage());
         }
