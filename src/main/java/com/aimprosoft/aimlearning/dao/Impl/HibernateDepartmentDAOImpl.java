@@ -12,6 +12,8 @@ import java.util.Objects;
 
 public class HibernateDepartmentDAOImpl implements DepartmentDAO {
 
+    private Transaction transaction = null;
+
     @Override
     public List<Department> getAllDepartments() throws DBException {
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
@@ -22,8 +24,7 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public void addDepartment(Department department) throws DBException {
-        Transaction transaction = null;
+    public void saveOrUpdate(Department department) throws DBException {
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.saveOrUpdate(department);
@@ -47,7 +48,7 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
     @Override
     public Department getDepartmentByName(String name) throws DBException {
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
-            return  (Department) session.createQuery("FROM Department where name='" + name + "'").uniqueResult();
+            return (Department) session.createQuery("FROM Department where name='" + name + "'").uniqueResult();
         } catch (Exception e) {
             throw new DBException(e.getMessage());
         }
@@ -55,7 +56,6 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public void deleteDepartment(int id) throws DBException {
-        Transaction transaction = null;
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.delete(getDepartmentById(id));
@@ -79,6 +79,6 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public void createOrUpdate(Department department) throws ValidationException, DBException {
-        addDepartment(department);
+        saveOrUpdate(department);
     }
 }

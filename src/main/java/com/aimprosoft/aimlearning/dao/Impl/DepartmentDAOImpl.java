@@ -38,7 +38,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public void addDepartment(Department department) throws DBException {
+    public void saveOrUpdate(Department department) throws DBException {
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = setupPreparedStatement(department, connection, ADD_DEPARTMENT)) {
             preparedStatement.executeUpdate();
@@ -106,7 +106,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
         if (department.getIdDepartment() != null) {
             updateDepartment(department);
         } else {
-            addDepartment(department);
+            saveOrUpdate(department);
         }
     }
 

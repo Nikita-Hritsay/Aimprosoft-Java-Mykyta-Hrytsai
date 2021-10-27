@@ -13,6 +13,8 @@ import java.util.Objects;
 
 public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
+    private Transaction transaction = null;
+
     @Override
     public List<Employee> getAllEmployees() throws DBException {
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
@@ -42,7 +44,6 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public void saveOrUpdate(Employee employee) throws DBException {
-        Transaction transaction = null;
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.saveOrUpdate(employee);
@@ -56,7 +57,6 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public void deleteEmployee(int id) throws DBException {
-        Transaction transaction = null;
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.delete(getById(id));
