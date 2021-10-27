@@ -12,11 +12,11 @@ import java.util.Objects;
 
 public class HibernateDepartmentDAOImpl implements DepartmentDAO {
 
-    SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
+    //SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
 
     @Override
     public List<Department> getAllDepartments() throws DBException {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
             return session.createQuery("FROM Department ", Department.class).list();
         } catch (Exception e) {
             throw new DBException(e.getMessage());
@@ -26,7 +26,7 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
     @Override
     public void addDepartment(Department department) throws DBException {
         Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.saveOrUpdate(department);
             transaction.commit();
@@ -39,7 +39,7 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public Department getDepartmentById(Integer id) throws DBException {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
             return (Department) session.createQuery("FROM Department where idDepartment=" + id).uniqueResult();
         } catch (Exception e) {
             throw new DBException(e.getMessage());
@@ -48,7 +48,7 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public Department getDepartmentByName(String name) throws DBException {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
             return  (Department) session.createQuery("FROM Department where name='" + name + "'").uniqueResult();
         } catch (Exception e) {
             throw new DBException(e.getMessage());
@@ -58,7 +58,7 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
     @Override
     public void deleteDepartment(int id) throws DBException {
         Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.delete(getDepartmentById(id));
             transaction.commit();
@@ -71,7 +71,7 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public boolean existsByName(Department department) throws DBException {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
             Department check = (Department) session.createQuery("FROM Department where name='" + department.getName() + "'").uniqueResult();
             return check != null && !Objects.equals(check.getIdDepartment(), department.getIdDepartment());
         } catch (Exception e) {
