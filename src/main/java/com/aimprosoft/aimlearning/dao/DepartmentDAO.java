@@ -19,8 +19,6 @@ public interface DepartmentDAO {
 
     void deleteDepartment(int id) throws DBException;
 
-    List<String> getDepartmentNameByEmployeeId(List<Integer> id) throws DBException;
-
     boolean existsByName(Department department) throws DBException;
 
     void createOrUpdate(Department department) throws ValidationException, DBException;

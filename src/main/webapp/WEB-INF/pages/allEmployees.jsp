@@ -41,7 +41,6 @@
             </tr>
             <c:forEach var="employee" items="${requestScope.employees}">
                 <tr>
-                    <td><c:out value="${employee.id}"/></td>
                     <td><c:out value="${employee.firstName}"/></td>
                     <td><c:out value="${employee.lastName}"/></td>
                     <td><c:out value="${employee.email}"/></td>

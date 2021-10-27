@@ -21,19 +21,11 @@ public class DisplayEmployeeCommand implements ICommand {
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DBException {
         request.setAttribute("employees", employeeService.getAllEmployees());
-        request.setAttribute("departmentEmployeeMap", createEmployeeDepartmentMap());
-        createEmployeeDepartmentMap();
+        request.setAttribute("departmentEmployeeMap", employeeService.getMapDepartmentIdByEmployeeName());
+        System.out.println(employeeService.getMapDepartmentIdByEmployeeName());
         request.getRequestDispatcher("/WEB-INF/pages/allEmployees.jsp").forward(request, response);
     }
 
-    private Map<Integer, String> createEmployeeDepartmentMap() throws DBException {
-        Map<Integer, String> result = new HashMap<>();
-        List<Integer> ids = employeeService.getAllEmployeesIds();
-        List<String> names = departmentService.getDepartmentNameByEmployeeId(ids);
-        for(int i = 0 ; i < ids.size(); i ++) {
-            result.put(ids.get(i), names.get(i));
-        }
-        return result;
-    }
+
 
 }

@@ -84,24 +84,6 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public List<String> getDepartmentNameByEmployeeId(List<Integer> id) throws DBException {
-        try (Connection connection = ConnectionFactory.getConnection();
-             PreparedStatement statement = connection.prepareStatement(FIND_DEPARTMENT_NAME_BY_EMPLOYEE_ID)) {
-            ResultSet resultSet;
-            List<String> result = new ArrayList<>();
-            for (Integer idEmployee: id){
-                statement.setInt(1, idEmployee);
-                resultSet = statement.executeQuery();
-                resultSet.next();
-                result.add(resultSet.getString(1));
-            }
-            return result;
-        } catch (SQLException sqlException) {
-            throw new DBException("Error in get Department by id: " + sqlException.getMessage());
-        }
-    }
-
-    @Override
     public boolean existsByName(Department department) throws DBException {
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement statement = connection.prepareStatement(EXISTS_BY_NAME)) {

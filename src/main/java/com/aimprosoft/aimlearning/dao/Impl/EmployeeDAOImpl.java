@@ -8,7 +8,9 @@ import com.aimprosoft.aimlearning.models.Employee;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
 
@@ -19,7 +21,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     private static final String UPDATE_EMPLOYEE = "update employee set firstName = ?, lastName = ?, email = ?, salary = ?, hireDate = ?, department_iddepartment = ? where idemployee = ?";
     private static final String GET_ALL_EMAILS = "select idemployee from employee where email = ?";
     private static final String FIND_BY_IDDEPARTMENT = "select idemployee, firstName, lastName, email, salary, hireDate, department_iddepartment from employee where department_iddepartment = ?";
-    private static final String FIND_ALL_EMPLOYEES_IDS = "select idemployee from employee";
+    private static final String FIND_DEPARTMENTNAME_BY_EMPLOYEE_ID = "select idemployee, name from employee join department on department.iddepartment = employee.department_iddepartment";
 
     @Override
     public List<Employee> getAllEmployees() throws DBException {
@@ -125,15 +127,16 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public List<Integer> getEmployeesIds() throws DBException {
+    public Map<Integer, String> getMapDepartmentIdByEmployeeName() throws DBException {
+
         try (Connection connection = ConnectionFactory.getConnection();
              Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(FIND_ALL_EMPLOYEES_IDS)) {
-            List<Integer> ids = new ArrayList<>();
-            while (resultSet.next()){
-                ids.add(resultSet.getInt(1));
+             ResultSet resultSet = statement.executeQuery(FIND_DEPARTMENTNAME_BY_EMPLOYEE_ID)) {
+            Map<Integer, String> result = new HashMap<>();
+            while (resultSet.next()) {
+                result.put(resultSet.getInt(1), resultSet.getString(2));
             }
-            return ids;
+            return result;
         } catch (SQLException sqlException) {
             throw new DBException("Error in get All Employees: " + sqlException.getMessage());
         }
