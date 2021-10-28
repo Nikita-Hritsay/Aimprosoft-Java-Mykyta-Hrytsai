@@ -100,8 +100,7 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
             }
             return result;
         }catch (Exception e){
-            e.printStackTrace();
+            throw new DBException(e.getMessage());
         }
-        return new HashMap<>();
     }
 }
