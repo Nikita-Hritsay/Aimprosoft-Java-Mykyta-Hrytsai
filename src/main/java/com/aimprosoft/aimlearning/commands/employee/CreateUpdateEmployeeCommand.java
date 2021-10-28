@@ -27,8 +27,7 @@ public class CreateUpdateEmployeeCommand implements ICommand {
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DBException {
         Employee employee = null;
         try {
-            Department department = getDepartment(request);
-            employee = getEmployee(request, department);
+            employee = getEmployee(request);
             employeeService.createOrUpdate(employee);
             response.sendRedirect("/displayAllDepartments");
         } catch (ValidationException exception) {
@@ -42,13 +41,14 @@ public class CreateUpdateEmployeeCommand implements ICommand {
 
     private Department getDepartment(HttpServletRequest request) throws DBException {
         try {
+            System.out.println( "dep " + departmentService.getDepartmentById(NumberUtils.getInt(request.getParameter("idDepartment"))));
             return departmentService.getDepartmentById(NumberUtils.getInt(request.getParameter("idDepartment")));
         } catch (DBException e) {
             throw new DBException(e.getMessage());
         }
     }
 
-    private Employee getEmployee(HttpServletRequest request, Department department) {
+    private Employee getEmployee(HttpServletRequest request) throws DBException {
         try {
             return new Employee()
                     .withId(NumberUtils.getInt(request.getParameter("id")))
@@ -57,7 +57,7 @@ public class CreateUpdateEmployeeCommand implements ICommand {
                     .withEmail(request.getParameter("email"))
                     .withSalary(request.getParameter("salary").isEmpty() ? new BigDecimal("0") : NumberUtils.getBigDecimal(request.getParameter("salary")))
                     .withHireDate(request.getParameter("hireDate").isEmpty() ? null : new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("hireDate")))
-                    .withDepartment(department);
+                    .withDepartment(getDepartment(request));
         } catch (ParseException e) {
             e.printStackTrace();
         }
