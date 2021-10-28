@@ -13,8 +13,6 @@ public interface DepartmentDAO {
 
     Department getDepartmentById(Integer id) throws DBException;
 
-    Department getDepartmentByName(String name) throws DBException;
-
     void updateDepartment(Department department) throws DBException;
 
     void deleteDepartment(int id) throws DBException;

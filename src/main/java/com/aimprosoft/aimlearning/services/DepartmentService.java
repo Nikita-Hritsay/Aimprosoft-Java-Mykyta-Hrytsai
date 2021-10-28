@@ -13,7 +13,5 @@ public interface DepartmentService {
 
     void deleteDepartment(int id) throws DBException;
 
-    Department getDepartmentByName(String name) throws DBException;
-
     void createOrUpdate(Department department) throws ValidationException, DBException;
 }
