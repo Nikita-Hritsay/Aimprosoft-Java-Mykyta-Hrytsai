@@ -52,7 +52,7 @@
     </label> <br><br>
         <datalist id="idDepartments">
             <c:forEach var="department" items="${requestScope.departments}">
-                <option value="${department.idDepartment}" hidden="hidden">${department.name}</option>
+                <option value="${department.idDepartment}">${department.name}</option>
                 </c:forEach>
         </datalist>
         <p class="error_massage">${errors.idDepartment}</p>
