@@ -5,10 +5,14 @@ import com.aimprosoft.aimlearning.dao.EmployeeDAO;
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Employee;
+
+import com.aimprosoft.aimlearning.utils.NumberUtils;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.hibernate.transform.Transformers;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -88,14 +92,16 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public Map<Integer, String> getMapEmployeeByDepartmentName() throws DBException{
-
-
-        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
-             session.createQuery("FROM Employee emp join fetch emp.department dep" );
-             return null;
-        } catch (Exception e) {
-            throw new DBException(e.getMessage());
+        try {
+            List<Map<Object, Object>> maps = (List<Map<Object, Object>>) HibernateSessionFactory.getSessionFactory().openSession().createQuery("select new map (emp.id as idemployee, dep.name as name) FROM Employee as emp join emp.department as dep").list();
+            Map<Integer, String> result = new HashMap<>();
+            for (Map<Object, Object> obj: maps) {
+                result.put(NumberUtils.getInt(obj.get("idemployee").toString()), obj.get("name").toString());
+            }
+            return result;
+        }catch (Exception e){
+            e.printStackTrace();
         }
-
+        return new HashMap<>();
     }
 }
