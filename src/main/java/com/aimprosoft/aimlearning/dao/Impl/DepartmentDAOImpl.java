@@ -70,14 +70,16 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public Department getDepartmentById(int id) throws DBException {
+    public Department getDepartmentById(Integer id) throws DBException {
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_DEPARTMENT_BY_ID)) {
             ResultSet resultSet;
-            statement.setInt(1, id);
+            statement.setInt(1, id == null ? 0 : id);
             resultSet = statement.executeQuery();
-            resultSet.next();
-            return new Department().withIdDepartment(resultSet.getInt(1)).withName(resultSet.getString(2)).withAddress(resultSet.getString(3));
+            if(resultSet.next()) {
+                return new Department().withIdDepartment(resultSet.getInt(1)).withName(resultSet.getString(2)).withAddress(resultSet.getString(3));
+            }
+            return new Department();
         } catch (SQLException sqlException) {
             throw new DBException("Error in get Department by id: " + sqlException.getMessage());
         }

@@ -11,7 +11,7 @@ public interface DepartmentDAO {
 
     void addDepartment(Department department) throws DBException;
 
-    Department getDepartmentById(int id) throws DBException;
+    Department getDepartmentById(Integer id) throws DBException;
 
     Department getDepartmentByName(String name) throws DBException;
 

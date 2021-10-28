@@ -20,7 +20,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Department getDepartmentById(int id) throws DBException {
+    public Department getDepartmentById(Integer id) throws DBException {
         return departmentDAO.getDepartmentById(id);
     }
 
