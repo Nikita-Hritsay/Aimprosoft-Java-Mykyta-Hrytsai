@@ -21,7 +21,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Department getDepartmentById(int id) throws DBException {
+    public Department getDepartmentById(Integer id) throws DBException {
         return departmentDAO.getDepartmentById(id);
     }
 
@@ -36,8 +36,4 @@ public class DepartmentServiceImpl implements DepartmentService {
         departmentDAO.createOrUpdate(department);
     }
 
-    @Override
-    public Department getDepartmentByName(String name) throws DBException {
-        return departmentDAO.getDepartmentByName(name);
-    }
 }

@@ -110,22 +110,6 @@ public class DepartmentDAOImpl implements DepartmentDAO {
         }
     }
 
-    @Override
-    public Department getDepartmentByName(String name) throws DBException {
-        if (name.isEmpty()) {
-            return new Department();
-        }
-        try (Connection connection = ConnectionFactory.getConnection();
-             PreparedStatement statement = connection.prepareStatement(FIND_DEPARTMENT_BY_NAME)) {
-            statement.setString(1, name);
-            ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            return new Department().withIdDepartment(resultSet.getInt(1)).withName(resultSet.getString(2)).withAddress(resultSet.getString(3));
-        } catch (SQLException sqlException) {
-            throw new DBException("Error in get Department by name: " + sqlException.getMessage());
-        }
-    }
-
     private PreparedStatement setupPreparedStatement(Department department, Connection connection, String query) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, department.getName());

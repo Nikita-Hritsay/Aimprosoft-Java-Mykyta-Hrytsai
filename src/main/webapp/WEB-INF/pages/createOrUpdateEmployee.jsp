@@ -48,12 +48,12 @@
     </label> <br><br>
         <p class="error_massage">${errors.hireDate}</p>
         Please enter your department name: <label>
-        <input list="idDepartments" name="departmentName" class="input_param" size="15px">
+        <input list="idDepartments" name="idDepartment" class="input_param" size="15px">
     </label> <br><br>
         <datalist id="idDepartments">
             <c:forEach var="department" items="${requestScope.departments}">
-            <option value="${department.name}" name="${department}">
-                </c:forEach>
+                <option value="${department.idDepartment}" >${department.name}</option>
+            </c:forEach>
         </datalist>
         <p class="error_massage">${errors.department}</p>
         <input type="submit" class="submit_createOrUpdate" value="submit">

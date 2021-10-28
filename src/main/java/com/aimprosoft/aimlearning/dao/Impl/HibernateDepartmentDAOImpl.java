@@ -38,20 +38,14 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public Department getDepartmentById(Integer id) throws DBException {
-        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
-            return (Department) session.createQuery("FROM Department where idDepartment=" + id).uniqueResult();
-        } catch (Exception e) {
-            throw new DBException(e.getMessage());
+        if (id != null){
+            try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
+                return (Department) session.createQuery("FROM Department where idDepartment=" + id).uniqueResult();
+            } catch (Exception e) {
+                throw new DBException(e.getMessage());
+            }
         }
-    }
-
-    @Override
-    public Department getDepartmentByName(String name) throws DBException {
-        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
-            return (Department) session.createQuery("FROM Department where name='" + name + "'").uniqueResult();
-        } catch (Exception e) {
-            throw new DBException(e.getMessage());
-        }
+        return null;
     }
 
     @Override

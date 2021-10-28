@@ -53,8 +53,8 @@ public class Employee {
     @NotNull(message = "Hire date can not be null")
     private Date hireDate;
 
-    @NotEmpty(message = "Hire date can not be empty")
-    @NotNull(message = "Hire date can not be null")
+    @NotEmpty(message = "Department can not be empty")
+    @NotNull(message = "Department can not be null")
     @JoinColumn(name = "department_iddepartment")
     @ManyToOne(fetch = FetchType.LAZY)
     private Department department;

@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public class NumberUtils {
 
     public static Integer getInt(String num) {
-        if (num != null) {
+        if (!num.equals("")) {
             try {
                 return Integer.valueOf(num);
             } catch (Exception e) {
