@@ -8,6 +8,7 @@ import com.aimprosoft.aimlearning.services.EmployeeService;
 import com.aimprosoft.aimlearning.validations.ModelValidator;
 
 import java.util.List;
+import java.util.Map;
 
 public class EmployeeServiceImpl implements EmployeeService {
     //private final EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
@@ -37,6 +38,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void deleteEmployee(int id) throws DBException {
         employeeDAO.deleteEmployee(id);
+    }
+
+    @Override
+    public Map<Integer, String> getMapEmployeeByDepartmentName() throws DBException {
+        return employeeDAO.getMapEmployeeByDepartmentName();
     }
 
     @Override

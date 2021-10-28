@@ -32,6 +32,7 @@ public class DisplayEmployeeCommand implements ICommand {
         for(Department department: departmentService.getAllDepartments()){
             result.put(department, employeeService.getByIdDepartment(department.getIdDepartment()));
         }
+        employeeService.getMapEmployeeByDepartmentName();
         return result;
     }
 
