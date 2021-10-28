@@ -42,7 +42,8 @@ public class CreateUpdateEmployeeCommand implements ICommand {
 
     private Department getDepartment(HttpServletRequest request) throws DBException {
         try {
-            return departmentService.getDepartmentByName(request.getParameter("departmentName"));
+            System.out.println(request.getParameter("idDepartment"));
+            return departmentService.getDepartmentByName(request.getParameter("idDepartment"));
         } catch (DBException e) {
             throw new DBException(e.getMessage());
         }
