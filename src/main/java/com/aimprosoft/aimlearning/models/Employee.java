@@ -56,7 +56,7 @@ public class Employee {
     @NotEmpty(message = "Department can not be empty")
     @NotNull(message = "Department can not be null")
     @JoinColumn(name = "department_iddepartment")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Department department;
 
 }
