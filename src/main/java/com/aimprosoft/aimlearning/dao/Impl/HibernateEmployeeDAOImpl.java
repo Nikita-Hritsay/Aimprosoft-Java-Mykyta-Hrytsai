@@ -9,8 +9,6 @@ import com.aimprosoft.aimlearning.models.Employee;
 import com.aimprosoft.aimlearning.utils.NumberUtils;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
-import org.hibernate.transform.Transformers;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +18,6 @@ import java.util.Objects;
 public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
     private Transaction transaction = null;
-    private Object Transformers;
 
     @Override
     public List<Employee> getAllEmployees() throws DBException {
