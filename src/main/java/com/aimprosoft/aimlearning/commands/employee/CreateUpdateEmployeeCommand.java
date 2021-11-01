@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -41,7 +42,6 @@ public class CreateUpdateEmployeeCommand implements ICommand {
 
     private Department getDepartment(HttpServletRequest request) throws DBException {
         try {
-            System.out.println("dep " + departmentService.getDepartmentById(NumberUtils.getInt(request.getParameter("idDepartment"))));
             return departmentService.getDepartmentById(NumberUtils.getInt(request.getParameter("idDepartment")));
         } catch (DBException e) {
             throw new DBException(e.getMessage());
@@ -56,7 +56,7 @@ public class CreateUpdateEmployeeCommand implements ICommand {
                     .withLastName(request.getParameter("lastName"))
                     .withEmail(request.getParameter("email"))
                     .withSalary(request.getParameter("salary").isEmpty() ? new BigDecimal("0") : NumberUtils.getBigDecimal(request.getParameter("salary")))
-                    .withHireDate(request.getParameter("hireDate").isEmpty() ? null : new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("hireDate")))
+                    .withHireDate(request.getParameter("hireDate").isEmpty() ? null : new Date(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("hireDate")).getTime()))
                     .withDepartment(getDepartment(request));
         } catch (ParseException e) {
             e.printStackTrace();

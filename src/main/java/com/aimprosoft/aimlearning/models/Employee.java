@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.With;
 import net.sf.oval.constraint.*;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -51,6 +52,7 @@ public class Employee {
 
     @NotEmpty(message = "Hire date can not be empty")
     @NotNull(message = "Hire date can not be null")
+    @Type(type = "date")
     private Date hireDate;
 
     @NotEmpty(message = "Department can not be empty")
