@@ -128,7 +128,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public Map<Integer, String> getMapEmployeeByDepartmentName() throws DBException{
+    public Map<Integer, String> getMapEmployeeByDepartmentName() throws DBException {
         try (Connection connection = ConnectionFactory.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(FIND_DEPARTMENTNAME_BY_EMPLOYEE_ID)) {

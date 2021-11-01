@@ -88,15 +88,15 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public Map<Integer, String> getMapEmployeeByDepartmentName() throws DBException{
+    public Map<Integer, String> getMapEmployeeByDepartmentName() throws DBException {
         try {
             List<Map<Object, Object>> maps = (List<Map<Object, Object>>) HibernateSessionFactory.getSessionFactory().openSession().createQuery("select new map (emp.id as idemployee, dep.name as name) FROM Employee as emp join emp.department as dep").list();
             Map<Integer, String> result = new HashMap<>();
-            for (Map<Object, Object> obj: maps) {
+            for (Map<Object, Object> obj : maps) {
                 result.put(NumberUtils.getInt(obj.get("idemployee").toString()), obj.get("name").toString());
             }
             return result;
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new DBException(e.getMessage());
         }
     }
