@@ -25,11 +25,11 @@
 
 <div style="margin-top: 50px;">
 
-    <c:if test="${empty departmentEmployeeMap}">
+    <c:if test="${empty requestScope.employees}">
         <p>Empty</p>
     </c:if>
 
-    <c:if test="${!empty requestScope.departmentEmployeeMap}">
+    <c:if test="${!empty requestScope.employees}">
         <table>
             <tr>
                 <th>First Name</th>
@@ -46,7 +46,8 @@
                     <td><c:out value="${employee.email}"/></td>
                     <td><c:out value="${employee.salary}"/></td>
                     <td><c:out value="${employee.hireDate}"/></td>
-                    <td><c:out value="${departmentEmployeeMap.get(employee.id)}"/></td>
+                    <td><c:out value="${employee.department.name}"/></td>
+
                 </tr>
             </c:forEach>
         </table>

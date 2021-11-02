@@ -4,6 +4,8 @@ package com.aimprosoft.aimlearning.models;
 import com.aimprosoft.aimlearning.validations.employee.IsUniqueEmail;
 import lombok.*;
 import net.sf.oval.constraint.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -55,6 +57,7 @@ public class Employee {
     @JoinColumn(name = "department_iddepartment")
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
+    @Fetch(FetchMode.JOIN)
     private Department department;
 
 }
