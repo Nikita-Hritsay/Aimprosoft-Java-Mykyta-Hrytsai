@@ -12,8 +12,6 @@ import java.util.Objects;
 
 public class HibernateDepartmentDAOImpl implements DepartmentDAO {
 
-
-
     @Override
     public List<Department> getAllDepartments() throws DBException {
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
@@ -31,8 +29,9 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
             session.saveOrUpdate(department);
             transaction.commit();
         } catch (Exception e) {
-            assert transaction != null;
-            transaction.rollback();
+            if(transaction != null){
+                transaction.rollback();
+            }
             throw new DBException(e.getMessage());
         }
     }
@@ -57,8 +56,9 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
             session.delete(getDepartmentById(id));
             transaction.commit();
         } catch (Exception e) {
-            assert transaction != null;
-            transaction.rollback();
+            if(transaction != null){
+                transaction.rollback();
+            }
             throw new DBException(e.getMessage());
         }
     }

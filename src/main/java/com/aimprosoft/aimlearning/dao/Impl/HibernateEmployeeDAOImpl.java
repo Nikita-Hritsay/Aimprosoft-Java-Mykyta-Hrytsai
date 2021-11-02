@@ -17,8 +17,6 @@ import java.util.Objects;
 
 public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
-    private Transaction transaction = null;
-
     @Override
     public List<Employee> getAllEmployees() throws DBException {
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
@@ -31,7 +29,7 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
     @Override
     public Employee getById(int id) throws DBException {
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
-            return (Employee) session.createQuery("FROM Employee where id=" + id).uniqueResult();
+            return session.get(Employee.class, id);
         } catch (Exception e) {
             throw new DBException(e.getMessage());
         }
@@ -48,26 +46,30 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public void saveOrUpdate(Employee employee) throws DBException {
+        Transaction transaction = null;
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.saveOrUpdate(employee);
             transaction.commit();
         } catch (Exception e) {
-            assert transaction != null;
-            transaction.rollback();
+            if(transaction != null){
+                transaction.rollback();
+            }
             throw new DBException(e.getMessage());
         }
     }
 
     @Override
     public void deleteEmployee(int id) throws DBException {
+        Transaction transaction = null;
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.delete(getById(id));
             transaction.commit();
         } catch (Exception e) {
-            assert transaction != null;
-            transaction.rollback();
+            if(transaction != null){
+                transaction.rollback();
+            }
             throw new DBException(e.getMessage());
         }
     }
