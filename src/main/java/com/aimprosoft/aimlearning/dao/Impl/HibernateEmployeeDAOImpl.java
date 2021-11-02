@@ -36,15 +36,6 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public List<Employee> getByIdDepartment(int id) throws DBException {
-        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
-            return session.createQuery("FROM Employee where department.idDepartment =" + id).list();
-        } catch (Exception e) {
-            throw new DBException(e.getMessage());
-        }
-    }
-
-    @Override
     public void saveOrUpdate(Employee employee) throws DBException {
         Transaction transaction = null;
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
@@ -89,17 +80,4 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
         saveOrUpdate(employee);
     }
 
-    @Override
-    public Map<Integer, String> getMapEmployeeByDepartmentName() throws DBException {
-        try {
-            List<Map<Object, Object>> maps = HibernateSessionFactory.getSessionFactory().openSession().createQuery("select new map (emp.id as idemployee, dep.name as name) FROM Employee as emp join emp.department as dep").list();
-            Map<Integer, String> result = new HashMap<>();
-            for (Map<Object, Object> obj : maps) {
-                result.put(NumberUtils.getInt(obj.get("idemployee").toString()), obj.get("name").toString());
-            }
-            return result;
-        } catch (Exception e) {
-            throw new DBException(e.getMessage());
-        }
-    }
 }

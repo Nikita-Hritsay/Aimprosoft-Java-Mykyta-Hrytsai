@@ -12,8 +12,6 @@ public interface EmployeeDAO {
 
     Employee getById(int id) throws DBException;
 
-    List<Employee> getByIdDepartment(int id) throws DBException;
-
     void saveOrUpdate(Employee employee) throws DBException;
 
     void deleteEmployee(int id) throws DBException;
@@ -24,5 +22,4 @@ public interface EmployeeDAO {
 
     void createOrUpdate(Employee employee) throws ValidationException, DBException;
 
-    Map<Integer, String> getMapEmployeeByDepartmentName() throws DBException;
 }

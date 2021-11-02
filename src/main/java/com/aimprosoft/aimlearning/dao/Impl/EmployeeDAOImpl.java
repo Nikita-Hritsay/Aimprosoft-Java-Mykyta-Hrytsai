@@ -35,19 +35,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         }
     }
 
-    @Override
-    public List<Employee> getByIdDepartment(int id) throws DBException {
-        try (Connection connection = ConnectionFactory.getConnection();
-             PreparedStatement statement = connection.prepareStatement(FIND_BY_IDDEPARTMENT)) {
-            ResultSet resultSet;
-            statement.setInt(1, id);
-            resultSet = statement.executeQuery();
-            return getEmployees(resultSet);
-        } catch (SQLException sqlException) {
-            throw new DBException("Error in get Employees by department id: " + sqlException.getMessage());
-        }
-    }
-
     //@Override
     public void updateEmployee(Employee employee) throws DBException {
         try (Connection connection = ConnectionFactory.getConnection();
@@ -124,21 +111,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             updateEmployee(employee);
         } else {
             saveOrUpdate(employee);
-        }
-    }
-
-    @Override
-    public Map<Integer, String> getMapEmployeeByDepartmentName() throws DBException {
-        try (Connection connection = ConnectionFactory.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(FIND_DEPARTMENTNAME_BY_EMPLOYEE_ID)) {
-            Map<Integer, String> result = new HashMap<>();
-            while (resultSet.next()) {
-                result.put(resultSet.getInt(1), resultSet.getString(2));
-            }
-            return result;
-        } catch (SQLException sqlException) {
-            throw new DBException("Error in get All Employees: " + sqlException.getMessage());
         }
     }
 

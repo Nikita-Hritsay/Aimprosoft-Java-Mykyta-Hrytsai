@@ -26,11 +26,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<Employee> getByIdDepartment(int id) throws DBException {
-        return employeeDAO.getByIdDepartment(id);
-    }
-
-    @Override
     public void add(Employee employee) throws DBException {
         employeeDAO.saveOrUpdate(employee);
     }
@@ -38,11 +33,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void deleteEmployee(int id) throws DBException {
         employeeDAO.deleteEmployee(id);
-    }
-
-    @Override
-    public Map<Integer, String> getMapEmployeeByDepartmentName() throws DBException {
-        return employeeDAO.getMapEmployeeByDepartmentName();
     }
 
     @Override
