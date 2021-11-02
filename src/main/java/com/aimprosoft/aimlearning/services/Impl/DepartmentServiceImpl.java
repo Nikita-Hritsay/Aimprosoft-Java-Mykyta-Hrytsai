@@ -11,7 +11,6 @@ import java.util.List;
 
 public class DepartmentServiceImpl implements DepartmentService {
 
-    //private final DepartmentDAOImpl departmentDAO = new DepartmentDAOImpl();
     private final HibernateDepartmentDAOImpl departmentDAO = new HibernateDepartmentDAOImpl();
     private final ModelValidator<Department> modelValidator = new ModelValidator<>();
 

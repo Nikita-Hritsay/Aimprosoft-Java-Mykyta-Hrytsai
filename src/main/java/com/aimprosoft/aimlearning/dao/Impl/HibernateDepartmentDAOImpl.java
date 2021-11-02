@@ -12,7 +12,7 @@ import java.util.Objects;
 
 public class HibernateDepartmentDAOImpl implements DepartmentDAO {
 
-    private Transaction transaction = null;
+
 
     @Override
     public List<Department> getAllDepartments() throws DBException {
@@ -25,6 +25,7 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public void saveOrUpdate(Department department) throws DBException {
+        Transaction transaction = null;
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.saveOrUpdate(department);
@@ -50,6 +51,7 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public void deleteDepartment(int id) throws DBException {
+        Transaction transaction = null;
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.delete(getDepartmentById(id));

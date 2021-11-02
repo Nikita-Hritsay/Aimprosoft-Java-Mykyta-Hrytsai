@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class EmployeeServiceImpl implements EmployeeService {
-    //private final EmployeeDAOImpl employeeDAO = new EmployeeDAOImpl();
+
     private final HibernateEmployeeDAOImpl employeeDAO = new HibernateEmployeeDAOImpl();
     private final ModelValidator<Employee> modelValidator = new ModelValidator<>();
 

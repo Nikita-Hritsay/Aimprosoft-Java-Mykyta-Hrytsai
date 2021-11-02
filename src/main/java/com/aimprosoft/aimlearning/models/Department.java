@@ -6,8 +6,6 @@ import net.sf.oval.constraint.CheckWith;
 import net.sf.oval.constraint.Length;
 import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -22,7 +20,6 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "department")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Department implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -40,8 +37,7 @@ public class Department implements Serializable {
     @Length(max = 200, message = "Address can not be greater than 200")
     private String address;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "department")
-    @Fetch(FetchMode.JOIN)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "department", fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<Employee> employees;
 

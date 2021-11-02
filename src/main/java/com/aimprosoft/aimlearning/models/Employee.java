@@ -2,12 +2,8 @@ package com.aimprosoft.aimlearning.models;
 
 
 import com.aimprosoft.aimlearning.validations.employee.IsUniqueEmail;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.With;
+import lombok.*;
 import net.sf.oval.constraint.*;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -20,7 +16,6 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "employee")
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Employee {
 
     @Id
@@ -58,7 +53,8 @@ public class Employee {
     @NotEmpty(message = "Department can not be empty")
     @NotNull(message = "Department can not be null")
     @JoinColumn(name = "department_iddepartment")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
     private Department department;
 
 }
