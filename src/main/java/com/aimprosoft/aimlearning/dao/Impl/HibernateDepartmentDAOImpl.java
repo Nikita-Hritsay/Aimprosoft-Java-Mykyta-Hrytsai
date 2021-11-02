@@ -41,7 +41,7 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
     public Department getDepartmentById(Integer id) throws DBException {
         if (id != null) {
             try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
-                return (Department) session.createQuery("FROM Department where idDepartment=" + id).uniqueResult();
+                return session.get(Department.class, id);
             } catch (Exception e) {
                 throw new DBException(e.getMessage());
             }

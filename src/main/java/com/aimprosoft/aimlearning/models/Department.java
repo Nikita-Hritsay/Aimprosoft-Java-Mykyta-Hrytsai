@@ -37,7 +37,8 @@ public class Department implements Serializable {
     @Length(max = 200, message = "Address can not be greater than 200")
     private String address;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "department", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "department")
+    @Fetch(FetchMode.JOIN)
     @ToString.Exclude
     private List<Employee> employees;
 
