@@ -6,13 +6,10 @@ import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Employee;
 
-import com.aimprosoft.aimlearning.utils.NumberUtils;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 public class HibernateEmployeeDAOImpl implements EmployeeDAO {

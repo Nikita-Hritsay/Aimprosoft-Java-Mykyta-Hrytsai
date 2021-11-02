@@ -2,9 +2,7 @@ package com.aimprosoft.aimlearning.commands.employee;
 
 import com.aimprosoft.aimlearning.commands.ICommand;
 import com.aimprosoft.aimlearning.exceptions.DBException;
-import com.aimprosoft.aimlearning.models.Department;
 import com.aimprosoft.aimlearning.services.Impl.DepartmentServiceImpl;
-import com.aimprosoft.aimlearning.services.Impl.EmployeeServiceImpl;
 import com.aimprosoft.aimlearning.utils.NumberUtils;
 
 import javax.servlet.ServletException;
@@ -14,7 +12,6 @@ import java.io.IOException;
 
 public class EmployeesByDepartmentCommand implements ICommand {
 
-    private final EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
     private final DepartmentServiceImpl departmentService = new DepartmentServiceImpl();
 
     @Override
