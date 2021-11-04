@@ -6,15 +6,21 @@ import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Employee;
 
+import lombok.AllArgsConstructor;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Objects;
 
 @Repository
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class HibernateEmployeeDAOImpl implements EmployeeDAO {
+
+    SessionFactory sessionFactory;
 
     @Override
     public List<Employee> getAllEmployees() throws DBException {

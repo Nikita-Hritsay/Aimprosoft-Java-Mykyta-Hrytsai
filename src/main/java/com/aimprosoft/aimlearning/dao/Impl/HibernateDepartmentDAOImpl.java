@@ -5,18 +5,24 @@ import com.aimprosoft.aimlearning.dao.DepartmentDAO;
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Department;
+import lombok.AllArgsConstructor;
 import org.hibernate.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Objects;
 
 @Repository
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class HibernateDepartmentDAOImpl implements DepartmentDAO {
+
+    private SessionFactory sessionFactory;
 
     @Override
     public List<Department> getAllDepartments() throws DBException {
         try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
+            System.out.println(sessionFactory);
             return session.createQuery("FROM Department ", Department.class).list();
         } catch (Exception e) {
             throw new DBException(e.getMessage());
