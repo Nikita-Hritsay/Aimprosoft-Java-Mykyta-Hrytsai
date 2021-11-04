@@ -6,9 +6,11 @@ import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Department;
 import com.aimprosoft.aimlearning.services.DepartmentService;
 import com.aimprosoft.aimlearning.validations.ModelValidator;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class DepartmentServiceImpl implements DepartmentService {
 
     private final HibernateDepartmentDAOImpl departmentDAO = new HibernateDepartmentDAOImpl();

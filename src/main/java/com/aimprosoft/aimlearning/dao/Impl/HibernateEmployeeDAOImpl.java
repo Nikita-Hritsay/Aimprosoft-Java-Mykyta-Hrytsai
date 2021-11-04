@@ -8,10 +8,12 @@ import com.aimprosoft.aimlearning.models.Employee;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Objects;
 
+@Repository
 public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
     @Override

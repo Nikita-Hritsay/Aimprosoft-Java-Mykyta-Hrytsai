@@ -6,9 +6,11 @@ import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Employee;
 import com.aimprosoft.aimlearning.services.EmployeeService;
 import com.aimprosoft.aimlearning.validations.ModelValidator;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final HibernateEmployeeDAOImpl employeeDAO = new HibernateEmployeeDAOImpl();

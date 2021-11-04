@@ -6,10 +6,12 @@ import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Department;
 import org.hibernate.*;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Objects;
 
+@Repository
 public class HibernateDepartmentDAOImpl implements DepartmentDAO {
 
     @Override

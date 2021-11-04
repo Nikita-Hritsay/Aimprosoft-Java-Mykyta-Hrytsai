@@ -5,10 +5,12 @@ import com.aimprosoft.aimlearning.commands.department.DeleteDepartmentCommand;
 import com.aimprosoft.aimlearning.commands.department.DisplayAllDepartmentCommand;
 import com.aimprosoft.aimlearning.commands.department.FormCreateUpdateDepartmentCommand;
 import com.aimprosoft.aimlearning.commands.employee.*;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class CommandFactory {
 
     private final Map<String, ICommand> commands;

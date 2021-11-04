@@ -8,6 +8,7 @@ import com.aimprosoft.aimlearning.models.Employee;
 import com.aimprosoft.aimlearning.services.Impl.DepartmentServiceImpl;
 import com.aimprosoft.aimlearning.services.Impl.EmployeeServiceImpl;
 import com.aimprosoft.aimlearning.utils.NumberUtils;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-
+@Component
 public class CreateUpdateEmployeeCommand implements ICommand {
 
     private final EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
