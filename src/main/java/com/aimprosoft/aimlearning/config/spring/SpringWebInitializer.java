@@ -1,7 +1,6 @@
 package com.aimprosoft.aimlearning.config.spring;
 
 import com.aimprosoft.aimlearning.controllers.MainController;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;

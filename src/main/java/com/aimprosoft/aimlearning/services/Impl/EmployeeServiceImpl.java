@@ -17,7 +17,13 @@ import java.util.List;
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final HibernateEmployeeDAOImpl employeeDAO;
-    //private final ModelValidator<Employee> modelValidator = new ModelValidator<>();
+
+    //private final ModelValidator<Employee> modelValidator;
+
+    @Override
+    public boolean existByEmail(Employee employee) throws DBException {
+        return employeeDAO.existsByEmail(employee);
+    }
 
     @Override
     public List<Employee> getAllEmployees() throws DBException {

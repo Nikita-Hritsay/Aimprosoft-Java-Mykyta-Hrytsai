@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -21,31 +23,33 @@ public class CommandFactory {
     private DisplayAllDepartmentCommand displayAllDepartmentCommand;
 
     @Autowired
-    public void setCommandFactory(DisplayEmployeeCommand displayEmployeeCommand,
-                            DisplayAllDepartmentCommand displayAllDepartmentCommand,
-                            EmployeesByDepartmentCommand employeesByDepartmentCommand,
-                            CreateUpdateEmployeeCommand createUpdateEmployeeCommand,
-                            FormCreateOrUpdateEmployeeCommand formCreateOrUpdateEmployeeCommand,
-                            FormCreateUpdateDepartmentCommand formCreateUpdateDepartmentCommand,
-                            CreateOrUpdateDepartmentCommand createOrUpdateDepartmentCommand,
-                            DeleteDepartmentCommand deleteDepartmentCommand,
-                            DeleteEmployeeCommand deleteEmployeeCommand)
-    {
+    public void setCommands(DisplayEmployeeCommand displayEmployeeCommand,
+                                  DisplayAllDepartmentCommand displayAllDepartmentCommand,
+                                  EmployeesByDepartmentCommand employeesByDepartmentCommand,
+                                  CreateUpdateEmployeeCommand createUpdateEmployeeCommand,
+                                  FormCreateOrUpdateEmployeeCommand formCreateOrUpdateEmployeeCommand,
+                                  FormCreateUpdateDepartmentCommand formCreateUpdateDepartmentCommand,
+                                  CreateOrUpdateDepartmentCommand createOrUpdateDepartmentCommand,
+                                  DeleteDepartmentCommand deleteDepartmentCommand,
+                                  DeleteEmployeeCommand deleteEmployeeCommand) {
         commands = new HashMap<>();
         commands.put("/displayEmployees", displayEmployeeCommand);
         commands.put("/displayAllDepartments", displayAllDepartmentCommand);
         commands.put("/employeesByDepartment", employeesByDepartmentCommand);
-        commands.put("/createOrUpdateEmployee",createUpdateEmployeeCommand);
+        commands.put("/createOrUpdateEmployee", createUpdateEmployeeCommand);
         commands.put("/createOrUpdateEmployeeForm", formCreateOrUpdateEmployeeCommand);
         commands.put("/createOrUpdateDepartmentForm", formCreateUpdateDepartmentCommand);
         commands.put("/createOrUpdateDepartment", createOrUpdateDepartmentCommand);
         commands.put("/deleteDepartment", deleteDepartmentCommand);
         commands.put("/deleteEmployee", deleteEmployeeCommand);
+    }
+
+    @Autowired
+    public void setDisplayAllDepartmentCommand(DisplayAllDepartmentCommand displayAllDepartmentCommand) {
         this.displayAllDepartmentCommand = displayAllDepartmentCommand;
     }
 
     public ICommand getCommand(String operation) {
-        System.out.println(operation);
         return commands.getOrDefault(operation, displayAllDepartmentCommand);
     }
 }

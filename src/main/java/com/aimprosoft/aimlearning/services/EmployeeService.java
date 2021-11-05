@@ -16,4 +16,6 @@ public interface EmployeeService {
     void deleteEmployee(int id) throws DBException;
 
     void createOrUpdate(Employee employee) throws ValidationException, DBException;
+
+    boolean existByEmail(Employee employee) throws DBException;
 }

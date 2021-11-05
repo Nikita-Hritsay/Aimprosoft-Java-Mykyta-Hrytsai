@@ -1,6 +1,6 @@
 package com.aimprosoft.aimlearning.dao.Impl;
 
-import com.aimprosoft.aimlearning.config.HibernateSessionFactory;
+
 import com.aimprosoft.aimlearning.dao.EmployeeDAO;
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
@@ -20,11 +20,11 @@ import java.util.Objects;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
-    SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
     @Override
     public List<Employee> getAllEmployees() throws DBException {
-        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             return session.createQuery("FROM Employee", Employee.class).list();
         } catch (Exception e) {
             throw new DBException(e.getMessage());
@@ -33,7 +33,7 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public Employee getById(int id) throws DBException {
-        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             return session.get(Employee.class, id);
         } catch (Exception e) {
             throw new DBException(e.getMessage());
@@ -43,7 +43,7 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
     @Override
     public void saveOrUpdate(Employee employee) throws DBException {
         Transaction transaction = null;
-        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
             session.saveOrUpdate(employee);
             transaction.commit();
@@ -58,7 +58,7 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
     @Override
     public void deleteEmployee(int id) throws DBException {
         Transaction transaction = null;
-        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
             session.delete(getById(id));
             transaction.commit();
@@ -72,7 +72,7 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public boolean existsByEmail(Employee employee) throws DBException {
-        try (Session session = HibernateSessionFactory.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             Employee check = (Employee) session.createQuery("FROM Employee where email='" + employee.getEmail() + "'").uniqueResult();
             return check != null && !Objects.equals(check.getId(), employee.getId());
         } catch (Exception e) {
