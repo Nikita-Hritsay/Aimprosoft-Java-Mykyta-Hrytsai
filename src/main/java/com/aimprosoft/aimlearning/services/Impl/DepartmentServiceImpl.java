@@ -17,7 +17,7 @@ import java.util.List;
 public class DepartmentServiceImpl implements DepartmentService {
 
     private final HibernateDepartmentDAOImpl departmentDAO;
-    //private final ModelValidator<Department> modelValidator = new ModelValidator<>();
+    private final ModelValidator<Department> modelValidator;
 
     @Override
     public List<Department> getAllDepartments() throws DBException {
@@ -36,7 +36,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public void createOrUpdate(Department department) throws ValidationException, DBException {
-       // modelValidator.validate(department);
+        modelValidator.validate(department);
         departmentDAO.createOrUpdate(department);
     }
 

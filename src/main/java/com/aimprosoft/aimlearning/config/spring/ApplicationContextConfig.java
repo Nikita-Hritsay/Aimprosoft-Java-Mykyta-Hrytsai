@@ -1,6 +1,8 @@
 package com.aimprosoft.aimlearning.config.spring;
 
+import com.aimprosoft.aimlearning.validations.ModelValidator;
 import lombok.AllArgsConstructor;
+import net.sf.oval.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -30,6 +32,17 @@ public class ApplicationContextConfig {
         return sessionFactory;
     }
 
+
+
+    @Bean
+    public ModelValidator<?> modelValidator(){
+        return new ModelValidator<>(validator());
+    }
+
+    @Bean
+    public Validator validator(){
+        return new Validator();
+    }
 
     @Bean
     public DataSource dataSource() {
