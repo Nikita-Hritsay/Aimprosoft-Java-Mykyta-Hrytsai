@@ -1,6 +1,6 @@
 package com.aimprosoft.aimlearning.services.Impl;
 
-import com.aimprosoft.aimlearning.dao.Impl.HibernateEmployeeDAOImpl;
+import com.aimprosoft.aimlearning.dao.EmployeeDAO;
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Employee;
@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private final HibernateEmployeeDAOImpl employeeDAO;
+    private final EmployeeDAO employeeDAO;
 
     private final ModelValidator<Employee> modelValidator;
 

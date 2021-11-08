@@ -15,7 +15,7 @@ import java.util.Objects;
 
 @Repository
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-@Transactional(rollbackFor = DBException.class)
+@Transactional
 public class HibernateDepartmentDAOImpl implements DepartmentDAO {
 
     private final SessionFactory sessionFactory;
@@ -30,7 +30,6 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    @Transactional
     public void saveOrUpdate(Department department) throws DBException {
         try (Session session = sessionFactory.openSession()) {
             session.saveOrUpdate(department);
@@ -53,6 +52,7 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public void deleteDepartment(int id) throws DBException {
+
         try (Session session = sessionFactory.openSession()) {
             session.delete(getDepartmentById(id));
         } catch (Exception e) {

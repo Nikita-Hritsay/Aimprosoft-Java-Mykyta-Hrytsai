@@ -1,7 +1,6 @@
 package com.aimprosoft.aimlearning.services.Impl;
 
-import com.aimprosoft.aimlearning.dao.Impl.HibernateDepartmentDAOImpl;
-import com.aimprosoft.aimlearning.dao.Impl.HibernateEmployeeDAOImpl;
+import com.aimprosoft.aimlearning.dao.DepartmentDAO;
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Department;
@@ -17,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class DepartmentServiceImpl implements DepartmentService {
 
-    private final HibernateDepartmentDAOImpl departmentDAO;
+    private final DepartmentDAO departmentDAO;
     private final ModelValidator<Department> modelValidator;
 
     @Override

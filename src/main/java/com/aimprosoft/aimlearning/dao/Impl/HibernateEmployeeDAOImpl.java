@@ -17,7 +17,7 @@ import java.util.Objects;
 
 @Repository
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-@Transactional(rollbackFor = DBException.class)
+@Transactional
 public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
     private final SessionFactory sessionFactory;

@@ -24,7 +24,7 @@ import java.util.Objects;
 @PropertySource("classpath:hibernate.properties")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 @ComponentScan("com.aimprosoft.aimlearning")
-@EnableTransactionManagement(proxyTargetClass = true)
+@EnableTransactionManagement
 public class ApplicationContextConfig {
 
     private final Environment environment;
