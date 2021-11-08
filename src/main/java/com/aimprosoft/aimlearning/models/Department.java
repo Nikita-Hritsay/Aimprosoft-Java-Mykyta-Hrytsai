@@ -1,6 +1,7 @@
 package com.aimprosoft.aimlearning.models;
 
 import com.aimprosoft.aimlearning.validations.department.IsUniqueName;
+
 import lombok.*;
 import net.sf.oval.constraint.CheckWith;
 import net.sf.oval.constraint.Length;

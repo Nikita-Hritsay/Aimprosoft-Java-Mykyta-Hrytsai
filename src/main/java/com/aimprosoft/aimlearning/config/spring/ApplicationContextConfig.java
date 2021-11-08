@@ -32,15 +32,13 @@ public class ApplicationContextConfig {
         return sessionFactory;
     }
 
-
-
     @Bean
-    public ModelValidator<?> modelValidator(){
+    public ModelValidator<?> modelValidator() {
         return new ModelValidator<>(validator());
     }
 
     @Bean
-    public Validator validator(){
+    public Validator validator() {
         return new Validator();
     }
 

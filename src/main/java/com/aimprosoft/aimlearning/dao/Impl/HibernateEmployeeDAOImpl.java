@@ -48,7 +48,7 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
             session.saveOrUpdate(employee);
             transaction.commit();
         } catch (Exception e) {
-            if(transaction != null){
+            if (transaction != null) {
                 transaction.rollback();
             }
             throw new DBException(e.getMessage());
@@ -63,7 +63,7 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
             session.delete(getById(id));
             transaction.commit();
         } catch (Exception e) {
-            if(transaction != null){
+            if (transaction != null) {
                 transaction.rollback();
             }
             throw new DBException(e.getMessage());

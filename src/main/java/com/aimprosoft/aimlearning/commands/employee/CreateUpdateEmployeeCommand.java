@@ -26,7 +26,7 @@ import java.text.SimpleDateFormat;
 public class CreateUpdateEmployeeCommand implements ICommand {
 
     private final EmployeeServiceImpl employeeService;
-    private final DepartmentServiceImpl departmentService ;
+    private final DepartmentServiceImpl departmentService;
 
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DBException {

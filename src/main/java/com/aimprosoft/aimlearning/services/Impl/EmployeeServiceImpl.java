@@ -18,7 +18,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private final HibernateEmployeeDAOImpl employeeDAO;
 
-    //private final ModelValidator<Employee> modelValidator;
+    private final ModelValidator<Employee> modelValidator;
 
     @Override
     public boolean existByEmail(Employee employee) throws DBException {
@@ -47,7 +47,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void createOrUpdate(Employee employee) throws ValidationException, DBException {
-        //modelValidator.validate(employee);
+        modelValidator.validate(employee);
         employeeDAO.createOrUpdate(employee);
     }
 }

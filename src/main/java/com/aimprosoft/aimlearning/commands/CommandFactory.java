@@ -24,14 +24,14 @@ public class CommandFactory {
 
     @Autowired
     public void setCommands(DisplayEmployeeCommand displayEmployeeCommand,
-                                  DisplayAllDepartmentCommand displayAllDepartmentCommand,
-                                  EmployeesByDepartmentCommand employeesByDepartmentCommand,
-                                  CreateUpdateEmployeeCommand createUpdateEmployeeCommand,
-                                  FormCreateOrUpdateEmployeeCommand formCreateOrUpdateEmployeeCommand,
-                                  FormCreateUpdateDepartmentCommand formCreateUpdateDepartmentCommand,
-                                  CreateOrUpdateDepartmentCommand createOrUpdateDepartmentCommand,
-                                  DeleteDepartmentCommand deleteDepartmentCommand,
-                                  DeleteEmployeeCommand deleteEmployeeCommand) {
+                            DisplayAllDepartmentCommand displayAllDepartmentCommand,
+                            EmployeesByDepartmentCommand employeesByDepartmentCommand,
+                            CreateUpdateEmployeeCommand createUpdateEmployeeCommand,
+                            FormCreateOrUpdateEmployeeCommand formCreateOrUpdateEmployeeCommand,
+                            FormCreateUpdateDepartmentCommand formCreateUpdateDepartmentCommand,
+                            CreateOrUpdateDepartmentCommand createOrUpdateDepartmentCommand,
+                            DeleteDepartmentCommand deleteDepartmentCommand,
+                            DeleteEmployeeCommand deleteEmployeeCommand) {
         commands = new HashMap<>();
         commands.put("/displayEmployees", displayEmployeeCommand);
         commands.put("/displayAllDepartments", displayAllDepartmentCommand);

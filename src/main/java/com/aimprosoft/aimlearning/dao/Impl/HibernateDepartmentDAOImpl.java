@@ -35,7 +35,7 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
             session.saveOrUpdate(department);
             transaction.commit();
         } catch (Exception e) {
-            if(transaction != null){
+            if (transaction != null) {
                 transaction.rollback();
             }
             throw new DBException(e.getMessage());
@@ -62,7 +62,7 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
             session.delete(getDepartmentById(id));
             transaction.commit();
         } catch (Exception e) {
-            if(transaction != null){
+            if (transaction != null) {
                 transaction.rollback();
             }
             throw new DBException(e.getMessage());
