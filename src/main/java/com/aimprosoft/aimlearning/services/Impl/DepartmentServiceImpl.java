@@ -1,6 +1,7 @@
 package com.aimprosoft.aimlearning.services.Impl;
 
 import com.aimprosoft.aimlearning.dao.Impl.HibernateDepartmentDAOImpl;
+import com.aimprosoft.aimlearning.dao.Impl.HibernateEmployeeDAOImpl;
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Department;

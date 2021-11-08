@@ -3,14 +3,19 @@ package com.aimprosoft.aimlearning.config.spring;
 import com.aimprosoft.aimlearning.validations.ModelValidator;
 import lombok.AllArgsConstructor;
 import net.sf.oval.Validator;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.util.Objects;
@@ -19,6 +24,7 @@ import java.util.Objects;
 @PropertySource("classpath:hibernate.properties")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 @ComponentScan("com.aimprosoft.aimlearning")
+@EnableTransactionManagement(proxyTargetClass = true)
 public class ApplicationContextConfig {
 
     private final Environment environment;
@@ -30,6 +36,12 @@ public class ApplicationContextConfig {
         sessionFactory.setDataSource(dataSource);
         sessionFactory.setPackagesToScan("com.aimprosoft.aimlearning.models");
         return sessionFactory;
+    }
+
+    @Autowired
+    @Bean
+    public PlatformTransactionManager hibernateTransactionManager(SessionFactory sessionFactory) {
+        return new HibernateTransactionManager(sessionFactory);
     }
 
     @Bean

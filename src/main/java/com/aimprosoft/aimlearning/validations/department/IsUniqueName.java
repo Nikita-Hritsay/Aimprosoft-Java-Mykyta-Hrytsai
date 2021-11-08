@@ -11,17 +11,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class IsUniqueName implements CheckWithCheck.SimpleCheck {
 
-    private static DepartmentServiceImpl departmentDAO;
+    private static DepartmentServiceImpl departmentService;
 
     @Autowired
-    public void setDepartmentDAO(DepartmentServiceImpl departmentDAO) {
-        IsUniqueName.departmentDAO = departmentDAO;
+    public void setDepartmentService(DepartmentServiceImpl departmentService) {
+        IsUniqueName.departmentService = departmentService;
     }
 
     @Override
     public boolean isSatisfied(Object validatedObject, Object value, OValContext context, Validator validator) {
         try {
-            return !departmentDAO.existsByName((Department) validatedObject);
+            return !departmentService.existsByName((Department) validatedObject);
         } catch (Exception e) {
             return false;
         }

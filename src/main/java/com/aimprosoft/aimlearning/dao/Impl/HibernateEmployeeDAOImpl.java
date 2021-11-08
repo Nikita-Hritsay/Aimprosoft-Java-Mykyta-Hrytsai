@@ -1,6 +1,5 @@
 package com.aimprosoft.aimlearning.dao.Impl;
 
-
 import com.aimprosoft.aimlearning.dao.EmployeeDAO;
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
@@ -9,15 +8,16 @@ import com.aimprosoft.aimlearning.models.Employee;
 import lombok.AllArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
 
 @Repository
 @AllArgsConstructor(onConstructor = @__(@Autowired))
+@Transactional(rollbackFor = DBException.class)
 public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
     private final SessionFactory sessionFactory;
@@ -42,30 +42,18 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public void saveOrUpdate(Employee employee) throws DBException {
-        Transaction transaction = null;
         try (Session session = sessionFactory.openSession()) {
-            transaction = session.beginTransaction();
             session.saveOrUpdate(employee);
-            transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
             throw new DBException(e.getMessage());
         }
     }
 
     @Override
     public void deleteEmployee(int id) throws DBException {
-        Transaction transaction = null;
         try (Session session = sessionFactory.openSession()) {
-            transaction = session.beginTransaction();
             session.delete(getById(id));
-            transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
             throw new DBException(e.getMessage());
         }
     }
