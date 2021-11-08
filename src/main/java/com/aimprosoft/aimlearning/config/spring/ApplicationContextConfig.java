@@ -41,7 +41,9 @@ public class ApplicationContextConfig {
     @Autowired
     @Bean
     public PlatformTransactionManager hibernateTransactionManager(SessionFactory sessionFactory) {
-        return new HibernateTransactionManager(sessionFactory);
+        HibernateTransactionManager txManager = new HibernateTransactionManager();
+        txManager.setSessionFactory(sessionFactory);
+        return txManager;
     }
 
     @Bean

@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -24,8 +25,8 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public List<Employee> getAllEmployees() throws DBException {
-        try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM Employee", Employee.class).list();
+        try {
+            return sessionFactory.getCurrentSession().createQuery("FROM Employee", Employee.class).list();
         } catch (Exception e) {
             throw new DBException(e.getMessage());
         }
@@ -33,8 +34,8 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public Employee getById(int id) throws DBException {
-        try (Session session = sessionFactory.openSession()) {
-            return session.get(Employee.class, id);
+        try {
+            return sessionFactory.getCurrentSession().get(Employee.class, id);
         } catch (Exception e) {
             throw new DBException(e.getMessage());
         }
@@ -42,8 +43,8 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public void saveOrUpdate(Employee employee) throws DBException {
-        try (Session session = sessionFactory.openSession()) {
-            session.saveOrUpdate(employee);
+        try {
+            sessionFactory.getCurrentSession().saveOrUpdate(employee);
         } catch (Exception e) {
             throw new DBException(e.getMessage());
         }
@@ -51,8 +52,8 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public void deleteEmployee(int id) throws DBException {
-        try (Session session = sessionFactory.openSession()) {
-            session.delete(getById(id));
+        try {
+            sessionFactory.getCurrentSession().delete(getById(id));
         } catch (Exception e) {
             throw new DBException(e.getMessage());
         }
@@ -60,8 +61,8 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public boolean existsByEmail(Employee employee) throws DBException {
-        try (Session session = sessionFactory.openSession()) {
-            Employee check = (Employee) session.createQuery("FROM Employee where email='" + employee.getEmail() + "'").uniqueResult();
+        try {
+            Employee check = (Employee) sessionFactory.getCurrentSession().createQuery("FROM Employee where email='" + employee.getEmail() + "'").uniqueResult();
             return check != null && !Objects.equals(check.getId(), employee.getId());
         } catch (Exception e) {
             throw new DBException(e.getMessage());
