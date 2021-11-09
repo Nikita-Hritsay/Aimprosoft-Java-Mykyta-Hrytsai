@@ -12,17 +12,16 @@ public interface EmployeeDAO {
 
     Employee getById(int id) throws DBException;
 
-    List<Employee> getByIdDepartment(int id) throws DBException;
-
-    void add(Employee employee) throws DBException;
+    void saveOrUpdate(Employee employee) throws DBException;
 
     void deleteEmployee(int id) throws DBException;
-
-    void updateEmployee(Employee employee) throws DBException;
 
     boolean existsByEmail(Employee employee) throws DBException;
 
     void createOrUpdate(Employee employee) throws ValidationException, DBException;
 
+<<<<<<< HEAD
     Map<Integer, String> getMapDepartmentIdByEmployeeName() throws DBException;
+=======
+>>>>>>> hibernate
 }

@@ -2,11 +2,11 @@ package com.aimprosoft.aimlearning.models;
 
 
 import com.aimprosoft.aimlearning.validations.employee.IsUniqueEmail;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.With;
+import lombok.*;
 import net.sf.oval.constraint.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -16,8 +16,13 @@ import java.util.Date;
 @With
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "employee")
 public class Employee {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "idemployee")
     private Integer id;
 
     @NotEmpty(message = "Firstname can not be empty")
@@ -44,12 +49,15 @@ public class Employee {
 
     @NotEmpty(message = "Hire date can not be empty")
     @NotNull(message = "Hire date can not be null")
+    @Type(type = "date")
     private Date hireDate;
 
-    @NotEmpty(message = "Id department can not be empty")
-    @NotNull(message = "Id department can not be null")
-    @Min(value = 1, message = "Id department can not be null")
-    @Column(name = "department_idDepartment")
-    private Integer idDepartment;
+    @NotEmpty(message = "Department can not be empty")
+    @NotNull(message = "Department can not be null")
+    @JoinColumn(name = "department_iddepartment")
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Fetch(FetchMode.JOIN)
+    private Department department;
 
 }

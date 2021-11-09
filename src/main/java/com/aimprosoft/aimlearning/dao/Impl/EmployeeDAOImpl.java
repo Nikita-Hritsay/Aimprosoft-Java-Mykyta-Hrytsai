@@ -4,6 +4,7 @@ import com.aimprosoft.aimlearning.config.ConnectionFactory;
 import com.aimprosoft.aimlearning.dao.EmployeeDAO;
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
+import com.aimprosoft.aimlearning.models.Department;
 import com.aimprosoft.aimlearning.models.Employee;
 
 import java.sql.*;
@@ -34,20 +35,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         }
     }
 
-    @Override
-    public List<Employee> getByIdDepartment(int id) throws DBException {
-        try (Connection connection = ConnectionFactory.getConnection();
-             PreparedStatement statement = connection.prepareStatement(FIND_BY_IDDEPARTMENT)) {
-            ResultSet resultSet;
-            statement.setInt(1, id);
-            resultSet = statement.executeQuery();
-            return getEmployees(resultSet);
-        } catch (SQLException sqlException) {
-            throw new DBException("Error in get Employees by department id: " + sqlException.getMessage());
-        }
-    }
-
-    @Override
+    //@Override
     public void updateEmployee(Employee employee) throws DBException {
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement statement = setupPreparedStatement(employee, connection, UPDATE_EMPLOYEE)) {
@@ -82,7 +70,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                     .withEmail(resultSet.getString(4))
                     .withSalary(resultSet.getBigDecimal(5))
                     .withHireDate(resultSet.getDate(6))
-                    .withIdDepartment(resultSet.getInt(7));
+                    .withDepartment(new Department().withIdDepartment(resultSet.getInt(7)));
         } catch (SQLException sqlException) {
             throw new DBException("Error in get Employee by id: " + sqlException.getMessage());
         }
@@ -108,7 +96,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public void add(Employee employee) throws DBException {
+    public void saveOrUpdate(Employee employee) throws DBException {
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = setupPreparedStatement(employee, connection, ADD_EMPLOYEE)) {
             preparedStatement.executeUpdate();
@@ -122,7 +110,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         if (employee.getId() != null) {
             updateEmployee(employee);
         } else {
-            add(employee);
+            saveOrUpdate(employee);
         }
     }
 
@@ -151,7 +139,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                         .withEmail(resultSet.getString(4))
                         .withSalary(resultSet.getBigDecimal(5))
                         .withHireDate(resultSet.getDate(6))
-                        .withIdDepartment(resultSet.getInt(7)));
+                        .withDepartment(new Department().withIdDepartment(resultSet.getInt(7))));
             }
             return result;
         } catch (SQLException e) {
@@ -166,7 +154,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         statement.setString(3, employee.getEmail());
         statement.setBigDecimal(4, employee.getSalary());
         statement.setDate(5, new Date(employee.getHireDate().getTime()));
-        statement.setInt(6, employee.getIdDepartment());
+        statement.setInt(6, employee.getDepartment().getIdDepartment());
         if (employee.getId() != null) {
             statement.setInt(7, employee.getId());
         }

@@ -1,6 +1,6 @@
 package com.aimprosoft.aimlearning.services.Impl;
 
-import com.aimprosoft.aimlearning.dao.Impl.DepartmentDAOImpl;
+import com.aimprosoft.aimlearning.dao.Impl.HibernateDepartmentDAOImpl;
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Department;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DepartmentServiceImpl implements DepartmentService {
 
-    private final DepartmentDAOImpl departmentDAO = new DepartmentDAOImpl();
+    private final HibernateDepartmentDAOImpl departmentDAO = new HibernateDepartmentDAOImpl();
     private final ModelValidator<Department> modelValidator = new ModelValidator<>();
 
     @Override

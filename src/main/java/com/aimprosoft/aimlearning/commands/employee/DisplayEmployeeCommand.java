@@ -2,7 +2,10 @@ package com.aimprosoft.aimlearning.commands.employee;
 
 import com.aimprosoft.aimlearning.commands.ICommand;
 import com.aimprosoft.aimlearning.exceptions.DBException;
+<<<<<<< HEAD
 import com.aimprosoft.aimlearning.services.Impl.DepartmentServiceImpl;
+=======
+>>>>>>> hibernate
 import com.aimprosoft.aimlearning.services.Impl.EmployeeServiceImpl;
 
 import javax.servlet.ServletException;
@@ -17,10 +20,16 @@ public class DisplayEmployeeCommand implements ICommand {
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DBException {
         request.setAttribute("employees", employeeService.getAllEmployees());
+<<<<<<< HEAD
         request.setAttribute("departmentEmployeeMap", employeeService.getMapDepartmentIdByEmployeeName());
         request.getRequestDispatcher("/WEB-INF/pages/allEmployees.jsp").forward(request, response);
     }
 
 
+=======
+        request.getRequestDispatcher("/WEB-INF/pages/allEmployees.jsp").forward(request, response);
+    }
+
+>>>>>>> hibernate
 
 }

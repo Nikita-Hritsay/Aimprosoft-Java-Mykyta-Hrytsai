@@ -12,8 +12,6 @@ public interface EmployeeService {
 
     Employee getById(int id) throws DBException;
 
-    List<Employee> getByIdDepartment(int id) throws DBException;
-
     void add(Employee employee) throws DBException;
 
     void deleteEmployee(int id) throws DBException;
