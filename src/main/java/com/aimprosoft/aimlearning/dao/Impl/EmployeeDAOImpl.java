@@ -9,9 +9,7 @@ import com.aimprosoft.aimlearning.models.Employee;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
 

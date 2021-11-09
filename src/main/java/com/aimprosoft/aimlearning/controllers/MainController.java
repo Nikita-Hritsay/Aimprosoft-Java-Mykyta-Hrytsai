@@ -4,7 +4,6 @@ import com.aimprosoft.aimlearning.commands.CommandFactory;
 import com.aimprosoft.aimlearning.commands.ICommand;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
@@ -20,7 +19,7 @@ public class MainController extends HttpServlet {
     private static CommandFactory commandFactory;
 
     @Autowired
-    public void setCommandFactory(CommandFactory commandFactory){
+    public void setCommandFactory(CommandFactory commandFactory) {
         MainController.commandFactory = commandFactory;
     }
 

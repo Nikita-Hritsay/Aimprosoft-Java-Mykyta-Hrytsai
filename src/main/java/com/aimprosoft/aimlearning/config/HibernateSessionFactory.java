@@ -22,7 +22,7 @@ public class HibernateSessionFactory implements Serializable {
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());
             } catch (Exception e) {
-               throw new DBException("session factory error");
+                throw new DBException("session factory error");
             }
         }
         return sessionFactory;

@@ -5,12 +5,7 @@ import com.aimprosoft.aimlearning.commands.department.DeleteDepartmentCommand;
 import com.aimprosoft.aimlearning.commands.department.DisplayAllDepartmentCommand;
 import com.aimprosoft.aimlearning.commands.department.FormCreateUpdateDepartmentCommand;
 import com.aimprosoft.aimlearning.commands.employee.*;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
