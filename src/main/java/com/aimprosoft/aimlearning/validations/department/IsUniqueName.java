@@ -2,7 +2,6 @@ package com.aimprosoft.aimlearning.validations.department;
 
 import com.aimprosoft.aimlearning.models.Department;
 import com.aimprosoft.aimlearning.services.DepartmentService;
-import lombok.AllArgsConstructor;
 import net.sf.oval.Validator;
 import net.sf.oval.constraint.CheckWithCheck;
 import net.sf.oval.context.OValContext;

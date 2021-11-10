@@ -2,7 +2,6 @@ package com.aimprosoft.aimlearning.validations.employee;
 
 import com.aimprosoft.aimlearning.models.Employee;
 import com.aimprosoft.aimlearning.services.EmployeeService;
-import com.aimprosoft.aimlearning.services.Impl.EmployeeServiceImpl;
 import net.sf.oval.Validator;
 import net.sf.oval.constraint.CheckWithCheck;
 import net.sf.oval.context.OValContext;
