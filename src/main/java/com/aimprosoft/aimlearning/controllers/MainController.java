@@ -12,15 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
 @Component("/*")
 public class MainController extends HttpServlet {
 
-    private static CommandFactory commandFactory;
+    private CommandFactory commandFactory;
 
     @Autowired
-    public void setCommandFactory(CommandFactory commandFactory) {
-        MainController.commandFactory = commandFactory;
+    public void setCommandFactory(CommandFactory commands) {
+        commandFactory = commands;
     }
 
     @Override

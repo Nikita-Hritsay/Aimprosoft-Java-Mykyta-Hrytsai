@@ -12,19 +12,17 @@ import javax.servlet.ServletRegistration;
 
 @Controller
 public class SpringWebInitializer implements WebApplicationInitializer {
+
     @Override
     public void onStartup(ServletContext servletContext) {
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
         rootContext.register(ApplicationContextConfig.class);
-
         servletContext.addListener(new ContextLoaderListener(rootContext));
         AnnotationConfigWebApplicationContext dispatcherContext = new AnnotationConfigWebApplicationContext();
         dispatcherContext.register(MainController.class);
-
         ServletRegistration.Dynamic dispatcher = servletContext
                 .addServlet("MainController", new DispatcherServlet(dispatcherContext));
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
-
     }
 }

@@ -17,7 +17,6 @@ import java.util.List;
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeDAO employeeDAO;
-
     private final ModelValidator<Employee> modelValidator;
 
     @Override

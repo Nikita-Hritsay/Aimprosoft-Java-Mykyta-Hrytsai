@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.Objects;
 
 @Repository
-@AllArgsConstructor(onConstructor = @__(@Autowired))
 @Transactional
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class HibernateDepartmentDAOImpl implements DepartmentDAO {
 
     private final SessionFactory sessionFactory;

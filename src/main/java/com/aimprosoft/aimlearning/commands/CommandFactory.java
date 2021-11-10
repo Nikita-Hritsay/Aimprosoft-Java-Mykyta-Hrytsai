@@ -18,13 +18,9 @@ public class CommandFactory {
     private DisplayAllDepartmentCommand displayAllDepartmentCommand;
 
     @Autowired
-    public void setDisplayAllDepartmentCommand(DisplayAllDepartmentCommand displayAllDepartmentCommand) {
-        this.displayAllDepartmentCommand = displayAllDepartmentCommand;
-    }
-
-    @Autowired
-    public void setCommandFactory(DisplayEmployeeCommand displayEmployeeCommand,
+    public void setCommands(DisplayEmployeeCommand displayEmployeeCommand,
                             EmployeesByDepartmentCommand employeesByDepartmentCommand,
+                            DisplayAllDepartmentCommand displayAllDepartmentCommand,
                             CreateUpdateEmployeeCommand createUpdateEmployeeCommand,
                             FormCreateOrUpdateEmployeeCommand formCreateOrUpdateEmployeeCommand,
                             FormCreateUpdateDepartmentCommand formCreateUpdateDepartmentCommand,
@@ -41,6 +37,7 @@ public class CommandFactory {
         commands.put("/createOrUpdateDepartment", createOrUpdateDepartmentCommand);
         commands.put("/deleteDepartment", deleteDepartmentCommand);
         commands.put("/deleteEmployee", deleteEmployeeCommand);
+        this.displayAllDepartmentCommand = displayAllDepartmentCommand;
     }
 
     public ICommand getCommand(String operation) {

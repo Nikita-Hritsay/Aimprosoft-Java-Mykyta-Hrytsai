@@ -20,7 +20,6 @@ public class ModelValidator<T> {
 
     public void validate(T obj) throws ValidationException {
         List<ConstraintViolation> violations = validator.validate(obj);
-        System.out.println(violations);
         if (!violations.isEmpty()) {
             Map<String, String> errors = new HashMap<>();
             for (ConstraintViolation violation : violations) {

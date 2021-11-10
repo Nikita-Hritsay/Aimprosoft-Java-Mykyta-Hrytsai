@@ -1,6 +1,5 @@
 package com.aimprosoft.aimlearning.config.spring;
 
-import com.aimprosoft.aimlearning.models.Department;
 import com.aimprosoft.aimlearning.validations.ModelValidator;
 import lombok.AllArgsConstructor;
 import net.sf.oval.Validator;
@@ -18,15 +17,16 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.handler.SimpleServletHandlerAdapter;
 
 import javax.sql.DataSource;
 import java.util.Objects;
 
 @Configuration
-@PropertySource("classpath:hibernate.properties")
-@AllArgsConstructor(onConstructor = @__(@Autowired))
 @ComponentScan({"com.aimprosoft.aimlearning", "net.sf.oval.integration.spring"})
 @EnableTransactionManagement
+@PropertySource("classpath:hibernate.properties")
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class ApplicationContextConfig {
 
     private final Environment environment;
@@ -38,6 +38,11 @@ public class ApplicationContextConfig {
         sessionFactory.setDataSource(dataSource);
         sessionFactory.setPackagesToScan("com.aimprosoft.aimlearning.models");
         return sessionFactory;
+    }
+
+    @Bean
+    public SimpleServletHandlerAdapter simpleServletHandlerAdapter() {
+        return new SimpleServletHandlerAdapter();
     }
 
     @Autowired
@@ -71,3 +76,4 @@ public class ApplicationContextConfig {
     }
 
 }
+
