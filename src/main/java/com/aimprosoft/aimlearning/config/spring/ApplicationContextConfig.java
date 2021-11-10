@@ -1,8 +1,11 @@
 package com.aimprosoft.aimlearning.config.spring;
 
+import com.aimprosoft.aimlearning.models.Department;
 import com.aimprosoft.aimlearning.validations.ModelValidator;
 import lombok.AllArgsConstructor;
 import net.sf.oval.Validator;
+import net.sf.oval.configuration.annotation.AnnotationsConfigurer;
+import net.sf.oval.integration.spring.SpringCheckInitializationListener;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +25,7 @@ import java.util.Objects;
 @Configuration
 @PropertySource("classpath:hibernate.properties")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-@ComponentScan("com.aimprosoft.aimlearning")
+@ComponentScan({"com.aimprosoft.aimlearning", "net.sf.oval.integration.spring"})
 @EnableTransactionManagement
 public class ApplicationContextConfig {
 
@@ -52,7 +55,9 @@ public class ApplicationContextConfig {
 
     @Bean
     public Validator validator() {
-        return new Validator();
+        AnnotationsConfigurer annotationsConfigurer = new AnnotationsConfigurer();
+        annotationsConfigurer.addCheckInitializationListener(SpringCheckInitializationListener.INSTANCE);
+        return new Validator(annotationsConfigurer);
     }
 
     @Bean

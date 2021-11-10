@@ -9,6 +9,7 @@ import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import javax.persistence.Table;
@@ -17,11 +18,12 @@ import java.util.List;
 
 @Data
 @With
-@AllArgsConstructor
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 @NoArgsConstructor
 @Entity
 @Table(name = "department")
 public class Department implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "iddepartment")
@@ -38,7 +40,7 @@ public class Department implements Serializable {
     @Length(max = 200, message = "Address can not be greater than 200")
     private String address;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "department")
     @Fetch(FetchMode.JOIN)
     @ToString.Exclude
     private List<Employee> employees;

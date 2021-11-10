@@ -1,7 +1,8 @@
 package com.aimprosoft.aimlearning.validations.department;
 
 import com.aimprosoft.aimlearning.models.Department;
-import com.aimprosoft.aimlearning.services.Impl.DepartmentServiceImpl;
+import com.aimprosoft.aimlearning.services.DepartmentService;
+import lombok.AllArgsConstructor;
 import net.sf.oval.Validator;
 import net.sf.oval.constraint.CheckWithCheck;
 import net.sf.oval.context.OValContext;
@@ -11,11 +12,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class IsUniqueName implements CheckWithCheck.SimpleCheck {
 
-    private static DepartmentServiceImpl departmentService;
+    private DepartmentService departmentService;
 
     @Autowired
-    public void setDepartmentService(DepartmentServiceImpl departmentService) {
-        IsUniqueName.departmentService = departmentService;
+    public void setDepartmentService(DepartmentService departmentService){
+        this.departmentService = departmentService;
     }
 
     @Override

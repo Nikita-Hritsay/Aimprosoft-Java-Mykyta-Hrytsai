@@ -1,6 +1,7 @@
 package com.aimprosoft.aimlearning.validations.employee;
 
 import com.aimprosoft.aimlearning.models.Employee;
+import com.aimprosoft.aimlearning.services.EmployeeService;
 import com.aimprosoft.aimlearning.services.Impl.EmployeeServiceImpl;
 import net.sf.oval.Validator;
 import net.sf.oval.constraint.CheckWithCheck;
@@ -10,11 +11,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class IsUniqueEmail implements CheckWithCheck.SimpleCheck {
-    private static EmployeeServiceImpl employeeService;
+
+    private EmployeeService employeeService;
 
     @Autowired
-    public void setEmployeeService(EmployeeServiceImpl employeeService) {
-        IsUniqueEmail.employeeService = employeeService;
+    public void setEmployeeService(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     @Override

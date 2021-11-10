@@ -1,7 +1,10 @@
 package com.aimprosoft.aimlearning.utils;
 
+import org.springframework.stereotype.Component;
+
 import java.math.BigDecimal;
 
+@Component
 public class NumberUtils {
 
     public static Integer getInt(String num) {
