@@ -44,7 +44,7 @@ public class Employee {
 
     @NotEmpty(message = "Salary can not be empty")
     @NotNull(message = "Salary can not be null")
-    @Min(value = 0.1, message = "salary can not be smaller than 0.1")
+    @Min(value = 1, message = "salary can not be smaller than 1")
     private BigDecimal salary;
 
     @NotEmpty(message = "Hire date can not be empty")

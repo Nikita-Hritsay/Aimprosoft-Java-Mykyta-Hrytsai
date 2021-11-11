@@ -40,7 +40,7 @@
     </label> <br>
         <p class="error_massage">${errors.email}</p>
         Please enter your salary: <label>
-        <input type="number" name="salary" class="input_param" size="15px" step="0.1" value="${employee.salary}">
+        <input type="number" name="salary" class="input_param" size="15px" step="0.01" value="${employee.salary}">
     </label> <br><br>
         <p class="error_massage">${errors.salary}</p>
         Please enter your hire date: <label>
