@@ -16,11 +16,12 @@
 <body>
 
 <div class="header_refs">
-    <a class="header_ref" href="displayAllDepartments">Home page</a>
-    <a class="header_ref" href="displayEmployees">All Employees</a>
-    <a class="header_ref" href="createOrUpdateEmployeeForm">Add Employee</a>
-    <a class="header_ref" href="createOrUpdateDepartmentForm">Add Department</a>
+    <a class="header_ref" href="/displayAllDepartments">Home page</a>
+    <a class="header_ref" href="/displayEmployees">All Employees</a>
+    <a class="header_ref" href="/createOrUpdateEmployeeForm">Add Employee</a>
+    <a class="header_ref" href="/createOrUpdateDepartmentForm">Add Department</a>
 </div>
+
 
 <div class="department_by_id_manage">
     <a class="header_ref" href="createOrUpdateEmployeeForm?idDepartment=${idDepartment}">add to this department</a>

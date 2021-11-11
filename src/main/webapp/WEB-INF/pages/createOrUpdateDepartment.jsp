@@ -18,14 +18,15 @@
 <body>
 
 <div class="header_refs">
-    <a class="header_ref" href="displayAllDepartments">Home page</a>
-    <a class="header_ref" href="displayEmployees">All Employees</a>
-    <a class="header_ref" href="createOrUpdateEmployeeForm">Add Employee</a>
-    <a class="header_ref" href="createOrUpdateDepartmentForm">Add Department</a>
+    <a class="header_ref" href="/displayAllDepartments">Home page</a>
+    <a class="header_ref" href="/displayEmployees">All Employees</a>
+    <a class="header_ref" href="/createOrUpdateEmployeeForm">Add Employee</a>
+    <a class="header_ref" href="/createOrUpdateDepartmentForm">Add Department</a>
 </div>
 
+
 <div style="margin-top: 50px;" class="createOrUpdateForm">
-    <form action="createOrUpdateDepartment" method="post">
+    <form action="/createOrUpdateDepartmentForm" method="post">
         <input name="id" class="input_param_id" value="${department.idDepartment}" type="hidden">
         Please enter name of department: <label>
         <input type="text" name="name" class="input_param" size="15px"

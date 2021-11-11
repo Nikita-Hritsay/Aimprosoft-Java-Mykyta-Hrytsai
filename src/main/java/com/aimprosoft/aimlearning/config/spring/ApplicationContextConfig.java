@@ -17,7 +17,9 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.handler.SimpleServletHandlerAdapter;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.sql.DataSource;
 import java.util.Objects;
@@ -27,6 +29,7 @@ import java.util.Objects;
 @EnableTransactionManagement
 @PropertySource("classpath:hibernate.properties")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
+@EnableWebMvc
 public class ApplicationContextConfig {
 
     private final Environment environment;
@@ -40,6 +43,7 @@ public class ApplicationContextConfig {
         return sessionFactory;
     }
 
+    // DO NOT DELETE IT PLEASE
     @Bean
     public SimpleServletHandlerAdapter simpleServletHandlerAdapter() {
         return new SimpleServletHandlerAdapter();
@@ -51,6 +55,14 @@ public class ApplicationContextConfig {
         HibernateTransactionManager txManager = new HibernateTransactionManager();
         txManager.setSessionFactory(sessionFactory);
         return txManager;
+    }
+
+    @Bean
+    public InternalResourceViewResolver jspViewResolver() {
+        InternalResourceViewResolver bean = new InternalResourceViewResolver();
+        bean.setPrefix("/WEB-INF/pages/");
+        bean.setSuffix(".jsp");
+        return bean;
     }
 
     @Bean

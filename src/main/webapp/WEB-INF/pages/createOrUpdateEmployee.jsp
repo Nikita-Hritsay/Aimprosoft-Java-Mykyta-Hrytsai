@@ -18,11 +18,12 @@
 <body>
 
 <div class="header_refs">
-    <a class="header_ref" href="displayAllDepartments">Home page</a>
-    <a class="header_ref" href="displayEmployees">All Employees</a>
-    <a class="header_ref" href="createOrUpdateEmployeeForm">Add Employee</a>
-    <a class="header_ref" href="createOrUpdateDepartmentForm">Add Department</a>
+    <a class="header_ref" href="/displayAllDepartments">Home page</a>
+    <a class="header_ref" href="/displayEmployees">All Employees</a>
+    <a class="header_ref" href="/createOrUpdateEmployeeForm">Add Employee</a>
+    <a class="header_ref" href="/createOrUpdateDepartmentForm">Add Department</a>
 </div>
+
 
 <div style="margin-top: 50px;" class="createOrUpdateForm">
     <form action="createOrUpdateEmployee" method="post">

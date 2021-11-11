@@ -10,10 +10,10 @@
 <body>
 
 <div class="header_refs">
-    <a class="header_ref" href="displayAllDepartments">Home page</a>
-    <a class="header_ref" href="displayEmployees">All Employees</a>
-    <a class="header_ref" href="createOrUpdateEmployeeForm">Add Employee</a>
-    <a class="header_ref" href="createOrUpdateDepartmentForm">Add Department</a>
+    <a class="header_ref" href="/displayAllDepartments">Home page</a>
+    <a class="header_ref" href="/displayEmployees">All Employees</a>
+    <a class="header_ref" href="/createOrUpdateEmployeeForm">Add Employee</a>
+    <a class="header_ref" href="createOrUpdateDepartmentForm/">Add Department</a>
 </div>
 
 <div style="margin-top: 50px;">
@@ -37,6 +37,8 @@
             </tr>
             <c:forEach var="department" items="${departments}">
                 <tr>
+                    <input type="hidden" value="${department.idDepartment}" name="idDepartment">
+
                     <td><a href="employeesByDepartment?id=${department.idDepartment}"> <c:out
                             value="${department.name}"/> </a></td>
 
@@ -45,7 +47,7 @@
 
                     <td><a href="employeesByDepartment?id=${department.idDepartment}"> List </a></td>
 
-                    <td><a href="createOrUpdateDepartmentForm?id=${department.idDepartment}" class="update_button">
+                    <td><a href="createOrUpdateDepartmentForm" class="update_button">
                         update </a></td>
 
                     <td>
