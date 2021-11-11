@@ -22,6 +22,10 @@
         <p>Empty</p>
     </c:if>
 
+    <c:if test="${empty errorDeleting}">
+        <p>${errorDeleting}</p>
+    </c:if>
+
     <c:if test="${!empty departments}">
         <table>
             <tr>

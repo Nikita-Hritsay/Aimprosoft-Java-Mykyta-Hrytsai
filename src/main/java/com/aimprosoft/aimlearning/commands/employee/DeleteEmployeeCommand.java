@@ -21,7 +21,11 @@ public class DeleteEmployeeCommand implements ICommand {
 
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DBException {
-        employeeService.deleteEmployee(NumberUtils.getInt(request.getParameter("id")));
-        response.sendRedirect("displayAllDepartments");
+        try {
+            employeeService.deleteEmployee(NumberUtils.getInt(request.getParameter("id")));
+            response.sendRedirect("displayAllDepartments");
+        } catch (DBException e) {
+            response.sendRedirect("displayAllDepartments");
+        }
     }
 }
