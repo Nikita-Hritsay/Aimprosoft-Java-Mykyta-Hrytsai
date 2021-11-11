@@ -52,13 +52,8 @@
     </label> <br><br>
         <datalist id="idDepartments">
             <c:forEach var="department" items="${requestScope.departments}">
-<<<<<<< HEAD
-                <option value="${department.idDepartment}">${department.name}</option>
-                </c:forEach>
-=======
                 <option value="${department.idDepartment}" >${department.name}</option>
             </c:forEach>
->>>>>>> hibernate
         </datalist>
         <p class="error_massage">${errors.department}</p>
         <input type="submit" class="submit_createOrUpdate" value="submit">

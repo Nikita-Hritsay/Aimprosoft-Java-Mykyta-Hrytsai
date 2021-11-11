@@ -5,7 +5,6 @@ import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Employee;
 
 import java.util.List;
-import java.util.Map;
 
 public interface EmployeeService {
     List<Employee> getAllEmployees() throws DBException;
@@ -18,5 +17,5 @@ public interface EmployeeService {
 
     void createOrUpdate(Employee employee) throws ValidationException, DBException;
 
-    Map<Integer, String> getMapDepartmentIdByEmployeeName() throws DBException;
+    boolean existByEmail(Employee employee) throws DBException;
 }

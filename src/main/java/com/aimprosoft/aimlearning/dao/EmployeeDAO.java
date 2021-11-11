@@ -20,8 +20,4 @@ public interface EmployeeDAO {
 
     void createOrUpdate(Employee employee) throws ValidationException, DBException;
 
-<<<<<<< HEAD
-    Map<Integer, String> getMapDepartmentIdByEmployeeName() throws DBException;
-=======
->>>>>>> hibernate
 }

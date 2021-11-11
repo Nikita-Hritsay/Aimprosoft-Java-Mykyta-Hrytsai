@@ -1,16 +1,22 @@
 package com.aimprosoft.aimlearning.validations;
 
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
+import lombok.AllArgsConstructor;
 import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;
 import net.sf.oval.context.OValContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class ModelValidator<T> {
-    private final Validator validator = new Validator();
+
+    private final Validator validator;
 
     public void validate(T obj) throws ValidationException {
         List<ConstraintViolation> violations = validator.validate(obj);

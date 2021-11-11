@@ -46,12 +46,7 @@
                     <td><c:out value="${employee.email}"/></td>
                     <td><c:out value="${employee.salary}"/></td>
                     <td><c:out value="${employee.hireDate}"/></td>
-<<<<<<< HEAD
-                    <td><c:out value="${departmentEmployeeMap.get(employee.id)}"/></td>
-=======
                     <td><c:out value="${employee.department.name}"/></td>
-
->>>>>>> hibernate
                 </tr>
             </c:forEach>
         </table>

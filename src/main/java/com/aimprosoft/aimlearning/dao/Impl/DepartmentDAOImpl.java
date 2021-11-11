@@ -109,11 +109,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
         if (department.getIdDepartment() != null) {
             updateDepartment(department);
         } else {
-<<<<<<< HEAD
-            addDepartment(department);
-=======
             saveOrUpdate(department);
->>>>>>> hibernate
         }
     }
 

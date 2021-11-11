@@ -1,19 +1,28 @@
 package com.aimprosoft.aimlearning.services.Impl;
 
-import com.aimprosoft.aimlearning.dao.Impl.HibernateEmployeeDAOImpl;
+import com.aimprosoft.aimlearning.dao.EmployeeDAO;
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Employee;
 import com.aimprosoft.aimlearning.services.EmployeeService;
 import com.aimprosoft.aimlearning.validations.ModelValidator;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
+@Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private final HibernateEmployeeDAOImpl employeeDAO = new HibernateEmployeeDAOImpl();
-    private final ModelValidator<Employee> modelValidator = new ModelValidator<>();
+    private final EmployeeDAO employeeDAO;
+    private final ModelValidator<Employee> modelValidator;
+
+    @Override
+    public boolean existByEmail(Employee employee) throws DBException {
+        return employeeDAO.existsByEmail(employee);
+    }
 
     @Override
     public List<Employee> getAllEmployees() throws DBException {
@@ -41,8 +50,4 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeDAO.createOrUpdate(employee);
     }
 
-    @Override
-    public Map<Integer, String> getMapDepartmentIdByEmployeeName() throws DBException {
-        return employeeDAO.getMapDepartmentIdByEmployeeName();
-    }
 }

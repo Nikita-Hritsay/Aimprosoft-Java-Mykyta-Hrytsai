@@ -7,6 +7,7 @@ import net.sf.oval.constraint.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Type;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -14,7 +15,7 @@ import java.util.Date;
 
 @Data
 @With
-@AllArgsConstructor
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 @NoArgsConstructor
 @Entity
 @Table(name = "employee")

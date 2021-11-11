@@ -6,16 +6,21 @@ import com.aimprosoft.aimlearning.models.Employee;
 import com.aimprosoft.aimlearning.services.Impl.DepartmentServiceImpl;
 import com.aimprosoft.aimlearning.services.Impl.EmployeeServiceImpl;
 import com.aimprosoft.aimlearning.utils.NumberUtils;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@Component
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class FormCreateOrUpdateEmployeeCommand implements ICommand {
 
-    private final EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
-    private final DepartmentServiceImpl departmentService = new DepartmentServiceImpl();
+    private final EmployeeServiceImpl employeeService;
+    private final DepartmentServiceImpl departmentService;
 
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, DBException {

@@ -12,11 +12,6 @@ public interface DepartmentDAO {
     void saveOrUpdate(Department department) throws DBException;
 
     Department getDepartmentById(Integer id) throws DBException;
-<<<<<<< HEAD
-
-    void updateDepartment(Department department) throws DBException;
-=======
->>>>>>> hibernate
 
     void deleteDepartment(int id) throws DBException;
 

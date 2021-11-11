@@ -9,9 +9,7 @@ import com.aimprosoft.aimlearning.models.Employee;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
 
@@ -111,21 +109,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             updateEmployee(employee);
         } else {
             saveOrUpdate(employee);
-        }
-    }
-
-    @Override
-    public Map<Integer, String> getMapDepartmentIdByEmployeeName() throws DBException {
-        try (Connection connection = ConnectionFactory.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(FIND_DEPARTMENTNAME_BY_EMPLOYEE_ID)) {
-            Map<Integer, String> result = new HashMap<>();
-            while (resultSet.next()) {
-                result.put(resultSet.getInt(1), resultSet.getString(2));
-            }
-            return result;
-        } catch (SQLException sqlException) {
-            throw new DBException("Error in get All Employees: " + sqlException.getMessage());
         }
     }
 
