@@ -14,7 +14,7 @@ public class IsUniqueName implements CheckWithCheck.SimpleCheck {
     private DepartmentService departmentService;
 
     @Autowired
-    public void setDepartmentService(DepartmentService departmentService){
+    public void setDepartmentService(DepartmentService departmentService) {
         this.departmentService = departmentService;
     }
 

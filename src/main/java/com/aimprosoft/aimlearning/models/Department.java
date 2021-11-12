@@ -1,7 +1,6 @@
 package com.aimprosoft.aimlearning.models;
 
 import com.aimprosoft.aimlearning.validations.department.IsUniqueName;
-
 import lombok.*;
 import net.sf.oval.constraint.CheckWith;
 import net.sf.oval.constraint.Length;
@@ -12,7 +11,6 @@ import org.hibernate.annotations.FetchMode;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
-import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
 
