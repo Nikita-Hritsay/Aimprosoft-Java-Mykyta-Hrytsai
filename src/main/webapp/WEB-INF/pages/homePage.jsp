@@ -47,7 +47,7 @@
 
                     <td><a href="employeesByDepartment?id=${department.idDepartment}"> List </a></td>
 
-                    <td><a href="createOrUpdateDepartmentForm" class="update_button">
+                    <td><a href="createOrUpdateDepartmentForm?idDepartment=${department.idDepartment}" class="update_button">
                         update </a></td>
 
                     <td>

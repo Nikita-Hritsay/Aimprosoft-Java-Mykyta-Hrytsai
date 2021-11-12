@@ -4,15 +4,11 @@ import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Department;
 import com.aimprosoft.aimlearning.services.DepartmentService;
-import com.aimprosoft.aimlearning.utils.NumberUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.lang.reflect.MalformedParameterizedTypeException;
-
 
 @Controller
 @AllArgsConstructor(onConstructor = @__(@Autowired))
@@ -28,17 +24,18 @@ public class DepartmentController {
     }
 
     @GetMapping("/createOrUpdateDepartmentForm")
-    public String createOrUpdateDepartmentForm(Model model) throws DBException {
+    public String createOrUpdateDepartmentForm(Model model, @RequestParam(value = "idDepartment", required = false) Integer idDepartment) throws DBException {
+        model.addAttribute("department", departmentService.getDepartmentById(idDepartment));
         return "createOrUpdateDepartment";
     }
 
     @PostMapping("/createOrUpdateDepartmentForm")
-    public String createOrUpdateDepartmentPost(Model model) throws DBException, ValidationException {
+    public String createOrUpdateDepartmentPost(Model model, @ModelAttribute Department department, @RequestParam(value = "idDepartment", required = false) Integer idDepartment) throws DBException, ValidationException {
         try {
-            departmentService.createOrUpdate(getDepartment(model));
+            departmentService.createOrUpdate(department.withIdDepartment(idDepartment));
         } catch (ValidationException validationException) {
             model.addAttribute("errors", validationException.getErrors());
-            model.addAttribute("department", getDepartment(model));
+            model.addAttribute("department", department);
             return "createOrUpdateDepartment";
         }
         return "redirect:/";
@@ -52,13 +49,6 @@ public class DepartmentController {
             return "redirect:/";
         }
         return "redirect:/";
-    }
-
-    public Department getDepartment(Model model){
-        return new Department()
-                .withIdDepartment(NumberUtils.getInt(model.getAttribute("idDepartment").toString()))
-                .withAddress(model.getAttribute("name").toString())
-                .withAddress(model.getAttribute("address").toString());
     }
 
 }
