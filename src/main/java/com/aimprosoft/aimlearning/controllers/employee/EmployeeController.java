@@ -1,7 +1,63 @@
 package com.aimprosoft.aimlearning.controllers.employee;
 
+import com.aimprosoft.aimlearning.exceptions.DBException;
+import com.aimprosoft.aimlearning.exceptions.ValidationException;
+import com.aimprosoft.aimlearning.models.Employee;
+import com.aimprosoft.aimlearning.services.DepartmentService;
+import com.aimprosoft.aimlearning.services.EmployeeService;
+import lombok.AllArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class EmployeeController {
+
+    private EmployeeService employeeService;
+    private DepartmentService departmentService;
+
+    @GetMapping("/displayEmployees")
+    public String displayEmployees(Model model) throws DBException {
+        model.addAttribute("employees", employeeService.getAllEmployees());
+        return "allEmployees";
+    }
+
+    @GetMapping("/employeesByDepartment")
+    public String employeesByDepartment(Model model, @RequestParam(required = false) Integer id) throws DBException {
+        model.addAttribute("employees", departmentService.getDepartmentById(id).getEmployees());
+        model.addAttribute("department", departmentService.getDepartmentById(id));
+        return "employeesByDepartment";
+    }
+
+    @PostMapping("deleteEmployee")
+    public String deleteEmployeePost(Model model, @RequestParam Integer id) throws DBException {
+        employeeService.deleteEmployee(id);
+        return "redirect:/";
+    }
+
+    @GetMapping("/createOrUpdateEmployeeForm")
+    public String createOrUpdateEmployeeForm(Model model, @RequestParam(value = "id", required = false) Integer id) throws DBException {
+        model.addAttribute("employee", employeeService.getById(id));
+        model.addAttribute("departments", departmentService.getAllDepartments());
+        return "createOrUpdateEmployee";
+    }
+
+    @PostMapping("/createOrUpdateEmployeeForm")
+    public String createOrUpdateEmployee(Model model, @ModelAttribute Employee employee, @RequestParam(value = "id", required = false) Integer id) throws DBException {
+        try {
+            employeeService.createOrUpdate(employee);
+        } catch (ValidationException validationException) {
+            model.addAttribute("errors", validationException.getErrors());
+            model.addAttribute("employee", employee);
+            return "createOrUpdateEmployee";
+        }
+        return "redirect:/";
+    }
+
 }

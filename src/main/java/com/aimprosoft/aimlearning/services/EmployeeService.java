@@ -9,7 +9,7 @@ import java.util.List;
 public interface EmployeeService {
     List<Employee> getAllEmployees() throws DBException;
 
-    Employee getById(int id) throws DBException;
+    Employee getById(Integer id) throws DBException;
 
     void add(Employee employee) throws DBException;
 

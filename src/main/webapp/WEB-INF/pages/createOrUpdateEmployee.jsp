@@ -20,13 +20,13 @@
 <div class="header_refs">
     <a class="header_ref" href="/displayAllDepartments">Home page</a>
     <a class="header_ref" href="/displayEmployees">All Employees</a>
-    <a class="header_ref" href="/createOrUpdateEmployeeForm">Add Employee</a>
-    <a class="header_ref" href="/createOrUpdateDepartmentForm">Add Department</a>
+    <a class="header_ref" href="/createOrUpdateEmployeeForm/">Add Employee</a>
+    <a class="header_ref" href="/createOrUpdateDepartmentForm/">Add Department</a>
 </div>
 
 
 <div style="margin-top: 50px;" class="createOrUpdateForm">
-    <form action="createOrUpdateEmployee" method="post">
+    <form action="/createOrUpdateEmployeeForm?id=${employee.id}" method="post">
         <input type="hidden" name="id" class="input_param" size="20px" value="${employee.id}">
         Please enter your first name: <%--@declare id="iddepartments"--%><label>
         <input type="text" name="firstName" class="input_param" size="15px" value="${employee.firstName}">

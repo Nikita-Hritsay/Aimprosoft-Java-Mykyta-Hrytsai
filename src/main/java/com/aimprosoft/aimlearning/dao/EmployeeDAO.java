@@ -10,7 +10,7 @@ import java.util.Map;
 public interface EmployeeDAO {
     List<Employee> getAllEmployees() throws DBException;
 
-    Employee getById(int id) throws DBException;
+    Employee getById(Integer id) throws DBException;
 
     void saveOrUpdate(Employee employee) throws DBException;
 

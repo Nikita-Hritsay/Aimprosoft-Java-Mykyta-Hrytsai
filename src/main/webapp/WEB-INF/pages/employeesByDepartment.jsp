@@ -18,14 +18,17 @@
 <div class="header_refs">
     <a class="header_ref" href="/displayAllDepartments">Home page</a>
     <a class="header_ref" href="/displayEmployees">All Employees</a>
-    <a class="header_ref" href="/createOrUpdateEmployeeForm">Add Employee</a>
-    <a class="header_ref" href="/createOrUpdateDepartmentForm">Add Department</a>
+    <a class="header_ref" href="/createOrUpdateEmployeeForm/">Add Employee</a>
+    <a class="header_ref" href="/createOrUpdateDepartmentForm/">Add Department</a>
 </div>
 
 
 <div class="department_by_id_manage">
     <a class="header_ref" href="createOrUpdateEmployeeForm?idDepartment=${idDepartment}">add to this department</a>
-    <a class="header_ref_del" href="deleteDepartment?idDepartment=${idDepartment}">Delete this department </a>
+    <form action="deleteDepartment" method="post">
+        <input type="hidden" value="${department.idDepartment}" name="idDepartment">
+        <input class="delete_button submit_delete" type="submit" value="Delete">
+    </form>
 </div>
 
 <div style="margin-top: 50px;">
