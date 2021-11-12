@@ -36,7 +36,7 @@ public class EmployeeController {
     }
 
     @PostMapping("deleteEmployee")
-    public String deleteEmployeePost(Model model, @RequestParam Integer id) throws DBException {
+    public String deleteEmployeePost(@RequestParam Integer id) throws DBException {
         employeeService.deleteEmployee(id);
         return "redirect:/";
     }
