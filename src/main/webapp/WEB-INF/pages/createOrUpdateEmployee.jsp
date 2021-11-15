@@ -27,7 +27,6 @@
 
 <div style="margin-top: 50px;" class="createOrUpdateForm">
     <form action="/createOrUpdateEmployeeForm" method="post">
-        <input type="number" name="id" class="input_param" size="20px" value="${employee.id}">
         Please enter your first name: <%--@declare id="iddepartments"--%><label>
         <input type="text" name="firstName" class="input_param" size="15px" value="${employee.firstName}">
     </label> <br>
@@ -49,7 +48,7 @@
     </label> <br><br>
         <p class="error_massage">${errors.hireDate}</p>
         Please enter your department name: <label>
-        <input list="idDepartments" name="idDepartment" class="input_param" size="15px">
+        <input list="idDepartments" name="department.idDepartment" class="input_param" size="15px">
     </label> <br><br>
         <datalist id="idDepartments">
             <c:forEach var="department" items="${requestScope.departments}">

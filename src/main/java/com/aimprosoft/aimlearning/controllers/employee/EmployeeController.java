@@ -49,7 +49,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/createOrUpdateEmployeeForm")
-    public String createOrUpdateEmployee(Model model, @ModelAttribute Employee employee, @RequestParam(value = "id", required = false) Integer id) throws DBException {
+    public String createOrUpdateEmployee(Model model, @ModelAttribute Employee employee) throws DBException {
         try {
             employeeService.createOrUpdate(employee);
         } catch (ValidationException validationException) {

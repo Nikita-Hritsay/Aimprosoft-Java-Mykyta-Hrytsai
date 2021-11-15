@@ -6,8 +6,8 @@ import lombok.*;
 import net.sf.oval.constraint.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.Type;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -50,7 +50,8 @@ public class Employee {
 
     @NotEmpty(message = "Hire date can not be empty")
     @NotNull(message = "Hire date can not be null")
-    @Type(type = "date")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date hireDate;
 
     @NotEmpty(message = "Department can not be empty")
