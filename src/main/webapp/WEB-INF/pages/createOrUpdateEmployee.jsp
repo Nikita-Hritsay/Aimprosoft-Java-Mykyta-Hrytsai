@@ -27,6 +27,7 @@
 
 <div style="margin-top: 50px;" class="createOrUpdateForm">
     <form action="/createOrUpdateEmployeeForm" method="post">
+        <input type="hidden" value="${employee.id}" name="id">
         Please enter your first name: <%--@declare id="iddepartments"--%><label>
         <input type="text" name="firstName" class="input_param" size="15px" value="${employee.firstName}">
     </label> <br>

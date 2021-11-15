@@ -55,6 +55,7 @@ public class EmployeeController {
         } catch (ValidationException validationException) {
             model.addAttribute("errors", validationException.getErrors());
             model.addAttribute("employee", employee);
+            model.addAttribute("departments", departmentService.getAllDepartments());
             return "createOrUpdateEmployee";
         }
         return "redirect:/";
