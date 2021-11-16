@@ -17,7 +17,7 @@ public class DepartmentController {
     private final DepartmentService departmentService;
 
     @GetMapping(value = {"/displayAllDepartments", "/"})
-    public String helloPage(Model model) throws DBException {
+    public String displayAllDepartments(Model model) throws DBException {
         model.addAttribute("departments", departmentService.getAllDepartments());
         return "homePage";
     }
