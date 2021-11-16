@@ -49,7 +49,7 @@
     </label> <br><br>
         <p class="error_massage">${errors.hireDate}</p>
         Please enter your department name: <label>
-        <input list="idDepartments" name="department.idDepartment" class="input_param" size="15px">
+        <input list="idDepartments" name="department.idDepartment" class="input_param" size="15px" value="${employee.department.idDepartment}">
     </label> <br><br>
         <datalist id="idDepartments">
             <c:forEach var="department" items="${requestScope.departments}">
