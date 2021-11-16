@@ -26,8 +26,8 @@
 
 
 <div style="margin-top: 50px;" class="createOrUpdateForm">
-    <form action="/createOrUpdateDepartmentForm?idDepartment=${department.idDepartment}" method="post">
-        <input name="id" value="${department.idDepartment}" type="hidden">
+    <form action="/createOrUpdateDepartmentForm" method="post">
+        <input name="idDepartment" value="${department.idDepartment}" type="hidden">
         Please enter name of department: <label>
         <input type="text" name="name" class="input_param" size="15px"
                value="${department.name}">

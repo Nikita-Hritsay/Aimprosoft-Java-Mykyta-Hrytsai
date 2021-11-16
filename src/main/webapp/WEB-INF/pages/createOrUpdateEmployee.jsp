@@ -52,7 +52,7 @@
         <input list="idDepartments" name="department.idDepartment" class="input_param" size="15px" value="${employee.department.idDepartment}">
     </label> <br><br>
         <datalist id="idDepartments">
-            <c:forEach var="department" items="${requestScope.departments}">
+            <c:forEach var="department" items="${departments}">
                 <option value="${department.idDepartment}" >${department.name}</option>
             </c:forEach>
         </datalist>

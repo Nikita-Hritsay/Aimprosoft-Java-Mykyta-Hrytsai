@@ -1,3 +1,5 @@
+<jsp:useBean id="idDepartment" scope="request" type="java.lang.Integer"/>
+<jsp:useBean id="department" scope="request" type="com.aimprosoft.aimlearning.models.Department"/>
 <%--
   Created by IntelliJ IDEA.
   User: nikita
@@ -35,7 +37,7 @@
     <c:if test="${empty department.employees}">
         <p>Empty</p>
     </c:if>
-    <c:if test="${!empty requestScope.department.employees}">
+    <c:if test="${!empty department.employees}">
         <table>
             <tr>
                 <th>First Name</th>
@@ -47,7 +49,7 @@
                 <th>Update</th>
                 <th>Delete</th>
             </tr>
-            <c:forEach var="employee" items="${requestScope.department.employees}">
+            <c:forEach var="employee" items="${department.employees}">
                 <tr>
                     <td><c:out value="${employee.firstName}"/></td>
                     <td><c:out value="${employee.lastName}"/></td>
