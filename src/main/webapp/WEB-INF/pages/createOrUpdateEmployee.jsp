@@ -13,7 +13,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link href="../../css/main.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>"/>
 </head>
 <body>
 

@@ -23,13 +23,13 @@ public class DepartmentController {
     }
 
     @GetMapping("/createOrUpdateDepartmentForm")
-    public String createOrUpdateDepartmentForm(Model model, @RequestParam(value = "idDepartment", required = false) Integer idDepartment) throws DBException {
+    public String displayCreateOrUpdateDepartmentForm(Model model, @RequestParam(value = "idDepartment", required = false) Integer idDepartment) throws DBException {
         model.addAttribute("department", departmentService.getDepartmentById(idDepartment));
         return "createOrUpdateDepartment";
     }
 
     @PostMapping("/createOrUpdateDepartmentForm")
-    public String createOrUpdateDepartmentPost(Model model, @ModelAttribute Department department, @RequestParam(value = "idDepartment", required = false) Integer idDepartment) throws DBException, ValidationException {
+    public String createOrUpdateDepartment(Model model, @ModelAttribute Department department, @RequestParam(value = "idDepartment", required = false) Integer idDepartment) throws DBException {
         try {
             departmentService.createOrUpdate(department.withIdDepartment(idDepartment));
         } catch (ValidationException validationException) {
@@ -41,13 +41,15 @@ public class DepartmentController {
     }
 
     @PostMapping("/deleteDepartment")
-    public String deleteDepartmentPost(Model model, @RequestParam Integer idDepartment) {
-        try {
-            departmentService.deleteDepartment(idDepartment);
-        } catch (DBException e) {
-            return "redirect:/";
-        }
+    public String deleteDepartment(Model model, @RequestParam Integer idDepartment) throws DBException {
+        departmentService.deleteDepartment(idDepartment);
         return "redirect:/";
+    }
+
+    @ExceptionHandler(DBException.class)
+    public String handlerException(Model model, DBException ex){
+        model.addAttribute("error", ex.getMessage());
+        return "errorPage";
     }
 
 }

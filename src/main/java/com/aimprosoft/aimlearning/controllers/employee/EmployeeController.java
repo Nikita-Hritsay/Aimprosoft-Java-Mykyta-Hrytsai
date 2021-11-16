@@ -10,17 +10,16 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class EmployeeController {
 
-    private EmployeeService employeeService;
-    private DepartmentService departmentService;
+    private final EmployeeService employeeService;
+    private final DepartmentService departmentService;
 
     @GetMapping("/displayEmployees")
     public String displayEmployees(Model model) throws DBException {
@@ -30,19 +29,18 @@ public class EmployeeController {
 
     @GetMapping("/employeesByDepartment")
     public String employeesByDepartment(Model model, @RequestParam(required = false) Integer id) throws DBException {
-        model.addAttribute("employees", departmentService.getDepartmentById(id).getEmployees());
         model.addAttribute("department", departmentService.getDepartmentById(id));
         return "employeesByDepartment";
     }
 
     @PostMapping("deleteEmployee")
-    public String deleteEmployeePost(@RequestParam Integer id) throws DBException {
+    public String deleteEmployee(@RequestParam Integer id, @RequestParam Integer idDepartment) throws DBException {
         employeeService.deleteEmployee(id);
-        return "redirect:/";
+        return "redirect:/employeesByDepartment?id=" + idDepartment;
     }
 
     @GetMapping("/createOrUpdateEmployeeForm")
-    public String createOrUpdateEmployeeForm(Model model, @RequestParam(value = "id", required = false) Integer id) throws DBException {
+    public String displayCreateOrUpdateEmployeeForm(Model model, @RequestParam(value = "id", required = false) Integer id) throws DBException {
         model.addAttribute("employee", employeeService.getById(id));
         model.addAttribute("departments", departmentService.getAllDepartments());
         return "createOrUpdateEmployee";
@@ -58,7 +56,13 @@ public class EmployeeController {
             model.addAttribute("departments", departmentService.getAllDepartments());
             return "createOrUpdateEmployee";
         }
-        return "redirect:/";
+        return "redirect:/employeesByDepartment?id=" + employee.getDepartment().getIdDepartment();
+    }
+
+    @ExceptionHandler(DBException.class)
+    public String handlerException(Model model, DBException ex){
+        model.addAttribute("error", ex.getMessage());
+        return "errorPage";
     }
 
 }

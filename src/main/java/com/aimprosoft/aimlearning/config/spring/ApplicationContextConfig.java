@@ -17,7 +17,10 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.handler.SimpleServletHandlerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -30,7 +33,7 @@ import java.util.Objects;
 @PropertySource("classpath:hibernate.properties")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 @EnableWebMvc
-public class ApplicationContextConfig {
+public class ApplicationContextConfig implements WebMvcConfigurer {
 
     private final Environment environment;
 
@@ -41,12 +44,6 @@ public class ApplicationContextConfig {
         sessionFactory.setDataSource(dataSource);
         sessionFactory.setPackagesToScan("com.aimprosoft.aimlearning.models");
         return sessionFactory;
-    }
-
-    // DO NOT DELETE IT PLEASE
-    @Bean
-    public SimpleServletHandlerAdapter simpleServletHandlerAdapter() {
-        return new SimpleServletHandlerAdapter();
     }
 
     @Autowired
@@ -63,6 +60,12 @@ public class ApplicationContextConfig {
         bean.setPrefix("/WEB-INF/pages/");
         bean.setSuffix(".jsp");
         return bean;
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**")
+                .addResourceLocations("/resources/");
     }
 
     @Bean

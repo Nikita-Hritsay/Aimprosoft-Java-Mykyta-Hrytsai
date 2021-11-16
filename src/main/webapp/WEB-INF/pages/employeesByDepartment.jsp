@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>Department</title>
-    <link href="../../css/main.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>"/>
 </head>
 <body>
 
@@ -32,10 +32,10 @@
 </div>
 
 <div style="margin-top: 50px;">
-    <c:if test="${empty employees}">
+    <c:if test="${empty department.employees}">
         <p>Empty</p>
     </c:if>
-    <c:if test="${!empty requestScope.employees}">
+    <c:if test="${!empty requestScope.department.employees}">
         <table>
             <tr>
                 <th>First Name</th>
@@ -47,7 +47,7 @@
                 <th>Update</th>
                 <th>Delete</th>
             </tr>
-            <c:forEach var="employee" items="${requestScope.employees}">
+            <c:forEach var="employee" items="${requestScope.department.employees}">
                 <tr>
                     <td><c:out value="${employee.firstName}"/></td>
                     <td><c:out value="${employee.lastName}"/></td>
@@ -60,6 +60,7 @@
                     <td>
                         <form action="deleteEmployee" method="post">
                             <input type="hidden" value="${employee.id}" name="id">
+                            <input type="hidden" value="${employee.department.idDepartment}" name="idDepartment">
                             <input class="delete_button submit_delete" type="submit" value="Delete">
                         </form>
                     </td>

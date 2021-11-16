@@ -13,7 +13,7 @@
 <head>
     <title>Title</title>
 
-    <link href="../../css/main.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>"/>
 </head>
 <body>
 
@@ -27,7 +27,7 @@
 
 <div style="margin-top: 50px;" class="createOrUpdateForm">
     <form action="/createOrUpdateDepartmentForm?idDepartment=${department.idDepartment}" method="post">
-        <input name="id" class="input_param_id" value="${department.idDepartment}" type="hidden">
+        <input name="id" value="${department.idDepartment}" type="hidden">
         Please enter name of department: <label>
         <input type="text" name="name" class="input_param" size="15px"
                value="${department.name}">

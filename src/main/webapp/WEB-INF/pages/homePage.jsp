@@ -5,7 +5,7 @@
 <head>
     <title>Home</title>
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
-    <link href="../../css/main.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>"/>
 </head>
 <body>
 
