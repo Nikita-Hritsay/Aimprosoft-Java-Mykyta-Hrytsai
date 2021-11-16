@@ -12,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Controller
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class EmployeeController {
@@ -59,10 +57,6 @@ public class EmployeeController {
         return "redirect:/employeesByDepartment?id=" + employee.getDepartment().getIdDepartment();
     }
 
-    @ExceptionHandler(DBException.class)
-    public String handlerException(Model model, DBException ex){
-        model.addAttribute("error", ex.getMessage());
-        return "errorPage";
-    }
+
 
 }
