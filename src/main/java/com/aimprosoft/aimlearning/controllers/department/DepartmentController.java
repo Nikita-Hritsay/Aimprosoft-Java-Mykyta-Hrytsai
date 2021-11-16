@@ -46,10 +46,4 @@ public class DepartmentController {
         return "redirect:/";
     }
 
-    @ExceptionHandler(DBException.class)
-    public String handlerException(Model model, DBException ex){
-        model.addAttribute("error", ex.getMessage());
-        return "errorPage";
-    }
-
 }
