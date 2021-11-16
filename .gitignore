@@ -3,4 +3,3 @@ target
 *.jar
 *.war
 *.iml
-*.properties
