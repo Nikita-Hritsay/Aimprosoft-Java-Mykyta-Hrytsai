@@ -1,4 +1,4 @@
-<%--@elvariable id="idDepartment" type="java.lang.Integer"--%>
+<jsp:useBean id="idDepartment" scope="request" type="java.lang.Integer"/>
 <jsp:useBean id="department" scope="request" type="com.aimprosoft.aimlearning.models.Department"/>
 <%--
   Created by IntelliJ IDEA.
