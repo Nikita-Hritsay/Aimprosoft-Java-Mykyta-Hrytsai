@@ -11,7 +11,7 @@ class ExceptionHandlerController {
 
     @ExceptionHandler(DBException.class)
     public String handleConflict(Model model) {
-        model.addAttribute("error", "DB exception");
+        model.addAttribute("error", "Error occurred with DB connection or operation");
         return "errorPage";
     }
 
