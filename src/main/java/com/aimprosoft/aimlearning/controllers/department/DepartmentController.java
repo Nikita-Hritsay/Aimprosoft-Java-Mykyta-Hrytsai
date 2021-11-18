@@ -8,45 +8,38 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class DepartmentController {
 
     private final DepartmentService departmentService;
 
+    @ResponseBody
     @GetMapping(value = {"/displayAllDepartments", "/"})
-    public String displayAllDepartments(Model model) throws DBException {
-        model.addAttribute("departments", departmentService.getAllDepartments());
-        return "homePage";
+    public List<Department> displayAllDepartments(Model model) throws DBException {
+        return departmentService.getAllDepartments();
     }
 
+    @ResponseBody
     @GetMapping("/createOrUpdateDepartmentForm")
-    public String displayCreateOrUpdateDepartmentForm(Model model, @RequestParam(value = "idDepartment", required = false) Integer idDepartment) throws DBException {
-        model.addAttribute("department", departmentService.getDepartmentById(idDepartment));
-        return "createOrUpdateDepartment";
+    public Department displayCreateOrUpdateDepartmentForm(Model model, @RequestParam(value = "idDepartment", required = false) Integer idDepartment) throws DBException {
+        return departmentService.getDepartmentById(idDepartment);
     }
 
+    @ResponseBody
     @PostMapping("/createOrUpdateDepartmentForm")
-    public String createOrUpdateDepartment(Model model, @ModelAttribute Department department, @RequestParam(value = "idDepartment", required = false) Integer idDepartment) throws DBException {
-        try {
-            departmentService.createOrUpdate(department.withIdDepartment(idDepartment));
-        } catch (ValidationException validationException) {
-            model.addAttribute("errors", validationException.getErrors());
-            model.addAttribute("department", department);
-            return "createOrUpdateDepartment";
-        }
-        return "redirect:/";
+    public void createOrUpdateDepartment(Model model, @ModelAttribute Department department, @RequestParam(value = "idDepartment", required = false) Integer idDepartment) throws DBException, ValidationException {
+        departmentService.createOrUpdate(department.withIdDepartment(idDepartment));
     }
 
+    @ResponseBody
     @PostMapping("/deleteDepartment")
-    public String deleteDepartment(Model model, @RequestParam Integer idDepartment) throws DBException {
+    public void deleteDepartment(Model model, @RequestParam Integer idDepartment) throws DBException {
         departmentService.deleteDepartment(idDepartment);
-        return "redirect:/";
     }
 
 }
