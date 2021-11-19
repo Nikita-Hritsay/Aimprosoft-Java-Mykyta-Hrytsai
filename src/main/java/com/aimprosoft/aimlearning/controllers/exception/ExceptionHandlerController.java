@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 class ExceptionHandlerController {
 
     @ExceptionHandler(DBException.class)
-    public String handleConflict(Model model, Exception e) {
+    public String handleConflict(Model model, DBException e) {
         model.addAttribute("error", "Error occurred with DB connection or operation:\n" + e.getMessage());
         return "errorPage";
     }
