@@ -6,6 +6,8 @@ import com.aimprosoft.aimlearning.models.Department;
 import com.aimprosoft.aimlearning.services.DepartmentService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,8 +33,13 @@ public class DepartmentController {
 
     @ResponseBody
     @PostMapping("/createOrUpdateDepartmentForm")
-    public void createOrUpdateDepartment(Model model, @ModelAttribute Department department, @RequestParam(value = "idDepartment", required = false) Integer idDepartment) throws DBException, ValidationException {
-        departmentService.createOrUpdate(department.withIdDepartment(idDepartment));
+    public ResponseEntity<HttpStatus> createOrUpdateDepartment(Model model, @ModelAttribute Department department) throws DBException{
+        try {
+            departmentService.createOrUpdate(department);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (ValidationException e) {
+            return new ResponseEntity(e.getErrors(), HttpStatus.CONFLICT);
+        }
     }
 
     @ResponseBody

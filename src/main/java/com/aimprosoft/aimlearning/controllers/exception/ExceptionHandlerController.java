@@ -17,9 +17,4 @@ public class ExceptionHandlerController {
         return "Error occurred with DB connection or operation: " + e.getMessage();
     }
 
-    @ExceptionHandler(ValidationException.class)
-    public HashMap<String, String> handleConflict(Model model, ValidationException e) {
-        return (HashMap<String, String>) e.getErrors();
-    }
-
 }
