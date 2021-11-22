@@ -12,4 +12,10 @@ or
 yarn build
 ```
 
+or 
+
+```
+npm run server
+```
+
 to bundle your application
