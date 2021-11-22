@@ -5,23 +5,18 @@
   "main": "./src/index.js",
   "scripts": {
     "dev": "webpack --mode development",
-    "build": "webpack --mode production",
+    "build": "webpack --mode development",
     "watch": "webpack --mode development --watch",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "server": "webpack-cli --config ../js/webpack.server.js --mode production"
   },
   "author": "Nikita Hritsay",
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^8.2.3",
-    "babel-plugin-lodash": "^3.3.4",
-    "babel-preset-env": "^1.7.0",
     "html-webpack-plugin": "^5.5.0",
-    "lodash": "^4.17.21",
-    "lodash-webpack-plugin": "^0.11.6",
-    "raw-loader": "^4.0.2",
-    "webpack": "^5.64.1",
+    "webpack": "^5.64.2",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.5.0"
-  }
+  },
+  "dependencies": {}
 }
