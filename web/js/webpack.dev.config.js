@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack")
 
 module.exports = {
     entry: "./src/index.js",
@@ -14,14 +15,18 @@ module.exports = {
         proxy: {
             '/websocket': {
                 target: 'ws://localhost:8081',
-                ws: true
+                ws: true,
+                secure: true
             },
         },
-      webSocketServer: 'ws',
     },
     plugins: [
       new HtmlWebpackPlugin({
         template: "./src/index.html",
+      }),
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery'
       }),
     ],
     module: {
