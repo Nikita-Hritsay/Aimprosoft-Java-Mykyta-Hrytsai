@@ -3,7 +3,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack")
 
 module.exports = {
-    entry: "./src/index.js",
+    entry: {
+        index: "./src/index.js",
+        departments: "./src/components/departmentList/DepartmentList.js",
+        css: "./src/components/departmentList/DepartmentList.css",
+    },
     mode: "development",
     output: {
       path: path.resolve(__dirname, "dist"),
@@ -39,6 +43,10 @@ module.exports = {
         {
           test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
           type: "asset",
+        },
+        {
+          test: /\.css$/i,
+          use: ["style-loader", "css-loader"],
         },
       ],
     },
