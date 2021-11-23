@@ -2,6 +2,7 @@ package com.aimprosoft.aimlearning.models;
 
 import com.aimprosoft.aimlearning.validations.department.IsUniqueName;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import net.sf.oval.constraint.CheckWith;
 import net.sf.oval.constraint.Length;
@@ -40,7 +41,8 @@ public class Department implements Serializable {
     @Length(max = 200, message = "Address can not be greater than 200")
     private String address;
 
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "department")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "department", fetch = FetchType.LAZY)
     @Fetch(FetchMode.JOIN)
     @ToString.Exclude
     private List<Employee> employees;

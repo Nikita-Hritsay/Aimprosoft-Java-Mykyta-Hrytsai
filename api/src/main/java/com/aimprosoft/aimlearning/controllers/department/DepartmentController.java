@@ -19,19 +19,16 @@ public class DepartmentController {
 
     private final DepartmentService departmentService;
 
-    @ResponseBody
     @GetMapping(value = {"/displayAllDepartments", "/"})
     public List<Department> displayAllDepartments(Model model) throws DBException {
         return departmentService.getAllDepartments();
     }
 
-    @ResponseBody
     @GetMapping("/createOrUpdateDepartmentForm")
     public Department displayCreateOrUpdateDepartmentForm(Model model, @RequestParam(value = "idDepartment", required = false) Integer idDepartment) throws DBException {
         return departmentService.getDepartmentById(idDepartment);
     }
 
-    @ResponseBody
     @PostMapping("/createOrUpdateDepartmentForm")
     public ResponseEntity<HttpStatus> createOrUpdateDepartment(Model model, @ModelAttribute Department department) throws DBException{
         try {
@@ -42,7 +39,6 @@ public class DepartmentController {
         }
     }
 
-    @ResponseBody
     @PostMapping("/deleteDepartment")
     public void deleteDepartment(Model model, @RequestParam Integer idDepartment) throws DBException {
         departmentService.deleteDepartment(idDepartment);
