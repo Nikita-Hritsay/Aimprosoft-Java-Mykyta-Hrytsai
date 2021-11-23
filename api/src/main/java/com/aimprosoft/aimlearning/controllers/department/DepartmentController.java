@@ -15,21 +15,18 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
+@CrossOrigin(origins = "http://localhost:8081")
 public class DepartmentController {
 
     private final DepartmentService departmentService;
 
-    @GetMapping(value = {"/displayAllDepartments", "/"})
+
+    @GetMapping(value = {"/department", "/"})
     public List<Department> displayAllDepartments(Model model) throws DBException {
         return departmentService.getAllDepartments();
     }
 
-    @GetMapping("/createOrUpdateDepartmentForm")
-    public Department displayCreateOrUpdateDepartmentForm(Model model, @RequestParam(value = "idDepartment", required = false) Integer idDepartment) throws DBException {
-        return departmentService.getDepartmentById(idDepartment);
-    }
-
-    @PostMapping("/createOrUpdateDepartmentForm")
+    @PostMapping("/department")
     public ResponseEntity<HttpStatus> createOrUpdateDepartment(Model model, @ModelAttribute Department department) throws DBException{
         try {
             departmentService.createOrUpdate(department);
@@ -39,7 +36,7 @@ public class DepartmentController {
         }
     }
 
-    @PostMapping("/deleteDepartment")
+    @DeleteMapping("/department")
     public void deleteDepartment(Model model, @RequestParam Integer idDepartment) throws DBException {
         departmentService.deleteDepartment(idDepartment);
     }

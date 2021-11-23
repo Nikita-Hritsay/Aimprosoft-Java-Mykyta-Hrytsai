@@ -24,31 +24,19 @@ public class EmployeeController {
     private final DepartmentService departmentService;
 
     @ResponseBody
-    @GetMapping("/displayEmployees")
+    @GetMapping("/emplpoyee")
     public List<Employee> displayEmployees(Model model) throws DBException {
         return employeeService.getAllEmployees();
     }
 
     @ResponseBody
-    @GetMapping("/employeesByDepartment")
-    public Department employeesByDepartment(Model model, @RequestParam(required = false) Integer id) throws DBException {
-        return departmentService.getDepartmentById(id);
-    }
-
-    @ResponseBody
-    @PostMapping("deleteEmployee")
+    @DeleteMapping("/employee")
     public void deleteEmployee(@RequestParam Integer id, @RequestParam Integer idDepartment) throws DBException {
         employeeService.deleteEmployee(id);
     }
 
     @ResponseBody
-    @GetMapping("/createOrUpdateEmployeeForm")
-    public Employee displayCreateOrUpdateEmployeeForm(Model model, @RequestParam(value = "id", required = false) Integer id) throws DBException {
-        return employeeService.getById(id);
-    }
-
-    @ResponseBody
-    @PostMapping("/createOrUpdateEmployeeForm")
+    @PostMapping("/employee")
     public ResponseEntity<HttpStatus> createOrUpdateEmployee(Model model, @ModelAttribute Employee employee) throws DBException {
         try {
             employeeService.createOrUpdate(employee);
