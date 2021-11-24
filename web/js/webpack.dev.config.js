@@ -16,5 +16,4 @@ module.exports = merge(common,{
         },
     });
 
-module.exports.parallelism = 1;
 
