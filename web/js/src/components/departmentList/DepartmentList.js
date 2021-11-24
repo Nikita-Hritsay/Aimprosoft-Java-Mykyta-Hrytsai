@@ -1,7 +1,7 @@
 
 function component() {
     const element = document.createElement('div');
-    let list = $.getJSON({
+    $.getJSON({
         url: 'http://localhost:8080'
     }).then(function (result) {
         console.log('result', result)

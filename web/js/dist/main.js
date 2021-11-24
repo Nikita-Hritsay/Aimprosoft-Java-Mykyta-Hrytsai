@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("let promise = $.getJSON({\n    url: 'http://localhost:8080'\n}).then(function (result) {\n    console.log('result', result)\n}).catch(function (err) {\n    console.log('err', err)\n})\n\n\n\n\n\n//# sourceURL=webpack://my-webpack-project/./src/index.js?");
+eval("\n\n//# sourceURL=webpack://my-webpack-project/./src/index.js?");
 
 /***/ })
 

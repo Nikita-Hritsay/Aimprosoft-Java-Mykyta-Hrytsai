@@ -1,59 +1,20 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpack = require("webpack")
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common.config.js');
 
-module.exports = {
-    entry: {
-        index: "./src/index.js",
-        departments: "./src/components/departmentList/DepartmentList.js",
-        css: "./src/components/departmentList/DepartmentList.css",
-    },
+module.exports = merge(common,{
     mode: "development",
-    output: {
-      path: path.resolve(__dirname, "dist"),
-    },
     devServer: {
-      open: true,
-      host: "localhost",
-      port: 8081,
+        open: true,
+        host: "localhost",
+        port: 8081,
         proxy: {
-            '/websocket': {
-                target: 'ws://localhost:8081',
+            '/api': {
+                target: 'ws://localhost:8080',
                 ws: true,
-                secure: true
+                },
             },
         },
-    },
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: "./src/index.html",
-      }),
-      new webpack.ProvidePlugin({
-        $: 'jquery',
-        jQuery: 'jquery'
-      }),
-    ],
-    module: {
-      rules: [
-        {
-          test: /\.(ts|tsx)$/i,
-          loader: "ts-loader",
-          exclude: ["/node_modules/"],
-        },
-        {
-          test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-          type: "asset",
-        },
-        {
-          test: /\.css$/i,
-          use: ["style-loader", "css-loader"],
-        },
-      ],
-    },
-    resolve: {
-      extensions: [".tsx", ".ts", ".js"],
-    },
-  }
+    });
 
-
+module.exports.parallelism = 1;
 

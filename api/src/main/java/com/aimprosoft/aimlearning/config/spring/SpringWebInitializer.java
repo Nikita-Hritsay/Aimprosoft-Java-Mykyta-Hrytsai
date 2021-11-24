@@ -27,6 +27,7 @@ public class SpringWebInitializer implements WebApplicationInitializer {
                 .addServlet("MainController", new DispatcherServlet(dispatcherContext));
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
+        servletContext.setRequestCharacterEncoding("utf-8");
     }
 
 }
