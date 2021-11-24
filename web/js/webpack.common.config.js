@@ -6,6 +6,7 @@ module.exports = {
     entry: {
         index: "./src/index.js",
         departments: "./src/components/departmentList/DepartmentList.js",
+        department: "./src/components/departmentList/Department.ts",
     },
     output: {
         path: path.resolve(__dirname, "dist"),

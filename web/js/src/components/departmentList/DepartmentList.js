@@ -1,20 +1,15 @@
 
 function component() {
-    const element = document.createElement('div');
     $.getJSON({
-        url: 'http://localhost:8080'
+        url: 'http://localhost:8080/emplpoyee'
     }).then(function (result) {
         console.log('result', result)
-        document.getElementById("app").innerHTML = result[0].address
-
+        document.getElementById("app").innerHTML = result[0]
     }).catch(function (err) {
         console.log('err', err)
     })
-
-
-    return element;
 }
 
-document.body.appendChild(component());
+component()
 
 

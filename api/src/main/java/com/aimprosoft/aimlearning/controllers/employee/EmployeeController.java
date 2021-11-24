@@ -16,26 +16,23 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
+@CrossOrigin(origins = "http://localhost:8081")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
-    private final DepartmentService departmentService;
 
-    @ResponseBody
     @GetMapping("/emplpoyee")
     public List<Employee> displayEmployees(Model model) throws DBException {
         return employeeService.getAllEmployees();
     }
 
-    @ResponseBody
     @DeleteMapping("/employee")
     public void deleteEmployee(@RequestParam Integer id, @RequestParam Integer idDepartment) throws DBException {
         employeeService.deleteEmployee(id);
     }
 
-    @ResponseBody
     @PostMapping("/employee")
     public ResponseEntity<HttpStatus> createOrUpdateEmployee(Model model, @ModelAttribute Employee employee) throws DBException {
         try {
