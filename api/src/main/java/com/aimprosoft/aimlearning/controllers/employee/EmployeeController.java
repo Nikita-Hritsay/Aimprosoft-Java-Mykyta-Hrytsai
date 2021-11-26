@@ -24,12 +24,12 @@ public class EmployeeController {
     private final EmployeeService employeeService;
 
     @GetMapping("/emplpoyee")
-    public List<Employee> displayEmployees(Model model) throws DBException {
+    public List<Employee> displayEmployees() throws DBException {
         return employeeService.getAllEmployees();
     }
 
     @DeleteMapping("/employee")
-    public void deleteEmployee(@RequestParam Integer id, @RequestParam Integer idDepartment) throws DBException {
+    public void deleteEmployee(@RequestParam Integer id) throws DBException {
         employeeService.deleteEmployee(id);
     }
 
