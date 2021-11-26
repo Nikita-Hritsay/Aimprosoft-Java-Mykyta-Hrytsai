@@ -1,15 +1,12 @@
-import {Employee} from "../models/Employee";
 import {Department} from "../models/Department";
 
 export class DepartmentService {
-    public getDepartment(): void {
-        $.getJSON(
-            'http://localhost:8080/department'
-        ).then(function (result) {
-            console.log(result)
-        }).catch(function () {
-            console.log("no data")
-        })
+    public getDepartment(): JQuery.jqXHR {
+        return $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/department",
+            dataType: "json"
+        });
     }
 
     public deleteDepartment(id: number): void{

@@ -5,15 +5,13 @@ const webpack = require("webpack")
 module.exports = {
     entry: {
         index: "./src/index.js",
-        departments: "./src/components/departmentList/DepartmentList.js",
-        department: "./src/components/departmentList/Department.ts",
     },
     output: {
         path: path.resolve(__dirname, "dist"),
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: "./src/index.html",
+            template: "./src/html/index.html",
         }),
         new webpack.ProvidePlugin({
             $: 'jquery',
@@ -23,7 +21,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(ts|tsx)$/i,
+                test: /\.(ts)$/i,
                 loader: "ts-loader",
                 exclude: ["/node_modules/"],
             },
