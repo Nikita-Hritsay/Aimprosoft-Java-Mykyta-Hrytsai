@@ -1,0 +1,119 @@
+
+  
+a {
+    display: inline-block;
+    padding: 10px 10px 10px;
+    margin-left: 15px;
+    border-radius: 7px;
+    text-decoration: none;
+    color: black;
+    margin-right: 10px;
+}
+
+.header_refs {
+    padding: 40px 20px 0 20px;
+}
+
+.header_ref {
+    background: #b8ffff;
+}
+
+.header_ref_del {
+    background: #fd9d9d;
+}
+
+.department_by_id_manage {
+    padding: 40px 20px 0 20px;
+}
+
+.input_param {
+    padding-top: 15px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.update_button {
+    color: blue;
+}
+
+.error_massage, .delete_button {
+    color: red;
+    border: none;
+    background: #D8E6F3;
+}
+
+.error_massage{
+    padding-bottom: 10px;
+    background: none;
+}
+
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif, serif;
+    font-size: 14px;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+label{
+    width: 100%;
+}
+
+th {
+    background: #AFCDE7;
+    color: white;
+    padding: 10px 20px;
+}
+
+th, td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: white;
+    padding: 10px 20px
+}
+
+td {
+    background: #D8E6F3;
+}
+
+th:first-child, td:first-child {
+    text-align: left;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    margin: 0;
+}
+
+.submit_delete {
+    margin-top: 10px;
+}
+
+.createOrUpdateForm {
+    text-align: left;
+    width: 370px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.submit_createOrUpdate {
+    display: inline-block;
+    padding: 15px 23px 15px;
+    border-radius: 7px;
+    text-decoration: none;
+    color: black;
+    margin-right: 10px;
+    background: aquamarine;
+    border: 0;
+}

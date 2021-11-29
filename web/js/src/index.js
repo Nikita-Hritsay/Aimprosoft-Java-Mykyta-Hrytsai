@@ -1,7 +1,7 @@
-import {Department} from "./components/department/DepartmentList.ts";
+import {Router} from "./router/Router";
 
 function main(){
-    new Department().render();
+    new Router().getUrl("department").render();
 }
 
 main()

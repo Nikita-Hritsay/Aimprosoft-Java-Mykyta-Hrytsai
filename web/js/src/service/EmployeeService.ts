@@ -1,14 +1,12 @@
 import {Employee} from "../models/Employee";
 
 export class EmployeeService {
-    public getEmployees(): void {
-        $.getJSON(
-            'http://localhost:8080/employee'
-        ).then(function (result) {
-            console.log(result)
-        }).catch(function () {
-            console.log("no data")
-        })
+    public getEmployees(): JQuery.jqXHR {
+        return $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/employee",
+            dataType: "json"
+        });
     }
 
     public deleteEmployee(id: number): void{
@@ -22,7 +20,7 @@ export class EmployeeService {
         $.ajax({
             contentType: 'application/json',
             data: {
-               "idEmployee": employee.idEmployee,
+               "idEmployee": employee.id,
                 "firstName": employee.firstName,
                 "lastName": employee.lastName,
                 "email": employee.email,

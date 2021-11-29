@@ -7,6 +7,6 @@
     "allowJs": true
   },
   "files": [
-    "src/service/DepartmentService.ts"
+    "./src/service/DepartmentService.ts"
   ]
 }

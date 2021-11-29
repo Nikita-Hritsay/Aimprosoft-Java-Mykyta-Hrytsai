@@ -23,7 +23,7 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
 
-    @GetMapping("/emplpoyee")
+    @GetMapping("/employee")
     public List<Employee> displayEmployees() throws DBException {
         return employeeService.getAllEmployees();
     }
