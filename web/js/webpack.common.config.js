@@ -5,8 +5,7 @@ const webpack = require("webpack")
 module.exports = {
     cache: false,
     entry: {
-        index: "./src/index.ts",
-        department: "./src/service/DepartmentService.ts"
+        index: "./src/js/index.ts",
     },
     output: {
         path: path.resolve(__dirname, "dist"),

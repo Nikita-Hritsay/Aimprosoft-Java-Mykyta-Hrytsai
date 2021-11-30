@@ -4,26 +4,22 @@ export class DepartmentService {
     public getDepartment(): JQuery.jqXHR {
         return $.ajax({
             type: "GET",
-            url: "http://localhost:8080/department",
+            url: "/department",
             dataType: "json"
         });
     }
 
-    public deleteDepartment(id: number): void{
-        $.ajax({
-            url: 'http://localhost:8080/department?' + $.param({"idDepartment": id}),
+    public deleteDepartment(id: number): JQuery.jqXHR{
+         return $.ajax({
+            url: '/department?' + $.param({"idDepartment": id}),
             type: 'DELETE',
         })
     }
 
-    public saveOrUpdateDepartment(department: Department): void{
-        $.ajax({
+    public saveOrUpdateDepartment(department: Department): JQuery.jqXHR{
+        return $.ajax({
             contentType: 'application/json',
-            data: {
-                "idDepartment": department.id,
-                "name": department.name,
-                "address": department.address
-            },
+            data: JSON.stringify(department),
             dataType: 'json',
             success: function(){
                 console.log("Department saved or updated")
@@ -33,10 +29,16 @@ export class DepartmentService {
             },
             processData: false,
             type: 'POST',
-            url: 'http://localhost:8080/department'
+            url: '/department'
         });
     }
-
+/*
+{
+                "idDepartment": department.id,
+                "name": department.name,
+                "address": department.address
+            },
+            */
 
 
 }

@@ -15,7 +15,6 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-@CrossOrigin(origins = "http://localhost:8081")
 public class DepartmentController {
 
     private final DepartmentService departmentService;

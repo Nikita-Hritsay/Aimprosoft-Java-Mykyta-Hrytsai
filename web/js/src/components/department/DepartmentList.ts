@@ -1,7 +1,7 @@
 import {DepartmentService} from "../../service/DepartmentService";
 import {Component} from "../Component"; 
 import {Router} from "../../router/Router";
-import "./Department.css";
+import "../main.css";
 
 export class DepartmentList implements Component{
 
@@ -9,11 +9,11 @@ export class DepartmentList implements Component{
 
     render(){
         this.department.getDepartment().done((data) => {
-            
-            const app = $("#app");
+            const listDiv =  $("#main");
+            listDiv.empty();
             const table =  $("<table/>");
             const headerTable = $("<tr/>");
-            headerTable.append($("<th/>", {text: "Name"}));
+            headerTable.append($("<th/>", {text: "Id"}));
             headerTable.append($("<th/>", {text: "Adress"}));
             headerTable.append($("<th/>", {text: "Name"}));
             headerTable.append($("<th/>", {text: "List"}));
@@ -27,24 +27,26 @@ export class DepartmentList implements Component{
                 td.append($("<td/>", {text: data[i].address})); 
                 const listButton = $("<button />", {text: "list"}) ;
                 td.append($("<td/>").append(listButton.on("click", () => {
-                    app.empty();
-                    new Router().getUrl("employee").render(data[i].idDepartment);
+                    listDiv.empty();
+                    new Router().getUrl("#employee").render(data[i].idDepartment);
                 })))
 
                 const updateButton = $("<button />", {text: "update"});
                 td.append($("<td/>").append(updateButton.on("click", () => {
-                    app.empty();
-                    new Router().getUrl("departmentForm").render(data[i].idDepartment);
+                    listDiv.empty();
+                    new Router().getUrl("#departmentForm").render(data[i]);
                 })))
 
                 const deleteButton = $("<button />", {text: "delete"}).addClass("delete_button").addClass("submit_delete");
                 td.append($("<td/>").append(deleteButton.on("click", () => {
-                    this.department.deleteDepartment(data[i].idDepartment)
-                    window.location.reload();
+                    this.department.deleteDepartment(data[i].idDepartment).done(()=>{
+                        new Router().getUrl("#department").render("main");
+                    })
                 })))
                 table.append(td);
             }
-            app.append(table);
+
+            listDiv.append(table);
         });
     }
 }

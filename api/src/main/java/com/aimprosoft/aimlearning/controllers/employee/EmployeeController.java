@@ -18,7 +18,6 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-@CrossOrigin(origins = "http://localhost:8081")
 public class EmployeeController {
 
     private final EmployeeService employeeService;

@@ -1,6 +1,7 @@
 import {Component} from "../components/Component";
 import { DepartmentForm } from "../components/department/DepartmentForm";
 import {DepartmentList} from "../components/department/DepartmentList";
+import { EmployeeForm } from "../components/employee/EmployeeForm";
 import { EmployeeList } from "../components/employee/EmployeeList";
 
 
@@ -10,13 +11,14 @@ export class Router {
 
     constructor() {
         this.urls = new Map();
-        this.urls.set("department", new DepartmentList())
-        this.urls.set("departmentForm", new DepartmentForm());
-        this.urls.set("employee", new EmployeeList());
+        this.urls.set("#department", new DepartmentList())
+        this.urls.set("#departmentForm", new DepartmentForm());
+        this.urls.set("#employee", new EmployeeList());
+        this.urls.set("#employeeForm", new EmployeeForm());
     }
 
     public getUrl(url: string): Component {
-        console.log(url);
+        location.hash = url;
         return this.urls.get(url);
     }
 

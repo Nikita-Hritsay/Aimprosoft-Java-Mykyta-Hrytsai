@@ -12,6 +12,7 @@ a {
 
 .header_refs {
     padding: 40px 20px 0 20px;
+    margin-bottom: 40px;
 }
 
 .header_ref {
@@ -77,6 +78,10 @@ td {
 
 th:first-child, td:first-child {
     text-align: left;
+}
+
+#app{
+    padding-top: 100px;
 }
 
 body {

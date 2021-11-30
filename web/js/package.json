@@ -2,7 +2,7 @@
   "name": "my-webpack-project",
   "version": "1.0.0",
   "description": "My webpack project",
-  "main": "./src/index.ts",
+  "main": "./src/js/index.ts",
   "scripts": {
     "watch": "webpack --watch",
     "start": "webpack-dev-server --config webpack.dev.config.js",
@@ -22,8 +22,10 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "@types/jquery.validation": "^1.16.7",
     "css-loader": "^6.5.1",
     "jquery": "^3.6.0",
+    "jquery-validation": "^1.19.3",
     "lodash": "^4.17.21",
     "style-loader": "^3.3.1",
     "ts-node": "^10.4.0",

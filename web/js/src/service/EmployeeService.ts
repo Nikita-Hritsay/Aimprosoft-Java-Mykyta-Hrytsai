@@ -4,14 +4,14 @@ export class EmployeeService {
     public getEmployees(): JQuery.jqXHR {
         return $.ajax({
             type: "GET",
-            url: "http://localhost:8080/employee",
+            url: "/employee",
             dataType: "json"
         });
     }
 
     public deleteEmployee(id: number): void{
         $.ajax({
-            url: 'http://localhost:8080/employee?' + $.param({"id": id}),
+            url: '/employee?' + $.param({"id": id}),
             type: 'DELETE',
         })
     }
@@ -37,7 +37,7 @@ export class EmployeeService {
             },
             processData: false,
             type: 'POST',
-            url: 'http://localhost:8080/employee'
+            url: '/employee'
         });
     }
 

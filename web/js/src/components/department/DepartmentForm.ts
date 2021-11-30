@@ -1,27 +1,36 @@
 import { Component } from "../Component";
-import "../department/Department.css";
+import "../main.css";
+import { Department } from "../../models/Department";
+import { DepartmentService } from "../../service/DepartmentService";
+import { Router } from "../../router/Router";
+
 
 export class DepartmentForm implements Component{
-    render(param: number){
-        
-        const app = $("#app");
+    render(param: any){
+        const main = $("#main");
+        main.empty();
         const formDiv = $("<div />").addClass("createOrUpdateForm");
-        formDiv.append("<div />").addClass("createOrUpdateForm");
-        formDiv.append("<p>Enter your first Name</p>");
-        formDiv.append("<input name=\"firstName\"/ class=\"input_param\">");
-        formDiv.append("<p>Enter your last Name</p>");
-        formDiv.append("<input name=\"lastName\" class=\"input_param\">");
-        formDiv.append("<p>Enter your email</p>");
-        formDiv.append("<input name=\"email\" class=\"input_param\">");
-        formDiv.append("<p>Enter your salary</p>");
-        formDiv.append("<input name=\"salary\"/ class=\"input_param\">");
-        formDiv.append("<p>Enter your hire Date</p>");
-        formDiv.append("<input name=\"hireDate\" class=\"input_param\">");
-        formDiv.append("<p>Enter your Department</p>");
-        formDiv.append("<input name=\"idDepartment\" class=\"input_param\">");
-        formDiv.append("<input type=\"submit\" class=\"submit_createOrUpdate\" value=\"submit\">")
+        const formForm = $("<form name=\"createOrUpdateDepartment\"/>").addClass("createOrUpdateDepartment");
 
-        app.append(formDiv);
-        
+        formForm.append("<div />").addClass("createOrUpdateForm");
+        formForm.append("<p>Enter your name</p>");
+        formForm.append($("<input />", {value: param.name, name:"name",type: "text", class: "input_param", id: "departmentName", maxlength: 75, required: true}));
+        formForm.append("<p>Enter your address</p>");
+        formForm.append($("<input />", {value: param.address, name: "address", type: "text", class: "input_param", id: "departmentAddress", required: true}));
+        formForm.append("<input type=\"submit\" class=\"submit_createOrUpdate\" value=\"submit\">")
+
+        formDiv.append(formForm);
+        main.append(formDiv);
+
+        formForm.submit(()=>{
+            //$("form[name='createOrUpdateDepartment']").validate()
+            let deparment = new Department();
+            deparment.idDepartment = param.idDepartment;
+            deparment.name = formForm.serializeArray()[0].value;
+            deparment.address = formForm.serializeArray()[1].value;
+            new DepartmentService().saveOrUpdateDepartment(deparment);
+            new Router().getUrl("#department").render("main");
+        });
+         
     }
 }
