@@ -31,7 +31,7 @@ export class EmployeeList implements Component{
                             td.append($("<td/>", {text: data[i].email}));
                             td.append($("<td/>", {text: data[i].salary}));
                             td.append($("<td/>", {text: new Date(data[i].hireDate).toISOString().slice(0, 10)})); 
-                            const updateButton = $("<button />", {text: "update"});
+                            const updateButton = $("<a />", {text: "update"}).addClass("update_button");
                             td.append($("<td/>").append(updateButton.on("click", () => {
                                 new Router().getUrl("#employeeForm").render(data[i]);
                             })))

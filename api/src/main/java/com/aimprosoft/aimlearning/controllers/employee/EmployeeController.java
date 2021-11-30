@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
@@ -33,12 +34,13 @@ public class EmployeeController {
     }
 
     @PostMapping("/employee")
-    public ResponseEntity<HttpStatus> createOrUpdateEmployee(Model model, @ModelAttribute Employee employee) throws DBException {
+    public ResponseEntity<Map<String, String>> createOrUpdateEmployee(@RequestBody Employee employee) throws DBException {
         try {
             employeeService.createOrUpdate(employee);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (ValidationException e) {
-            return new ResponseEntity(e.getErrors(), HttpStatus.CONFLICT);
+            System.out.println(e.getErrors());
+            return new ResponseEntity<>(e.getErrors(), HttpStatus.CONFLICT);
         }
     }
 

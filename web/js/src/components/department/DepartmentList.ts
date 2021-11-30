@@ -13,7 +13,6 @@ export class DepartmentList implements Component{
             listDiv.empty();
             const table =  $("<table/>");
             const headerTable = $("<tr/>");
-            headerTable.append($("<th/>", {text: "Id"}));
             headerTable.append($("<th/>", {text: "Adress"}));
             headerTable.append($("<th/>", {text: "Name"}));
             headerTable.append($("<th/>", {text: "List"}));
@@ -22,16 +21,15 @@ export class DepartmentList implements Component{
             table.append(headerTable);
             for(let i = 0; i < data.length; i++){
                 const td = $("<tr/>");
-                td.append($("<td/>", {text: data[i].id})); 
                 td.append($("<td/>", {text: data[i].name})); 
                 td.append($("<td/>", {text: data[i].address})); 
-                const listButton = $("<button />", {text: "list"}) ;
+                const listButton = $("<a />", {text: "list"}) ;
                 td.append($("<td/>").append(listButton.on("click", () => {
                     listDiv.empty();
                     new Router().getUrl("#employee").render(data[i].id);
                 })))
 
-                const updateButton = $("<button />", {text: "update"});
+                const updateButton = $("<a />", {text: "update"}).addClass("update_button");
                 td.append($("<td/>").append(updateButton.on("click", () => {
                     listDiv.empty();
                     new Router().getUrl("#departmentForm").render(data[i]);

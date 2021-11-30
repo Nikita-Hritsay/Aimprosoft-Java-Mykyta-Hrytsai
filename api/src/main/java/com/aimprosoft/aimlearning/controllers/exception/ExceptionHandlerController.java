@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ExceptionHandlerController {
 
     @ExceptionHandler(DBException.class)
-    public String handleConflict(Model model) {
+    public String handleConflict() {
         return "Try later";
     }
 

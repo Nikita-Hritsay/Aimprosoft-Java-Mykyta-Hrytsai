@@ -1,4 +1,4 @@
 
 export interface Component {
-    render(param: any): void;
+    render(...param: any): void;
 }

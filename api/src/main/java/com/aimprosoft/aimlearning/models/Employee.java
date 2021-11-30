@@ -54,8 +54,6 @@ public class Employee {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date hireDate;
 
-    @NotEmpty(message = "Department can not be empty")
-    @NotNull(message = "Department can not be null")
     @JoinColumn(name = "department_iddepartment")
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)

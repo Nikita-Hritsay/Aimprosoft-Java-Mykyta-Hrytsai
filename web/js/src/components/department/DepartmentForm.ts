@@ -30,7 +30,7 @@ export class DepartmentForm implements Component{
             deparment.name = arr[0].value;
             deparment.address = arr[1].value;
             new DepartmentService().saveOrUpdateDepartment(deparment);
-            new Router().getUrl("#department").render("main");
+            new Router().getUrl("#department").render("");
         });
          
     }
