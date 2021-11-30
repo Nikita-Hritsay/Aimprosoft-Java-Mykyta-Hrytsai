@@ -8,7 +8,11 @@ module.exports = merge(common,{
         proxy: {
             '/': 'http://localhost:8080'
         }, 
-        hot: true       
+        hot: true,
+        client: {
+            reconnect: true
+        },
+        compress: true
     }});
 
 

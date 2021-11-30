@@ -24,7 +24,7 @@ export class EmployeeList implements Component{
                     headerTable.append($("<th/>", {text: "Delete"}));
                     table.append(headerTable);
                     for(let i = 0; i < data.length; i++){
-                        if(data[i].department.idDepartment == param || param == 0){
+                        if(data[i].department.id == param || param == 0){
                             const td = $("<tr/>");
                             td.append($("<td/>", {text: data[i].firstName})); 
                             td.append($("<td/>", {text: data[i].lastName})); 
@@ -33,13 +33,14 @@ export class EmployeeList implements Component{
                             td.append($("<td/>", {text: new Date(data[i].hireDate).toISOString().slice(0, 10)})); 
                             const updateButton = $("<button />", {text: "update"});
                             td.append($("<td/>").append(updateButton.on("click", () => {
-                                new Router().getUrl("employeeForm").render(data[i].id);
+                                new Router().getUrl("#employeeForm").render(data[i]);
                             })))
 
                             const deleteButton = $("<button />", {text: "delete"}).addClass("delete_button").addClass("submit_delete");
                             td.append($("<td/>").append(deleteButton.on("click", () => {
-                                this.employeeService.deleteEmployee(data[i].id)
-                                window.location.reload();
+                                this.employeeService.deleteEmployee(data[i].id).done(()=>{
+                                    new Router().getUrl("#employee").render(param);
+                                })
                             })))
                             table.append(td);
                             main.append(table);

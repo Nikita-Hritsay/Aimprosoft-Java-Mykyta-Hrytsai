@@ -28,7 +28,7 @@ public class Department implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "iddepartment")
-    private Integer idDepartment;
+    private Integer id;
 
     @NotEmpty(message = "Name can not be empty")
     @NotNull(message = "Name can not be null")

@@ -32,13 +32,6 @@ export class DepartmentService {
             url: '/department'
         });
     }
-/*
-{
-                "idDepartment": department.id,
-                "name": department.name,
-                "address": department.address
-            },
-            */
 
 
 }

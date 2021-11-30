@@ -63,7 +63,7 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
     public boolean existsByName(Department department) throws DBException {
         try {
             Department check = (Department) sessionFactory.getCurrentSession().createQuery("FROM Department where name='" + department.getName() + "'").uniqueResult();
-            return check != null && !Objects.equals(check.getIdDepartment(), department.getIdDepartment());
+            return check != null && !Objects.equals(check.getId(), department.getId());
         } catch (Exception e) {
             throw new DBException(e.getMessage());
         }

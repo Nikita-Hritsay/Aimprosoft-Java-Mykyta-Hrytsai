@@ -22,12 +22,13 @@ export class DepartmentForm implements Component{
         formDiv.append(formForm);
         main.append(formDiv);
 
-        formForm.submit(()=>{
-            //$("form[name='createOrUpdateDepartment']").validate()
+        formForm.submit((event)=>{
+            event.preventDefault();
+            let arr = formForm.serializeArray();
             let deparment = new Department();
-            deparment.idDepartment = param.idDepartment;
-            deparment.name = formForm.serializeArray()[0].value;
-            deparment.address = formForm.serializeArray()[1].value;
+            deparment.id = param.id;
+            deparment.name = arr[0].value;
+            deparment.address = arr[1].value;
             new DepartmentService().saveOrUpdateDepartment(deparment);
             new Router().getUrl("#department").render("main");
         });

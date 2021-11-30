@@ -9,8 +9,8 @@ export class EmployeeService {
         });
     }
 
-    public deleteEmployee(id: number): void{
-        $.ajax({
+    public deleteEmployee(id: number): JQuery.jqXHR{
+        return $.ajax({
             url: '/employee?' + $.param({"id": id}),
             type: 'DELETE',
         })
@@ -19,15 +19,7 @@ export class EmployeeService {
     public saveOrUpdateEmployee(employee: Employee): void{
         $.ajax({
             contentType: 'application/json',
-            data: {
-               "idEmployee": employee.id,
-                "firstName": employee.firstName,
-                "lastName": employee.lastName,
-                "email": employee.email,
-                "salary": employee.salary,
-                "hireDate": employee.hireDate,
-                "idDepartment": employee.idDepartment
-            },
+            data: JSON.stringify(employee),
             dataType: 'json',
             success: function(){
                 console.log("Employee saved or updated")

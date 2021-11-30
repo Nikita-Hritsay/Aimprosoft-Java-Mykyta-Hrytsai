@@ -28,7 +28,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
              ResultSet resultSet = statement.executeQuery(FIND_ALL)) {
             List<Department> result = new ArrayList<>();
             while (resultSet.next()) {
-                result.add(new Department().withIdDepartment(resultSet.getInt(1))
+                result.add(new Department().withId(resultSet.getInt(1))
                         .withName(resultSet.getString(2))
                         .withAddress(resultSet.getString(3)));
             }
@@ -77,7 +77,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
             statement.setInt(1, id == null ? 0 : id);
             resultSet = statement.executeQuery();
             if(resultSet.next()) {
-                return new Department().withIdDepartment(resultSet.getInt(1)).withName(resultSet.getString(2)).withAddress(resultSet.getString(3));
+                return new Department().withId(resultSet.getInt(1)).withName(resultSet.getString(2)).withAddress(resultSet.getString(3));
             }
             return new Department();
         } catch (SQLException sqlException) {
@@ -94,7 +94,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Integer id = NumberUtils.getInt(resultSet.getString("iddepartment"));
-                if (id != null && !id.equals(department.getIdDepartment())) {
+                if (id != null && !id.equals(department.getId())) {
                     return true;
                 }
             }
@@ -106,7 +106,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public void createOrUpdate(Department department) throws DBException {
-        if (department.getIdDepartment() != null) {
+        if (department.getId() != null) {
             updateDepartment(department);
         } else {
             saveOrUpdate(department);
@@ -117,8 +117,8 @@ public class DepartmentDAOImpl implements DepartmentDAO {
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, department.getName());
         preparedStatement.setString(2, department.getAddress());
-        if (department.getIdDepartment() != null) {
-            preparedStatement.setInt(3, department.getIdDepartment());
+        if (department.getId() != null) {
+            preparedStatement.setInt(3, department.getId());
         }
         return preparedStatement;
     }

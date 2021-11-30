@@ -22,13 +22,13 @@ export class DepartmentList implements Component{
             table.append(headerTable);
             for(let i = 0; i < data.length; i++){
                 const td = $("<tr/>");
-                td.append($("<td/>", {text: data[i].idDepartment})); 
+                td.append($("<td/>", {text: data[i].id})); 
                 td.append($("<td/>", {text: data[i].name})); 
                 td.append($("<td/>", {text: data[i].address})); 
                 const listButton = $("<button />", {text: "list"}) ;
                 td.append($("<td/>").append(listButton.on("click", () => {
                     listDiv.empty();
-                    new Router().getUrl("#employee").render(data[i].idDepartment);
+                    new Router().getUrl("#employee").render(data[i].id);
                 })))
 
                 const updateButton = $("<button />", {text: "update"});
@@ -39,7 +39,7 @@ export class DepartmentList implements Component{
 
                 const deleteButton = $("<button />", {text: "delete"}).addClass("delete_button").addClass("submit_delete");
                 td.append($("<td/>").append(deleteButton.on("click", () => {
-                    this.department.deleteDepartment(data[i].idDepartment).done(()=>{
+                    this.department.deleteDepartment(data[i].id).done(()=>{
                         new Router().getUrl("#department").render("main");
                     })
                 })))

@@ -68,7 +68,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                     .withEmail(resultSet.getString(4))
                     .withSalary(resultSet.getBigDecimal(5))
                     .withHireDate(resultSet.getDate(6))
-                    .withDepartment(new Department().withIdDepartment(resultSet.getInt(7)));
+                    .withDepartment(new Department().withId(resultSet.getInt(7)));
         } catch (SQLException sqlException) {
             throw new DBException("Error in get Employee by id: " + sqlException.getMessage());
         }
@@ -122,7 +122,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                         .withEmail(resultSet.getString(4))
                         .withSalary(resultSet.getBigDecimal(5))
                         .withHireDate(resultSet.getDate(6))
-                        .withDepartment(new Department().withIdDepartment(resultSet.getInt(7))));
+                        .withDepartment(new Department().withId(resultSet.getInt(7))));
             }
             return result;
         } catch (SQLException e) {
@@ -137,7 +137,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         statement.setString(3, employee.getEmail());
         statement.setBigDecimal(4, employee.getSalary());
         statement.setDate(5, new Date(employee.getHireDate().getTime()));
-        statement.setInt(6, employee.getDepartment().getIdDepartment());
+        statement.setInt(6, employee.getDepartment().getId());
         if (employee.getId() != null) {
             statement.setInt(7, employee.getId());
         }
