@@ -25,19 +25,16 @@ export class EmployeeForm implements Component{
             formForm.append("<p>Enter your email</p>");
             formForm.append($("<input />", {value: param.email, name:"email",type: "email", class: "input_param", id: "email", maxlength: 75, required: true}));
             formForm.append("<p>Enter your salary</p>");
-            formForm.append($("<input />", {value: param.salary, name: "salary", type: "number", class: "input_param", id: "salary", required: true}));
+            formForm.append($("<input />", {value: param.salary, name: "salary", type: "number", class: "input_param", id: "salary", min: 0, required: true}));
             formForm.append("<p>Enter your hire date</p>");
-            formForm.append($("<input />", {value: new Date(param.hireDate).getDate(), name:"hireDate",type: "date", class: "input_param", id: "hireDate", maxlength: 75, required: true}));
+            formForm.append($("<input />", {value: new Date(param.hireDate).toISOString().slice(0, 10), name:"hireDate",type: "date", class: "input_param", id: "hireDate", maxlength: 75, required: true}));
             formForm.append("<p>Enter your department name</p>");
             formForm.append($("<input />", {value: param.department.id, list:"idDepartments", name:"idDepartment", class:"input_param", size:"15px"}));
             const datalist = $("<datelist />", {id: "idDepartments"});
                 
-            console.log("data  " + data)
             for(let i = 0; i < data.length; i++){
                 datalist.append($("<option />", {value: data[i].id}))
-                console.log("data  in " + data[i].id)
             }
-            console.log("data after " + data)
             
             formForm.append(datalist);
 
