@@ -7,7 +7,7 @@ class Start{
         window.addEventListener("load", ()=>{
             const app = $("#app");
             const headers = $("<div />").addClass("header_refs");
-            headers.append($("<a />", {text: "Home page", class: "header_ref"}).on("click", ()=>{
+            headers.append($("<a />", {text: "Home page", class: "header_ref", href: "#department"}).on("click", ()=>{
                 new Router().getUrl("#department").render("main");
             }))
             headers.append($("<a />", {text: "All Employees", class: "header_ref"}).on("click", ()=>{

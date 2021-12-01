@@ -19,15 +19,15 @@ export class EmployeeForm implements Component{
 
             formForm.append("<div />").addClass("createOrUpdateForm");
             formForm.append("<p>Enter your first name</p>");
-            formForm.append($("<input />", {value: param.firstName, name:"firstName",type: "text", class: "input_param", id: "firstName", maxlength: 75, required: true}));
+            formForm.append($("<input />", {value: param.firstName, name:"firstName",type: "text", class: "input_param", id: "firstName"}));
             formForm.append("<p>Enter your last name</p>");
-            formForm.append($("<input />", {value: param.lastName, name: "lastName", type: "text", class: "input_param", id: "lastName", required: true}));
+            formForm.append($("<input />", {value: param.lastName, name: "lastName", type: "text", class: "input_param", id: "lastName"}));
             formForm.append("<p>Enter your email</p>");
-            formForm.append($("<input />", {value: param.email, name:"email",type: "email", class: "input_param", id: "email", maxlength: 75, required: true}));
+            formForm.append($("<input />", {value: param.email, name:"email",type: "email", class: "input_param", id: "email"}));
             formForm.append("<p>Enter your salary</p>");
-            formForm.append($("<input />", {value: param.salary, name: "salary", type: "number", class: "input_param", id: "salary", min: 0, required: true}));
+            formForm.append($("<input />", {value: param.salary, name: "salary", type: "number", class: "input_param", id: "salary",}));
             formForm.append("<p>Enter your hire date</p>");
-            formForm.append($("<input />", {value: new Date(param.hireDate).toISOString().slice(0, 10), name:"hireDate",type: "date", class: "input_param", id: "hireDate", maxlength: 75, required: true}));
+            formForm.append($("<input />", {value: new Date(param.hireDate).toISOString().slice(0, 10), name:"hireDate",type: "date", class: "input_param", id: "hireDate"}));
             formForm.append("<p>Enter your department name</p>");
             formForm.append($("<input />", {value: param.department.id, list:"idDepartments", name:"idDepartment", class:"input_param", size:"15px"}));
             const datalist = $("<datalist />", {id: "idDepartments"});
@@ -42,6 +42,7 @@ export class EmployeeForm implements Component{
 
             formDiv.append(formForm);
             main.append(formDiv);
+
 
             formForm.submit((event)=>{
                 event.preventDefault();

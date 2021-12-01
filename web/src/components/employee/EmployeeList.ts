@@ -25,25 +25,25 @@ export class EmployeeList implements Component{
                     headerTable.append($("<th/>", {text: "Delete"}));
                     table.append(headerTable);
                     for(let i = 0; i < employees.length; i++) {
-                        const td = $("<tr/>");
-                        td.append($("<td/>", {text: employees[i].firstName})); 
-                        td.append($("<td/>", {text: employees[i].lastName})); 
-                        td.append($("<td/>", {text: employees[i].email}));
-                        td.append($("<td/>", {text: employees[i].salary}));
-                        td.append($("<td/>", {text: new Date(employees[i].hireDate).toISOString().slice(0, 10)})); 
+                        const tr = $("<tr/>");
+                        tr.append($("<td/>", {text: employees[i].firstName})); 
+                        tr.append($("<td/>", {text: employees[i].lastName})); 
+                        tr.append($("<td/>", {text: employees[i].email}));
+                        tr.append($("<td/>", {text: employees[i].salary}));
+                        tr.append($("<td/>", {text: new Date(employees[i].hireDate).toISOString().slice(0, 10)})); 
                         const updateButton = $("<a />", {text: "update"}).addClass("update_button");
-                        td.append($("<td/>").append(updateButton.on("click", () => {
+                        tr.append($("<td/>").append(updateButton.on("click", () => {
                             new Router().getUrl("#employeeForm").render(employees[i]);
                         })))
                         const deleteButton = $("<button />", {text: "delete"}).addClass("delete_button").addClass("submit_delete");
-                        td.append($("<td/>").append(deleteButton.on("click", () => {
+                        tr.append($("<td/>").append(deleteButton.on("click", () => {
                             this.employeeService.deleteEmployee(employees[i].id).done(()=>{
                                 new Router().getUrl("#employee").render(param);
                             })
                         })))
-                        table.append(td);
-                        main.append(table);
+                        table.append(tr);
                     }
+                    main.append(table);
                 }else{
                     const main = $("#main");
                     main.empty();

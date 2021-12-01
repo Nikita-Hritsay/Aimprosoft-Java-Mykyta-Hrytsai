@@ -1,6 +1,6 @@
-import {Component} from "../components/Component";
+import { Component } from "../components/Component";
 import { DepartmentForm } from "../components/department/DepartmentForm";
-import {DepartmentList} from "../components/department/DepartmentList";
+import { DepartmentList } from "../components/department/DepartmentList";
 import { EmployeeForm } from "../components/employee/EmployeeForm";
 import { EmployeeList } from "../components/employee/EmployeeList";
 
