@@ -47,7 +47,7 @@ export class EmployeeList implements Component{
                 }else{
                     const main = $("#main");
                     main.empty();
-                    main.append($("<p />", {text: "There is no employees in this Department"}))
+                    main.append($("<div />", {class: "emptyClass"}).append($("<p />", {text: "There is no employees in this Department"})))
                 }
             });
         }

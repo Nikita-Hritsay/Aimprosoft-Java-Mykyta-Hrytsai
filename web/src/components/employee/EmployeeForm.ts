@@ -30,10 +30,10 @@ export class EmployeeForm implements Component{
             formForm.append($("<input />", {value: new Date(param.hireDate).toISOString().slice(0, 10), name:"hireDate",type: "date", class: "input_param", id: "hireDate", maxlength: 75, required: true}));
             formForm.append("<p>Enter your department name</p>");
             formForm.append($("<input />", {value: param.department.id, list:"idDepartments", name:"idDepartment", class:"input_param", size:"15px"}));
-            const datalist = $("<datelist />", {id: "idDepartments"});
+            const datalist = $("<datalist />", {id: "idDepartments"});
                 
             for(let i = 0; i < data.length; i++){
-                datalist.append($("<option />", {value: data[i].id}))
+                datalist.append($("<option />", {text: data[i].id, value: data[i].id}))
             }
             
             formForm.append(datalist);
@@ -48,13 +48,12 @@ export class EmployeeForm implements Component{
                 
                 let employee = new Employee();
                 let arr = formForm.serializeArray();
-                employee.id = param.id;
+                employee.id = param.id == 0 ? null : param.id;
                 employee.firstName = arr[0].value;
                 employee.lastName = arr[1].value;
                 employee.email = arr[2].value;
                 employee.salary = Number(arr[3].value);
                 employee.hireDate = new Date(arr[4].value);
-                console.log(employee);
                 employee.department.id = Number(arr[5].value);
                 console.log(employee);
                 new EmployeeService().saveOrUpdateEmployee(employee);

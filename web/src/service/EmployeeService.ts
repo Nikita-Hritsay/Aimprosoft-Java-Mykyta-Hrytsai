@@ -17,6 +17,7 @@ export class EmployeeService {
     }
 
     public saveOrUpdateEmployee(employee: Employee): void{
+        console.log(employee)
         $.ajax({
             contentType: 'application/json',
             data: JSON.stringify(employee),
