@@ -1,30 +1,32 @@
-import { Department } from "../models/Department";
-import { Employee } from "../models/Employee";
 import {Router} from "../router/Router";
+import {Constants} from "../utils/Constants";
 
 class Start{
+
     public static start(){
+        const router = new Router();
         window.addEventListener("load", ()=>{
-            const app = $("#app");
-            const headers = $("<div />").addClass("header_refs");
-            headers.append($("<a />", {text: "Home page", class: "header_ref", href: "#department"}).on("click", ()=>{
-                new Router().getUrl("#department").render("main");
-            }))
-            headers.append($("<a />", {text: "All Employees", class: "header_ref"}).on("click", ()=>{
-                new Router().getUrl("#employee").render(0);
-            }))
-            headers.append($("<a />", {text: "Add Department", class: "header_ref"}).on("click", ()=>{
-                new Router().getUrl("#departmentForm").render(new Department());
-            }))
-            headers.append($("<a />", {text: "Add Employee", class: "header_ref"}).on("click", ()=>{
-                new Router().getUrl("#employeeForm").render(new Employee());
-            }))
-            $("#main").empty();
-            app.append(headers);
+            const app = $(Constants.app);
+            this.createHeader(app);
             app.append($("<div >", {id: "main"}))
-            new Router().getUrl(location.hash).render("start");
+            router.getUrl(location.hash)
         })
+        window.addEventListener('hashchange', ()=>{
+            router.getUrl(location.hash);
+        });
     }
+
+    private static createHeader(app: any): void{
+        const headers = $("<div />").addClass("header_refs");
+        headers.append($("<a />", {text: "Home page", class: "header_ref", href: "#department"}))
+        headers.append($("<a />", {text: "All Employees", class: "header_ref", href: "#employee"}))
+        headers.append($("<a />", {text: "Add Department", class: "header_ref", href: "#departmentForm?id=0"}))
+        headers.append($("<a />", {text: "Add Employee", class: "header_ref", href: "#employeeForm?id=0"}))
+        app.append(headers);
+
+    }
+
+
 }
 
 Start.start()

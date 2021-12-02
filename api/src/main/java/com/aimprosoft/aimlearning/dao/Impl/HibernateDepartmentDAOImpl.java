@@ -40,14 +40,14 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public Department getDepartmentById(Integer id) throws DBException {
-        if (id != null) {
+        if (id != 0) {
             try {
                 return sessionFactory.getCurrentSession().get(Department.class, id);
             } catch (Exception e) {
                 throw new DBException(e.getMessage());
             }
         }
-        return null;
+        return new Department();
     }
 
     @Override

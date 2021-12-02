@@ -4,6 +4,7 @@ import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Employee;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 public interface EmployeeService {
@@ -18,4 +19,6 @@ public interface EmployeeService {
     void createOrUpdate(Employee employee) throws ValidationException, DBException;
 
     boolean existByEmail(Employee employee) throws DBException;
+
+    List<Employee> getByDepartmentId(Integer id) throws DBException;
 }

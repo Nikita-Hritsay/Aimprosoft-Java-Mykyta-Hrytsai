@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack")
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
     cache: false,
@@ -18,6 +19,7 @@ module.exports = {
             $: 'jquery',
             jQuery: 'jquery'
         }),
+        new ESLintPlugin()
     ],
     module: {
         rules: [
@@ -25,7 +27,17 @@ module.exports = {
             {
                 test: /\.css$/i,
                 use: ["style-loader", "css-loader"],
-              },
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'eslint-loader',
+                options: {
+                // eslint options (if necessary)
+                },
+            }
+
+
         ],
     },
     resolve: {

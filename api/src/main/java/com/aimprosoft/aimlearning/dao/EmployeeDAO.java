@@ -20,4 +20,6 @@ public interface EmployeeDAO {
 
     void createOrUpdate(Employee employee) throws ValidationException, DBException;
 
+    List<Employee> getByDepartmentId(Integer id) throws DBException;
+
 }

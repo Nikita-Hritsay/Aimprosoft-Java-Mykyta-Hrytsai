@@ -39,12 +39,23 @@ p{
 
 .update_button {
     color: blue;
+    width: 100px;
 }
 
-.error_massage, .delete_button {
+td, .delete_button:hover{
+    background: #581818;
+}
+
+.delete_button {
     color: red;
     border: none;
     background: #D8E6F3;
+    width: 100px;
+}
+
+.delete_button:hover{
+    color: #3d0000;
+    transition: .5s;
 }
 
 .error_massage{
@@ -92,6 +103,17 @@ th:first-child, td:first-child {
     justify-content: center;
 }
 
+#main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.addToThisDepartment{
+    margin-bottom: 40px;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -101,10 +123,6 @@ body {
 
 p {
     margin: 0;
-}
-
-.submit_delete {
-    margin-top: 10px;
 }
 
 .createOrUpdateForm {
@@ -122,6 +140,7 @@ form {
 .submit_createOrUpdate {
     display: inline-block;
     padding: 15px 23px 15px;
+    margin-top: 25px;
     border-radius: 7px;
     text-decoration: none;
     color: black;

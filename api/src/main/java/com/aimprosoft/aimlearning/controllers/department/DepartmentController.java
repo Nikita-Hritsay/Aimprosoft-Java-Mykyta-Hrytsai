@@ -34,6 +34,11 @@ public class DepartmentController {
         }
     }
 
+    @GetMapping("/department/{id}")
+    public Department getDepartmentById(@PathVariable Integer id) throws DBException {
+        return departmentService.getDepartmentById(id);
+    }
+
     @DeleteMapping("/department")
     public void deleteDepartment(@RequestParam Integer idDepartment) throws DBException {
         departmentService.deleteDepartment(idDepartment);

@@ -28,9 +28,19 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
 
+    @GetMapping("/employee/department/{id}")
+    public List<Employee> displayEmployeesByDepartment(@PathVariable Integer id) throws DBException {
+        return employeeService.getByDepartmentId(id);
+    }
+
     @DeleteMapping("/employee")
     public void deleteEmployee(@RequestParam Integer id) throws DBException {
         employeeService.deleteEmployee(id);
+    }
+
+    @GetMapping("/employee/{id}")
+    public Employee getEmployeeById(@PathVariable Integer id) throws DBException {
+        return employeeService.getById(id);
     }
 
     @PostMapping("/employee")

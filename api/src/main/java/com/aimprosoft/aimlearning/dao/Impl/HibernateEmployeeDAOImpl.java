@@ -32,14 +32,14 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public Employee getById(Integer id) throws DBException {
-        if (id != null) {
+        if (id != 0) {
             try {
                 return sessionFactory.getCurrentSession().get(Employee.class, id);
             } catch (Exception e) {
                 throw new DBException(e.getMessage());
             }
         }
-        return null;
+        return new Employee();
     }
 
     @Override
@@ -73,6 +73,15 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
     @Override
     public void createOrUpdate(Employee employee) throws ValidationException, DBException {
         saveOrUpdate(employee);
+    }
+
+    @Override
+    public List<Employee> getByDepartmentId(Integer id) throws DBException{
+        try {
+            return sessionFactory.getCurrentSession().createQuery("from Employee e where e.department.id = " + id).list();
+        } catch (Exception e) {
+            throw new DBException(e.getMessage());
+        }
     }
 
 }

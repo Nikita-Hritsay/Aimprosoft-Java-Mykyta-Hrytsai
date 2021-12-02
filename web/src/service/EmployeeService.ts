@@ -16,8 +16,23 @@ export class EmployeeService {
         })
     }
 
+    public getById(id: number): JQuery.jqXHR{
+        return $.ajax({
+            type: "GET",
+            url: "/employee/" + id,
+            dataType: "json"
+        })
+    }
+
+    public getByDepartment(id: number): JQuery.jqXHR{
+        return $.ajax({
+            type: "GET",
+            url: "/employee/department/" + id,
+            dataType: "json"
+        });
+    }
+
     public saveOrUpdateEmployee(employee: Employee): void{
-        console.log(employee)
         $.ajax({
             contentType: 'application/json',
             data: JSON.stringify(employee),

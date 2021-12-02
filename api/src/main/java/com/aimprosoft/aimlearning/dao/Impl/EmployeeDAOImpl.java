@@ -112,6 +112,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         }
     }
 
+    @Override
+    public List<Employee> getByDepartmentId(Integer id) throws DBException {
+        return null;
+    }
+
     private List<Employee> getEmployees(ResultSet resultSet) throws DBException {
         try {
             List<Employee> result = new ArrayList<>();

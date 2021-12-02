@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @Service
@@ -48,6 +49,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void createOrUpdate(Employee employee) throws ValidationException, DBException {
         modelValidator.validate(employee);
         employeeDAO.createOrUpdate(employee);
+    }
+
+    @Override
+    public List<Employee> getByDepartmentId(Integer id) throws DBException{
+        return employeeDAO.getByDepartmentId(id);
     }
 
 }

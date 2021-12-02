@@ -1,7 +1,7 @@
 import {Department} from "../models/Department";
 
 export class DepartmentService {
-    public getDepartment(): JQuery.jqXHR {
+    public getDepartments(): JQuery.jqXHR {
         return $.ajax({
             type: "GET",
             url: "/department",
@@ -14,6 +14,14 @@ export class DepartmentService {
             url: '/department?' + $.param({"idDepartment": id}),
             type: 'DELETE',
         })
+    }
+
+    public getDepartmentById(id: number): JQuery.jqXHR {
+        return $.ajax({
+            type: "GET",
+            url: "/department/" + id,
+            dataType: "json"
+        });
     }
 
     public saveOrUpdateDepartment(department: Department): JQuery.jqXHR{
