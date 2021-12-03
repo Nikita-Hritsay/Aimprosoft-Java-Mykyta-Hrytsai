@@ -10,10 +10,9 @@ export class EmployeeByDepartment implements Component{
 
     render(param: number){
         this.employeeService.getByDepartment(param).done((data) => {
-            if (data != null){
-                const main = $(Constants.main);
-                main.empty();
-                const addToThisDepartmentButton = $("<a />", {text: "add to this department", href: "#employeeForm?idDepartment=" + param}).addClass("header_ref addToThisDepartment");
+            const addToThisDepartmentButton = $("<a />", {text: "add to this department", href: "#employeeForm/0/department/" + param}).addClass("header_ref addToThisDepartment");
+            if (data.length > 0){
+                const main = $(Constants.main).empty();
                 const table =  $("<table/>");
                 const headerTable = $("<tr/>");
                 headerTable.append($("<th/>", {text: "First name"}));
@@ -25,30 +24,30 @@ export class EmployeeByDepartment implements Component{
                 headerTable.append($("<th/>", {text: "Update"}));
                 headerTable.append($("<th/>", {text: "Delete"}));
                 table.append(headerTable);
-                for(let i = 0; i < data.length; i++) {
+                data.forEach((element : any) => {
                     const tr = $("<tr/>");
-                    tr.append($("<td/>", {text: data[i].firstName})); 
-                    tr.append($("<td/>", {text: data[i].lastName})); 
-                    tr.append($("<td/>", {text: data[i].email}));
-                    tr.append($("<td/>", {text: data[i].salary}));
-                    tr.append($("<td/>", {text: Formatter.getDate(data[i].hireDate)})); 
-                    tr.append($("<td/>", {text: data[i].department.name})); 
-                    const updateButton = $("<a />", {text: "update", href: "#employeeForm?id=" + data[i].id}).addClass("update_button");
+                    tr.append($("<td/>", {text: element.firstName})); 
+                    tr.append($("<td/>", {text: element.lastName})); 
+                    tr.append($("<td/>", {text: element.email}));
+                    tr.append($("<td/>", {text: element.salary}));
+                    tr.append($("<td/>", {text: Formatter.getDate(element.hireDate)})); 
+                    tr.append($("<td/>", {text: element.department.name})); 
+                    const updateButton = $("<a />", {text: "update", href: "#employeeForm/" + element.id}).addClass("update_button");
                     tr.append($("<td/>").append(updateButton))
                     const deleteButton = $("<button />", {text: "delete"}).addClass("delete_button").addClass("submit_delete");
                     tr.append($("<td/>").append(deleteButton.on("click", () => {
-                        this.employeeService.deleteEmployee(data[i].id).done(()=>{
+                        this.employeeService.deleteEmployee(element.id).done(()=>{
                             this.render(param);
                         })
                     })))
                     table.append(tr);
-                }
+                });
+                
                 main.append(addToThisDepartmentButton);
                 main.append(table);
             }else{
-                const main = $(Constants.main);
-                main.empty();
-                main.append($("<div />", {class: "emptyClass"}).append($("<p />", {text: "There is no employees in this Department"})))
+                const main = $(Constants.main).empty();
+                main.append($("<div />", {class: "emptyClass"}).append($("<h3 />", {text: "There is no employees in this Department"})))
             }
         });
         

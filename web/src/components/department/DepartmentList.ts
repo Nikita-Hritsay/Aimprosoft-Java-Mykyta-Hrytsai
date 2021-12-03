@@ -9,8 +9,7 @@ export class DepartmentList implements Component{
 
     render(){
         this.department.getDepartments().done((data: any) => {
-            const listDiv =  $(Constants.main);
-            listDiv.empty();
+            const listDiv =  $(Constants.main).empty();
             const table =  $("<table/>");
             const headerTable = $("<tr/>");
             headerTable.append($("<th/>", {text: "Adress"}));
@@ -23,10 +22,10 @@ export class DepartmentList implements Component{
                 const tr = $("<tr/>");
                 tr.append($("<td/>", {text: element.name})); 
                 tr.append($("<td/>", {text: element.address})); 
-                const listButton = $("<a />", {text: "Employees", href: "#department/employee?id=" + element.id}) ;
+                const listButton = $("<a />", {text: "Employees", href: "#department/" + element.id + "/employee"}) ;
                 tr.append($("<td/>").append(listButton))
 
-                const updateButton = $("<a />", {text: "update", href: "#departmentForm?id=" + element.id}).addClass("update_button");
+                const updateButton = $("<a />", {text: "update", href: "#departmentForm/" + element.id}).addClass("update_button");
                 tr.append($("<td/>").append(updateButton))
 
                 const deleteButton = $("<button />", {text: "delete"}).addClass("delete_button").addClass("submit_delete");

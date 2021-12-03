@@ -32,8 +32,8 @@ export class EmployeeService {
         });
     }
 
-    public saveOrUpdateEmployee(employee: Employee): void{
-        $.ajax({
+    public saveOrUpdateEmployee(employee: Employee): JQuery.jqXHR{
+        return $.ajax({
             contentType: 'application/json',
             data: JSON.stringify(employee),
             dataType: 'json',

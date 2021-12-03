@@ -42,9 +42,6 @@ p{
     width: 100px;
 }
 
-td, .delete_button:hover{
-    background: #581818;
-}
 
 .delete_button {
     color: red;

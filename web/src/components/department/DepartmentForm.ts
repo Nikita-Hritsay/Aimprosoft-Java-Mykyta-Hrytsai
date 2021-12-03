@@ -11,10 +11,9 @@ export class DepartmentForm implements Component{
 
     render(param: number){
         this.departmentService.getDepartmentById(param).done((data) => {
-            const main = $(Constants.main);
-            main.empty();
+            const main = $(Constants.main).empty();
             const formDiv = $("<div />").addClass("createOrUpdateForm");
-            const formForm = $("<form name=\"createOrUpdateDepartment\"/>").addClass("createOrUpdateDepartment");
+            const formForm = $("<form />", {name: "createOrUpdateDepartment"}).addClass("createOrUpdateDepartment");
     
             formForm.append("<div />").addClass("createOrUpdateForm");
             formForm.append($("<p />", {text: "Enter your name"}));
@@ -48,7 +47,7 @@ export class DepartmentForm implements Component{
                 deparment.name = arr[0].value;
                 deparment.address = arr[1].value;
                 this.departmentService.saveOrUpdateDepartment(deparment);
-                location.href = "#department";
+                location.href = "#departments";
             });
         })
     }

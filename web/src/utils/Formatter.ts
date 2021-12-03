@@ -6,7 +6,17 @@ export class Formatter {
     }
 
     public static parseUrl(url: string): any{
-        return  Number(url.split("=")[1]);
+        return  Number(url.split("/")[1]);
+    }
+
+    public static getUrl(url: string): string{
+        let res =  url.split("?")[0].split("/");
+        return res[2] == undefined ? res[0] : res[0] + "/" + res[2];
+    }
+
+    public static getIdDepartment(url: string): number{
+        let res =  Number(url.split("/")[3])
+        return  isNaN(res) ? null : res;
     }
 
 }

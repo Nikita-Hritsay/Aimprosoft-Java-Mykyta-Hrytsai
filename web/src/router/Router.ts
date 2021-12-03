@@ -13,16 +13,17 @@ export class Router {
 
     constructor() {
         this.urls = new Map();
-        this.urls.set("#department", new DepartmentList())
-        this.urls.set("#departmentForm", new DepartmentForm());
-        this.urls.set("#employee", new EmployeeList());
+        this.urls.set("#departments", new DepartmentList())
+        this.urls.set("#departmentForm" , new DepartmentForm());
+        this.urls.set("#employees", new EmployeeList());
         this.urls.set("#employeeForm", new EmployeeForm());
+        this.urls.set("#employeeForm/department", new EmployeeForm());
         this.urls.set("#department/employee", new EmployeeByDepartment());
     }
 
     public getUrl(url: string) {
         location.hash = url;
-        return this.urls.get(url.split("?")[0]).render(Formatter.parseUrl(url), new URLSearchParams(location.hash.split("?")[1]));
+        this.urls.get(Formatter.getUrl(url)).render(Formatter.parseUrl(url), Formatter.getIdDepartment(url));
     }
 
 }

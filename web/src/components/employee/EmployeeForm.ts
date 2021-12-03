@@ -6,16 +6,14 @@ import { Formatter } from "../../utils/Formatter";
 import {Constants} from "../../utils/Constants";
 import { DepartmentService } from "../../service/DepartmentService";
 
-
-
 export class EmployeeForm implements Component{
 
     employeeService = new EmployeeService();
     departmentService = new DepartmentService();
 
-        render(param: any, url: URLSearchParams){
+        render(param: any, idDepartment: number){
             this.departmentService.getDepartments().done((DepartmentList)=>{
-                this.employeeService.getById(Number(url.get("id"))).done((data)=>{
+                this.employeeService.getById(param).done((data)=>{
                     const main = $(Constants.main);
                     main.empty();
                     const formDiv = $("<div />").addClass("createOrUpdateForm");
@@ -28,7 +26,7 @@ export class EmployeeForm implements Component{
                         {   text: "Enter your first name"}));
     
                     formForm.append($("<input />", 
-                        {   value: url.get('firstName') == null ? data.firstName: url.get("firstName`"),
+                        {   value: data.firstName,
                             name:"firstName",
                             type: "text", 
                             class: "input_param", 
@@ -38,7 +36,7 @@ export class EmployeeForm implements Component{
                         {   text: "Enter your last name"}));
     
                     formForm.append($("<input />", 
-                        {   value: url.get('lastName') == null ? data.lastName: url.get("lastName"), 
+                        {   value: data.lastName, 
                             name: "lastName", 
                             type: "text", 
                             class: "input_param", 
@@ -48,7 +46,7 @@ export class EmployeeForm implements Component{
                         {   text: "Enter your email"}));
     
                     formForm.append($("<input />", 
-                        {   value: url.get('email') == null ? data.email: url.get("email"), 
+                        {   value:  data.email, 
                             name:"email",
                             type: "email", 
                             class: "input_param", 
@@ -58,7 +56,7 @@ export class EmployeeForm implements Component{
                         {   text: "Enter your salary"}));
     
                     formForm.append($("<input />", 
-                        {   value: url.get("salary") == null ? data.salary : url.get("salary"), 
+                        {   value:  data.salary, 
                             name: "salary", 
                             type: "number", 
                             class: "input_param", 
@@ -68,7 +66,7 @@ export class EmployeeForm implements Component{
                         {   text: "Enter your hire date"}));
     
                     formForm.append($("<input />", 
-                        {   value: url.get("hireDate") == null ? Formatter.getDate(data.hireDate) : Formatter.getDate(url.get("idDepartment")), 
+                        {   value:  Formatter.getDate(data.hireDate), 
                             name:"hireDate",
                             type: "date", 
                             class: "input_param", 
@@ -78,7 +76,7 @@ export class EmployeeForm implements Component{
                         {   text: "Enter your departmnet name"}));
     
                     formForm.append($("<input />", 
-                        {   value: data.department == null ? url.get("idDepartment") : data.department.id, 
+                        {   value: data.department == null ? idDepartment == null ? "" : idDepartment : data.department.id, 
                             list:"idDepartments", 
                             name:"idDepartment", 
                             class:"input_param", 
@@ -101,7 +99,6 @@ export class EmployeeForm implements Component{
                     formDiv.append(formForm);
                     main.append(formDiv);
     
-    
                     formForm.submit((event)=>{
                         event.preventDefault();
                         let employee = new Employee();
@@ -115,7 +112,7 @@ export class EmployeeForm implements Component{
                         employee.department.id = Number(arr[5].value);
                         console.log(employee);
                         this.employeeService.saveOrUpdateEmployee(employee);
-                        location.href = "#department/employee?id=" + employee.department.id;
+                        location.href = "#department/" + employee.department.id + "/employee";
                     });
                 })
             })

@@ -18,10 +18,10 @@ class Start{
 
     private static createHeader(app: any): void{
         const headers = $("<div />").addClass("header_refs");
-        headers.append($("<a />", {text: "Home page", class: "header_ref", href: "#department"}))
-        headers.append($("<a />", {text: "All Employees", class: "header_ref", href: "#employee"}))
-        headers.append($("<a />", {text: "Add Department", class: "header_ref", href: "#departmentForm?id=0"}))
-        headers.append($("<a />", {text: "Add Employee", class: "header_ref", href: "#employeeForm?id=0"}))
+        headers.append($("<a />", {text: "Home page", class: "header_ref", href: "#departments"}))
+        headers.append($("<a />", {text: "All Employees", class: "header_ref", href: "#employees"}))
+        headers.append($("<a />", {text: "Add Department", class: "header_ref", href: "#departmentForm/0"}))
+        headers.append($("<a />", {text: "Add Employee", class: "header_ref", href: "#employeeForm/0"}))
         app.append(headers);
 
     }
