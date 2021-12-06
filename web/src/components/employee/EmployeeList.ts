@@ -9,7 +9,6 @@ export class EmployeeList implements Component{
     employeeService = new EmployeeService();
 
     render(param: number){
-        
         this.employeeService.getEmployees().done((data) => {
             if (data.length > 0){
                 const main = $(Constants.main);

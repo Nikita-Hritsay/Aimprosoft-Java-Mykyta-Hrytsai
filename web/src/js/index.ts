@@ -1,5 +1,6 @@
 import {Router} from "../router/Router";
 import {Constants} from "../utils/Constants";
+require('jquery-validation')
 
 class Start{
 
@@ -23,10 +24,7 @@ class Start{
         headers.append($("<a />", {text: "Add Department", class: "header_ref", href: "#departmentForm/0"}))
         headers.append($("<a />", {text: "Add Employee", class: "header_ref", href: "#employeeForm/0"}))
         app.append(headers);
-
     }
-
-
 }
 
 Start.start()

@@ -39,6 +39,12 @@ public class DepartmentController {
         return departmentService.getDepartmentById(id);
     }
 
+    @GetMapping("/department/exists")
+    public Department existByName(@RequestParam String name) throws DBException {
+        System.out.println(name);
+        return departmentService.existsByName(name);
+    }
+
     @DeleteMapping("/department")
     public void deleteDepartment(@RequestParam Integer idDepartment) throws DBException {
         departmentService.deleteDepartment(idDepartment);

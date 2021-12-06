@@ -41,8 +41,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public boolean existsByName(Department department) throws DBException {
-        return departmentDAO.existsByName(department);
+    public Department existsByName(String name) throws DBException {
+        return departmentDAO.existsByName(name);
     }
 
 }

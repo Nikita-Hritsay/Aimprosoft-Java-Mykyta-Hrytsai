@@ -86,8 +86,8 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public boolean existsByName(Department department) throws DBException {
-        try (Connection connection = ConnectionFactory.getConnection();
+    public Department existsByName(String name) throws DBException {
+        /*try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement statement = connection.prepareStatement(EXISTS_BY_NAME)) {
             ResultSet resultSet;
             statement.setString(1, department.getName());
@@ -101,7 +101,8 @@ public class DepartmentDAOImpl implements DepartmentDAO {
             return false;
         } catch (SQLException sqlException) {
             throw new DBException("Error in exists by name Department: " + sqlException.getMessage());
-        }
+        }*/
+        return null;
     }
 
     @Override

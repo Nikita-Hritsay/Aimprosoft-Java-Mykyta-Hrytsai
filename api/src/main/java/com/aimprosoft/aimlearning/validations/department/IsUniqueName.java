@@ -21,7 +21,8 @@ public class IsUniqueName implements CheckWithCheck.SimpleCheck {
     @Override
     public boolean isSatisfied(Object validatedObject, Object value, OValContext context, Validator validator) {
         try {
-            return !departmentService.existsByName((Department) validatedObject);
+            System.out.println((String) validatedObject);
+            return departmentService.existsByName((String) validatedObject).getId() == null;
         } catch (Exception e) {
             return false;
         }

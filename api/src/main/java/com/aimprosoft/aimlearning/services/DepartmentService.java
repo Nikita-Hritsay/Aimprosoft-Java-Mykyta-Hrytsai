@@ -15,5 +15,5 @@ public interface DepartmentService {
 
     void createOrUpdate(Department department) throws ValidationException, DBException;
 
-    boolean existsByName(Department department) throws DBException;
+    Department existsByName(String name) throws DBException;
 }

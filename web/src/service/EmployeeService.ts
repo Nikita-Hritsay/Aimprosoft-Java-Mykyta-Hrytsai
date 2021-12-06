@@ -38,10 +38,10 @@ export class EmployeeService {
             data: JSON.stringify(employee),
             dataType: 'json',
             success: function(){
-                console.log("Employee saved or updated")
+                location.hash = "#departments"
             },
             error: function(err){
-                console.log("Try later" + err)
+                location.hash = "#department/" + employee.department.id + "/employee"
             },
             processData: false,
             type: 'POST',

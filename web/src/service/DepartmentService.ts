@@ -30,10 +30,10 @@ export class DepartmentService {
             data: JSON.stringify(department),
             dataType: 'json',
             success: function(){
-                console.log("Department saved or updated")
+                location.hash = "#departments";
             },
-            error: function(err){
-                console.log("Try later" + err)
+            error: function(error){
+                location.hash = "#departments"
             },
             processData: false,
             type: 'POST',

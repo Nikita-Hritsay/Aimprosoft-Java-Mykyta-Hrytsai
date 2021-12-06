@@ -5,11 +5,13 @@ import { EmployeeService } from "../../service/EmployeeService";
 import { Formatter } from "../../utils/Formatter";
 import {Constants} from "../../utils/Constants";
 import { DepartmentService } from "../../service/DepartmentService";
+import { EmployeeValidation } from "../../validation/employee/EmployeeValidation";
 
 export class EmployeeForm implements Component{
 
     employeeService = new EmployeeService();
     departmentService = new DepartmentService();
+    employeeValidation = new EmployeeValidation();
 
         render(param: any, idDepartment: number){
             this.departmentService.getDepartments().done((DepartmentList)=>{
@@ -18,7 +20,7 @@ export class EmployeeForm implements Component{
                     main.empty();
                     const formDiv = $("<div />").addClass("createOrUpdateForm");
                     const formForm = $("<form />", 
-                        {   name: "createOrUpdateEmployee"}).addClass("createOrUpdateEmployee");
+                        {   name: "#createOrUpdateEmploee", id: "createOrUpdateEmployee"}).addClass("createOrUpdateEmployee");
     
                     formForm.append("<div />").addClass("createOrUpdateForm");
     
@@ -99,6 +101,8 @@ export class EmployeeForm implements Component{
                     formDiv.append(formForm);
                     main.append(formDiv);
     
+                    this.employeeValidation.validate("#createOrUpdateEmployee");
+
                     formForm.submit((event)=>{
                         event.preventDefault();
                         let employee = new Employee();
@@ -110,9 +114,9 @@ export class EmployeeForm implements Component{
                         employee.salary = Number(arr[3].value);
                         employee.hireDate = new Date(arr[4].value);
                         employee.department.id = Number(arr[5].value);
-                        console.log(employee);
-                        this.employeeService.saveOrUpdateEmployee(employee);
-                        location.href = "#department/" + employee.department.id + "/employee";
+                        this.employeeService.saveOrUpdateEmployee(employee).done(()=>{
+                            location.hash = "#department/" + employee.department.id + "/employee";
+                        });
                     });
                 })
             })
