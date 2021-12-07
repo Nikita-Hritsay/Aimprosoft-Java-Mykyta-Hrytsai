@@ -2,16 +2,12 @@ package com.aimprosoft.aimlearning.controllers.employee;
 
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
-import com.aimprosoft.aimlearning.models.Department;
 import com.aimprosoft.aimlearning.models.Employee;
-import com.aimprosoft.aimlearning.services.DepartmentService;
 import com.aimprosoft.aimlearning.services.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,6 +34,11 @@ public class EmployeeController {
         employeeService.deleteEmployee(id);
     }
 
+    @GetMapping("/employee/exists")
+    public Employee existByEmail(@RequestParam String email) throws DBException {
+        return employeeService.getByEmail(email);
+    }
+
     @GetMapping("/employee/{id}")
     public Employee getEmployeeById(@PathVariable Integer id) throws DBException {
         return employeeService.getById(id);
@@ -49,7 +50,6 @@ public class EmployeeController {
             employeeService.createOrUpdate(employee);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (ValidationException e) {
-            System.out.println(e.getErrors());
             return new ResponseEntity<>(e.getErrors(), HttpStatus.CONFLICT);
         }
     }

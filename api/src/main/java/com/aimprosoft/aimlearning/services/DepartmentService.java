@@ -3,6 +3,7 @@ package com.aimprosoft.aimlearning.services;
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Department;
+import com.aimprosoft.aimlearning.models.Employee;
 
 import java.util.List;
 
@@ -15,5 +16,8 @@ public interface DepartmentService {
 
     void createOrUpdate(Department department) throws ValidationException, DBException;
 
-    Department existsByName(String name) throws DBException;
+    Department getByName(String name) throws DBException;
+
+
+    boolean existsByName(Department department) throws DBException;
 }

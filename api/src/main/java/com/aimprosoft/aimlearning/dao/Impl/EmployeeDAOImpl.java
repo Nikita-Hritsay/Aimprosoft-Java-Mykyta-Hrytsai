@@ -117,6 +117,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         return null;
     }
 
+    @Override
+    public Employee getByEmail(String email) throws DBException {
+        return null;
+    }
+
     private List<Employee> getEmployees(ResultSet resultSet) throws DBException {
         try {
             List<Employee> result = new ArrayList<>();

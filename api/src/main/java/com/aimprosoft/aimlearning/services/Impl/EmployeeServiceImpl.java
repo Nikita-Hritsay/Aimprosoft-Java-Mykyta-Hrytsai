@@ -52,6 +52,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public Employee getByEmail(String email) throws DBException {
+        return employeeDAO.getByEmail(email);
+    }
+
+    @Override
     public List<Employee> getByDepartmentId(Integer id) throws DBException{
         return employeeDAO.getByDepartmentId(id);
     }

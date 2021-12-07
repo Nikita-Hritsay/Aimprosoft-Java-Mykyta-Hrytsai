@@ -3,10 +3,12 @@ package com.aimprosoft.aimlearning.dao.Impl;
 import com.aimprosoft.aimlearning.dao.EmployeeDAO;
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
+import com.aimprosoft.aimlearning.models.Department;
 import com.aimprosoft.aimlearning.models.Employee;
 
 import lombok.AllArgsConstructor;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.jaxb.mapping.internal.TemporalTypeMarshalling;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -76,6 +78,15 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
+    public Employee getByEmail(String email) throws DBException {
+        try {
+            return (Employee) sessionFactory.getCurrentSession().createQuery("FROM Employee where email='" + email + "'").uniqueResult();
+        } catch (Exception e) {
+            throw new DBException(e.getMessage());
+        }
+    }
+
+    @Override
     public List<Employee> getByDepartmentId(Integer id) throws DBException{
         try {
             return sessionFactory.getCurrentSession().createQuery("from Employee e where e.department.id = " + id).list();
@@ -83,5 +94,8 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
             throw new DBException(e.getMessage());
         }
     }
+
+
+
 
 }

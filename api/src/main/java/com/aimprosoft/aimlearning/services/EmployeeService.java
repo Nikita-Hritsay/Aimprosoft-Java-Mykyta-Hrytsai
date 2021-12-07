@@ -20,5 +20,7 @@ public interface EmployeeService {
 
     boolean existByEmail(Employee employee) throws DBException;
 
+    Employee getByEmail(String email) throws  DBException;
+
     List<Employee> getByDepartmentId(Integer id) throws DBException;
 }

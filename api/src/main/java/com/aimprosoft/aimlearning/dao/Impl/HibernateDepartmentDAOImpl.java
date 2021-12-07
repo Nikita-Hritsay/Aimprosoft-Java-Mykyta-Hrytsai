@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 @Transactional
@@ -59,11 +60,19 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public Department existsByName(String  name) throws DBException {
+    public Department getDepartmentByName(String name) throws DBException {
         try {
-            Department check = (Department) sessionFactory.getCurrentSession().createQuery("FROM Department where name='" + name + "'").uniqueResult();
-            System.out.println(check);
-            return check;
+            return (Department) sessionFactory.getCurrentSession().createQuery("FROM Department where name='" + name + "'").uniqueResult();
+        } catch (Exception e) {
+            throw new DBException(e.getMessage());
+        }
+    }
+
+    @Override
+    public boolean existsByName(Department department) throws DBException {
+        try {
+            Department check = (Department) sessionFactory.getCurrentSession().createQuery("FROM Department where name='" + department.getName() + "'").uniqueResult();
+            return check != null && !Objects.equals(check.getId(), department.getId());
         } catch (Exception e) {
             throw new DBException(e.getMessage());
         }

@@ -8,7 +8,7 @@ export class DepartmentValidation implements ModelValidator{
             rules: {
                 name:{
                     required: true,
-                    minlength: 5,
+                    minlength: 2,
                     maxlength: 70,
                     remote: {
                         url: `/department/exists`,
@@ -16,7 +16,6 @@ export class DepartmentValidation implements ModelValidator{
                         contentType: 'application/json',
                         dataType: 'json',
                         dataFilter: (data: any) => {
-                            console.log("id " + $('#id').val())
                             if (!!data) {
                                 const department: Department = JSON.parse(data);
                                 return department.id == $('#id').val();
@@ -25,17 +24,23 @@ export class DepartmentValidation implements ModelValidator{
                         }
                     }   
                 },
-                departmentAddress: {
+                address: {
                     required: true,
-                    minlength: 5,
+                    minlength: 2,
                     maxlength: 70
                 }
             },
             messages: {
                 name: {
                     required: "please enter name",
-                    minlength: "name should be longer than 5",
+                    minlength: "name should be longer than 2",
+                    maxlength: "name should be smaller than 70",
                     remote: "department with such name alredy exists"
+                },
+                address: {
+                    required: "please enter address",
+                    minlength: "name should be longer than 2",
+                    maxlength: "name should be smaller than 70"
                 }
             }
         });

@@ -15,7 +15,9 @@ public interface DepartmentDAO {
 
     void deleteDepartment(int id) throws DBException;
 
-    Department existsByName(String name) throws DBException;
+    boolean existsByName(Department department) throws DBException;
+
+    Department getDepartmentByName(String name) throws DBException;
 
     void createOrUpdate(Department department) throws ValidationException, DBException;
 }

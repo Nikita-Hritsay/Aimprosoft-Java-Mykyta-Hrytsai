@@ -3,9 +3,7 @@ import "../main.css";
 import { Department } from "../../models/Department";
 import { DepartmentService } from "../../service/DepartmentService";
 import {Constants} from "../../utils/Constants";
-import { EmployeeService } from "../../service/EmployeeService";
 import { DepartmentValidation } from "../../validation/department/DepartmentValidation";
-import { error } from "jquery";
 
 
 export class DepartmentForm implements Component{
@@ -20,7 +18,7 @@ export class DepartmentForm implements Component{
             const formForm = $("<form />", {id: "createOrUpdateDepartmentForm"}).addClass("createOrUpdateDepartment");
     
             formForm.append("<div />").addClass("createOrUpdateForm");
-            formForm.append($("<input />", {name: "id", value: data.id, id: "id", class: "id"}))
+            formForm.append($("<input />", {type: "hidden", name: "id", value: data.id, id: "id", class: "id"}))
             formForm.append($("<p />", {text: "Enter your name"}));
             formForm.append($("<input />", 
                 {
@@ -28,16 +26,14 @@ export class DepartmentForm implements Component{
                     name:"name",
                     type: "text", 
                     class: "input_param name", 
-                    required: true,
                     id: "name"}));
             formForm.append($("<p />", {text: "Enter your address"}));
             formForm.append($("<input />", 
                 {   value: data.address, 
-                    name: "departmentAddress", 
+                    name: "address", 
                     type: "text", 
-                    class: "input_param departmentAddress", 
-                    required: true,
-                    id: "departmentAddress"}));
+                    class: "input_param address", 
+                    id: "address"}));
             formForm.append($("<input />", {type: "submit", class: "submit_createOrUpdate", value: "submit"}))
     
             formDiv.append(formForm);
@@ -45,6 +41,7 @@ export class DepartmentForm implements Component{
     
             
             let errorList = this.deparmentValidation.validate("#createOrUpdateDepartmentForm");
+
             formForm.submit((event)=>{
                 event.preventDefault();
                 if(errorList.errorList.length < 1){
@@ -53,7 +50,6 @@ export class DepartmentForm implements Component{
                     department.id = data.id;
                     department.name = arr[1].value;
                     department.address = arr[2].value;
-                    console.log(department)
                     this.departmentService.saveOrUpdateDepartment(department).done(()=>{
                         location.hash = "#departments";
                     });

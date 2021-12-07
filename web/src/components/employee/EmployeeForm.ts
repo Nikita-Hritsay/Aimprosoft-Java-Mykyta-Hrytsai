@@ -20,10 +20,12 @@ export class EmployeeForm implements Component{
                     main.empty();
                     const formDiv = $("<div />").addClass("createOrUpdateForm");
                     const formForm = $("<form />", 
-                        {   name: "#createOrUpdateEmploee", id: "createOrUpdateEmployee"}).addClass("createOrUpdateEmployee");
+                        {   id: "createOrUpdateEmployeeForm"}).addClass("createOrUpdateEmployeeForm");
     
                     formForm.append("<div />").addClass("createOrUpdateForm");
     
+                    formForm.append($("<input />", {name: "id", type: "hidden", value: data.id, id: "id", class: "id"}))
+
                     formForm.append($("<p />", 
                         {   text: "Enter your first name"}));
     
@@ -31,7 +33,7 @@ export class EmployeeForm implements Component{
                         {   value: data.firstName,
                             name:"firstName",
                             type: "text", 
-                            class: "input_param", 
+                            class: "input_param firstName", 
                             id: "firstName"}));
     
                     formForm.append($("<p />", 
@@ -41,7 +43,7 @@ export class EmployeeForm implements Component{
                         {   value: data.lastName, 
                             name: "lastName", 
                             type: "text", 
-                            class: "input_param", 
+                            class: "input_param lastName", 
                             id: "lastName"}));
     
                     formForm.append($("<p />", 
@@ -50,8 +52,8 @@ export class EmployeeForm implements Component{
                     formForm.append($("<input />", 
                         {   value:  data.email, 
                             name:"email",
-                            type: "email", 
-                            class: "input_param", 
+                            type: "text", 
+                            class: "input_param email", 
                             id: "email"}));
                             
                     formForm.append($("<p />", 
@@ -61,7 +63,7 @@ export class EmployeeForm implements Component{
                         {   value:  data.salary, 
                             name: "salary", 
                             type: "number", 
-                            class: "input_param", 
+                            class: "input_param salary", 
                             id: "salary",}));
     
                     formForm.append($("<p />", 
@@ -71,8 +73,8 @@ export class EmployeeForm implements Component{
                         {   value:  Formatter.getDate(data.hireDate), 
                             name:"hireDate",
                             type: "date", 
-                            class: "input_param", 
-                            id: "hireDate"}));
+                            class: "input_param hireDate", 
+                            id: "hireDate"})); 
     
                     formForm.append($("<p />", 
                         {   text: "Enter your departmnet name"}));
@@ -81,7 +83,7 @@ export class EmployeeForm implements Component{
                         {   value: data.department == null ? idDepartment == null ? "" : idDepartment : data.department.id, 
                             list:"idDepartments", 
                             name:"idDepartment", 
-                            class:"input_param", 
+                            class:"input_param idDepartments", 
                             size:"15px"}));
     
                     const datalist = $("<datalist />", 
@@ -101,22 +103,24 @@ export class EmployeeForm implements Component{
                     formDiv.append(formForm);
                     main.append(formDiv);
     
-                    this.employeeValidation.validate("#createOrUpdateEmployee");
+                    let errorList = this.employeeValidation.validate("#createOrUpdateEmployeeForm");
 
                     formForm.submit((event)=>{
                         event.preventDefault();
-                        let employee = new Employee();
-                        let arr = formForm.serializeArray();
-                        employee.id = data.id == 0 ? null : data.id;
-                        employee.firstName = arr[0].value;
-                        employee.lastName = arr[1].value;
-                        employee.email = arr[2].value;
-                        employee.salary = Number(arr[3].value);
-                        employee.hireDate = new Date(arr[4].value);
-                        employee.department.id = Number(arr[5].value);
-                        this.employeeService.saveOrUpdateEmployee(employee).done(()=>{
-                            location.hash = "#department/" + employee.department.id + "/employee";
-                        });
+                        if(errorList.errorList.length < 1){
+                            let employee = new Employee();
+                            let arr = formForm.serializeArray();
+                            employee.id = data.id == 0 ? null : data.id;
+                            employee.firstName = arr[1].value;
+                            employee.lastName = arr[2].value;
+                            employee.email = arr[3].value;
+                            employee.salary = Number(arr[4].value);
+                            employee.hireDate = new Date(arr[5].value);
+                            employee.department.id = Number(arr[6].value);
+                            this.employeeService.saveOrUpdateEmployee(employee).done(()=>{
+                                location.hash = "#department/" + employee.department.id + "/employee";
+                            });
+                        }
                     });
                 })
             })

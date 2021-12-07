@@ -41,8 +41,7 @@ public class DepartmentController {
 
     @GetMapping("/department/exists")
     public Department existByName(@RequestParam String name) throws DBException {
-        System.out.println(name);
-        return departmentService.existsByName(name);
+        return departmentService.getByName(name);
     }
 
     @DeleteMapping("/department")
