@@ -55,6 +55,11 @@ p{
     transition: .5s;
 }
 
+.error{
+    color: red;
+    padding-top: 5px;
+}
+
 .error_massage{
     padding-bottom: 10px;
     background: none;

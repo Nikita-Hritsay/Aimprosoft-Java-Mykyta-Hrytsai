@@ -19,7 +19,7 @@ public class DepartmentController {
 
     private final DepartmentService departmentService;
 
-    @GetMapping(value = {"/department", "/"})
+    @GetMapping(value = "/department")
     public List<Department> displayAllDepartments() throws DBException {
         return departmentService.getAllDepartments();
     }
