@@ -88,7 +88,7 @@ export class EmployeeForm implements Component{
                             size:"15px"}));
     
                     const datalist = $("<datalist />", 
-                        {   id: "idDepartment"});
+                        {   id: "idDepartments"});
 
                     DepartmentList.forEach((element: any) => {
                         datalist.append($("<option />", {text: element.name, value: element.id, }));
@@ -98,7 +98,7 @@ export class EmployeeForm implements Component{
     
                     formForm.append($("<input />", 
                         {   type:"submit", 
-                            class: "submit_createOrUpdate", 
+                            class: "submit_createOrUpdate idDepartment", 
                             value: "submit"}))
     
                     formDiv.append(formForm);

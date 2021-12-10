@@ -6,7 +6,7 @@ import "../main.css";
 
 export class EmployeeList implements Component{
 
-    employeeService = new EmployeeService();
+    private employeeService = new EmployeeService();
 
     render(param: number){
         this.employeeService.getEmployees().done((data) => {
