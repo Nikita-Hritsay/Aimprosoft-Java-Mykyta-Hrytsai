@@ -77,17 +77,18 @@ export class EmployeeForm implements Component{
                             id: "hireDate"})); 
     
                     formForm.append($("<p />", 
-                        {   text: "Enter your departmnet name"}));
+                        {   text: "Enter your department name"}));
     
                     formForm.append($("<input />", 
                         {   value: data.department == null ? idDepartment == null ? "" : idDepartment : data.department.id, 
                             list:"idDepartments", 
                             name:"idDepartment", 
-                            class:"input_param idDepartments", 
+                            class:"input_param idDepartment",
+                            id: "idDepartment",
                             size:"15px"}));
     
                     const datalist = $("<datalist />", 
-                        {   id: "idDepartments"});
+                        {   id: "idDepartment"});
 
                     DepartmentList.forEach((element: any) => {
                         datalist.append($("<option />", {text: element.name, value: element.id, }));

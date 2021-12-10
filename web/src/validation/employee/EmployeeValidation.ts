@@ -42,7 +42,7 @@ export class EmployeeValidation implements ModelValidator{
                 hireDate: {
                     required: true
                 },
-                departmentId: {
+                idDepartment: {
                     required: true
                 } 
             },
@@ -71,7 +71,7 @@ export class EmployeeValidation implements ModelValidator{
                 hireDate: {
                     required: "Enter your hire date please",
                 },
-                departmentId: {
+                idDepartment: {
                     required: "Enter your departmentId please",
                 }
             }

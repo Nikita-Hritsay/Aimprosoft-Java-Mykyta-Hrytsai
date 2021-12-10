@@ -57,12 +57,21 @@ p{
 
 .error{
     color: red;
-    padding-top: 5px;
 }
 
 .error_massage{
     padding-bottom: 10px;
     background: none;
+}
+
+#name-error{
+    padding-top: 5px;
+    color: red;
+}
+
+#email-error{
+    padding-top: 5px;
+    color: red;
 }
 
 table {

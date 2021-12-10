@@ -8,7 +8,7 @@ import { DepartmentValidation } from "../../validation/department/DepartmentVali
 
 export class DepartmentForm implements Component{
     
-    deparmentValidation = new DepartmentValidation();
+    departmentValidation = new DepartmentValidation();
     departmentService = new DepartmentService();
 
     render(param: number){
@@ -40,7 +40,7 @@ export class DepartmentForm implements Component{
             main.append(formDiv);
     
             
-            let errorList = this.deparmentValidation.validate("#createOrUpdateDepartmentForm");
+            let errorList = this.departmentValidation.validate("#createOrUpdateDepartmentForm");
 
             formForm.submit((event)=>{
                 event.preventDefault();
