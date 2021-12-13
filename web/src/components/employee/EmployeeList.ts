@@ -8,8 +8,8 @@ export class EmployeeList implements Component{
 
     private employeeService = new EmployeeService();
 
-    render(param: number){
-        this.employeeService.getEmployees().done((data) => {
+    render(data: any){
+        
             if (data.length > 0){
                 const main = $(Constants.main);
                 main.empty();
@@ -25,30 +25,39 @@ export class EmployeeList implements Component{
                 headerTable.append($("<th/>", {text: "Delete"}));
                 table.append(headerTable);
                 
-                data.forEach((element: any)=>{
-                    const tr = $("<tr/>");
-                    tr.append($("<td/>", {text: element.firstName})); 
-                    tr.append($("<td/>", {text: element.lastName})); 
-                    tr.append($("<td/>", {text: element.email}));
-                    tr.append($("<td/>", {text: element.salary}));
-                    tr.append($("<td/>", {text: Formatter.getDate(element.hireDate)})); 
-                    tr.append($("<td/>", {text: element.department.name}));
-                    const updateButton = $("<a />", {text: "update", href: "#employeeForm/" + element.id}).addClass("update_button");
-                    tr.append($("<td/>").append(updateButton));
-                    const deleteButton = $("<button />", {text: "delete"}).addClass("delete_button").addClass("submit_delete");
-                    tr.append($("<td/>").append(deleteButton.on("click", () => {
-                        this.employeeService.deleteEmployee(element.id).done(()=>{
-                            this.render(param);
-                        })
-                    })))
-                    table.append(tr);
-                })
+                this.renderTable(table, data);
                 main.append(table);
             }else{
                 const main = $(Constants.main);
                 main.empty();
                 main.append($("<div />", {class: "emptyClass"}).append($("<h3 />", {text: "There is no employees in this Department"})))
             }
-        });
+        
     }
+
+    private renderTable(table: any, data: any){
+        data.forEach((employee: any)=>{
+            const tr = $("<tr/>");
+            tr.append($("<td/>", {text: employee.firstName})); 
+            tr.append($("<td/>", {text: employee.lastName})); 
+            tr.append($("<td/>", {text: employee.email}));
+            tr.append($("<td/>", {text: employee.salary}));
+            tr.append($("<td/>", {text: Formatter.getDate(employee.hireDate)})); 
+            tr.append($("<td/>", {text: employee.department.name}));
+            const updateButton = $("<button />", {text: "update", href: "#employee/" + employee.id}).addClass("update_button").on("click", ()=>{
+                location.hash = `#employee/${employee.id}`;
+            });
+            tr.append($("<td/>").append(updateButton));
+            const deleteButton = $("<button />", {text: "delete"}).addClass("delete_button").addClass("submit_delete");
+            tr.append($("<td/>").append(deleteButton.on("click", () => {
+                this.employeeService.deleteEmployee(employee.id).done(()=>{
+                    this.employeeService.getEmployees().done((data: any)=>{
+                        this.render(data);
+                    });
+                })
+            })))
+            table.append(tr);
+        })
+    }
+
 }

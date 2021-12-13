@@ -13,117 +13,117 @@ export class EmployeeForm implements Component{
     departmentService = new DepartmentService();
     employeeValidation = new EmployeeValidation();
 
-        render(param: any, idDepartment: number){
-            this.departmentService.getDepartments().done((DepartmentList)=>{
-                this.employeeService.getById(param).done((data)=>{
-                    const main = $(Constants.main);
-                    main.empty();
-                    const formDiv = $("<div />").addClass("createOrUpdateForm");
-                    const formForm = $("<form />", 
-                        {   id: "createOrUpdateEmployeeForm"}).addClass("createOrUpdateEmployeeForm");
+        render(employee: any, department: any, param: number){
     
-                    formForm.append("<div />").addClass("createOrUpdateForm");
-    
-                    formForm.append($("<input />", {name: "id", type: "hidden", value: data.id, id: "id", class: "id"}))
+            const main = $(Constants.main);
+            main.empty();
+            const formDiv = $("<div />").addClass("createOrUpdateForm");
+            const formForm = $("<form />", 
+                {   id: "createOrUpdateEmployeeForm"}).addClass("createOrUpdateEmployeeForm");
 
-                    formForm.append($("<p />", 
-                        {   text: "Enter your first name"}));
-    
-                    formForm.append($("<input />", 
-                        {   value: data.firstName,
-                            name:"firstName",
-                            type: "text", 
-                            class: "input_param firstName", 
-                            id: "firstName"}));
-    
-                    formForm.append($("<p />", 
-                        {   text: "Enter your last name"}));
-    
-                    formForm.append($("<input />", 
-                        {   value: data.lastName, 
-                            name: "lastName", 
-                            type: "text", 
-                            class: "input_param lastName", 
-                            id: "lastName"}));
-    
-                    formForm.append($("<p />", 
-                        {   text: "Enter your email"}));
-    
-                    formForm.append($("<input />", 
-                        {   value:  data.email, 
-                            name:"email",
-                            type: "text", 
-                            class: "input_param email", 
-                            id: "email"}));
-                            
-                    formForm.append($("<p />", 
-                        {   text: "Enter your salary"}));
-    
-                    formForm.append($("<input />", 
-                        {   value:  data.salary, 
-                            name: "salary", 
-                            type: "number", 
-                            class: "input_param salary", 
-                            id: "salary",}));
-    
-                    formForm.append($("<p />", 
-                        {   text: "Enter your hire date"}));
-    
-                    formForm.append($("<input />", 
-                        {   value:  Formatter.getDate(data.hireDate), 
-                            name:"hireDate",
-                            type: "date", 
-                            class: "input_param hireDate", 
-                            id: "hireDate"})); 
-    
-                    formForm.append($("<p />", 
-                        {   text: "Enter your department name"}));
-    
-                    formForm.append($("<input />", 
-                        {   value: data.department == null ? idDepartment == null ? "" : idDepartment : data.department.id, 
-                            list:"idDepartments", 
-                            name:"idDepartment", 
-                            class:"input_param idDepartment",
-                            id: "idDepartment",
-                            size:"15px"}));
-    
-                    const datalist = $("<datalist />", 
-                        {   id: "idDepartments"});
+            formForm.append("<div />").addClass("createOrUpdateForm");
 
-                    DepartmentList.forEach((element: any) => {
-                        datalist.append($("<option />", {text: element.name, value: element.id, }));
+            formForm.append($("<input />", {name: "id", type: "hidden", value: employee.id, id: "id", class: "id"}))
+
+            formForm.append($("<p />", 
+                {   text: "Enter your first name"}));
+
+            formForm.append($("<input />", 
+                {   value: employee.firstName,
+                    name:"firstName",
+                    type: "text", 
+                    class: "input_param firstName", 
+                    id: "firstName"}));
+
+            formForm.append($("<p />", 
+                {   text: "Enter your last name"}));
+
+            formForm.append($("<input />", 
+                {   value: employee.lastName, 
+                    name: "lastName", 
+                    type: "text", 
+                    class: "input_param lastName", 
+                    id: "lastName"}));
+
+            formForm.append($("<p />", 
+                {   text: "Enter your email"}));
+
+            formForm.append($("<input />", 
+                {   value:  employee.email, 
+                    name:"email",
+                    type: "text", 
+                    class: "input_param email", 
+                    id: "email"}));
+                    
+            formForm.append($("<p />", 
+                {   text: "Enter your salary"}));
+
+            formForm.append($("<input />", 
+                {   value:  employee.salary, 
+                    name: "salary", 
+                    type: "number", 
+                    class: "input_param salary", 
+                    id: "salary",}));
+
+            formForm.append($("<p />", 
+                {   text: "Enter your hire date"}));
+
+            formForm.append($("<input />", 
+                {   value:  Formatter.getDate(employee.hireDate), 
+                    name:"hireDate",
+                    type: "date", 
+                    class: "input_param hireDate", 
+                    id: "hireDate"})); 
+
+            formForm.append($("<p />", 
+                {   text: "Enter your department name"}));
+
+            formForm.append($("<input />", 
+                {   value: employee.department == null ? param == null ? "" : param : employee.department.id, 
+                    list:"idDepartments", 
+                    name:"idDepartment", 
+                    class:"input_param idDepartment",
+                    id: "idDepartment",
+                    size:"15px"}));
+
+            const datalist = $("<datalist />", 
+                {   id: "idDepartments"});
+
+                department.forEach((department: any) => {
+                datalist.append($("<option />", {text: department.name, value: department.id, }));
+            });
+                
+            formForm.append(datalist);
+
+            formForm.append($("<input />", 
+                {   type:"submit", 
+                    class: "submit_createOrUpdate idDepartment", 
+                    value: "submit"}))
+
+            formDiv.append(formForm);
+            main.append(formDiv);
+
+            const errorList = this.employeeValidation.validate("#createOrUpdateEmployeeForm");
+
+            formForm.on("submit", (event)=>{
+                event.preventDefault();
+                if(errorList.errorList.length < 1){
+                    const employee = new Employee();
+                    const arr = formForm.serializeArray();
+                    console.log("arr "  + arr)
+                    employee.id = Number($("input[name=id]").val()) == 0 ? null : Number($("input[name=id]").val());
+                    employee.firstName = String($("input[name=firstName]").val());
+                    employee.lastName = String($("input[name=lastName]").val());
+                    employee.email = String($("input[name=email]").val());
+                    employee.salary = Number($("input[name=salary]").val());
+                    employee.hireDate = new Date(String($("input[name=hireDate]").val()));
+                    employee.department.id = Number($("input[name=idDepartment]").val());
+                    console.log("employee in render " + employee);
+                    this.employeeService.saveOrUpdateEmployee(employee).done(()=>{
+                        location.hash = "#department/" + employee.department.id + "/employee";
                     });
-                        
-                    formForm.append(datalist);
-    
-                    formForm.append($("<input />", 
-                        {   type:"submit", 
-                            class: "submit_createOrUpdate idDepartment", 
-                            value: "submit"}))
-    
-                    formDiv.append(formForm);
-                    main.append(formDiv);
-    
-                    let errorList = this.employeeValidation.validate("#createOrUpdateEmployeeForm");
-
-                    formForm.submit((event)=>{
-                        event.preventDefault();
-                        if(errorList.errorList.length < 1){
-                            let employee = new Employee();
-                            let arr = formForm.serializeArray();
-                            employee.id = data.id == 0 ? null : data.id;
-                            employee.firstName = arr[1].value;
-                            employee.lastName = arr[2].value;
-                            employee.email = arr[3].value;
-                            employee.salary = Number(arr[4].value);
-                            employee.hireDate = new Date(arr[5].value);
-                            employee.department.id = Number(arr[6].value);
-                            this.employeeService.saveOrUpdateEmployee(employee).done(()=>{
-                                location.hash = "#department/" + employee.department.id + "/employee";
-                            });
-                        }
-                    });
-                })
-            })
+                }
+            });
+        
     }
 }

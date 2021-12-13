@@ -32,15 +32,15 @@ export class DepartmentValidation implements ModelValidator{
             },
             messages: {
                 name: {
-                    required: "please enter name",
-                    minlength: "name should be longer than 2",
-                    maxlength: "name should be smaller than 70",
-                    remote: "department with such name alredy exists"
+                    required: "Enter name",
+                    minlength: "Name should be longer than 2",
+                    maxlength: "Name should be smaller than 70",
+                    remote: "Department with such name alredy exists"
                 },
                 address: {
-                    required: "please enter address",
-                    minlength: "name should be longer than 2",
-                    maxlength: "name should be smaller than 70"
+                    required: "Enter address",
+                    minlength: "Name should be longer than 2",
+                    maxlength: "Name should be smaller than 70"
                 }
             }
         });

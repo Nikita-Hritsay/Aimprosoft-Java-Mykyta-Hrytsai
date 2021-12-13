@@ -48,31 +48,31 @@ export class EmployeeValidation implements ModelValidator{
             },
             messages: {
                 firstName: {
-                    required: "Enter your name please",
+                    required: "Enter your name",
                     minlength: "Name should be longer than 3",
                     maxlength: "Name should be smaller than 20"
                 },
                 lastName:{
-                    required: "Enter your last name please",
+                    required: "Enter your last name",
                     minlength: "Last Name should be longer than 3",
                     maxlength: "Last Name should be smaller than 20"
                 },
                 email: {
-                    required: "Enter your email please",
+                    required: "Enter your email",
                     minlength: "Email should be longer than 5",
                     maxlength: "Email should be smaller than 100",
                     remote: "Employee with such email already exists"
                 },
                 salary: {
-                    required: "Enter your salary please",
+                    required: "Enter your salary",
                     min: "Salary should be bigger than 1",
                     max: "Salary should be smaller than 100000"
                 },
                 hireDate: {
-                    required: "Enter your hire date please",
+                    required: "Enter your hire date",
                 },
                 idDepartment: {
-                    required: "Enter your departmentId please",
+                    required: "Enter your departmentId",
                 }
             }
         });
