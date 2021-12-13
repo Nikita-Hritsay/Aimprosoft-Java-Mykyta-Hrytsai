@@ -1,4 +1,2 @@
-export class Constants{ 
-    public static main = "#main";
-    public static app = "#app";
-}
+export const mainDiv = "#main";
+export const appDiv = "#app";

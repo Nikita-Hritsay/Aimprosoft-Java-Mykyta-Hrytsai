@@ -1,5 +1,5 @@
 import {Router} from "../router/Router";
-import {Constants} from "../utils/Constants";
+import {appDiv} from "../utils/Constants";
 require('jquery-validation')
 
 class Start{
@@ -7,7 +7,7 @@ class Start{
     public static start(){
         const router = new Router();
         window.addEventListener("load", ()=>{
-            const app = $(Constants.app);
+            const app = $(appDiv);
             this.createHeader(app);
             app.append($("<div >", {id: "main"}))
             router.getUrl(location.hash)

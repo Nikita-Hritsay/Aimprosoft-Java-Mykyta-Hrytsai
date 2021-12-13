@@ -1,5 +1,5 @@
 import {EmployeeService} from "../../service/EmployeeService";
-import {Constants} from "../../utils/Constants";
+import {mainDiv} from "../../utils/Constants";
 import { Formatter } from "../../utils/Formatter";
 import {Component} from "../Component"; 
 import "../main.css";
@@ -9,7 +9,7 @@ export class EmployeeByDepartment implements Component{
     employeeService = new EmployeeService();
 
     render(data: any, param: number){
-        const main = $(Constants.main).empty();
+        const main = $(mainDiv).empty();
         const addToThisDepartmentButton = $("<a />", {text: "add to this department", href: `#employee/0/department/${param}`}).addClass("header_ref addToThisDepartment");
         main.append(addToThisDepartmentButton);
        

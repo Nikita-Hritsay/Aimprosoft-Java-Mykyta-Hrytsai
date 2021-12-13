@@ -3,7 +3,7 @@ import "../main.css";
 import { Employee } from "../../models/Employee";
 import { EmployeeService } from "../../service/EmployeeService";
 import { Formatter } from "../../utils/Formatter";
-import {Constants} from "../../utils/Constants";
+import { mainDiv} from "../../utils/Constants";
 import { DepartmentService } from "../../service/DepartmentService";
 import { EmployeeValidation } from "../../validation/employee/EmployeeValidation";
 
@@ -15,7 +15,7 @@ export class EmployeeForm implements Component{
 
         render(employee: any, department: any, param: number){
     
-            const main = $(Constants.main);
+            const main = $(mainDiv);
             main.empty();
             const formDiv = $("<div />").addClass("createOrUpdateForm");
             const formForm = $("<form />", 

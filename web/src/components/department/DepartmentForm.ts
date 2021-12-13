@@ -2,7 +2,7 @@ import { Component } from "../Component";
 import "../main.css";
 import { Department } from "../../models/Department";
 import { DepartmentService } from "../../service/DepartmentService";
-import {Constants} from "../../utils/Constants";
+import { mainDiv} from "../../utils/Constants";
 import { DepartmentValidation } from "../../validation/department/DepartmentValidation";
 
 
@@ -12,7 +12,7 @@ export class DepartmentForm implements Component{
     departmentService = new DepartmentService();
 
     render(department: any){
-        const main = $(Constants.main).empty();
+        const main = $(mainDiv).empty();
         
         const formDiv = $("<div />").addClass("createOrUpdateForm");
         const formForm = $("<form />", {id: "createOrUpdateDepartmentForm"}).addClass("createOrUpdateDepartment");

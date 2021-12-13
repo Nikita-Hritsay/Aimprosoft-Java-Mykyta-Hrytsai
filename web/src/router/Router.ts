@@ -25,7 +25,6 @@ export class Router {
 
     public getUrl(url: string) {
         location.hash = url;
-        console.log(Formatter.getUrl(url));
         if (this.urls.get(Formatter.getUrl(url))){
             this.urls.get(Formatter.getUrl(url)).render(Formatter.parseUrl(url), Formatter.getIdDepartment(url));
         }else{

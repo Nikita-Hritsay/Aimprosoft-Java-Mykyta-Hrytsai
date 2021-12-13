@@ -1,5 +1,5 @@
 import {EmployeeService} from "../../service/EmployeeService";
-import {Constants} from "../../utils/Constants";
+import { mainDiv } from "../../utils/Constants";
 import { Formatter } from "../../utils/Formatter";
 import {Component} from "../Component"; 
 import "../main.css";
@@ -11,7 +11,7 @@ export class EmployeeList implements Component{
     render(data: any){
         
             if (data.length > 0){
-                const main = $(Constants.main);
+                const main = $(mainDiv);
                 main.empty();
                 const table =  $("<table/>");
                 const headerTable = $("<tr/>");
@@ -28,7 +28,7 @@ export class EmployeeList implements Component{
                 this.renderTable(table, data);
                 main.append(table);
             }else{
-                const main = $(Constants.main);
+                const main = $(mainDiv);
                 main.empty();
                 main.append($("<div />", {class: "emptyClass"}).append($("<h3 />", {text: "There is no employees in this Department"})))
             }

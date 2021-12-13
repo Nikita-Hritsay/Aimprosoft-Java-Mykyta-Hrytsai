@@ -1,5 +1,5 @@
 import {DepartmentService} from "../../service/DepartmentService";
-import {Constants} from "../../utils/Constants";
+import {mainDiv} from "../../utils/Constants";
 import {Component} from "../Component"; 
 import "../main.css";
 
@@ -8,7 +8,7 @@ export class DepartmentList implements Component{
     departmentService = new DepartmentService();
 
     render(departments: any){
-        const listDiv =  $(Constants.main).empty();
+        const listDiv =  $(mainDiv).empty();
         const table =  $("<table/>");
         const headerTable = $("<tr/>");
         headerTable.append($("<th/>", {text: "Adress"}));
