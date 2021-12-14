@@ -1,2 +1,11 @@
 <p>display-all-departments works</p>
 <p>{{departments}}</p>
+<ng-template ngFor let-department [ngForOf]="departments" >
+  <p></p>
+</ng-template>
+
+<td>
+
+<ng-template ngFor let-item [ngForOf]="departments" >
+  {{item.name}}
+</ng-template>
