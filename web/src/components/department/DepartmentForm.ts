@@ -35,7 +35,6 @@ export class DepartmentForm implements Component{
                 });
             }
         });
-        
     }
 
     private renderInputForm(formForm: any, data: any): any{
@@ -52,7 +51,7 @@ export class DepartmentForm implements Component{
                 id: "name"}));
         formForm.append($("<p />", {text: "Enter your address"}));
         formForm.append($("<input />", 
-            {   value: data == null ? null : data.address, 
+            {   value: data == null ? null : data.address,
                 name: "address", 
                 type: "text", 
                 class: "input_param address", 
