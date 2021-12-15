@@ -44,7 +44,7 @@ export class EmployeeForm implements Component{
     }
 
     private renderInputForm(formForm: any, employee: any, param: number, department: any){
-        formForm.append("<div />").addClass("createOrUpdateForm");
+        formForm.append($("<div />")).addClass("createOrUpdateForm");
 
         formForm.append($("<input />", {name: "id", type: "hidden", value: employee.id, id: "id", class: "id"}))
 

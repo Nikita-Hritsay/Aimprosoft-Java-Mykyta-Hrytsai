@@ -11,7 +11,7 @@ export class DepartmentList implements Component{
         const listDiv =  $(mainDiv).empty();
         const table =  $("<table/>");
         const headerTable = $("<tr/>");
-        headerTable.append($("<th/>", {text: "Adress"}));
+        headerTable.append($("<th/>", {text: "Address"}));
         headerTable.append($("<th/>", {text: "Name"}));
         headerTable.append($("<th/>", {text: "List"}));
         headerTable.append($("<th/>", {text: "Update"}));
