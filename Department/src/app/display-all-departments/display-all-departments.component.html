@@ -4,7 +4,15 @@
   <p></p>
 </ng-template>
 
-<td>
+<table>
+  <tr>
+    <th>Address</th>
+    <th>Name</th>
+    <th>List</th>
+    <th>Update</th>
+    <th>Delete</th>
+  </tr>
+</table>
 
 <ng-template ngFor let-item [ngForOf]="departments" >
   {{item.name}}
