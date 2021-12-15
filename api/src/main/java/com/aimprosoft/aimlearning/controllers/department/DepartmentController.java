@@ -15,6 +15,7 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
+@RequestMapping("/api")
 public class DepartmentController {
 
     private final DepartmentService departmentService;
@@ -44,8 +45,9 @@ public class DepartmentController {
         return departmentService.getByName(name);
     }
 
-    @DeleteMapping("/department")
-    public void deleteDepartment(@RequestParam Integer idDepartment) throws DBException {
+    @DeleteMapping("/department/{id}")
+    public void deleteDepartment(@RequestParam Integer idDepartment, @PathVariable Integer id) throws DBException {
+        System.out.println(idDepartment);
         departmentService.deleteDepartment(idDepartment);
     }
 

@@ -1,9 +1,3 @@
-<p>display-all-departments works</p>
-<p>{{departments}}</p>
-<ng-template ngFor let-department [ngForOf]="departments" >
-  <p></p>
-</ng-template>
-
 <table>
   <tr>
     <th>Address</th>
@@ -12,8 +6,15 @@
     <th>Update</th>
     <th>Delete</th>
   </tr>
+
+  <ng-template ngFor let-item [ngForOf]="departments" >
+    <tr>
+      <td>{{item.address}}</td>
+      <td>{{item.name}}</td>
+      <td><button class="update_button">Employees</button></td>
+      <td><button class="update_button submit_delete">Update</button></td>
+      <td><button class="delete_button submit_delete" (click)="delete(item.id)">Delete</button></td>
+    </tr>
+  </ng-template>
 </table>
 
-<ng-template ngFor let-item [ngForOf]="departments" >
-  {{item.name}}
-</ng-template>

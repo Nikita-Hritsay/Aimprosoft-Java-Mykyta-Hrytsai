@@ -8,7 +8,12 @@ import {HttpClient} from "@angular/common/http";
 export class DepartmentService {
 
   public get(): Observable<any>{
-    return this.httpClient.get<any>("/department");
+    return this.httpClient.get<any>("/api/department");
+  }
+
+  public delete(id: number): void{
+    this.httpClient.delete<any>("/department/" + id);
+    console.log(id)
   }
 
   constructor(private httpClient: HttpClient) { }

@@ -15,6 +15,7 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
+@RequestMapping("/api")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
