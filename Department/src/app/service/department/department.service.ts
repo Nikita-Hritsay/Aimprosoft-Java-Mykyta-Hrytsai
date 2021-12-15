@@ -17,5 +17,9 @@ export class DepartmentService {
     console.log("/department?id=" + id)
   }
 
+  public getById(id: number){
+    return this.httpClient.get<any>(`/api/department/${id}`);
+  }
+
   constructor(private httpClient: HttpClient) { }
 }

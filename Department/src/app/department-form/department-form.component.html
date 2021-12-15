@@ -1,1 +1,13 @@
-<p>department-form works!</p>
+<div class="createOrUpdateForm">
+  <form id="createOrUpdateDepartmentForm" class="createOrUpdateDepartment">
+    <div class="createOrUpdateForm">
+      <input type="hidden" id="id" name="id" [value]="department.id" class="id" />
+      <p>Enter name</p>
+      <input [value]="department.name" name="name" type="text" class="input_param name" id="name" />
+      <p>Enter address</p>
+      <input [value]="department.address" name="address" type="text" class="input_param address" id="address" />
+
+      <input type="submit" class="submit_createOrUpdate" value="Add department"/>
+    </div>
+  </form>
+</div>
