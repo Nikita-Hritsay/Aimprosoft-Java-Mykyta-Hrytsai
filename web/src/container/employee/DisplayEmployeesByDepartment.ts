@@ -3,8 +3,8 @@ import { EmployeeService } from "../../service/EmployeeService";
 
 
 export class DisplayEmployeesByDepartment {
-    employeeService = new EmployeeService();
-    employeeComponent = new EmployeeByDepartment();
+    private employeeService = new EmployeeService();
+    private employeeComponent = new EmployeeByDepartment();
 
     render(param: number){
         this.employeeService.getByDepartment(param).done((data)=>{

@@ -3,8 +3,8 @@ import { DepartmentService } from "../../service/DepartmentService";
 
 
 export class DisplayAllDepartments {
-    departmentService = new DepartmentService();
-    departmentComponent = new DepartmentList();
+    private departmentService = new DepartmentService();
+    private departmentComponent = new DepartmentList();
 
     render(){
         this.departmentService.getDepartments().then((data)=>{

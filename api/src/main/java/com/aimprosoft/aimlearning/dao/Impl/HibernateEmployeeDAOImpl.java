@@ -52,9 +52,9 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public void deleteEmployee(int id) throws DBException {
+    public void deleteEmployee(Employee employee) throws DBException {
         try {
-            sessionFactory.getCurrentSession().delete(getById(id));
+            sessionFactory.getCurrentSession().delete(employee);
         } catch (Exception e) {
             throw new DBException(e.getMessage());
         }

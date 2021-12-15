@@ -44,11 +44,11 @@ export class EmployeeList implements Component{
             tr.append($("<td/>", {text: employee.salary}));
             tr.append($("<td/>", {text: Formatter.getDate(employee.hireDate)})); 
             tr.append($("<td/>", {text: employee.department.name}));
-            const updateButton = $("<button />", {text: "update", href: "#employee/" + employee.id}).addClass("update_button").on("click", ()=>{
+            const updateButton = $("<button />", {text: "Update", href: "#employee/" + employee.id}).addClass("update_button").on("click", ()=>{
                 location.hash = `#employee/${employee.id}`;
             });
             tr.append($("<td/>").append(updateButton));
-            const deleteButton = $("<button />", {text: "delete"}).addClass("delete_button").addClass("submit_delete");
+            const deleteButton = $("<button />", {text: "Delete"}).addClass("delete_button").addClass("submit_delete");
             tr.append($("<td/>").append(deleteButton.on("click", () => {
                 this.employeeService.deleteEmployee(employee.id).done(()=>{
                     this.employeeService.getEmployees().done((data: any)=>{

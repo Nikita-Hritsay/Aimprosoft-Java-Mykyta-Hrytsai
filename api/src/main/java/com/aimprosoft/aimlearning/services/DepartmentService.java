@@ -12,7 +12,7 @@ public interface DepartmentService {
 
     Department getDepartmentById(Integer id) throws DBException;
 
-    void deleteDepartment(int id) throws DBException;
+    void deleteDepartment(Department department) throws DBException;
 
     void createOrUpdate(Department department) throws ValidationException, DBException;
 

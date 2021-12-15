@@ -3,8 +3,8 @@ import { EmployeeService } from "../../service/EmployeeService";
 
 
 export class DisplayAllEmployees {
-    employeeService = new EmployeeService();
-    employeeComponent = new EmployeeList();
+    private employeeService = new EmployeeService();
+    private employeeComponent = new EmployeeList();
 
     render(){
         this.employeeService.getEmployees().then((data)=>{

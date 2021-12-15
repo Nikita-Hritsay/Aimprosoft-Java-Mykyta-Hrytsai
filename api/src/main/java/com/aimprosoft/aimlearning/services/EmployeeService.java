@@ -14,7 +14,7 @@ public interface EmployeeService {
 
     void add(Employee employee) throws DBException;
 
-    void deleteEmployee(int id) throws DBException;
+    void deleteEmployee(Employee employee) throws DBException;
 
     void createOrUpdate(Employee employee) throws ValidationException, DBException;
 

@@ -51,9 +51,9 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public void deleteDepartment(int id) throws DBException {
+    public void deleteDepartment(Department department) throws DBException {
         try {
-            sessionFactory.getCurrentSession().delete(getDepartmentById(id));
+            sessionFactory.getCurrentSession().delete(department);
         } catch (Exception e) {
             throw new DBException(e.getMessage());
         }

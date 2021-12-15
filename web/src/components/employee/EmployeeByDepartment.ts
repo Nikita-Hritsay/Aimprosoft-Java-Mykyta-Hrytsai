@@ -6,11 +6,11 @@ import "../main.css";
 
 export class EmployeeByDepartment implements Component{
 
-    employeeService = new EmployeeService();
+    private employeeService = new EmployeeService();
 
     render(data: any, param: number){
         const main = $(mainDiv).empty();
-        const addToThisDepartmentButton = $("<a />", {text: "add to this department", href: `#employee/0/department/${param}`}).addClass("header_ref addToThisDepartment");
+        const addToThisDepartmentButton = $("<a />", {text: "Add employee to this department", href: `#departments/${param}/employee/0`}).addClass("header_ref addToThisDepartment");
         main.append(addToThisDepartmentButton);
        
         if (data != null && data.length > 0){
@@ -42,11 +42,11 @@ export class EmployeeByDepartment implements Component{
             tr.append($("<td/>", {text: employee.salary}));
             tr.append($("<td/>", {text: Formatter.getDate(employee.hireDate)})); 
             tr.append($("<td/>", {text: employee.department.name})); 
-            const updateButton = $("<button />", {text: "update", href: `#employee/${employee.id}`}).addClass("update_button").on("click", ()=>{
+            const updateButton = $("<button />", {text: "Update", href: `#employee/${employee.id}`}).addClass("update_button").on("click", ()=>{
                 location.hash = `#employee/${employee.id}`;
             });
             tr.append($("<td/>").append(updateButton))
-            const deleteButton = $("<button />", {text: "delete"}).addClass("delete_button").addClass("submit_delete");
+            const deleteButton = $("<button />", {text: "Delete"}).addClass("delete_button").addClass("submit_delete");
             tr.append($("<td/>").append(deleteButton.on("click", () => {
                 this.employeeService.deleteEmployee(employee.id).done(()=>{
                     this.employeeService.getByDepartment(param).done((data: any)=>{

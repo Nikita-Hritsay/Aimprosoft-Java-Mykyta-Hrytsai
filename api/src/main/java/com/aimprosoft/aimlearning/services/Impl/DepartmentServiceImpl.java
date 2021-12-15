@@ -31,8 +31,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public void deleteDepartment(int id) throws DBException {
-        departmentDAO.deleteDepartment(id);
+    public void deleteDepartment(Department department) throws DBException {
+        departmentDAO.deleteDepartment(department);
     }
 
     @Override

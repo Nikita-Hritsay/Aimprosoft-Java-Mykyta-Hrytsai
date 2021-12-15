@@ -49,10 +49,10 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public void deleteDepartment(int id) throws DBException {
+    public void deleteDepartment(Department department) throws DBException {
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = conn.prepareStatement(DELETE_DEPARTMENT)) {
-            preparedStatement.setInt(1, id);
+            //preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throw new DBException("Error in get delete Department: " + throwables.getMessage());

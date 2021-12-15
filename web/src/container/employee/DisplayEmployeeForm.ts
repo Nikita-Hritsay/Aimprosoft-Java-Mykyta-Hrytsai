@@ -1,18 +1,22 @@
 import { EmployeeForm } from "../../components/employee/EmployeeForm";
 import { DepartmentService } from "../../service/DepartmentService";
 import { EmployeeService } from "../../service/EmployeeService";
+import {DataNotFoundPage} from "../../components/error/DataNotFoundPage";
 
 export class DisplayEmployeeForm{
-    employeeService = new EmployeeService();
-    departmentService = new DepartmentService();
+    private employeeService = new EmployeeService();
+    private departmentService = new DepartmentService();
+    private dataNotFound = new DataNotFoundPage();
 
-    employeeFormComponent = new EmployeeForm();
+    private employeeFormComponent = new EmployeeForm();
 
-    render(param: number, department: number){
-        this.employeeService.getById(param).done((employee)=>{
+    render(param: number, employeeId: number){
+        this.employeeService.getById(employeeId == null ? param : employeeId).done((employee)=>{
             this.departmentService.getDepartments().done((departments)=>{
-                this.employeeFormComponent.render(employee, departments, department);
-            })
+                this.employeeFormComponent.render(employee, departments, param);
+            }) 
+        }).fail(()=>{
+            this.dataNotFound.render();
         })
     }
 

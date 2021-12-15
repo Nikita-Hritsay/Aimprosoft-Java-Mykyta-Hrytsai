@@ -5,7 +5,7 @@ import "../main.css";
 
 export class DepartmentList implements Component{
 
-    departmentService = new DepartmentService();
+    private departmentService = new DepartmentService();
 
     render(departments: any){
         const listDiv =  $(mainDiv).empty();
@@ -31,12 +31,12 @@ export class DepartmentList implements Component{
             }) ;
             tr.append($("<td/>").append(listButton))
 
-            const updateButton = $("<button />", {text: "update", href: `#department/${department.id}`}).addClass("update_button").addClass("submit_delete").on("click", ()=>{
+            const updateButton = $("<button />", {text: "Update", href: `#department/${department.id}`}).addClass("update_button").addClass("submit_delete").on("click", ()=>{
                 location.hash = `#department/${department.id}`;
             });
             tr.append($("<td/>").append(updateButton))
 
-            const deleteButton = $("<button />", {text: "delete"}).addClass("delete_button").addClass("submit_delete");
+            const deleteButton = $("<button />", {text: "Delete"}).addClass("delete_button").addClass("submit_delete");
             tr.append($("<td/>").append(deleteButton.on("click", () => {
                 this.departmentService.deleteDepartment(department.id).done(()=>{
                     this.departmentService.getDepartments().done((data: any)=>{

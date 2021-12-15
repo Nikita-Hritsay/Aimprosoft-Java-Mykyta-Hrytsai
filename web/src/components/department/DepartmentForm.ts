@@ -7,9 +7,9 @@ import { DepartmentValidation } from "../../validation/department/DepartmentVali
 
 
 export class DepartmentForm implements Component{
-    
-    departmentValidation = new DepartmentValidation();
-    departmentService = new DepartmentService();
+
+    private departmentValidation = new DepartmentValidation();
+    private departmentService = new DepartmentService();
 
     render(department: any){
         const main = $(mainDiv).empty();
@@ -25,7 +25,6 @@ export class DepartmentForm implements Component{
         formForm.on("submit", (event)=>{
             event.preventDefault();
             if(errorList.errorList.length < 1){
-                const arr = formForm.serializeArray();
                 const departmentAdd = new Department();
                 departmentAdd.id = department.id;
                 departmentAdd.name = String($("input[name=name]").val());
@@ -38,10 +37,9 @@ export class DepartmentForm implements Component{
     }
 
     private renderInputForm(formForm: any, data: any): any{
-        formForm.append("<div />").addClass("createOrUpdateForm");
+        formForm.append($("<div />")).addClass("createOrUpdateForm");
         formForm.append($("<input />", {type: "hidden", name: "id", value: data.id, id: "id", class: "id"}))
-        console.log(data);
-        formForm.append($("<p />", {text: "Enter your name"}));
+        formForm.append($("<p />", {text: "Name"}));
         formForm.append($("<input />", 
             {
                 value: data == null ? null : data.name, 
@@ -49,14 +47,14 @@ export class DepartmentForm implements Component{
                 type: "text", 
                 class: "input_param name", 
                 id: "name"}));
-        formForm.append($("<p />", {text: "Enter your address"}));
+        formForm.append($("<p />", {text: "Address"}));
         formForm.append($("<input />", 
             {   value: data == null ? null : data.address,
                 name: "address", 
                 type: "text", 
                 class: "input_param address", 
                 id: "address"}));
-        formForm.append($("<input />", {type: "submit", class: "submit_createOrUpdate", value: "submit"}));
+        formForm.append($("<input />", {type: "submit", class: "submit_createOrUpdate", value: "Add Department"}));
         return formForm;
     }
 }

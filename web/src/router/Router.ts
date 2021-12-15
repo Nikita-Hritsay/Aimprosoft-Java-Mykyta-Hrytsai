@@ -20,6 +20,7 @@ export class Router {
         this.urls.set("#employees", new DisplayAllEmployees());
         this.urls.set("#employee", new DisplayEmployeeForm());
         this.urls.set("#employee/department", new DisplayEmployeeForm());
+        this.urls.set("#departments/employee", new DisplayEmployeeForm());
         this.urls.set("#errorPage", new DisplayErrorPage());
     }
 

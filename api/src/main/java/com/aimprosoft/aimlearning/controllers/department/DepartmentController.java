@@ -46,7 +46,7 @@ public class DepartmentController {
 
     @DeleteMapping("/department")
     public void deleteDepartment(@RequestParam Integer idDepartment) throws DBException {
-        departmentService.deleteDepartment(idDepartment);
+        departmentService.deleteDepartment(departmentService.getDepartmentById(idDepartment));
     }
 
 }

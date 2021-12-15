@@ -31,7 +31,7 @@ public class EmployeeController {
 
     @DeleteMapping("/employee")
     public void deleteEmployee(@RequestParam Integer id) throws DBException {
-        employeeService.deleteEmployee(id);
+        employeeService.deleteEmployee(employeeService.getById(id));
     }
 
     @GetMapping("/employee/exists")
