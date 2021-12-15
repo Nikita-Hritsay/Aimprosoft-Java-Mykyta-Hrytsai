@@ -11,7 +11,7 @@
     <tr>
       <td>{{item.address}}</td>
       <td>{{item.name}}</td>
-      <td><button class="update_button">Employees</button></td>
+      <td><a class="update_button" [routerLink]="[item.id, 'employees']">Employees</a></td>
       <td><button class="update_button submit_delete">Update</button></td>
       <td><button class="delete_button submit_delete" (click)="delete(item.id)">Delete</button></td>
     </tr>

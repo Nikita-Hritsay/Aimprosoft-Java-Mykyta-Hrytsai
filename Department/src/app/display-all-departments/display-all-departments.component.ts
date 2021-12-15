@@ -22,4 +22,8 @@ export class DisplayAllDepartmentsComponent implements OnInit {
     this.departmentService.delete(id);
   }
 
+  employeesByDepartment(id: number){
+
+  }
+
 }

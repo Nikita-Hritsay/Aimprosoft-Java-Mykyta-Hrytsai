@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { EmployeesByDepartmentComponent } from './employees-by-department/employees-by-department.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { HeaderComponent } from './header/header.component';
+import { DepartmentFormComponent } from './department-form/department-form.component';
+import { EmployeeFormComponent } from './employee-form/employee-form.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { HeaderComponent } from './header/header.component';
     DisplayAllDepartmentsComponent,
     EmployeesByDepartmentComponent,
     EmployeesComponent,
-    HeaderComponent
+    HeaderComponent,
+    DepartmentFormComponent,
+    EmployeeFormComponent
   ],
   imports: [
     BrowserModule,

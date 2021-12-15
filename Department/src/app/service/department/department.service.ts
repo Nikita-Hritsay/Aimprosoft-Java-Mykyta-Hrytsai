@@ -12,8 +12,9 @@ export class DepartmentService {
   }
 
   public delete(id: number): void{
-    this.httpClient.delete<any>("/department/" + id);
+    this.httpClient.delete("/department?id=" + id);
     console.log(id)
+    console.log("/department?id=" + id)
   }
 
   constructor(private httpClient: HttpClient) { }
