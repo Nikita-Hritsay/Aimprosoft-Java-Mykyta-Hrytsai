@@ -36,8 +36,9 @@ export class EmployeeForm implements Component{
                 employee.salary = Number($("input[name=salary]").val());
                 employee.hireDate = new Date(String($("input[name=hireDate]").val()));
                 employee.department.id = Number($("input[name=idDepartment]").val());
-                this.employeeService.saveOrUpdateEmployee(employee).done(()=>{
-                    location.hash = "#department/" + employee.department.id + "/employee";
+                this.employeeService.saveOrUpdateEmployee(employee).then(()=>{
+                    location.hash = "#departments/" + employee.department.id + "/employees";
+                    console.log('thebn')
                 });
             }
         });

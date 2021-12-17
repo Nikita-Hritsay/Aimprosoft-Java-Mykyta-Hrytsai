@@ -29,13 +29,6 @@ export class DepartmentService {
             contentType: 'application/json',
             data: JSON.stringify(department),
             dataType: 'json',
-            success: function(){
-                location.hash = "#departments";
-            },
-            error: function(error){
-                location.hash = "#departments"
-            },
-            processData: false,
             type: 'POST',
             url: '/department'
         });

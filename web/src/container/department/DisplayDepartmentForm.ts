@@ -1,15 +1,16 @@
 import { DepartmentForm } from "../../components/department/DepartmentForm";
 import { DepartmentService } from "../../service/DepartmentService";
 import {DataNotFoundPage} from "../../components/error/DataNotFoundPage";
+import {Container} from "../Container";
 
-export class DisplayDepartmentForm{
+export class DisplayDepartmentForm implements Container{
 
     private departmentService = new DepartmentService();
     private departmentForm = new DepartmentForm();
     private dataNotFound = new DataNotFoundPage();
 
-    render(param: number){
-        this.departmentService.getDepartmentById(param).done((data: any)=>{
+    render(param: any){
+        this.departmentService.getDepartmentById(param[0]).done((data: any)=>{
             this.departmentForm.render(data);
         }).fail(()=>{
             this.dataNotFound.render();

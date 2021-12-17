@@ -26,13 +26,13 @@ export class DepartmentList implements Component{
             const tr = $("<tr/>");
             tr.append($("<td/>", {text: department.name})); 
             tr.append($("<td/>", {text: department.address})); 
-            const listButton = $("<button />", {text: "Employees", href: `#department/${department.id}/employee`}).addClass("update_button").on("click", ()=>{
-                location.hash = `#department/${department.id}/employee`;
+            const listButton = $("<button />", {text: "Employees", href: `#departments/${department.id}/employees`}).addClass("update_button").on("click", ()=>{
+                location.hash = `#departments/${department.id}/employees`;
             }) ;
             tr.append($("<td/>").append(listButton))
 
-            const updateButton = $("<button />", {text: "Update", href: `#department/${department.id}`}).addClass("update_button").addClass("submit_delete").on("click", ()=>{
-                location.hash = `#department/${department.id}`;
+            const updateButton = $("<button />", {text: "Update", href: `#departments/${department.id}`}).addClass("update_button").addClass("submit_delete").on("click", ()=>{
+                location.hash = `#departments/${department.id}`;
             });
             tr.append($("<td/>").append(updateButton))
 

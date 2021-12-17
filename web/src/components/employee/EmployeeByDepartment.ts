@@ -10,7 +10,7 @@ export class EmployeeByDepartment implements Component{
 
     render(data: any, param: number){
         const main = $(mainDiv).empty();
-        const addToThisDepartmentButton = $("<a />", {text: "Add employee to this department", href: `#departments/${param}/employee/0`}).addClass("header_ref addToThisDepartment");
+        const addToThisDepartmentButton = $("<a />", {text: "Add employee to this department", href: `#departments/${param}/employees/0`}).addClass("header_ref addToThisDepartment");
         main.append(addToThisDepartmentButton);
        
         if (data != null && data.length > 0){
@@ -43,7 +43,7 @@ export class EmployeeByDepartment implements Component{
             tr.append($("<td/>", {text: Formatter.getDate(employee.hireDate)})); 
             tr.append($("<td/>", {text: employee.department.name})); 
             const updateButton = $("<button />", {text: "Update", href: `#employee/${employee.id}`}).addClass("update_button").on("click", ()=>{
-                location.hash = `#employee/${employee.id}`;
+                location.hash = `#departments/${employee.department.id}/employees/${employee.id}`;
             });
             tr.append($("<td/>").append(updateButton))
             const deleteButton = $("<button />", {text: "Delete"}).addClass("delete_button").addClass("submit_delete");

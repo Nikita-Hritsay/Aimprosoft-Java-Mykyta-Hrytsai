@@ -37,12 +37,6 @@ export class EmployeeService {
             contentType: 'application/json',
             data: JSON.stringify(employee),
             dataType: 'json',
-            success: function(){
-                location.hash = "#departments"
-            },
-            error: function(err){
-                location.hash = "#department/" + employee.department.id + "/employee"
-            },
             processData: false,
             type: 'POST',
             url: '/employee'

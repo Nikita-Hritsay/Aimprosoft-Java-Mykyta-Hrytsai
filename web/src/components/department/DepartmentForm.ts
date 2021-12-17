@@ -29,7 +29,9 @@ export class DepartmentForm implements Component{
                 departmentAdd.id = department.id;
                 departmentAdd.name = String($("input[name=name]").val());
                 departmentAdd.address = String($("input[name=address]").val());
-                this.departmentService.saveOrUpdateDepartment(departmentAdd).done(()=>{
+                this.departmentService.saveOrUpdateDepartment(departmentAdd).then(()=>{
+                    location.hash = "#departments";
+                }).fail(()=>{
                     location.hash = "#departments";
                 });
             }
