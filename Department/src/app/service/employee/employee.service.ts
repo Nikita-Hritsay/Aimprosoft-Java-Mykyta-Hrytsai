@@ -14,7 +14,13 @@ export class EmployeeService {
     return this.httpClient.get(`api/employee/department/${id}`);
   }
 
+  public getById(id: number){
+    return this.httpClient.get(`api/employee/${id}`);
+  }
 
+  public delete(id: number){
+    this.httpClient.delete<any>("")
+  }
 
   constructor(private httpClient: HttpClient) { }
 }

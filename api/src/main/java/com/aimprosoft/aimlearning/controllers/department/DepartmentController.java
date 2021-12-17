@@ -45,8 +45,8 @@ public class DepartmentController {
         return departmentService.getByName(name);
     }
 
-    @DeleteMapping("/department/{id}")
-    public void deleteDepartment(@RequestParam Integer idDepartment, @PathVariable Integer id) throws DBException {
+    @DeleteMapping("/department")
+    public void deleteDepartment(@RequestParam Integer idDepartment) throws DBException {
         System.out.println(idDepartment);
         departmentService.deleteDepartment(idDepartment);
     }

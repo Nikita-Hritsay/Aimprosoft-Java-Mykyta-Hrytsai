@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {EmployeeService} from "../service/employee/employee.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-employees',
@@ -10,7 +11,7 @@ export class EmployeesComponent implements OnInit {
 
   employees: any;
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService, private router: Router) { }
 
   ngOnInit(): void {
     this.employeeService.getAll().subscribe((data) =>{
@@ -21,7 +22,11 @@ export class EmployeesComponent implements OnInit {
   }
 
   delete(id: number){
+    this.employeeService.delete(id);
+  }
 
+  routeToEmployeeForm(item: any){
+    this.router.navigate([`web/departments/${item.department.id}/employees/${item.id}`]);
   }
 
 }

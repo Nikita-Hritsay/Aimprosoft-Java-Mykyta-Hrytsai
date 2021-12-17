@@ -10,6 +10,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { HeaderComponent } from './header/header.component';
 import { DepartmentFormComponent } from './department-form/department-form.component';
 import { EmployeeFormComponent } from './employee-form/employee-form.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -21,11 +22,12 @@ import { EmployeeFormComponent } from './employee-form/employee-form.component';
     DepartmentFormComponent,
     EmployeeFormComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

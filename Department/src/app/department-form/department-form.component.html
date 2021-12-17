@@ -1,13 +1,13 @@
 <div class="createOrUpdateForm">
-  <form id="createOrUpdateDepartmentForm" class="createOrUpdateDepartment">
+  <form #myForm="ngForm" novalidate (ngSubmit)="onSubmit(myForm)" id="createOrUpdateDepartmentForm" class="createOrUpdateDepartment">
     <div class="createOrUpdateForm">
-      <input type="hidden" id="id" name="id" [value]="department.id" class="id" />
+      <input type="hidden" id="id" name="id" [value]="department ? department.id : ''" class="id" >
       <p>Enter name</p>
-      <input [value]="department.name" name="name" type="text" class="input_param name" id="name" />
+      <input [value]="department ? department.name: ''" name="name" type="text" class="input_param name" id="name">
       <p>Enter address</p>
-      <input [value]="department.address" name="address" type="text" class="input_param address" id="address" />
-
-      <input type="submit" class="submit_createOrUpdate" value="Add department"/>
+      <input [value]="department ? department.address : ''" ngModel name="address" type="text" class="input_param address" id="address" >
+      <!--<input [(ngModel)]="department ? department.address : ''" name="addressDepartment" type="text" class="input_param address" id="addressDepartment" >-->
+      <input type="submit" class="submit_createOrUpdate" value="Add department">
     </div>
   </form>
 </div>
