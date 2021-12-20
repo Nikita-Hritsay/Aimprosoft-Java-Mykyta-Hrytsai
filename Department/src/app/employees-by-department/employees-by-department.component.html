@@ -1,5 +1,5 @@
 
-<a class="header_ref addToThisDepartment" (click)="routeToAddEmployeeForm()" >Add to this department</a>
+<a class="header_ref addToThisDepartment" (click)="routeToEmployeeForm(null)" >Add to this department</a>
 
 <table>
   <tr>
@@ -21,7 +21,7 @@
       <td>{{item.salary}}</td>
       <td>{{item.hireDate}}</td>
       <td>{{item.department.name}}</td>
-      <td><button class="update_button submit_delete">Update</button></td>
+      <td><a class="update_button submit_delete" (click)="routeToEmployeeForm(item)">Update</a></td>
       <td><button class="delete_button submit_delete" (click)="delete(item.id)">Delete</button></td>
     </tr>
   </ng-template>

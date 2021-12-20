@@ -16,13 +16,11 @@ export class EmployeesComponent implements OnInit {
   ngOnInit(): void {
     this.employeeService.getAll().subscribe((data) =>{
       this.employees = data;
-      console.log(data)
     })
 
   }
 
   delete(id: number){
-    console.log(id);
     this.employeeService.delete(id).subscribe(()=>{
       this.ngOnInit();
     });

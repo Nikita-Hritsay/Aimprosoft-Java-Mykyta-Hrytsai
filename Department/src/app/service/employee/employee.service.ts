@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {Department} from "../../models/Department";
+import {Employee} from "../../models/Employee";
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,11 @@ export class EmployeeService {
 
   public delete(id: number): any{
     return this.httpClient.delete<any>("api/employee", {params: {"id": id}});
+  }
+
+  public saveOrUpdate(employee: Employee): any {
+    console.log("employee " + employee.department.id);
+    return this.httpClient.post("/api/employee", employee);
   }
 
   constructor(private httpClient: HttpClient) { }

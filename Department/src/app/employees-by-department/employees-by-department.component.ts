@@ -28,8 +28,12 @@ export class EmployeesByDepartmentComponent implements OnInit {
     });
   }
 
-  routeToAddEmployeeForm() {
-    this.router.navigate([`web/departments/${this.departmentId}/employees/0`]);
+  routeToEmployeeForm(item: any){
+    if(item == null){
+      this.router.navigate([`web/departments/${this.departmentId}/employees/0`]);
+      return;
+    }
+    this.router.navigate([`web/departments/${this.departmentId}/employees/${item.id}`]);
   }
 
 }

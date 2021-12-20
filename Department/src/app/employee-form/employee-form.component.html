@@ -1,19 +1,24 @@
 <div class="createOrUpdateForm">
-  <form #myForm="ngForm" novalidate (ngSubmit)="onSubmit(myForm)" id="createOrUpdateDepartmentForm" class="createOrUpdateDepartment">
+  <form [formGroup]="employeeForm"  (ngSubmit)="onSubmit()" id="createOrUpdateDepartmentForm" class="createOrUpdateDepartment">
     <div class="createOrUpdateForm">
-      <input type="hidden" id="id" name="id" [value]="employee ? employee.id : ''" class="id" >
+      <input type="hidden" id="id" name="id" [value]="employee ? employee.id : ''" formControlName="id" class="id" >
       <p>First name</p>
-      <input [value]="employee ? employee.firstName: ''" name="name" type="text" class="input_param name" id="firstName">
+      <input [value]="employee ? employee.firstName: ''" name="name" type="text" formControlName="firstName" class="input_param firstName" id="firstName">
       <p>Last name</p>
-      <input [value]="employee ? employee.lastName : ''" name="address" type="text" class="input_param address" id="lastName" >
+      <input [value]="employee ? employee.lastName : ''" name="address" type="text" formControlName="lastName" class="input_param lastName" id="lastName" >
       <p>Email</p>
-      <input [value]="employee ? employee.email : ''" name="address" type="email" class="input_param address" id="email" >
+      <input [value]="employee ? employee.email : ''" name="address" type="email" formControlName="email" class="input_param email" id="email" >
       <p>Salary</p>
-      <input [value]="employee ? employee.salary : ''" name="address" type="number" class="input_param address" id="salary" >
+      <input [value]="employee ? employee.salary : ''" name="address" type="number" formControlName="salary" class="input_param salary" id="salary" >
       <p>hireDate</p>
-      <input [value]="employee ? employee.hireDate : ''" name="address" type="date" class="input_param address" id="hireDate" >
+      <input [value]="employee ? employee.hireDate : ''" name="address" type="date" formControlName="hireDate" class="input_param hireDate" id="hireDate" >
       <p>Enter address</p>
-      <input [value]="idDepartment ? idDepartment : employee ? employee.department.id : ''" name="address" type="text" class="input_param address" id="idDepartment" >
+      <input [value]="idDepartment ? idDepartment : employee ? employee.department.id : ''" name="address" type="text" class="input_param idDepartment" list="idDepartments" formControlName="idDepartment" id="idDepartment" >
+      <datalist id="idDepartments">
+        <ng-template ngFor let-department [ngForOf]="departments" >
+          <option [value]="department.id"></option>
+        </ng-template>
+      </datalist>
       <!--<input [(ngModel)]="department ? department.address : ''" name="addressDepartment" type="text" class="input_param address" id="addressDepartment" >-->
       <input type="submit" class="submit_createOrUpdate" value="Add department">
     </div>
