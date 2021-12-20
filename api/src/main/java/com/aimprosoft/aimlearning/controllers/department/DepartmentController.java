@@ -6,12 +6,9 @@ import com.aimprosoft.aimlearning.models.Department;
 import com.aimprosoft.aimlearning.services.DepartmentService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
@@ -25,12 +22,11 @@ public class DepartmentController {
     }
 
     @PostMapping("/department")
-    public ResponseEntity<Map<String, String>> createOrUpdateDepartment(@RequestBody Department department) throws DBException{
+    public void createOrUpdateDepartment(@RequestBody Department department) throws DBException{
         try {
             departmentService.createOrUpdate(department);
-            return new ResponseEntity<>(HttpStatus.OK);
         } catch (ValidationException e) {
-            return new ResponseEntity<>(e.getErrors(), HttpStatus.CONFLICT);
+
         }
     }
 
