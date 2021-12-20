@@ -21,14 +21,14 @@ export class EmployeeByDepartment implements Component{
             headerTable.append($("<th/>", {text: "Email"}));
             headerTable.append($("<th/>", {text: "Salary"}));
             headerTable.append($("<th/>", {text: "Hire Date"}));
-            headerTable.append($("<th/>", {text: "Department Name"}));
+            headerTable.append($("<th/>", {text: "angular Name"}));
             headerTable.append($("<th/>", {text: "Update"}));
             headerTable.append($("<th/>", {text: "Delete"}));
             table.append(headerTable);
             this.renderTable(table, data, param);
             main.append(table);
         }else{
-            main.append($("<div />", {class: "emptyClass"}).append($("<h3 />", {text: "There is no employees in that Department"})));
+            main.append($("<div />", {class: "emptyClass"}).append($("<h3 />", {text: "There is no employees in that angular"})));
         }
         
     }

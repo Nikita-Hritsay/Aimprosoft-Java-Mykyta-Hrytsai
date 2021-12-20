@@ -20,7 +20,7 @@ export class EmployeeList implements Component{
                 headerTable.append($("<th/>", {text: "Email"}));
                 headerTable.append($("<th/>", {text: "Salary"}));
                 headerTable.append($("<th/>", {text: "Hire Date"}));
-                headerTable.append($("<th/>", {text: "Department name"}));
+                headerTable.append($("<th/>", {text: "angular name"}));
                 headerTable.append($("<th/>", {text: "Update"}));
                 headerTable.append($("<th/>", {text: "Delete"}));
                 table.append(headerTable);
@@ -30,7 +30,7 @@ export class EmployeeList implements Component{
             }else{
                 const main = $(mainDiv);
                 main.empty();
-                main.append($("<div />", {class: "emptyClass"}).append($("<h3 />", {text: "There is no employees in this Department"})))
+                main.append($("<div />", {class: "emptyClass"}).append($("<h3 />", {text: "There is no employees in this angular"})))
             }
         
     }

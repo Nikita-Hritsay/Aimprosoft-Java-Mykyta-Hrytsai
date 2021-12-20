@@ -54,7 +54,7 @@ export class EmployeeFormComponent implements OnInit {
     console.log("submitting")
     if(this.employeeForm.valid){
       const employeeResult = new Employee(
-        this.employee == null ? 0: this.employee.id,
+        this.employee == null ? null: this.employee.id,
           String(this.employeeForm.get('firstName')?.value),
           String(this.employeeForm.get('lastName')?.value),
           String(this.employeeForm.get('email')?.value),

@@ -27,13 +27,15 @@ export class DepartmentFormComponent implements OnInit {
 
   constructor(private departmentService: DepartmentService, private activateRout: ActivatedRoute,
               private router: Router) {
-    this.departmentService.getById(Number.parseInt(<string>this.activateRout.snapshot.paramMap.get("id"))).subscribe((data)=>{
-      this.department = data;
-    });
     this.departmentForm = new FormBuilder().group({
       id: [this.department?.id],
-      name: ["", Validators.required],
-      address: ["", Validators.required]
+      name: [null, Validators.required],
+      address: [null, Validators.required]
+    });
+    this.departmentService.getById(Number.parseInt(<string>this.activateRout.snapshot.paramMap.get("id"))).subscribe((data)=>{
+      this.department = data;
+      this.departmentForm.get('name')?.setValue(this.department?.name);
+      this.departmentForm.get('address')?.setValue(this.department?.address);
     });
   }
 
@@ -49,6 +51,10 @@ export class DepartmentFormComponent implements OnInit {
     }
   }
 
+  getErrors(formControlName: string): boolean {
+    const value = this.departmentForm.get(formControlName)!;
+    return value?.invalid && (value?.dirty || value?.touched);
+  }
 
 
   ngOnInit(): void {

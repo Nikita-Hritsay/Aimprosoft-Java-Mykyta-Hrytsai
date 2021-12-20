@@ -35,7 +35,7 @@ export class DepartmentValidation implements ModelValidator{
                     required: "Enter name",
                     minlength: "Name should be longer than 2",
                     maxlength: "Name should be smaller than 70",
-                    remote: "Department with such name alredy exists"
+                    remote: "angular with such name alredy exists"
                 },
                 address: {
                     required: "Enter address",
