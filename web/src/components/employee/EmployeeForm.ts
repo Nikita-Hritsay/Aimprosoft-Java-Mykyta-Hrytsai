@@ -38,7 +38,8 @@ export class EmployeeForm implements Component{
                 employee.department.id = Number($("input[name=idDepartment]").val());
                 this.employeeService.saveOrUpdateEmployee(employee).then(()=>{
                     location.hash = "#departments/" + employee.department.id + "/employees";
-                    console.log('thebn')
+                }).fail(()=>{
+                    location.hash = "#departments/" + employee.department.id + "/employees";
                 });
             }
         });

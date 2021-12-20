@@ -24,12 +24,9 @@ export class Router {
 
     public getUrl(url: string) {
         location.hash = url;
-        console.log("params " + Formatter.getParams(url));
-        console.log("get " + Formatter.get(url));
         if (this.urls.get(Formatter.get(url))){
             this.urls.get(Formatter.get(url)).render(Formatter.getParams(url));
         }else{
-            console.log("not found");
             this.urls.get("#errorPage").render();
         }
     }
