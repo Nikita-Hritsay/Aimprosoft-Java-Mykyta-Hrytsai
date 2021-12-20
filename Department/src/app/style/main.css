@@ -1,5 +1,11 @@
+input.ng-invalid{
+  border-left: 5px solid red;
+}
 
-  
+input.ng-valid{
+  border-left: 5px solid #00ff00;
+}
+
 a {
     display: inline-block;
     padding: 10px 10px 10px;

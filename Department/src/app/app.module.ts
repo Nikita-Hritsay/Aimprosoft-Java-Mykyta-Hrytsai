@@ -10,7 +10,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { HeaderComponent } from './header/header.component';
 import { DepartmentFormComponent } from './department-form/department-form.component';
 import { EmployeeFormComponent } from './employee-form/employee-form.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -20,14 +20,15 @@ import {FormsModule} from "@angular/forms";
     EmployeesComponent,
     HeaderComponent,
     DepartmentFormComponent,
-    EmployeeFormComponent
+    EmployeeFormComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        FormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

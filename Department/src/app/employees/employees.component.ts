@@ -22,7 +22,10 @@ export class EmployeesComponent implements OnInit {
   }
 
   delete(id: number){
-    this.employeeService.delete(id);
+    console.log(id);
+    this.employeeService.delete(id).subscribe(()=>{
+      this.ngOnInit();
+    });
   }
 
   routeToEmployeeForm(item: any){

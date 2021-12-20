@@ -18,8 +18,8 @@ export class EmployeeService {
     return this.httpClient.get(`api/employee/${id}`);
   }
 
-  public delete(id: number){
-    this.httpClient.delete<any>("")
+  public delete(id: number): any{
+    return this.httpClient.delete<any>("api/employee", {params: {"id": id}});
   }
 
   constructor(private httpClient: HttpClient) { }

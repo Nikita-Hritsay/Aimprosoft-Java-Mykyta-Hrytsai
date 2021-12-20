@@ -19,11 +19,9 @@ export class DisplayAllDepartmentsComponent implements OnInit {
   }
 
   delete(id: number): void{
-    this.departmentService.delete(id);
-  }
-
-  employeesByDepartment(id: number){
-
+    this.departmentService.delete(id).subscribe(()=>{
+      this.ngOnInit();
+    });
   }
 
 }

@@ -27,6 +27,7 @@ public class DepartmentController {
 
     @PostMapping("/department")
     public ResponseEntity<Map<String, String>> createOrUpdateDepartment(@RequestBody Department department) throws DBException{
+        System.out.println(department);
         try {
             departmentService.createOrUpdate(department);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -47,7 +48,6 @@ public class DepartmentController {
 
     @DeleteMapping("/department")
     public void deleteDepartment(@RequestParam Integer idDepartment) throws DBException {
-        System.out.println(idDepartment);
         departmentService.deleteDepartment(idDepartment);
     }
 

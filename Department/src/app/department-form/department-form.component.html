@@ -1,13 +1,11 @@
 <div class="createOrUpdateForm">
-  <form #myForm="ngForm" novalidate (ngSubmit)="onSubmit(myForm)" id="createOrUpdateDepartmentForm" class="createOrUpdateDepartment">
-    <div class="createOrUpdateForm">
-      <input type="hidden" id="id" name="id" [value]="department ? department.id : ''" class="id" >
+  <form [formGroup]="departmentForm" (ngSubmit)="onSubmit()" id="createOrUpdateDepartmentForm departmentForm" class="createOrUpdateDepartment departmentForm">
+      <input type="hidden" id="id" name="id" formControlName="id" [value]="department ? department.id : ''" class="id" >
       <p>Enter name</p>
-      <input [value]="department ? department.name: ''" name="name" type="text" class="input_param name" id="name">
+      <input [value]="department ? department.name: ''" name="name" type="text" formControlName="name" class="input_param name" id="name">
+      <span *ngIf="departmentForm.get('name') && departmentForm.touched">name is required</span>
       <p>Enter address</p>
-      <input [value]="department ? department.address : ''" ngModel name="address" type="text" class="input_param address" id="address" >
-      <!--<input [(ngModel)]="department ? department.address : ''" name="addressDepartment" type="text" class="input_param address" id="addressDepartment" >-->
+      <input [value]="department ? department.address : ''" name="address" type="text" formControlName="address" class="input_param address" id="address" >
       <input type="submit" class="submit_createOrUpdate" value="Add department">
-    </div>
   </form>
 </div>

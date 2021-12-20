@@ -23,6 +23,9 @@ export class EmployeesByDepartmentComponent implements OnInit {
   }
 
   delete(id: number){
+    this.employeeService.delete(id).subscribe(()=>{
+      this.ngOnInit();
+    });
   }
 
   routeToAddEmployeeForm() {
