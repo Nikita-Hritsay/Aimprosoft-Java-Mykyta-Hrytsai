@@ -43,11 +43,11 @@ export class EmployeeFormComponent implements OnInit {
       this.employeeService.getById(Number.parseInt(<string>this.activateRout.snapshot.paramMap.get("id"))).subscribe((data)=>{
         this.employee = data;
         this.employeeForm.get('firstName')?.setValue(this.employee?.firstName);
-        this.employeeForm.get('lastName')?.setValue(this.employee?.firstName);
-        this.employeeForm.get('email')?.setValue(this.employee?.firstName);
-        this.employeeForm.get('salary')?.setValue(this.employee?.firstName);
-        this.employeeForm.get('hireDate')?.setValue(this.employee?.firstName);
-        this.employeeForm.get('idDepartment')?.setValue(this.employee?.firstName);
+        this.employeeForm.get('lastName')?.setValue(this.employee?.lastName);
+        this.employeeForm.get('email')?.setValue(this.employee?.email);
+        this.employeeForm.get('salary')?.setValue(this.employee?.salary);
+        this.employeeForm.get('hireDate')?.setValue(this.employee?.hireDate);
+        this.employeeForm.get('idDepartment')?.setValue(this.employee?.department.id);
       });
     }
     this.idDepartment = Number.parseInt(<string>this.activateRout.snapshot.paramMap.get("idDepartment"));
@@ -70,7 +70,7 @@ export class EmployeeFormComponent implements OnInit {
           new Department(Number(this.employeeForm.get("idDepartment")?.value), "", "")
       );
       this.employeeService.saveOrUpdate(employeeResult).subscribe(()=>{
-        this.router.navigate([`departments/${this.employeeForm.get("idDepartment")?.value}/employees`]);
+        this.router.navigate([`departments/${employeeResult.department.id}/employees`]);
       })
     }
   }

@@ -1,24 +1,24 @@
 <div class="createOrUpdateForm">
   <form [formGroup]="employeeForm"  (ngSubmit)="onSubmit()" id="createOrUpdateDepartmentForm" class="createOrUpdateDepartment">
     <div class="createOrUpdateForm">
-      <input type="hidden" id="id" name="id" [value]="employee ? employee.id : ''" formControlName="id" class="id" >
+      <input type="hidden" id="id" name="id" formControlName="id" class="id" >
       <p>First name</p>
-      <input [value]="employee ? employee.firstName: ''" name="firstName" type="text" formControlName="firstName" class="input_param firstName" id="firstName">
+      <input name="firstName" type="text" formControlName="firstName" class="input_param firstName" id="firstName">
       <span *ngIf="getErrors('firstName')">Address is required</span>
       <p>Last name</p>
-      <input [value]="employee ? employee.lastName : ''" name="lastName" type="text" formControlName="lastName" class="input_param lastName" id="lastName" >
+      <input name="lastName" type="text" formControlName="lastName" class="input_param lastName" id="lastName" >
       <span *ngIf="getErrors('lastName')">Address is required</span>
       <p>Email</p>
-      <input [value]="employee ? employee.email : ''" name="email" type="email" formControlName="email" class="input_param email" id="email" >
+      <input name="email" type="email" formControlName="email" class="input_param email" id="email" >
       <span *ngIf="getErrors('email')">Address is required</span>
       <p>Salary</p>
-      <input [value]="employee ? employee.salary : ''" name="salary" type="number" formControlName="salary" class="input_param salary" id="salary" >
+      <input name="salary" type="number" formControlName="salary" class="input_param salary" id="salary" >
       <span *ngIf="getErrors('salary')">Address is required</span>
       <p>hireDate</p>
-      <input [value]="employee ? employee.hireDate : ''" name="hireDate" type="date" formControlName="hireDate" class="input_param hireDate" id="hireDate" >
+      <input name="hireDate" type="date" formControlName="hireDate" class="input_param hireDate" id="hireDate" >
       <span *ngIf="getErrors('hireDate')">Address is required</span>
       <p>Enter address</p>
-      <input [value]="idDepartment ? idDepartment : employee ? employee.department.id : ''" name="idDepartment" type="text" class="input_param idDepartment" list="idDepartments" formControlName="idDepartment" id="idDepartment" >
+      <input name="idDepartment" type="text" class="input_param idDepartment" list="idDepartments" formControlName="idDepartment" id="idDepartment" >
       <span *ngIf="getErrors('idDepartment')">Address is required</span>
       <datalist id="idDepartments">
         <ng-template ngFor let-department [ngForOf]="departments" >
