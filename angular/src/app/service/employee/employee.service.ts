@@ -29,5 +29,9 @@ export class EmployeeService {
     return this.httpClient.post("/api/employee", employee);
   }
 
+  public getByEmail(email: string): any{
+    return this.httpClient.get(`/api/employee/exists`, {params: {"email": email}});
+  }
+
   constructor(private httpClient: HttpClient) { }
 }

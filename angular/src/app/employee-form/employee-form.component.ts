@@ -5,6 +5,7 @@ import {DepartmentService} from "../service/department/department.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 import {Employee} from "../models/Employee";
+import {applySourceSpanToExpressionIfNeeded} from "@angular/compiler/src/output/output_ast";
 
 @Component({
   selector: 'app-employee-form',
@@ -54,25 +55,28 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
   onSubmit(){
-    console.log("submitting")
-    if(this.employeeForm.valid){
-      const employeeResult = new Employee(
-        this.employee == null ? null: this.employee.id,
+    this.employeeService.getByEmail(this.employeeForm.get('email')?.value).subscribe((data: any)=>{
+      if(!data || data?.id == this.employee?.id && this.employeeForm.valid){
+        const employeeResult = new Employee(
+          this.employee == null ? null: this.employee.id,
           String(this.employeeForm.get('firstName')?.value),
           String(this.employeeForm.get('lastName')?.value),
           String(this.employeeForm.get('email')?.value),
           Number(this.employeeForm.get('salary')?.value),
           new Date(this.employeeForm.get("hireDate")?.value),
           new Department(Number(this.employeeForm.get("idDepartment")?.value), "", "")
-      );
-      this.employeeService.saveOrUpdate(employeeResult).subscribe(()=>{
-        this.router.navigate([`departments/${employeeResult.department.id}/employees`]);
-      })
-    }
+        );
+        this.employeeService.saveOrUpdate(employeeResult).subscribe(()=>{
+          this.router.navigate([`web/departments/${employeeResult.department.id}/employees`]);
+        })
+      }
+      else{
+        this.employeeForm.get("email")?.setErrors({notUnique: true});
+      }
+    });
   }
 
 
