@@ -37,15 +37,21 @@ export class DepartmentFormComponent implements OnInit {
   }
 
   onSubmit(){
-    if(this.departmentForm.valid){
-      const departmentResult = new Department(
-        this.department == null ? 0: this.department?.id,
-        String(this.departmentForm.get('name')?.value),
-        String(this.departmentForm.get('address')?.value));
-      this.departmentService.saveOrUpdate(departmentResult).subscribe(()=>{
-        this.router.navigate(["/departments"]);
-      });
-    }
+
+    this.departmentService.getByName(this.departmentForm.get("name")?.value).subscribe((data: any)=>{
+      if(!data || data?.id == this.department?.id && this.departmentForm.valid){
+        console.log("name no error");
+        const departmentResult = new Department(
+          this.department == null ? 0: this.department?.id,
+          String(this.departmentForm.get('name')?.value),
+          String(this.departmentForm.get('address')?.value));
+        this.departmentService.saveOrUpdate(departmentResult).subscribe(()=>{
+          this.router.navigate(["/departments"]);
+        });
+      } else{
+        this.departmentForm.get("name")?.setErrors({notUnique: true});
+      }
+    })
   }
 
   getErrors(formControlName: string): boolean {

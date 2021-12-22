@@ -3,7 +3,7 @@
       <input type="hidden" id="id" name="id" formControlName="id" [value]="department ? department.id : ''" class="id" >
       <p>Enter name</p>
       <input name="name" type="text" formControlName="name" class="input_param name" id="name">
-      <span *ngIf="getErrors('name')">Name is required</span>
+      <span *ngIf="getErrors('name')">Error name</span>
       <p>Enter address</p>
       <input name="address" type="text" formControlName="address" class="input_param address" id="address" >
       <span *ngIf="getErrors('address')">Address is required</span>
