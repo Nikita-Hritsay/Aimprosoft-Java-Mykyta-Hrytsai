@@ -26,23 +26,30 @@ export class EmployeeFormComponent implements OnInit {
   });
 
   constructor(private employeeService: EmployeeService, private departmentService: DepartmentService, private activateRout: ActivatedRoute, private router: Router) {
-    if(Number.parseInt(<string>this.activateRout.snapshot.paramMap.get("id")) != 0){
-      this.employeeService.getById(Number.parseInt(<string>this.activateRout.snapshot.paramMap.get("id"))).subscribe((data)=>{
-        this.employee = data;
-      });
-    }
+
     this.departmentService.get().subscribe((data)=>{
       this.departments = data;
     });
     this.employeeForm = new FormBuilder().group({
       id: [this.employee?.id],
-      firstName: ["", Validators.required],
-      lastName: ["", Validators.required],
-      email: ["", Validators.required],
-      salary: ["", Validators.required],
-      hireDate: ["", Validators.required],
-      idDepartment: ["", Validators.required]
+      firstName: [null, Validators.required],
+      lastName: [null, Validators.required],
+      email: [null, Validators.required],
+      salary: [null, Validators.required],
+      hireDate: [null, Validators.required],
+      idDepartment: [null, Validators.required]
     });
+    if(Number.parseInt(<string>this.activateRout.snapshot.paramMap.get("id")) != 0){
+      this.employeeService.getById(Number.parseInt(<string>this.activateRout.snapshot.paramMap.get("id"))).subscribe((data)=>{
+        this.employee = data;
+        this.employeeForm.get('firstName')?.setValue(this.employee?.firstName);
+        this.employeeForm.get('lastName')?.setValue(this.employee?.firstName);
+        this.employeeForm.get('email')?.setValue(this.employee?.firstName);
+        this.employeeForm.get('salary')?.setValue(this.employee?.firstName);
+        this.employeeForm.get('hireDate')?.setValue(this.employee?.firstName);
+        this.employeeForm.get('idDepartment')?.setValue(this.employee?.firstName);
+      });
+    }
     this.idDepartment = Number.parseInt(<string>this.activateRout.snapshot.paramMap.get("idDepartment"));
   }
 
@@ -66,6 +73,12 @@ export class EmployeeFormComponent implements OnInit {
         this.router.navigate([`departments/${this.employeeForm.get("idDepartment")?.value}/employees`]);
       })
     }
+  }
+
+
+  getErrors(formControlName: string): boolean {
+    const value = this.employeeForm.get(formControlName)!;
+    return value?.invalid && (value?.dirty || value?.touched);
   }
 
 }
