@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Department} from "../models/Department";
-import {DepartmentService} from "../service/department/department.service";
+import {Department} from "../../../models/Department";
+import {DepartmentService} from "../../../service/department/department.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {
   FormBuilder,
@@ -8,11 +8,12 @@ import {
   FormGroup,
   Validators
 } from "@angular/forms";
+import {RequestUtils} from "../../../utils/RequestUtils";
 
 @Component({
   selector: 'app-department-form',
   templateUrl: './department-form.component.html',
-  styleUrls: ['../style/main.css']
+  styleUrls: ['../../../style/main.css']
 })
 export class DepartmentFormComponent implements OnInit {
 
@@ -29,7 +30,7 @@ export class DepartmentFormComponent implements OnInit {
       name: [null, Validators.required],
       address: [null, Validators.required]
     });
-    this.departmentService.getById(Number.parseInt(<string>this.activateRout.snapshot.paramMap.get("id"))).subscribe((data)=>{
+    this.departmentService.getById(RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("id"))).subscribe((data)=>{
       this.department = data;
       this.departmentForm.get('name')?.setValue(this.department?.name);
       this.departmentForm.get('address')?.setValue(this.department?.address);

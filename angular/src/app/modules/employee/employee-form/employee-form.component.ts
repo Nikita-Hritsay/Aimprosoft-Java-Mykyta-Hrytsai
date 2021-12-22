@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import {EmployeeService} from "../service/employee/employee.service";
-import {Department} from "../models/Department";
-import {DepartmentService} from "../service/department/department.service";
+import {EmployeeService} from "../../../service/employee/employee.service";
+import {Department} from "../../../models/Department";
+import {DepartmentService} from "../../../service/department/department.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
-import {Employee} from "../models/Employee";
+import {Employee} from "../../../models/Employee";
 import {applySourceSpanToExpressionIfNeeded} from "@angular/compiler/src/output/output_ast";
+import {RequestUtils} from "../../../utils/RequestUtils";
 
 @Component({
   selector: 'app-employee-form',
   templateUrl: './employee-form.component.html',
-  styleUrls: ['../style/main.css']
+  styleUrls: ['../../../style/main.css']
 })
 export class EmployeeFormComponent implements OnInit {
 
@@ -40,8 +41,8 @@ export class EmployeeFormComponent implements OnInit {
       hireDate: [null, Validators.required],
       idDepartment: [null, Validators.required]
     });
-    if(Number.parseInt(<string>this.activateRout.snapshot.paramMap.get("id")) != 0){
-      this.employeeService.getById(Number.parseInt(<string>this.activateRout.snapshot.paramMap.get("id"))).subscribe((data)=>{
+    if(RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("id")) != 0){
+      this.employeeService.getById(RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("id"))).subscribe((data)=>{
         this.employee = data;
         this.employeeForm.get('firstName')?.setValue(this.employee?.firstName);
         this.employeeForm.get('lastName')?.setValue(this.employee?.lastName);
@@ -51,7 +52,7 @@ export class EmployeeFormComponent implements OnInit {
         this.employeeForm.get('idDepartment')?.setValue(this.employee?.department.id);
       });
     }
-    this.idDepartment = Number.parseInt(<string>this.activateRout.snapshot.paramMap.get("idDepartment"));
+    this.idDepartment = RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("idDepartment"));
   }
 
   ngOnInit(): void {
@@ -65,9 +66,9 @@ export class EmployeeFormComponent implements OnInit {
           String(this.employeeForm.get('firstName')?.value),
           String(this.employeeForm.get('lastName')?.value),
           String(this.employeeForm.get('email')?.value),
-          Number(this.employeeForm.get('salary')?.value),
+          RequestUtils.getNumber(this.employeeForm.get('salary')?.value),
           new Date(this.employeeForm.get("hireDate")?.value),
-          new Department(Number(this.employeeForm.get("idDepartment")?.value), "", "")
+          new Department(RequestUtils.getNumber(this.employeeForm.get("idDepartment")?.value), "", "")
         );
         this.employeeService.saveOrUpdate(employeeResult).subscribe(()=>{
           this.router.navigate([`web/departments/${employeeResult.department.id}/employees`]);

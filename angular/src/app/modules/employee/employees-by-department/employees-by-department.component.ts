@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {EmployeeService} from "../service/employee/employee.service";
+import {EmployeeService} from "../../../service/employee/employee.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {RequestUtils} from "../../../utils/RequestUtils";
 
 @Component({
   selector: 'app-employees-by-department',
   templateUrl: './employees-by-department.component.html',
-  styleUrls: ['../style/main.css']
+  styleUrls: ['../../../style/main.css']
 })
 export class EmployeesByDepartmentComponent implements OnInit {
 
@@ -16,8 +17,8 @@ export class EmployeesByDepartmentComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.departmentId = Number.parseInt(<string>this.activateRout.snapshot.paramMap.get("id"));
-    this.employeeService.getByDepartment(Number.parseInt(<string>this.activateRout.snapshot.paramMap.get("id"))).subscribe((data)=>{
+    this.departmentId = RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("id"));
+    this.employeeService.getByDepartment(RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("id"))).subscribe((data)=>{
       this.employees = data;
     });
   }

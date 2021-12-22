@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {DisplayAllDepartmentsComponent} from "./display-all-departments/display-all-departments.component";
-import {EmployeesComponent} from "./employees/employees.component";
-import {EmployeesByDepartmentComponent} from "./employees-by-department/employees-by-department.component";
-import {DepartmentFormComponent} from "./department-form/department-form.component";
-import {EmployeeFormComponent} from "./employee-form/employee-form.component";
+import {DisplayAllDepartmentsComponent} from "./modules/department/display-all-departments/display-all-departments.component";
+import {EmployeesComponent} from "./modules/employee/employees/employees.component";
+import {EmployeesByDepartmentComponent} from "./modules/employee/employees-by-department/employees-by-department.component";
+import {DepartmentFormComponent} from "./modules/department/department-form/department-form.component";
+import {EmployeeFormComponent} from "./modules/employee/employee-form/employee-form.component";
 
 const routes: Routes = [
   {path: 'web/departments', component: DisplayAllDepartmentsComponent},

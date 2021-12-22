@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {EmployeeService} from "../service/employee/employee.service";
+import {EmployeeService} from "../../../service/employee/employee.service";
 import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
-  styleUrls: ['../style/main.css']
+  styleUrls: ['../../../style/main.css']
 })
 export class EmployeesComponent implements OnInit {
 
