@@ -11,10 +11,10 @@ export class DisplayEmployeeForm implements Container{
 
     private employeeFormComponent = new EmployeeForm();
 
-    render(param: any){
-        this.employeeService.getById(param[1] == null ? 0 : param[1]).done((employee)=>{
+    render(param:  Map<string, number>){
+        this.employeeService.getById(param.get("employeeId") == null ? 0 : param.get("employeeId")).done((employee)=>{
             this.departmentService.getDepartments().done((departments)=>{
-                this.employeeFormComponent.render(employee, departments, param[0]);
+                this.employeeFormComponent.render(employee, departments, param.get("departmentId"));
             }) 
         }).fail(()=>{
             this.dataNotFound.render();

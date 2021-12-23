@@ -33,7 +33,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         }
     }
 
-    //@Override
     public void updateEmployee(Employee employee) throws DBException {
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement statement = setupPreparedStatement(employee, connection, UPDATE_EMPLOYEE)) {
@@ -47,7 +46,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     public void deleteEmployee(Employee employee) throws DBException {
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_EMPLOYEE)) {
-            //preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throw new DBException("Error in get All Employees: " + throwables.getMessage());

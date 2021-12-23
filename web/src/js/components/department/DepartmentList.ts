@@ -1,7 +1,8 @@
 import {DepartmentService} from "../../service/DepartmentService";
 import {mainDiv} from "../../utils/Constants";
 import {Component} from "../Component"; 
-import "../main.css";
+import "../../../style/main.css";
+import {Department} from "../../models/Department";
 
 export class DepartmentList implements Component{
 
@@ -21,8 +22,8 @@ export class DepartmentList implements Component{
         listDiv.append(table);
     }
 
-    private renderTable(table: any, data: any): any{
-        data.forEach((department: any) => {
+    private renderTable(table: JQuery<HTMLElement>, data: any){
+        data.forEach((department: Department) => {
             const tr = $("<tr/>");
             tr.append($("<td/>", {text: department.name})); 
             tr.append($("<td/>", {text: department.address})); 

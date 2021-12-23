@@ -1,5 +1,5 @@
 import { Component } from "../Component";
-import "../main.css";
+import "../../../style/main.css";
 import { Employee } from "../../models/Employee";
 import { EmployeeService } from "../../service/EmployeeService";
 import { Formatter } from "../../utils/Formatter";
@@ -11,14 +11,14 @@ export class EmployeeForm implements Component{
     private employeeService = new EmployeeService();
     private employeeValidation = new EmployeeValidation();
 
-    render(employee: any, department: any, param: number){
+    render(employee: Employee, departments: any, param: number){
         const main = $(mainDiv);
         main.empty();
         const formDiv = $("<div />").addClass("createOrUpdateForm");
         const formForm = $("<form />",
             {   id: "createOrUpdateEmployeeForm"}).addClass("createOrUpdateEmployeeForm");
 
-        this.renderInputForm(formForm, employee, param, department);
+        this.renderInputForm(formForm, employee, param, departments);
 
         formDiv.append(formForm);
         main.append(formDiv);
@@ -45,7 +45,7 @@ export class EmployeeForm implements Component{
         });
     }
 
-    private renderInputForm(formForm: any, employee: any, param: number, department: any){
+    private renderInputForm(formForm: JQuery<HTMLElement>, employee: Employee, param: number, departments: any){
         formForm.append($("<div />")).addClass("createOrUpdateForm");
 
         formForm.append($("<input />", {name: "id", type: "hidden", value: employee.id, id: "id", class: "id"}))
@@ -114,7 +114,7 @@ export class EmployeeForm implements Component{
         const datalist = $("<datalist />",
             {   id: "idDepartments"});
 
-        department.forEach((department: any) => {
+        departments.forEach((department: any) => {
             datalist.append($("<option />", {text: department.name, value: department.id, }));
         });
 

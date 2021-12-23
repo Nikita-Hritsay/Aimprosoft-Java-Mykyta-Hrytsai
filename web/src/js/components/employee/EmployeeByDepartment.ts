@@ -2,7 +2,8 @@ import {EmployeeService} from "../../service/EmployeeService";
 import {mainDiv} from "../../utils/Constants";
 import { Formatter } from "../../utils/Formatter";
 import {Component} from "../Component"; 
-import "../main.css";
+import "../../../style/main.css";
+import {Employee} from "../../models/Employee";
 
 export class EmployeeByDepartment implements Component{
 
@@ -33,14 +34,14 @@ export class EmployeeByDepartment implements Component{
         
     }
 
-    private renderTable(table: any, data: any, param: number) {
-        data.forEach((employee : any) => {
+    private renderTable(table: JQuery<HTMLElement>, data: any, param: number) {
+        data.forEach((employee : Employee) => {
             const tr = $("<tr/>");
             tr.append($("<td/>", {text: employee.firstName})); 
             tr.append($("<td/>", {text: employee.lastName})); 
             tr.append($("<td/>", {text: employee.email}));
             tr.append($("<td/>", {text: employee.salary}));
-            tr.append($("<td/>", {text: Formatter.getDate(employee.hireDate)})); 
+            tr.append($("<td/>", {text: Formatter.getDate(employee.hireDate)}));
             tr.append($("<td/>", {text: employee.department.name})); 
             const updateButton = $("<button />", {text: "Update", href: `#employee/${employee.id}`}).addClass("update_button").on("click", ()=>{
                 location.hash = `#departments/${employee.department.id}/employees/${employee.id}`;

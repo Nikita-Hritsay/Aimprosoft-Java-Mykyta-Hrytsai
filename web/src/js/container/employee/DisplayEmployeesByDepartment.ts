@@ -11,10 +11,12 @@ export class DisplayEmployeesByDepartment implements Container{
     private dataNotFound = new DataNotFoundPage();
     private departmentService = new DepartmentService();
 
-    render(param: any){
-        this.departmentService.getDepartmentById(param[0]).done(()=>{
-            this.employeeService.getByDepartment(param[0]).done((data)=>{
-                this.employeeComponent.render(data, param[0]);
+    render(param:  Map<string, number>){
+        this.departmentService.getDepartmentById(param.get("departmentId")).done(()=>{
+            this.employeeService.getByDepartment(param.get("departmentId")).done((data)=>{
+                console.log(param.get("departmentId"))
+                console.log(param.get("employeeId"))
+                this.employeeComponent.render(data, param.get("departmentId"));
             })
         }).fail(()=>{
             this.dataNotFound.render();

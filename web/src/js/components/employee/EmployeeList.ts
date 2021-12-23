@@ -2,7 +2,8 @@ import {EmployeeService} from "../../service/EmployeeService";
 import { mainDiv } from "../../utils/Constants";
 import { Formatter } from "../../utils/Formatter";
 import {Component} from "../Component"; 
-import "../main.css";
+import "../../../style/main.css";
+import {Employee} from "../../models/Employee";
 
 export class EmployeeList implements Component{
 
@@ -35,8 +36,8 @@ export class EmployeeList implements Component{
         
     }
 
-    private renderTable(table: any, data: any){
-        data.forEach((employee: any)=>{
+    private renderTable(table: JQuery<HTMLElement>, data: any){
+        data.forEach((employee: Employee)=>{
             const tr = $("<tr/>");
             tr.append($("<td/>", {text: employee.firstName})); 
             tr.append($("<td/>", {text: employee.lastName})); 

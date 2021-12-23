@@ -1,5 +1,5 @@
 import { Component } from "../Component";
-import "../main.css";
+import "../../../style/main.css";
 import { Department } from "../../models/Department";
 import { DepartmentService } from "../../service/DepartmentService";
 import { mainDiv} from "../../utils/Constants";
@@ -11,7 +11,7 @@ export class DepartmentForm implements Component{
     private departmentValidation = new DepartmentValidation();
     private departmentService = new DepartmentService();
 
-    render(department: any){
+    render(department: Department){
         const main = $(mainDiv).empty();
         
         const formDiv = $("<div />").addClass("createOrUpdateForm");
@@ -19,7 +19,6 @@ export class DepartmentForm implements Component{
     
         formDiv.append(this.renderInputForm(formForm, department));
         main.append(formDiv);
-
         const errorList = this.departmentValidation.validate("#createOrUpdateDepartmentForm");
 
         formForm.on("submit", (event)=>{
@@ -38,19 +37,19 @@ export class DepartmentForm implements Component{
         });
     }
 
-    private renderInputForm(formForm: any, data: any): any{
+    private renderInputForm(formForm: JQuery<HTMLElement>, data: Department): JQuery<HTMLElement>{
         formForm.append($("<div />")).addClass("createOrUpdateForm");
         formForm.append($("<input />", {type: "hidden", name: "id", value: data.id, id: "id", class: "id"}))
         formForm.append($("<p />", {text: "Name"}));
         formForm.append($("<input />", 
             {
-                value: data == null ? null : data.name, 
+                value: data == null ? null : data.name,
                 name:"name",
                 type: "text", 
                 class: "input_param name", 
                 id: "name"}));
         formForm.append($("<p />", {text: "Address"}));
-        formForm.append($("<input />", 
+        formForm.append($("<input />",
             {   value: data == null ? null : data.address,
                 name: "address", 
                 type: "text", 
