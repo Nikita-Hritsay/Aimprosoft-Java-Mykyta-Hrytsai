@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {EmployeeService} from "../../../service/employee/employee.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {RequestUtils} from "../../../utils/RequestUtils";
@@ -14,23 +14,24 @@ export class EmployeesByDepartmentComponent implements OnInit {
   departmentId?: number;
 
   constructor(private employeeService: EmployeeService, private activateRout: ActivatedRoute,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     this.departmentId = RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("id"));
-    this.employeeService.getByDepartment(RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("id"))).subscribe((data)=>{
+    this.employeeService.getByDepartment(RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("id"))).subscribe((data) => {
       this.employees = data;
     });
   }
 
-  delete(id: number){
-    this.employeeService.delete(id).subscribe(()=>{
+  delete(id: number) {
+    this.employeeService.delete(id).subscribe(() => {
       this.ngOnInit();
     });
   }
 
-  routeToEmployeeForm(item: any){
-    if(item == null){
+  routeToEmployeeForm(item: any) {
+    if (item == null) {
       this.router.navigate([`web/departments/${this.departmentId}/employees/0`]);
       return;
     }

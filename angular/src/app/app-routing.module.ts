@@ -1,8 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {DisplayAllDepartmentsComponent} from "./modules/department/display-all-departments/display-all-departments.component";
+import {
+  DisplayAllDepartmentsComponent
+} from "./modules/department/display-all-departments/display-all-departments.component";
 import {EmployeesComponent} from "./modules/employee/employees/employees.component";
-import {EmployeesByDepartmentComponent} from "./modules/employee/employees-by-department/employees-by-department.component";
+import {
+  EmployeesByDepartmentComponent
+} from "./modules/employee/employees-by-department/employees-by-department.component";
 import {DepartmentFormComponent} from "./modules/department/department-form/department-form.component";
 import {EmployeeFormComponent} from "./modules/employee/employee-form/employee-form.component";
 import {ErrorComponent} from "./modules/error/error.component";

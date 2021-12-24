@@ -1,29 +1,33 @@
-
-<a class="header_ref addToThisDepartment" (click)="routeToEmployeeForm(null)" >Add to this department</a>
-
-<table>
-  <tr>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>Email</th>
-    <th>Salary</th>
-    <th>Hire date</th>
-    <th>Department Name</th>
-    <th>Update</th>
-    <th>Delete</th>
-  </tr>
-
-  <ng-template ngFor let-item [ngForOf]="employees" >
+<a class="header_ref addToThisDepartment" (click)="routeToEmployeeForm(null)">Add to this department</a>
+<br>
+<span *ngIf="employees?.length < 1">There is no employees in this department</span>
+<div *ngIf="employees?.length > 0">
+  <table>
     <tr>
-      <td>{{item.firstName}}</td>
-      <td>{{item.lastName}}</td>
-      <td>{{item.email}}</td>
-      <td>{{item.salary}}</td>
-      <td>{{item.hireDate}}</td>
-      <td>{{item.department.name}}</td>
-      <td><a class="update_button submit_delete" (click)="routeToEmployeeForm(item)">Update</a></td>
-      <td><button class="delete_button submit_delete" (click)="delete(item.id)">Delete</button></td>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Email</th>
+      <th>Salary</th>
+      <th>Hire date</th>
+      <th>Department Name</th>
+      <th>Update</th>
+      <th>Delete</th>
     </tr>
-  </ng-template>
-</table>
+
+    <ng-template ngFor let-item [ngForOf]="employees">
+      <tr>
+        <td>{{item.firstName}}</td>
+        <td>{{item.lastName}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.salary}}</td>
+        <td>{{item.hireDate}}</td>
+        <td>{{item.department.name}}</td>
+        <td><a class="update_button submit_delete" (click)="routeToEmployeeForm(item)">Update</a></td>
+        <td>
+          <button class="delete_button submit_delete" (click)="delete(item.id)">Delete</button>
+        </td>
+      </tr>
+    </ng-template>
+  </table>
+</div>
 

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {catchError, Observable, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {Department} from "../../models/Department";
@@ -8,19 +8,19 @@ import {Department} from "../../models/Department";
 })
 export class DepartmentService {
 
-  public get(): Observable<any>{
+  public get(): Observable<any> {
     return this.httpClient.get<any>("/api/department");
   }
 
-  public delete(id: number): any{
+  public delete(id: number): any {
     return this.httpClient.delete<any>("api/department", {params: {"idDepartment": id}});
   }
 
-  public getById(id: number): Observable<any>{
+  public getById(id: number): Observable<any> {
     return this.httpClient.get<any>(`/api/department/${id}`);
   }
 
-  public getByName(name: string): Observable<any>{
+  public getByName(name: string): Observable<any> {
     return this.httpClient.get<any>('/api/department/exists', {params: {"name": name}});
   }
 
@@ -30,5 +30,6 @@ export class DepartmentService {
   }
 
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+  }
 }

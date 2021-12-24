@@ -38,7 +38,6 @@ export class DepartmentFormComponent implements OnInit {
   }
 
   onSubmit(){
-
     this.departmentService.getByName(this.departmentForm.get("name")?.value).subscribe((data: any)=>{
       if(!data || data?.id == this.department?.id && this.departmentForm.valid){
         console.log("name no error");
@@ -64,16 +63,4 @@ export class DepartmentFormComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
-  /*nameValidator(control: AbstractControl): ValidatorFn {
-    console.log(control);
-    console.log(control.value);
-    console.log(this.departmentService.getByName(control.value));
-
-    if(this.departmentService.getByName(control.value) != null){
-      return ;
-    }
-    return null;
-  }*/
-
 }

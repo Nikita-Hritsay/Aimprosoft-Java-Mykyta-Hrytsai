@@ -1,20 +1,24 @@
-<table>
-  <tr>
-    <th>Address</th>
-    <th>Name</th>
-    <th>List</th>
-    <th>Update</th>
-    <th>Delete</th>
-  </tr>
-
-  <ng-template ngFor let-item [ngForOf]="departments" >
+<span *ngIf="departments?.length < 1">There is no departments</span>
+<div *ngIf="departments?.length > 0">
+  <table>
     <tr>
-      <td>{{item.name}}</td>
-      <td>{{item.address}}</td>
-      <td><a class="update_button" [routerLink]="[item.id, 'employees']">Employees</a></td>
-      <td><a class="update_button submit_delete" [routerLink]="[item.id]">Update</a></td>
-      <td><button class="delete_button submit_delete" (click)="delete(item.id)">Delete</button></td>
+      <th>Address</th>
+      <th>Name</th>
+      <th>List</th>
+      <th>Update</th>
+      <th>Delete</th>
     </tr>
-  </ng-template>
-</table>
 
+    <ng-template ngFor let-item [ngForOf]="departments">
+      <tr>
+        <td>{{item.name}}</td>
+        <td>{{item.address}}</td>
+        <td><a class="update_button" [routerLink]="[item.id, 'employees']">Employees</a></td>
+        <td><a class="update_button submit_delete" [routerLink]="[item.id]">Update</a></td>
+        <td>
+          <button class="delete_button submit_delete" (click)="delete(item.id)">Delete</button>
+        </td>
+      </tr>
+    </ng-template>
+  </table>
+</div>

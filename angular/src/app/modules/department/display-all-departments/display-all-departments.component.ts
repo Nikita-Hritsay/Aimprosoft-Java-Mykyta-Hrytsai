@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DepartmentService} from "../../../service/department/department.service";
 
 @Component({
@@ -10,16 +10,17 @@ export class DisplayAllDepartmentsComponent implements OnInit {
 
   departments: any;
 
-  constructor(private departmentService: DepartmentService) { }
+  constructor(private departmentService: DepartmentService) {
+  }
 
   ngOnInit(): void {
-    this.departmentService.get().subscribe((data: any)=>{
+    this.departmentService.get().subscribe((data: any) => {
       this.departments = data;
     });
   }
 
-  delete(id: number): void{
-    this.departmentService.delete(id).subscribe(()=>{
+  delete(id: number): void {
+    this.departmentService.delete(id).subscribe(() => {
       this.ngOnInit();
     });
   }
