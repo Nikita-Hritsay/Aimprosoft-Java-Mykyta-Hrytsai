@@ -5,7 +5,6 @@ import {DepartmentService} from "../../../service/department/department.service"
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 import {Employee} from "../../../models/Employee";
-import {applySourceSpanToExpressionIfNeeded} from "@angular/compiler/src/output/output_ast";
 import {RequestUtils} from "../../../utils/RequestUtils";
 
 @Component({
@@ -49,7 +48,7 @@ export class EmployeeFormComponent implements OnInit {
         this.employeeForm.get('lastName')?.setValue(this.employee?.lastName);
         this.employeeForm.get('email')?.setValue(this.employee?.email);
         this.employeeForm.get('salary')?.setValue(this.employee?.salary);
-        this.employeeForm.get('hireDate')?.setValue(new Date(this.employee?.hireDate));
+        this.employeeForm.get('hireDate')?.setValue(RequestUtils.getDate(this.employee?.hireDate));
         this.employeeForm.get('idDepartment')?.setValue(this.employee?.department?.id);
       });
     }
