@@ -36,7 +36,7 @@ export class EmployeeFormComponent implements OnInit {
       id: [this.employee?.id],
       firstName: [null, Validators.required],
       lastName: [null, Validators.required],
-      email: [null, Validators.required, Validators.email],
+      email: [null, Validators.required],
       salary: [null, Validators.required],
       hireDate: [null, Validators.required],
       idDepartment: [null, Validators.required]
@@ -44,21 +44,24 @@ export class EmployeeFormComponent implements OnInit {
     if (RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("id")) != 0) {
       this.employeeService.getById(RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("id"))).subscribe((data) => {
         this.employee = data;
+        this.employeeForm.get('firstName')?.setValue(this.employee?.id);
         this.employeeForm.get('firstName')?.setValue(this.employee?.firstName);
         this.employeeForm.get('lastName')?.setValue(this.employee?.lastName);
         this.employeeForm.get('email')?.setValue(this.employee?.email);
         this.employeeForm.get('salary')?.setValue(this.employee?.salary);
         this.employeeForm.get('hireDate')?.setValue(new Date(this.employee?.hireDate));
-        this.employeeForm.get('idDepartment')?.setValue(this.employee?.department.id);
+        this.employeeForm.get('idDepartment')?.setValue(this.employee?.department?.id);
       });
     }
     this.idDepartment = RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("idDepartment"));
   }
 
   ngOnInit(): void {
+
   }
 
   onSubmit() {
+    console.log(this.employee?.hireDate);
     this.employeeService.getByEmail(this.employeeForm.get('email')?.value).subscribe((data: any) => {
       if (!data || data?.id == this.employee?.id && this.employeeForm.valid) {
         const employeeResult = new Employee(

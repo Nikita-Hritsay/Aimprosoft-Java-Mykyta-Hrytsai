@@ -19,6 +19,7 @@ export class DepartmentFormComponent implements OnInit {
 
   department?: Department;
   departmentForm = new FormGroup({
+    id: new FormControl(""),
     name: new FormControl("", Validators.required),
     address: new FormControl("", Validators.required)
   });
@@ -63,4 +64,6 @@ export class DepartmentFormComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
+
 }
