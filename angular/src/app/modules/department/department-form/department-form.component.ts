@@ -47,7 +47,7 @@ export class DepartmentFormComponent implements OnInit {
           String(this.departmentForm.get('name')?.value),
           String(this.departmentForm.get('address')?.value));
         this.departmentService.saveOrUpdate(departmentResult).subscribe(()=>{
-          this.router.navigate(["/departments"]);
+          this.router.navigate(["/web/departments"]);
         });
       } else{
         this.departmentForm.get("name")?.setErrors({notUnique: true});
