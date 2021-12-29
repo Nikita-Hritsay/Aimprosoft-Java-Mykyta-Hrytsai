@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {
-  DisplayAllDepartmentsComponent
-} from "./modules/department/display-all-departments/display-all-departments.component";
+  DepartmentsComponent
+} from "./modules/department/departments/departments.component";
 import {EmployeesComponent} from "./modules/employee/employees/employees.component";
 import {
   EmployeesByDepartmentComponent
@@ -12,7 +12,7 @@ import {EmployeeFormComponent} from "./modules/employee/employee-form/employee-f
 import {ErrorComponent} from "./modules/error/error.component";
 
 const routes: Routes = [
-  {path: 'web/departments', component: DisplayAllDepartmentsComponent},
+  {path: 'web/departments', component: DepartmentsComponent},
   {path: 'web/employees', component: EmployeesComponent},
   {path: 'web/departments/:id/employees', component: EmployeesByDepartmentComponent},
   {path: 'web/departments/:id', component: DepartmentFormComponent},

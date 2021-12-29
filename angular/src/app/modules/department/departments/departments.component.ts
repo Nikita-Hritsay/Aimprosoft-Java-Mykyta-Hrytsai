@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {DepartmentService} from "../../../service/department/department.service";
 
 @Component({
-  selector: 'app-display-all-departments',
-  templateUrl: './display-all-departments.component.html',
+  selector: 'app-departments',
+  templateUrl: './departments.component.html',
   styleUrls: ['../../../style/main.css']
 })
-export class DisplayAllDepartmentsComponent implements OnInit {
+export class DepartmentsComponent implements OnInit {
 
   departments: any;
 

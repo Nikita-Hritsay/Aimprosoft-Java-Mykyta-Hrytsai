@@ -25,7 +25,6 @@ export class DepartmentService {
   }
 
   public saveOrUpdate(department: Department): any {
-    console.log("department " + department);
     return this.httpClient.post("/api/department", department);
   }
 

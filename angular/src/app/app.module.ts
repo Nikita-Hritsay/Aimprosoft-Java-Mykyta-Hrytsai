@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DisplayAllDepartmentsComponent } from './modules/department/display-all-departments/display-all-departments.component';
+import { DepartmentsComponent } from './modules/department/departments/departments.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeesByDepartmentComponent } from './modules/employee/employees-by-department/employees-by-department.component';
 import { EmployeesComponent } from './modules/employee/employees/employees.component';
@@ -16,7 +16,7 @@ import { ErrorComponent } from './modules/error/error.component';
 @NgModule({
   declarations: [
     AppComponent,
-    DisplayAllDepartmentsComponent,
+    DepartmentsComponent,
     EmployeesByDepartmentComponent,
     EmployeesComponent,
     HeaderComponent,

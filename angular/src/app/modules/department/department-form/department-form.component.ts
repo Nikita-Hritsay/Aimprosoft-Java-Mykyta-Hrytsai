@@ -39,20 +39,22 @@ export class DepartmentFormComponent implements OnInit {
   }
 
   onSubmit(){
-    this.departmentService.getByName(this.departmentForm.get("name")?.value).subscribe((data: any)=>{
-      if(!data || data?.id == this.department?.id && this.departmentForm.valid){
-        console.log("name no error");
-        const departmentResult = new Department(
-          this.department == null ? 0: this.department?.id,
-          String(this.departmentForm.get('name')?.value),
-          String(this.departmentForm.get('address')?.value));
-        this.departmentService.saveOrUpdate(departmentResult).subscribe(()=>{
-          this.router.navigate(["/web/departments"]);
-        });
-      } else{
-        this.departmentForm.get("name")?.setErrors({notUnique: true});
+      if(this.departmentForm.valid) {
+        this.departmentService.getByName(this.departmentForm.get("name")?.value).subscribe((data: any)=>{
+          if(!data || data?.id == this.department?.id){
+            const departmentResult = new Department(
+              this.department == null ? 0 : this.department?.id,
+              String(this.departmentForm.get('name')?.value),
+              String(this.departmentForm.get('address')?.value));
+            this.departmentService.saveOrUpdate(departmentResult).subscribe(() => {
+              this.router.navigate(["/web/departments"]);
+            });
+          }else{
+            this.departmentForm.get("name")?.setErrors({notUnique: true});
+          }
+        })
       }
-    })
+
   }
 
   getErrors(formControlName: string): boolean {
@@ -62,7 +64,6 @@ export class DepartmentFormComponent implements OnInit {
 
 
   ngOnInit(): void {
-
   }
 
 

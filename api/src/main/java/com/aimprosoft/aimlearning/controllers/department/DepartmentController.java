@@ -27,7 +27,6 @@ public class DepartmentController {
 
     @PostMapping("/department")
     public ResponseEntity<Map<String, String>> createOrUpdateDepartment(@RequestBody Department department) throws DBException{
-        System.out.println(department);
         try {
             departmentService.createOrUpdate(department);
             return new ResponseEntity<>(HttpStatus.OK);

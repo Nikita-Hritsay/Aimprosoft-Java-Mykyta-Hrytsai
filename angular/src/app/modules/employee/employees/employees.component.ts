@@ -27,6 +27,10 @@ export class EmployeesComponent implements OnInit {
     });
   }
 
+  getDate(date: Date): string{
+    return new Date(date).toISOString().slice(0, 10);
+  }
+
   routeToEmployeeForm(item: any) {
     this.router.navigate([`web/departments/${item.department.id}/employees/${item.id}`]);
   }

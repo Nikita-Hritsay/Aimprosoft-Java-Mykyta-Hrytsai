@@ -35,7 +35,7 @@ export class EmployeeFormComponent implements OnInit {
       id: [this.employee?.id],
       firstName: [null, Validators.required],
       lastName: [null, Validators.required],
-      email: [null, Validators.required],
+      email: [null, [Validators.required, Validators.email]],
       salary: [null, Validators.required],
       hireDate: [null, Validators.required],
       idDepartment: [null, Validators.required]
@@ -56,13 +56,11 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
   onSubmit() {
-    console.log(this.employee?.hireDate);
     this.employeeService.getByEmail(this.employeeForm.get('email')?.value).subscribe((data: any) => {
-      if (!data || data?.id == this.employee?.id && this.employeeForm.valid) {
+      if (!data || data?.id == this.employee?.id && this.employeeForm.valid ) {
         const employeeResult = new Employee(
           this.employee == null ? null : this.employee.id,
           String(this.employeeForm.get('firstName')?.value),
@@ -80,7 +78,6 @@ export class EmployeeFormComponent implements OnInit {
       }
     });
   }
-
 
   getErrors(formControlName: string): boolean {
     const value = this.employeeForm.get(formControlName)!;

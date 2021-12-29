@@ -30,6 +30,10 @@ export class EmployeesByDepartmentComponent implements OnInit {
     });
   }
 
+  getDate(date: Date): string{
+    return new Date(date).toISOString().slice(0, 10);
+  }
+
   routeToEmployeeForm(item: any) {
     if (item == null) {
       this.router.navigate([`web/departments/${this.departmentId}/employees/0`]);
