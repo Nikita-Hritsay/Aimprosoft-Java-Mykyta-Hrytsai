@@ -4,7 +4,7 @@ import {DepartmentService} from "../../../service/department/department.service"
 @Component({
   selector: 'app-departments',
   templateUrl: './departments.component.html',
-  styleUrls: ['../../../style/main.css']
+  styleUrls: ['./departments.component.css']
 })
 export class DepartmentsComponent implements OnInit {
 

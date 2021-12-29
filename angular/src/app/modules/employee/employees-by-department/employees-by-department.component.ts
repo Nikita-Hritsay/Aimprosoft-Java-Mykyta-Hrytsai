@@ -6,7 +6,7 @@ import {RequestUtils} from "../../../utils/RequestUtils";
 @Component({
   selector: 'app-employees-by-department',
   templateUrl: './employees-by-department.component.html',
-  styleUrls: ['../../../style/main.css']
+  styleUrls: ['./employees-by-department.component.css']
 })
 export class EmployeesByDepartmentComponent implements OnInit {
 
@@ -30,7 +30,7 @@ export class EmployeesByDepartmentComponent implements OnInit {
     });
   }
 
-  getDate(date: Date): string{
+  getDate(date: Date): string {
     return new Date(date).toISOString().slice(0, 10);
   }
 

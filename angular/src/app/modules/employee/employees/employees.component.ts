@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
-  styleUrls: ['../../../style/main.css']
+  styleUrls: ['./employees.component.css']
 })
 export class EmployeesComponent implements OnInit {
 
@@ -27,7 +27,7 @@ export class EmployeesComponent implements OnInit {
     });
   }
 
-  getDate(date: Date): string{
+  getDate(date: Date): string {
     return new Date(date).toISOString().slice(0, 10);
   }
 

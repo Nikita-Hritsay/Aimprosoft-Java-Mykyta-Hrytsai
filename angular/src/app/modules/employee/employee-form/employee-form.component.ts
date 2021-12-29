@@ -10,7 +10,7 @@ import {RequestUtils} from "../../../utils/RequestUtils";
 @Component({
   selector: 'app-employee-form',
   templateUrl: './employee-form.component.html',
-  styleUrls: ['../../../style/main.css']
+  styleUrls: ['./employee-form.component.css']
 })
 export class EmployeeFormComponent implements OnInit {
 
@@ -27,7 +27,6 @@ export class EmployeeFormComponent implements OnInit {
   });
 
   constructor(private employeeService: EmployeeService, private departmentService: DepartmentService, private activateRout: ActivatedRoute, private router: Router) {
-
     this.departmentService.get().subscribe((data) => {
       this.departments = data;
     });
@@ -60,7 +59,7 @@ export class EmployeeFormComponent implements OnInit {
 
   onSubmit() {
     this.employeeService.getByEmail(this.employeeForm.get('email')?.value).subscribe((data: any) => {
-      if (!data || data?.id == this.employee?.id && this.employeeForm.valid ) {
+      if (!data || data?.id == this.employee?.id && this.employeeForm.valid) {
         const employeeResult = new Employee(
           this.employee == null ? null : this.employee.id,
           String(this.employeeForm.get('firstName')?.value),
