@@ -4,3 +4,4 @@ target
 *.war
 *.iml
 .vscode
+*.properties
