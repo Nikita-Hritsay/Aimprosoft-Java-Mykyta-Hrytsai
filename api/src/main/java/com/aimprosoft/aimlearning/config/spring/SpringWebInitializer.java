@@ -3,7 +3,6 @@ package com.aimprosoft.aimlearning.config.spring;
 import com.aimprosoft.aimlearning.controllers.department.DepartmentController;
 import com.aimprosoft.aimlearning.controllers.employee.EmployeeController;
 import com.aimprosoft.aimlearning.controllers.exception.ExceptionHandlerController;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.ContextLoaderListener;
