@@ -4,9 +4,6 @@ import {Department} from "../../../models/Department";
 import {DepartmentService} from "../../../service/department/department.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
-import {Employee} from "../../../models/Employee";
-import {RequestUtils} from "../../../utils/RequestUtils";
-
 @Component({
   selector: 'app-employee-form',
   templateUrl: './employee-form.component.html',
@@ -48,11 +45,12 @@ export class EmployeeFormComponent implements OnInit {
         this.employeeForm.get('email')?.setValue(this.employee?.email);
         this.employeeForm.get('salary')?.setValue(this.employee?.salary);
         this.employeeForm.get('hireDate')?.setValue(RequestUtils.getDate(this.employee?.hireDate));
-        this.employeeForm.get('idDepartment')?.setValue(this.employee?.department?.id);
       });
     }
     this.idDepartment = RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("idDepartment"));
+    this.employeeForm.get('idDepartment')?.setValue(this.idDepartment == 0 ? null : this.idDepartment);
   }
+
 
   ngOnInit(): void {
   }
@@ -84,3 +82,6 @@ export class EmployeeFormComponent implements OnInit {
   }
 
 }
+import {Employee} from "../../../models/Employee";
+
+import {RequestUtils} from "../../../utils/RequestUtils";
