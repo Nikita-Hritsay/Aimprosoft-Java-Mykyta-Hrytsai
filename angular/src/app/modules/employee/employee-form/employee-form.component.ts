@@ -3,7 +3,11 @@ import {EmployeeService} from "../../../service/employee/employee.service";
 import {Department} from "../../../models/Department";
 import {DepartmentService} from "../../../service/department/department.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+
+import {Employee} from "../../../models/Employee";
+
+import {RequestUtils} from "../../../utils/RequestUtils";
 
 @Component({
   selector: 'app-employee-form',
@@ -21,8 +25,8 @@ export class EmployeeFormComponent implements OnInit {
     this.departmentService.get().subscribe((data) => {
       this.departments = data;
     });
-    this.employeeService.getById(RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("id"))).subscribe((data) => {
-      this.employee = data;
+    this.employeeService.getById(RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("idEmployee"))).subscribe((data) => {
+      console.log("data found");
       this.employeeForm.get('firstName')?.setValue(this.employee?.id);
       this.employeeForm.get('firstName')?.setValue(this.employee?.firstName);
       this.employeeForm.get('lastName')?.setValue(this.employee?.lastName);
@@ -42,7 +46,7 @@ export class EmployeeFormComponent implements OnInit {
       hireDate: [null, Validators.required],
       idDepartment: [null, Validators.required]
     });
-    this.idDepartment = RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("idDepartment"));
+    this.idDepartment = RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("id"));
     this.employeeForm.get('idDepartment')?.setValue(this.idDepartment == 0 ? null : this.idDepartment);
   }
 
@@ -58,6 +62,7 @@ export class EmployeeFormComponent implements OnInit {
           new Date(this.employeeForm.get("hireDate")?.value),
           new Department(RequestUtils.getNumber(this.employeeForm.get("idDepartment")?.value), "", "")
         );
+
         this.employeeService.saveOrUpdate(employeeResult).subscribe(() => {
           this.router.navigate([`web/departments/${employeeResult.department.id}/employees`]);
         })
@@ -71,9 +76,4 @@ export class EmployeeFormComponent implements OnInit {
     const value = this.employeeForm.get(formControlName)!;
     return value?.invalid && (value?.dirty || value?.touched);
   }
-
 }
-
-import {Employee} from "../../../models/Employee";
-
-import {RequestUtils} from "../../../utils/RequestUtils";

@@ -1,5 +1,5 @@
 <div class="employees_by_department">
-  <a class="header_ref addToThisDepartment" (click)="routeToEmployeeForm(null)">Add to this department</a>
+  <a class="header_ref addToThisDepartment" [routerLink]="['google.com']">Add to this department</a>
   <br>
   <span *ngIf="employees?.length < 1">There is no employees in this department</span>
   <div *ngIf="employees?.length > 0">
@@ -23,7 +23,7 @@
           <td>{{item.salary}}</td>
           <td>{{getDate(item.hireDate)}}</td>
           <td>{{item.department.name}}</td>
-          <td><a class="update_button submit_delete" (click)="routeToEmployeeForm(item)">Update</a></td>
+          <td><a class="update_button" [replaceUrl]="true" [routerLink]="['google.com']">Update</a></td>
           <td>
             <button class="delete_button submit_delete" (click)="delete(item.id)">Delete</button>
           </td>

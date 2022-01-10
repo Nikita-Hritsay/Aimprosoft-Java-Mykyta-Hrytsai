@@ -1,23 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {
-  DepartmentsComponent
-} from "./modules/department/departments/departments.component";
-import {EmployeesComponent} from "./modules/employee/employees/employees.component";
-import {
-  EmployeesByDepartmentComponent
-} from "./modules/employee/employees-by-department/employees-by-department.component";
-import {DepartmentFormComponent} from "./modules/department/department-form/department-form.component";
-import {EmployeeFormComponent} from "./modules/employee/employee-form/employee-form.component";
 import {ErrorComponent} from "./modules/error/error.component";
 
 const routes: Routes = [
-  {path: 'web/departments', component: DepartmentsComponent},
-  {path: 'web/employees', component: EmployeesComponent},
-  {path: 'web/departments/:id/employees', component: EmployeesByDepartmentComponent},
-  {path: 'web/departments/:id', component: DepartmentFormComponent},
-  {path: 'web/departments/:idDepartment/employees/:id', component: EmployeeFormComponent},
-  {path: '**', component: ErrorComponent},
+  { path: 'web/departments', loadChildren: () => import('./modules/department/department.module').then(m => m.DepartmentModule) },
+  { path: 'web/employees', loadChildren: () => import('./modules/employee/employee.module').then(m => m.EmployeeModule) },
+  { path: '**', component: ErrorComponent },
 ];
 
 @NgModule({

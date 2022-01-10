@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EmployeeService} from "../../../service/employee/employee.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {RequestUtils} from "../../../utils/RequestUtils";
 
 @Component({
@@ -13,8 +13,7 @@ export class EmployeesByDepartmentComponent implements OnInit {
   employees: any;
   departmentId?: number;
 
-  constructor(private employeeService: EmployeeService, private activateRout: ActivatedRoute,
-              private router: Router) {
+  constructor(private employeeService: EmployeeService, private activateRout: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -32,14 +31,6 @@ export class EmployeesByDepartmentComponent implements OnInit {
 
   getDate(date: Date): string {
     return new Date(date).toISOString().slice(0, 10);
-  }
-
-  routeToEmployeeForm(item: any) {
-    if (item == null) {
-      this.router.navigate([`web/departments/${this.departmentId}/employees/0`]);
-      return;
-    }
-    this.router.navigate([`web/departments/${this.departmentId}/employees/${item.id}`]);
   }
 
 }
