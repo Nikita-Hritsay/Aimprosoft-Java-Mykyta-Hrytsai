@@ -17,6 +17,7 @@ export class EmployeesByDepartmentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("by dep")
     this.departmentId = RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("id"));
     this.employeeService.getByDepartment(RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("id"))).subscribe((data) => {
       this.employees = data;

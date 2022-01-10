@@ -26,7 +26,7 @@ export class EmployeeFormComponent implements OnInit {
       this.departments = data;
     });
     this.employeeService.getById(RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("idEmployee"))).subscribe((data) => {
-      console.log("data found");
+      this.employee = data;
       this.employeeForm.get('firstName')?.setValue(this.employee?.id);
       this.employeeForm.get('firstName')?.setValue(this.employee?.firstName);
       this.employeeForm.get('lastName')?.setValue(this.employee?.lastName);
