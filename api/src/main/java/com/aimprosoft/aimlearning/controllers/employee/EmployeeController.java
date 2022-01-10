@@ -47,7 +47,6 @@ public class EmployeeController {
 
     @PostMapping("/employee")
     public ResponseEntity<Map<String, String>> createOrUpdateEmployee(@RequestBody Employee employee) throws DBException {
-        System.out.println(employee);
         try {
             employeeService.createOrUpdate(employee);
             return new ResponseEntity<>(HttpStatus.OK);
