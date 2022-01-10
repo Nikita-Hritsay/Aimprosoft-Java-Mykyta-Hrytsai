@@ -20,32 +20,27 @@ public class DepartmentController {
 
     private final DepartmentService departmentService;
 
-    @GetMapping(value = "/department")
+    @GetMapping(value = "/departments")
     public List<Department> displayAllDepartments() throws DBException {
         return departmentService.getAllDepartments();
     }
 
-    @PostMapping("/department")
-    public ResponseEntity<Map<String, String>> createOrUpdateDepartment(@RequestBody Department department) throws DBException{
-        try {
-            departmentService.createOrUpdate(department);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (ValidationException e) {
-            return new ResponseEntity<>(e.getErrors(), HttpStatus.CONFLICT);
-        }
+    @PostMapping("/departments")
+    public Department createOrUpdateDepartment(@RequestBody Department department) throws DBException, ValidationException {
+        return departmentService.createOrUpdate(department);
     }
 
-    @GetMapping("/department/{id}")
+    @GetMapping("/departments/{id}")
     public Department getDepartmentById(@PathVariable Integer id) throws DBException {
         return departmentService.getDepartmentById(id);
     }
 
-    @GetMapping("/department/exists")
+    @GetMapping("/departments/name")
     public Department existByName(@RequestParam String name) throws DBException {
         return departmentService.getByName(name);
     }
 
-    @DeleteMapping("/department")
+    @DeleteMapping("/departments")
     public void deleteDepartment(@RequestParam Integer idDepartment) throws DBException {
         departmentService.deleteDepartment(idDepartment);
     }

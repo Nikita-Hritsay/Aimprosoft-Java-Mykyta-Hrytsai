@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Objects;
 
 @Repository
 @Transactional
@@ -43,12 +42,9 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public void saveOrUpdate(Employee employee) throws DBException {
-        try {
-            sessionFactory.getCurrentSession().saveOrUpdate(employee);
-        } catch (Exception e) {
-            throw new DBException(e.getMessage());
-        }
+    public Employee saveOrUpdate(Employee employee) {
+        sessionFactory.getCurrentSession().saveOrUpdate(employee);
+        return employee;
     }
 
     @Override
@@ -61,18 +57,17 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public boolean existsByEmail(Employee employee) throws DBException {
+    public Employee existsByEmail(Employee employee) throws DBException {
         try {
-            Employee check = (Employee) sessionFactory.getCurrentSession().createQuery("FROM Employee where email='" + employee.getEmail() + "'").uniqueResult();
-            return check != null && !Objects.equals(check.getId(), employee.getId());
+            return (Employee) sessionFactory.getCurrentSession().createQuery("FROM Employee where email='" + employee.getEmail() + "'").uniqueResult();
         } catch (Exception e) {
             throw new DBException(e.getMessage());
         }
     }
 
     @Override
-    public void createOrUpdate(Employee employee) throws ValidationException, DBException {
-        saveOrUpdate(employee);
+    public Employee createOrUpdate(Employee employee) throws ValidationException, DBException {
+        return saveOrUpdate(employee);
     }
 
     @Override

@@ -21,7 +21,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final ModelValidator<Employee> modelValidator;
 
     @Override
-    public boolean existByEmail(Employee employee) throws DBException {
+    public Employee existByEmail(Employee employee) throws DBException {
         return employeeDAO.existsByEmail(employee);
     }
 
@@ -36,19 +36,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void add(Employee employee) throws DBException {
-        employeeDAO.saveOrUpdate(employee);
-    }
-
-    @Override
     public void deleteEmployee(int id) throws DBException {
         employeeDAO.deleteEmployee(id);
     }
 
     @Override
-    public void createOrUpdate(Employee employee) throws ValidationException, DBException {
+    public Employee createOrUpdate(Employee employee) throws ValidationException, DBException {
         modelValidator.validate(employee);
-        employeeDAO.createOrUpdate(employee);
+        return employeeDAO.createOrUpdate(employee);
     }
 
     @Override

@@ -8,6 +8,8 @@ import net.sf.oval.context.OValContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 @Component
 public class IsUniqueEmail implements CheckWithCheck.SimpleCheck {
 
@@ -21,7 +23,8 @@ public class IsUniqueEmail implements CheckWithCheck.SimpleCheck {
     @Override
     public boolean isSatisfied(Object validatedObject, Object value, OValContext context, Validator validator) {
         try {
-            return !employeeService.existByEmail((Employee) validatedObject);
+            Employee check = employeeService.existByEmail((Employee) validatedObject);
+            return ! (employeeService.existByEmail((Employee) validatedObject) != null && !Objects.equals(check.getId(), (((Employee) validatedObject).getId())));
         } catch (Exception e) {
             return false;
         }

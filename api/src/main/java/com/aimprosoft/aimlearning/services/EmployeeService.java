@@ -3,6 +3,7 @@ package com.aimprosoft.aimlearning.services;
 import com.aimprosoft.aimlearning.exceptions.DBException;
 import com.aimprosoft.aimlearning.exceptions.ValidationException;
 import com.aimprosoft.aimlearning.models.Employee;
+import net.sf.oval.constraint.Email;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
@@ -12,13 +13,11 @@ public interface EmployeeService {
 
     Employee getById(Integer id) throws DBException;
 
-    void add(Employee employee) throws DBException;
-
     void deleteEmployee(int id) throws DBException;
 
-    void createOrUpdate(Employee employee) throws ValidationException, DBException;
+    Employee createOrUpdate(Employee employee) throws ValidationException, DBException;
 
-    boolean existByEmail(Employee employee) throws DBException;
+    Employee existByEmail(Employee employee) throws DBException;
 
     Employee getByEmail(String email) throws  DBException;
 

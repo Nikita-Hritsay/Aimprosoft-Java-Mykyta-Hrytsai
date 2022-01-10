@@ -20,39 +20,34 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
 
-    @GetMapping("/employee")
+    @GetMapping("/employees")
     public List<Employee> displayEmployees() throws DBException {
         return employeeService.getAllEmployees();
     }
 
-    @GetMapping("/employee/department/{id}")
+    @GetMapping("/employees/departments/{id}")
     public List<Employee> displayEmployeesByDepartment(@PathVariable Integer id) throws DBException {
         return employeeService.getByDepartmentId(id);
     }
 
-    @DeleteMapping("/employee")
+    @DeleteMapping("/employees")
     public void deleteEmployee(@RequestParam Integer id) throws DBException {
         employeeService.deleteEmployee(id);
     }
 
-    @GetMapping("/employee/exists")
+    @GetMapping("/employees/email")
     public Employee existByEmail(@RequestParam String email) throws DBException {
         return employeeService.getByEmail(email);
     }
 
-    @GetMapping("/employee/{id}")
+    @GetMapping("/employees/{id}")
     public Employee getEmployeeById(@PathVariable Integer id) throws DBException {
         return employeeService.getById(id);
     }
 
-    @PostMapping("/employee")
-    public ResponseEntity<Map<String, String>> createOrUpdateEmployee(@RequestBody Employee employee) throws DBException {
-        try {
-            employeeService.createOrUpdate(employee);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (ValidationException e) {
-            return new ResponseEntity<>(e.getErrors(), HttpStatus.CONFLICT);
-        }
+    @PostMapping("/employees")
+    public Employee createOrUpdateEmployee(@RequestBody Employee employee) throws DBException, ValidationException {
+        return employeeService.createOrUpdate(employee);
     }
 
 }

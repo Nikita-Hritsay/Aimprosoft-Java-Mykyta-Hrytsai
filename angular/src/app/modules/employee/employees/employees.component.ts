@@ -18,7 +18,6 @@ export class EmployeesComponent implements OnInit {
     this.employeeService.getAll().subscribe((data) => {
       this.employees = data;
     })
-
   }
 
   delete(id: number) {

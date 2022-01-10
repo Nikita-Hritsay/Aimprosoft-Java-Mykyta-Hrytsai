@@ -30,9 +30,10 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public void saveOrUpdate(Department department) throws DBException {
+    public Department saveOrUpdate(Department department) throws DBException {
         try {
             sessionFactory.getCurrentSession().saveOrUpdate(department);
+            return department;
         } catch (Exception e) {
             throw new DBException(e.getMessage());
         }
@@ -69,17 +70,16 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public boolean existsByName(Department department) throws DBException {
+    public Department existsByName(Department department) throws DBException {
         try {
-            Department check = (Department) sessionFactory.getCurrentSession().createQuery("FROM Department where name='" + department.getName() + "'").uniqueResult();
-            return check != null && !Objects.equals(check.getId(), department.getId());
+            return (Department) sessionFactory.getCurrentSession().createQuery("FROM Department where name='" + department.getName() + "'").uniqueResult();
         } catch (Exception e) {
             throw new DBException(e.getMessage());
         }
     }
 
     @Override
-    public void createOrUpdate(Department department) throws ValidationException, DBException {
-        saveOrUpdate(department);
+    public Department createOrUpdate(Department department) throws ValidationException, DBException {
+        return saveOrUpdate(department);
     }
 }

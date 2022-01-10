@@ -9,23 +9,23 @@ import {Department} from "../../models/Department";
 export class DepartmentService {
 
   public get(): Observable<any> {
-    return this.httpClient.get<any>("/api/department");
+    return this.httpClient.get<any>("/api/departments");
   }
 
   public delete(id: number): any {
-    return this.httpClient.delete<any>("api/department", {params: {"idDepartment": id}});
+    return this.httpClient.delete<any>("api/departments", {params: {"idDepartment": id}});
   }
 
   public getById(id: number): Observable<any> {
-    return this.httpClient.get<any>(`/api/department/${id}`);
+    return this.httpClient.get<any>(`/api/departments/${id}`);
   }
 
   public getByName(name: string): Observable<any> {
-    return this.httpClient.get<any>('/api/department/exists', {params: {"name": name}});
+    return this.httpClient.get<any>('/api/departments/name', {params: {"name": name}});
   }
 
   public saveOrUpdate(department: Department): any {
-    return this.httpClient.post("/api/department", department);
+    return this.httpClient.post("/api/departments", department);
   }
 
 

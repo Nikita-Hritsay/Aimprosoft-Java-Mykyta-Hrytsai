@@ -39,13 +39,14 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public void saveOrUpdate(Department department) throws DBException {
+    public Department saveOrUpdate(Department department) throws DBException {
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = setupPreparedStatement(department, connection, ADD_DEPARTMENT)) {
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throw new DBException("Error in get add Department: " + throwables.getMessage());
         }
+        return null;
     }
 
     @Override
@@ -86,7 +87,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public boolean existsByName(Department department) throws DBException {
+    public Department existsByName(Department department) throws DBException {
         /*try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement statement = connection.prepareStatement(EXISTS_BY_NAME)) {
             ResultSet resultSet;
@@ -102,7 +103,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
         } catch (SQLException sqlException) {
             throw new DBException("Error in exists by name Department: " + sqlException.getMessage());
         }*/
-        return false;
+        return null;
     }
 
     @Override
@@ -111,12 +112,13 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public void createOrUpdate(Department department) throws DBException {
+    public Department createOrUpdate(Department department) throws DBException {
         if (department.getId() != null) {
             updateDepartment(department);
         } else {
             saveOrUpdate(department);
         }
+        return null;
     }
 
     private PreparedStatement setupPreparedStatement(Department department, Connection connection, String query) throws SQLException {

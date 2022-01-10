@@ -21,7 +21,7 @@
         <td>{{item.salary}}</td>
         <td>{{getDate(item.hireDate)}}</td>
         <td>{{item.department.name}}</td>
-        <td><a class="update_button submit_delete" (click)="routeToEmployeeForm(item)">Update</a></td>
+        <td><button class="update_button submit_delete" [replaceUrl]="true" [routerLink]="['web/departments', item.department.id,'employees',item.id]">Update</button></td>
         <td>
           <button class="delete_button submit_delete" (click)="delete(item.id)">Delete</button>
         </td>

@@ -9,15 +9,15 @@ import java.util.List;
 public interface DepartmentDAO {
     List<Department> getAllDepartments() throws DBException;
 
-    void saveOrUpdate(Department department) throws DBException;
+    Department saveOrUpdate(Department department) throws DBException;
 
     Department getDepartmentById(Integer id) throws DBException;
 
     void deleteDepartment(int id) throws DBException;
 
-    boolean existsByName(Department department) throws DBException;
+    Department existsByName(Department department) throws DBException;
 
     Department getDepartmentByName(String name) throws DBException;
 
-    void createOrUpdate(Department department) throws ValidationException, DBException;
+    Department createOrUpdate(Department department) throws ValidationException, DBException;
 }

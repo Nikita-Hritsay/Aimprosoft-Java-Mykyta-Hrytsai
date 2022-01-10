@@ -41,15 +41,15 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public void createOrUpdate(Department department) throws ValidationException, DBException {
+    public Department createOrUpdate(Department department) throws ValidationException, DBException {
         modelValidator.validate(department);
-        departmentDAO.createOrUpdate(department);
+        return departmentDAO.createOrUpdate(department);
     }
 
 
 
     @Override
-    public boolean existsByName(Department department) throws DBException {
+    public Department existsByName(Department department) throws DBException {
         return departmentDAO.existsByName(department);
     }
 

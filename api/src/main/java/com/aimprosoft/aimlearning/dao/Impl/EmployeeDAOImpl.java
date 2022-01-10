@@ -75,7 +75,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public boolean existsByEmail(Employee employee) throws DBException {
+    public Employee existsByEmail(Employee employee) throws DBException {
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement statement = connection.prepareStatement(GET_ALL_EMAILS)) {
             ResultSet resultSet;
@@ -84,32 +84,34 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             while (resultSet.next()) {
                 Integer id = resultSet.getInt("idemployee");
                 if (!id.equals(employee.getId())) {
-                    return true;
+                    return null;
                 }
             }
-            return false;
+            return null;
         } catch (SQLException sqlException) {
             throw new DBException("Error in get All Employees: " + sqlException.getMessage());
         }
     }
 
     @Override
-    public void saveOrUpdate(Employee employee) throws DBException {
+    public Employee saveOrUpdate(Employee employee) throws DBException {
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = setupPreparedStatement(employee, connection, ADD_EMPLOYEE)) {
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throw new DBException("Error in get All Employees: " + throwables.getMessage());
         }
+        return null;
     }
 
     @Override
-    public void createOrUpdate(Employee employee) throws ValidationException, DBException {
+    public Employee createOrUpdate(Employee employee) throws ValidationException, DBException {
         if (employee.getId() != null) {
             updateEmployee(employee);
         } else {
             saveOrUpdate(employee);
         }
+        return null;
     }
 
     @Override
