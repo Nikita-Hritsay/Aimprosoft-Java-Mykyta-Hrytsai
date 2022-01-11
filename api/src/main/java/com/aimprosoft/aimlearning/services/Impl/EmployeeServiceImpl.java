@@ -22,7 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee existByEmail(Employee employee) throws DBException {
-        return employeeDAO.existsByEmail(employee);
+        return employeeDAO.getByEmail(employee.getEmail());
     }
 
     @Override

@@ -74,7 +74,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         }
     }
 
-    @Override
+    //@Override
     public Employee existsByEmail(Employee employee) throws DBException {
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement statement = connection.prepareStatement(GET_ALL_EMAILS)) {

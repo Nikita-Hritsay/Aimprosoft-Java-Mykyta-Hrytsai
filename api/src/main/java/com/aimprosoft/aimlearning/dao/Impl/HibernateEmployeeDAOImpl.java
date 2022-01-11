@@ -57,15 +57,6 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public Employee existsByEmail(Employee employee) throws DBException {
-        try {
-            return (Employee) sessionFactory.getCurrentSession().createQuery("FROM Employee where email='" + employee.getEmail() + "'").uniqueResult();
-        } catch (Exception e) {
-            throw new DBException(e.getMessage());
-        }
-    }
-
-    @Override
     public Employee createOrUpdate(Employee employee) throws ValidationException, DBException {
         return saveOrUpdate(employee);
     }

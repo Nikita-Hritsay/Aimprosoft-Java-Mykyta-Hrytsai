@@ -16,8 +16,6 @@ public interface EmployeeDAO {
 
     void deleteEmployee(int id) throws DBException;
 
-    Employee existsByEmail(Employee employee) throws DBException;
-
     Employee createOrUpdate(Employee employee) throws ValidationException, DBException;
 
     List<Employee> getByDepartmentId(Integer id) throws DBException;

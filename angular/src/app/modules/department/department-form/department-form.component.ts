@@ -17,7 +17,7 @@ import {RequestUtils} from "../../../utils/RequestUtils";
 })
 export class DepartmentFormComponent implements OnInit {
 
-  department?: Department;
+  department?: any;
   departmentForm = new FormGroup({});
 
   constructor(private departmentService: DepartmentService, private activateRout: ActivatedRoute,
@@ -35,7 +35,7 @@ export class DepartmentFormComponent implements OnInit {
       this.departmentService.getByName(this.departmentForm.get("name")?.value).subscribe((data: any) => {
         if (!data || data?.id == this.department?.id) {
           const departmentResult = new Department(
-            this.department == null ? 0 : this.department?.id,
+            this.department == null ? null : this.department.id,
             String(this.departmentForm.get('name')?.value),
             String(this.departmentForm.get('address')?.value));
           this.departmentService.saveOrUpdate(departmentResult).subscribe(() => {

@@ -16,7 +16,7 @@
         <td><a class="update_button" [routerLink]="[item.id, 'employees']">Employees</a></td>
         <td><a class="update_button submit_delete" [routerLink]="[item.id]">Update</a></td>
         <td>
-          <button class="delete_button submit_delete" (click)="delete(item.id)">Delete</button>
+          <button class="update_button delete_button submit_delete" (click)="delete(item.id)">Delete</button>
         </td>
       </tr>
     </ng-template>

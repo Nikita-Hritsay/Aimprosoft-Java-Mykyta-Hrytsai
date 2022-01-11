@@ -70,10 +70,13 @@ p {
 
 
 .delete_button {
+  display: inline-block;
+  padding: 10px 23px 10px;
+  border-radius: 7px;
+  text-decoration: none;
   color: red;
+  margin-right: 10px;
   border: 1px solid black;
-  background: #D8E6F3;
-  width: 100px;
 }
 
 .error {

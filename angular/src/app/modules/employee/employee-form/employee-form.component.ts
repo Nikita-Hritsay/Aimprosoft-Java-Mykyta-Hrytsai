@@ -8,6 +8,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Employee} from "../../../models/Employee";
 
 import {RequestUtils} from "../../../utils/RequestUtils";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-employee-form',
@@ -59,10 +60,9 @@ export class EmployeeFormComponent implements OnInit {
           String(this.employeeForm.get('lastName')?.value),
           String(this.employeeForm.get('email')?.value),
           RequestUtils.getNumber(this.employeeForm.get('salary')?.value),
-          new Date(this.employeeForm.get("hireDate")?.value),
+          moment(this.employeeForm.get("hireDate")?.value).toDate(),
           new Department(RequestUtils.getNumber(this.employeeForm.get("idDepartment")?.value), "", "")
         );
-
         this.employeeService.saveOrUpdate(employeeResult).subscribe(() => {
           this.router.navigate([`web/departments/${employeeResult.department.id}/employees`]);
         })
