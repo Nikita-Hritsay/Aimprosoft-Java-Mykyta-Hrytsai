@@ -26,6 +26,10 @@ export class EmployeesComponent implements OnInit {
     });
   }
 
+  routeToUpdatePage(item: any){
+    this.router.navigate([`web/departments/${item.department.id}/employees/${item.id}`]);
+  }
+
   getDate(date: Date): string {
     return new Date(date).toISOString().slice(0, 10);
   }
