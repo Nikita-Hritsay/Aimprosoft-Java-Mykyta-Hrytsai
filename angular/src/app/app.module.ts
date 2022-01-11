@@ -25,14 +25,14 @@ import {CoreModule} from "./core/core.module";
     EmployeeFormComponent,
     ErrorComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        FormsModule,
-        ReactiveFormsModule,
-        CoreModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CoreModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
