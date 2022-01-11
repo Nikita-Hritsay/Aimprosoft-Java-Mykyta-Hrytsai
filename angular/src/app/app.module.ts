@@ -9,11 +9,11 @@ import {
   EmployeesByDepartmentComponent
 } from './modules/employee/employees-by-department/employees-by-department.component';
 import {EmployeesComponent} from './modules/employee/employees/employees.component';
-import {HeaderComponent} from './modules/header/header.component';
 import {DepartmentFormComponent} from './modules/department/department-form/department-form.component';
 import {EmployeeFormComponent} from './modules/employee/employee-form/employee-form.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ErrorComponent} from './modules/error/error.component';
+import {CoreModule} from "./core/core.module";
 
 @NgModule({
   declarations: [
@@ -21,18 +21,18 @@ import {ErrorComponent} from './modules/error/error.component';
     DepartmentsComponent,
     EmployeesByDepartmentComponent,
     EmployeesComponent,
-    HeaderComponent,
     DepartmentFormComponent,
     EmployeeFormComponent,
     ErrorComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        CoreModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
