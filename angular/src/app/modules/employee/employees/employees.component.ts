@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {EmployeeService} from "../../../service/employee/employee.service";
 import {Router} from "@angular/router";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-employees',
@@ -31,7 +32,7 @@ export class EmployeesComponent implements OnInit {
   }
 
   getDate(date: Date): string {
-    return new Date(date).toISOString().slice(0, 10);
+    return moment(date).toISOString().slice(0, 10);
   }
 
 }

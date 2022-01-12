@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {EmployeeService} from "../../../service/employee/employee.service";
 import {ActivatedRoute} from "@angular/router";
 import {RequestUtils} from "../../../utils/RequestUtils";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-employees-by-department',
@@ -17,7 +18,6 @@ export class EmployeesByDepartmentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("by dep")
     this.departmentId = RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("id"));
     this.employeeService.getByDepartment(RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("id"))).subscribe((data) => {
       this.employees = data;
@@ -31,7 +31,7 @@ export class EmployeesByDepartmentComponent implements OnInit {
   }
 
   getDate(date: Date): string {
-    return new Date(date).toISOString().slice(0, 10);
+    return  moment(date).toISOString().slice(0, 10);
   }
 
 }
