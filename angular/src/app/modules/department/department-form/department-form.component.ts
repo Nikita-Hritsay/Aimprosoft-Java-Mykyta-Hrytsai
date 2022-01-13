@@ -20,7 +20,7 @@ export class DepartmentFormComponent implements OnInit {
   departmentForm = new FormGroup({});
 
   constructor(private departmentService: DepartmentService, private activateRout: ActivatedRoute,
-              private router: Router) {
+              private router: Router, private formBuilder: FormBuilder) {
 
     this.departmentService.getById(RequestUtils.getNumber(<string>this.activateRout.snapshot.paramMap.get("id"))).subscribe((data) => {
       this.department = data;
@@ -53,7 +53,7 @@ export class DepartmentFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.departmentForm = new FormBuilder().group({
+    this.departmentForm = this.formBuilder.group({
       id: [this.department?.id],
       name: [null, Validators.required],
       address: [null, Validators.required]
