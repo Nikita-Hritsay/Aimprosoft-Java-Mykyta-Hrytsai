@@ -26,7 +26,7 @@ import java.util.List;
 public class Department implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "iddepartment")
     private Integer id;
 
