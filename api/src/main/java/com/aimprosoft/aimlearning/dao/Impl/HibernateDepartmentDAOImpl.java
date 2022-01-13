@@ -30,7 +30,6 @@ public class HibernateDepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public Department saveOrUpdate(Department department) throws DBException {
-        System.out.println();
         try {
             sessionFactory.getCurrentSession().saveOrUpdate(department);
             return department;
