@@ -13,20 +13,21 @@
 <html>
 <head>
     <title>Title</title>
-    <link href="../../css/main.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>"/>
 </head>
 <body>
 
 <div class="header_refs">
-    <a class="header_ref" href="displayAllDepartments">Home page</a>
-    <a class="header_ref" href="displayEmployees">All Employees</a>
-    <a class="header_ref" href="createOrUpdateEmployeeForm">Add Employee</a>
-    <a class="header_ref" href="createOrUpdateDepartmentForm">Add Department</a>
+    <a class="header_ref" href="/displayAllDepartments">Home page</a>
+    <a class="header_ref" href="/displayEmployees">All Employees</a>
+    <a class="header_ref" href="/createOrUpdateEmployeeForm/">Add Employee</a>
+    <a class="header_ref" href="/createOrUpdateDepartmentForm/">Add Department</a>
 </div>
 
+
 <div style="margin-top: 50px;" class="createOrUpdateForm">
-    <form action="createOrUpdateEmployee" method="post">
-        <input type="hidden" name="id" class="input_param" size="20px" value="${employee.id}">
+    <form action="/createOrUpdateEmployeeForm" method="post">
+        <input type="hidden" value="${employee.id}" name="id">
         Please enter your first name: <%--@declare id="iddepartments"--%><label>
         <input type="text" name="firstName" class="input_param" size="15px" value="${employee.firstName}">
     </label> <br>
@@ -48,10 +49,10 @@
     </label> <br><br>
         <p class="error_massage">${errors.hireDate}</p>
         Please enter your department name: <label>
-        <input list="idDepartments" name="idDepartment" class="input_param" size="15px">
+        <input list="idDepartments" name="department.idDepartment" class="input_param" size="15px" value="${employee.department.idDepartment}">
     </label> <br><br>
         <datalist id="idDepartments">
-            <c:forEach var="department" items="${requestScope.departments}">
+            <c:forEach var="department" items="${departments}">
                 <option value="${department.idDepartment}" >${department.name}</option>
             </c:forEach>
         </datalist>

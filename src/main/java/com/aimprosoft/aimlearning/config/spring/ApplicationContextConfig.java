@@ -17,7 +17,12 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.handler.SimpleServletHandlerAdapter;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.sql.DataSource;
 import java.util.Objects;
@@ -27,7 +32,8 @@ import java.util.Objects;
 @EnableTransactionManagement
 @PropertySource("classpath:hibernate.properties")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class ApplicationContextConfig {
+@EnableWebMvc
+public class ApplicationContextConfig implements WebMvcConfigurer {
 
     private final Environment environment;
 
@@ -40,17 +46,26 @@ public class ApplicationContextConfig {
         return sessionFactory;
     }
 
-    @Bean
-    public SimpleServletHandlerAdapter simpleServletHandlerAdapter() {
-        return new SimpleServletHandlerAdapter();
-    }
-
     @Autowired
     @Bean
     public PlatformTransactionManager hibernateTransactionManager(SessionFactory sessionFactory) {
         HibernateTransactionManager txManager = new HibernateTransactionManager();
         txManager.setSessionFactory(sessionFactory);
         return txManager;
+    }
+
+    @Bean
+    public InternalResourceViewResolver jspViewResolver() {
+        InternalResourceViewResolver bean = new InternalResourceViewResolver();
+        bean.setPrefix("/WEB-INF/pages/");
+        bean.setSuffix(".jsp");
+        return bean;
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**")
+                .addResourceLocations("/resources/");
     }
 
     @Bean

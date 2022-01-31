@@ -11,25 +11,25 @@
 <head>
     <title>All Employees</title>
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
-    <link href="../../css/main.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>"/>
 </head>
 <body>
 
 <div class="header_refs">
-    <a class="header_ref" href="displayAllDepartments">Home page</a>
-    <a class="header_ref" href="displayEmployees">All Employees</a>
-    <a class="header_ref" href="createOrUpdateEmployeeForm">Add Employee</a>
-    <a class="header_ref" href="createOrUpdateDepartmentForm">Add Department</a>
+    <a class="header_ref" href="/displayAllDepartments">Home page</a>
+    <a class="header_ref" href="/displayEmployees">All Employees</a>
+    <a class="header_ref" href="/createOrUpdateEmployeeForm/">Add Employee</a>
+    <a class="header_ref" href="/createOrUpdateDepartmentForm/">Add Department</a>
 </div>
 
 
 <div style="margin-top: 50px;">
 
-    <c:if test="${empty requestScope.employees}">
+    <c:if test="${empty employees}">
         <p>Empty</p>
     </c:if>
 
-    <c:if test="${!empty requestScope.employees}">
+    <c:if test="${!empty employees}">
         <table>
             <tr>
                 <th>First Name</th>
@@ -39,7 +39,7 @@
                 <th>Hire Date</th>
                 <th>Department name</th>
             </tr>
-            <c:forEach var="employee" items="${requestScope.employees}">
+            <c:forEach var="employee" items="${employees}">
                 <tr>
                     <td><c:out value="${employee.firstName}"/></td>
                     <td><c:out value="${employee.lastName}"/></td>

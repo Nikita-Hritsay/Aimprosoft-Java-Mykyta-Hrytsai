@@ -13,20 +13,21 @@
 <head>
     <title>Title</title>
 
-    <link href="../../css/main.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>"/>
 </head>
 <body>
 
 <div class="header_refs">
-    <a class="header_ref" href="displayAllDepartments">Home page</a>
-    <a class="header_ref" href="displayEmployees">All Employees</a>
-    <a class="header_ref" href="createOrUpdateEmployeeForm">Add Employee</a>
-    <a class="header_ref" href="createOrUpdateDepartmentForm">Add Department</a>
+    <a class="header_ref" href="/displayAllDepartments">Home page</a>
+    <a class="header_ref" href="/displayEmployees">All Employees</a>
+    <a class="header_ref" href="/createOrUpdateEmployeeForm/">Add Employee</a>
+    <a class="header_ref" href="/createOrUpdateDepartmentForm/">Add Department</a>
 </div>
 
+
 <div style="margin-top: 50px;" class="createOrUpdateForm">
-    <form action="createOrUpdateDepartment" method="post">
-        <input name="id" class="input_param_id" value="${department.idDepartment}" type="hidden">
+    <form action="/createOrUpdateDepartmentForm" method="post">
+        <input name="idDepartment" value="${department.idDepartment}" type="hidden">
         Please enter name of department: <label>
         <input type="text" name="name" class="input_param" size="15px"
                value="${department.name}">

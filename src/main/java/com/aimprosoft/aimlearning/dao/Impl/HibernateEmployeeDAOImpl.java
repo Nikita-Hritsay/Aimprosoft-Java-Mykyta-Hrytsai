@@ -31,12 +31,15 @@ public class HibernateEmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public Employee getById(int id) throws DBException {
-        try {
-            return sessionFactory.getCurrentSession().get(Employee.class, id);
-        } catch (Exception e) {
-            throw new DBException(e.getMessage());
+    public Employee getById(Integer id) throws DBException {
+        if (id != null) {
+            try {
+                return sessionFactory.getCurrentSession().get(Employee.class, id);
+            } catch (Exception e) {
+                throw new DBException(e.getMessage());
+            }
         }
+        return null;
     }
 
     @Override

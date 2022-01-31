@@ -30,7 +30,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee getById(int id) throws DBException {
+    public Employee getById(Integer id) throws DBException {
         return employeeDAO.getById(id);
     }
 

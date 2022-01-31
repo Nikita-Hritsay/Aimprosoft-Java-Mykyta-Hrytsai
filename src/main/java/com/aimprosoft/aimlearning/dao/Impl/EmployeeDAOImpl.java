@@ -55,7 +55,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public Employee getById(int id) throws DBException {
+    public Employee getById(Integer id) throws DBException {
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_BY_ID)) {
             ResultSet resultSet;
