@@ -1,0 +1,158 @@
+
+  
+a {
+    display: inline-block;
+    padding: 10px 10px 10px;
+    margin-left: 15px;
+    border-radius: 7px;
+    text-decoration: none;
+    color: black;
+    margin-right: 10px;
+}
+
+.header_refs {
+    padding: 40px 20px 0 20px;
+    margin-bottom: 40px;
+}
+
+p{
+    padding-top: 12px;
+}
+
+.header_ref {
+    background: #b8ffff;
+}
+
+.header_ref_del {
+    background: #fd9d9d;
+}
+
+.department_by_id_manage {
+    padding: 40px 20px 0 20px;
+}
+
+.input_param {
+    padding-top: 15px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.update_button {
+    color: blue;
+    width: 100px;
+    border: 1px solid black;
+    background: #D8E6F3;
+}
+
+
+.delete_button {
+    color: red;
+    border: 1px solid black;
+    background: #D8E6F3;
+    width: 100px;
+}
+
+.error{
+    color: red;
+}
+
+.error_massage{
+    padding-bottom: 10px;
+    background: none;
+}
+
+#name-error{
+    padding-top: 5px;
+    color: red;
+}
+
+#email-error{
+    padding-top: 5px;
+    color: red;
+}
+
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif, serif;
+    font-size: 14px;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+label{
+    width: 100%;
+}
+
+th {
+    background: #AFCDE7;
+    color: white;
+    padding: 10px 20px;
+}
+
+th, td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: white;
+    padding: 10px 20px
+}
+
+td {
+    background: #D8E6F3;
+}
+
+th:first-child, td:first-child {
+    text-align: left;
+}
+
+#app{
+    padding-top: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.addToThisDepartment{
+    margin-bottom: 40px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    margin: 0;
+}
+
+.createOrUpdateForm {
+    width: 370px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.submit_createOrUpdate {
+    display: inline-block;
+    padding: 15px 23px 15px;
+    margin-top: 25px;
+    border-radius: 7px;
+    text-decoration: none;
+    color: black;
+    margin-right: 10px;
+    background: aquamarine;
+    border: 0;
+}
