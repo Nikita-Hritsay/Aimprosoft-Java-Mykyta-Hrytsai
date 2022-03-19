@@ -58,10 +58,10 @@ public class ApplicationContextConfig implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/static/");
     }
 
-    @Bean
+    /*@Bean
     public ModelValidator<?> modelValidator() {
         return new ModelValidator<>(validator());
-    }
+    }*/
 
     @Bean
     public Validator validator() {

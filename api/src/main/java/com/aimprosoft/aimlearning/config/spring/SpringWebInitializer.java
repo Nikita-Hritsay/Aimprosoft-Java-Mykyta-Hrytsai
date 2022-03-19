@@ -12,9 +12,9 @@ import org.springframework.web.servlet.DispatcherServlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
 
-@RestController
-public class SpringWebInitializer implements WebApplicationInitializer {
-
+//@RestController
+public class SpringWebInitializer/* implements WebApplicationInitializer*/ {
+/*
     @Override
     public void onStartup(ServletContext servletContext) {
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
@@ -27,6 +27,6 @@ public class SpringWebInitializer implements WebApplicationInitializer {
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
         servletContext.setRequestCharacterEncoding("utf-8");
-    }
+    }*/
 
 }
